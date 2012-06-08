@@ -1,0 +1,13 @@
+default: &defaults
+  # 敏感词过滤, 都用大写字母来标识
+  spam_words: SB|TMD|MLGB
+
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

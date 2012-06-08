@@ -1,0 +1,9 @@
+class DashboardController < ApplicationController
+
+
+  def index
+    @knowledges = Knowledge.last
+    #@comment_activity = CommentActivity.find_recent
+    #@stats            = Stats.new
+  end
+end

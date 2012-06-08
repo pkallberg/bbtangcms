@@ -1,0 +1,35 @@
+<%= simple_form_for @knowledge, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="knowledge-head box">
+  <span class="label label-info">head</span>
+    <%= f.input :title %>
+    <%= f.input :summary, :input_html => { :rows =>"5", :cols =>"20" } %>
+    <!--%= f.input :content %-->
+  </div>
+  <div class="knowledge-content box">
+    <span class="label label-info">content</span>
+    <%= f.input :body, :as => :kindeditor, :input_html => { :width => 800, :height => 300 } %>
+  </div>
+  <div class="knowledge-footer box">
+      <span class="label label-info">footer</span>
+    <%= f.input :tags %>
+    <%= f.input :timeline_ids, :input_html => { :rows =>"5", :cols =>"20" } %>
+    <%= f.input :knowledgebase_category_id %>
+    <%= f.input :created_name %>
+    <%= f.input :source_info %>
+    <%= f.input :auto_tags, :input_html => { :rows =>"5", :cols =>"20" } %>
+    <!--%= f.input :created_by %-->
+    <!--%= f.input :updated_by %-->
+    <!--%= f.input :deleted_at %-->
+    <!--%= f.input :deleted_by %-->
+    <!--%= f.input :delta %-->
+    <!--%= f.input :thanks_count %-->
+    <!--%= f.input :forwarding_count %-->
+    <!--%= f.input :comments_count %-->
+    <!--%= f.input :views_count %-->
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                knowledge_path, :class => 'btn' %>
+  </div>
+<% end %>

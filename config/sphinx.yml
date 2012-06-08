@@ -1,0 +1,11 @@
+development:
+  bin_path: /usr/local/coreseek/bin
+  charset_type: zh_cn.utf-8
+  charset_dictpath: /usr/local/mmseg3/etc
+  config_file: development.sphinx.conf
+  
+production:
+  bin_path: /usr/local/coreseek/bin
+  charset_type: zh_cn.utf-8
+  charset_dictpath: /usr/local/mmseg3/etc
+  config_file: development.sphinx.conf
