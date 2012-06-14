@@ -1,4 +1,5 @@
 class KnowledgesController < ApplicationController
+  before_filter :authenticate_user!
   Model_class = Knowledge.new.class
 
   # GET /knowledges
@@ -31,6 +32,11 @@ class KnowledgesController < ApplicationController
   def new
     @knowledge = Knowledge.new
     @identities=Identity.all
+    @identities_choose=[]
+    @timelines_choose=[]
+    @timelines=[]
+    @categories_choose=[]
+    @categories=[]
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), new_knowledge_path
 
     respond_to do |format|
@@ -99,17 +105,72 @@ class KnowledgesController < ApplicationController
   # POST /knowledges.json
   def create
     @knowledge = Knowledge.new(params[:knowledge])
+    @identities=Identity.all
+    @identities_choose=[]
+    @timelines_choose=[]
+    @timelines=[]
+    @categories_choose=[]
+    @categories=[]
+    if params[:knowledge].has_key? "identity_list"
+      params[:knowledge][:identity_list].each do |identity_id|
+        if identity_id.present?
+          @identities_choose.push(Identity.find(identity_id.to_i)) if Identity.find(identity_id.to_i)
+        end
+      end
+    end
+    if params[:knowledge].has_key? "timeline_list"
+      params[:knowledge][:timeline_list].each do |timeline_id|
+        if timeline_id.present?
+          @timelines_choose.push(Timeline.find(timeline_id.to_i)) if Timeline.find(timeline_id.to_i)
+        end
+      end
+    end
+    if params[:knowledge].has_key? "category_list"
+      params[:knowledge][:category_list].each do |category_id|
+        if category_id.present?
+          @categories_choose.push(Category.find(category_id.to_i)) if Category.find(category_id.to_i)
+        end
+      end
+    end
+    unless @identities_choose.empty?
+      @identities_choose.each do |identities|
+        @timelines += identities.children.all
+      end
+    end
+    unless @timelines_choose.empty?
+      @timelines_choose.each do |timeline|
+        @categories += timeline.children.all if timeline.children.all
+      end
+    end
 
-    respond_to do |format|
-      if @knowledge.save
-        format.html { redirect_to @knowledge, notice: 'Knowledge was successfully created.' }
-        format.json { render json: @knowledge, status: :created, location: @knowledge }
-      else
+  if params[:commit] == 'refresh'
+    #unless @timelines.empty?
+    #  @timelines.each do |timelines|
+    #    @categories_list += timeline.children.all
+    #  end
+    #end
+    #@identities_choose.map!(&:id)
+    #@timelines_choose.map!(&:id)
+    #@categories_choose.map!(&:id)
+    render :refresh
+  else
+    @knowledge.identity_list = @identities_choose.map(&:name) if not @identities_choose.empty?
+    @knowledge.timeline_list = @timelines_choose.map(&:name) if not @timelines_choose.empty?
+    @knowledge.category_list = @categories_choose.map(&:name) if not @categories_choose.empty?
+    debugger
+    if @knowledge.save
+      flash[:notice] = 'Knowledge was successfully updated.'
+      render js: %[window.location.pathname='#{knowledge_path(@knowledge)}']
+      #format.html { redirect_to @knowledge, notice: 'Knowledge was successfully created.' }
+      #format.json { render json: @knowledge, status: :created, location: @knowledge }
+    else
+      respond_to do |format|
         format.html { render action: "new" }
         format.json { render json: @knowledge.errors, status: :unprocessable_entity }
       end
     end
   end
+
 
   # PUT /knowledges/1
   # PUT /knowledges/1.json
@@ -165,15 +226,16 @@ class KnowledgesController < ApplicationController
       #@categories_choose.map!(&:id)
       render :refresh
     else
-
-      respond_to do |format|
-        params[:knowledge]["identity_list"] = @identities_choose.map(&:name) if not @identities_choose.empty?
-        params[:knowledge]["timeline_list"] = @timelines_choose.map(&:name) if not @timelines_choose.empty?
-        params[:knowledge]["category_list"] = @categories_choose.map(&:name) if not @categories_choose.empty?
-        if @knowledge.update_attributes(params[:knowledge])
-          format.html { redirect_to @knowledge, notice: 'Knowledge was successfully updated.' }
-          format.json { head :no_content }
-        else
+      params[:knowledge]["identity_list"] = @identities_choose.map(&:name) if not @identities_choose.empty?
+      params[:knowledge]["timeline_list"] = @timelines_choose.map(&:name) if not @timelines_choose.empty?
+      params[:knowledge]["category_list"] = @categories_choose.map(&:name) if not @categories_choose.empty?
+      if @knowledge.update_attributes(params[:knowledge])
+        #format.html { redirect_to @knowledge, notice: 'Knowledge was successfully updated.' }
+        #format.json { head :no_content }
+        flash[:notice] = 'Knowledge was successfully updated.'
+        render js: %[window.location.pathname='#{knowledge_path(@knowledge)}']
+      else
+        respond_to do |format|
           format.html { render action: "edit" }
           format.json { render json: @knowledge.errors, status: :unprocessable_entity }
         end
@@ -192,4 +254,5 @@ class KnowledgesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end

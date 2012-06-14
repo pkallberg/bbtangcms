@@ -23,7 +23,7 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  #gem 'sass-rails',   '~> 3.2.3'
+  gem 'sass-rails',   '~> 3.2.3'
   gem "less-rails", "~> 2.2.3"
   gem 'coffee-rails', '~> 3.2.1'
 
@@ -55,12 +55,17 @@ gem 'simple_form', :git => "git://github.com/plataformatec/simple_form.git"
 #Wrap your objects with a helper to easily show them
 gem "show_for", "~> 0.2.5"
 
-gem "twitter-bootstrap-rails", "~> 2.1.0"
+#gem "twitter-bootstrap-rails", "~> 2.1.0"
 #gem "sass-twitter-bootstrap-rails", "~> 1.0.2"
-gem "less-rails-bootswatch", "~> 0.2.5"
+#gem "less-rails-bootswatch", "~> 0.2.5"
 #This gem is meant to be used with bootstrap-sass. 
 #gem "bootswatch-rails", "~> 0.0.11"
-
+group :assets do
+  gem 'therubyracer'
+  gem "less-rails", "~> 2.2.3"
+  gem "less-rails-bootstrap", "~> 2.0.13"
+  gem 'less-rails-bootswatch', "~> 0.2.5"
+end
 #麵包屑
 gem "breadcrumbs", "~> 0.1.6"
 
@@ -97,6 +102,7 @@ gem 'redis-search', '0.7.0'
 gem 'settingslogic', '2.0.6' #为使用yml文件作为配置
 gem 'carrierwave','0.5.7'  #for kindeditor
 gem 'rails_kindeditor', '~> 0.3.0' #for kindeditor
+gem 'sanitize','2.0.3'  #过滤html标签  requires Nokogiri >= 1.4.4  libxml2 >= 2.7.2
 gem 'will_paginate', '3.0.2' #分页控件
 gem "will_paginate_twitter_bootstrap", "~> 1.0.0"
 

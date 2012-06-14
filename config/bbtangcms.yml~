@@ -5,6 +5,8 @@ defaults: &defaults
     saweet: nested settings
   neat_setting: 24
   theme: 'readable'
+  today_theme: '
+  theme1: 'united'
   awesome_setting: <%= "Did you know 5 + 5 = #{5 + 5}?" %>
 
 development:

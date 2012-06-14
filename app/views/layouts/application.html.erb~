@@ -12,7 +12,6 @@
     <![endif]-->
 
     <%= stylesheet_link_tag "application", :media => "all" %>
-    <%= javascript_include_tag :defaults%>
 
     <link href="/images/favicon.ico" rel="shortcut icon">
     <link href="/images/apple-touch-icon.png" rel="apple-touch-icon">
@@ -20,7 +19,7 @@
     <link href="/images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
     <%= javascript_include_tag "application" %>
   </head>
-  <body>
+  <body data-offset="50" data-target=".subnav" data-spy="scroll">
     <%= render :partial => 'common/menu' %>
 
     <div class="container-fluid">
@@ -29,19 +28,7 @@
          <%= breadcrumbs.render(:format => :inline, :separator => '>>') %>
         </ul>
 
-        <div class="row-fluid">
-          <div class="span12">
-            <div class="row-fluid">
-            <div class="span10">
-              <%= render :partial => 'common/flashes' %>
-              <%= yield %>
-            </div>
-            <div class="span2">
-              <%= render :partial => 'common/sidebar' %>
-            </div><!--/span-->
-            </div>
-          </div>
-        </div><!--/row-->
+        
       </div><!--/content-->
       <hr>
       <footer>

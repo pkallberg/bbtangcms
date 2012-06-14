@@ -5,6 +5,7 @@ class Knowledge< ActiveRecord::Base
   acts_as_followable
   acts_as_taggable_on :tags, :timelines, :categories, :identities
   #before_validation :check_spam_words
+  before_validation :repear_save
   
   belongs_to :knowledgebase_category
   has_one :quiz
@@ -86,6 +87,10 @@ class Knowledge< ActiveRecord::Base
   def check_spam_words
     self.spam?("title")
     self.spam?("content")
+  end
+  
+  def repear_save
+    self.content = Sanitize.clean(self.body).strip
   end
   
   def count_focus

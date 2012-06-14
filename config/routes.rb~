@@ -1,7 +1,7 @@
 BBTangCMS::Application.routes.draw do
   resources :knowledges do
     member do
-      post 'refresh'
+      match 'refresh'
     end
   end
 

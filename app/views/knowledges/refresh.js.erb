@@ -1,7 +1,14 @@
-$("#edit_<%= dom_id @knowledge %>").replaceWith("<%= j render 'refresh_form'%>");
-$("#new_<%= dom_id @knowledge %>").replaceWith("<%= j render 'refresh_form'%>");
-<% [:notice, :error, :alert, :message].each do |level| %>
-  <% unless flash[level].blank? %>
-  $(".alert-message").replaceWith("<%= j render 'common/flashes'%>");
-  <% end %>
-<% end %>
+
+$("#edit_<%= dom_id @knowledge %>").replaceWith("<%= j render 'form'%>");
+$("#new_knowledge").replaceWith("<%= j render 'form'%>");
+
+KindEditor.create(
+    'textarea[id="knowledge_body"]',
+    {
+      width : '850px',
+      height: '500px',
+      uploadJson: '/kindeditor/upload',
+      fileManagerJson: '/kindeditor/filemanager'
+    }
+    )
+
