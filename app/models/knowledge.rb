@@ -1,7 +1,9 @@
 class Knowledge< ActiveRecord::Base
-  DEFAULT_LIMIT = 15
+    DEFAULT_LIMIT = 15
 
   include BaseModel  #for 敏感词验证
+  acts_as_followable
+  acts_as_taggable_on :tags, :timelines, :categories, :identities
   #before_validation :check_spam_words
   
   belongs_to :knowledgebase_category
@@ -37,6 +39,7 @@ class Knowledge< ActiveRecord::Base
   scope :not_deleted,  where("knowledgebase.deleted_at is NULL")
   scope :id_equals, lambda { |input_id| where("knowledgebase.id = ?", input_id)}
   
+=begin
   define_index do
    indexes title 
    indexes content
@@ -46,6 +49,7 @@ class Knowledge< ActiveRecord::Base
    #声明使用实时索引
    set_property :delta => true
   end
+=end
   
   # find the knowledges whose tags include param
   def self.find_knowledges_with_tag(tag_id)
@@ -87,7 +91,6 @@ class Knowledge< ActiveRecord::Base
   def count_focus
     self.thanks_count.to_i
   end
-
   class << self
     def find_recent(options = {})
       tag = options.delete(:tag)
@@ -103,4 +106,5 @@ class Knowledge< ActiveRecord::Base
       end
     end
   end
+
 end

@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
   before_filter :add_initial_breadcrumbs
 
   attr_reader :current_action
+  
+  def bbtangcms_config
+    @@bbtangcms_config = BBTangCMS::Config.default
+  end
 
   private
   def add_initial_breadcrumbs

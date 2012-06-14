@@ -1,9 +1,8 @@
 class ActsAsTaggableOnMigration < ActiveRecord::Migration
   def self.up
-    #tags table already exists in db so skip in here
-    #create_table :tags do |t|
-    #  t.string :name
-    #end
+    create_table :tags do |t|
+      t.string :name
+    end
 
     create_table :taggings do |t|
       t.references :tag
@@ -13,9 +12,7 @@ class ActsAsTaggableOnMigration < ActiveRecord::Migration
       t.references :taggable, :polymorphic => true
       t.references :tagger, :polymorphic => true
 
-      # limit is created to prevent mysql error o index lenght for myisam table type.
-      # http://bit.ly/vgW2Ql
-      t.string :context, :limit => 128
+      t.string :context
 
       t.datetime :created_at
     end
@@ -26,6 +23,6 @@ class ActsAsTaggableOnMigration < ActiveRecord::Migration
 
   def self.down
     drop_table :taggings
-    #drop_table :tags
+    drop_table :tags
   end
 end

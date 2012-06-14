@@ -25,6 +25,14 @@ module BBTangCMS
     #def author_open_ids
     #  [self[:author, :open_id]].flatten.map {|uri| URI.parse(uri)}
     #end
+    
+    def self.default
+      BBTangCMS::Config.new(default_location)
+    end
+
+    def self.default_location
+      "#{Rails.root}/config/bbtangcms.yml"
+    end
 
     def self.sina
       BBTangCMS::Config.new(sina_location)
@@ -33,12 +41,21 @@ module BBTangCMS
     def self.sina_location
       "#{Rails.root}/config/oauth/sina.yml"
     end
+    
     def self.qq
       BBTangCMS::Config.new(qq_location)
     end
 
     def self.qq_location
       "#{Rails.root}/config/oauth/qq.yml"
+    end
+    
+    def self.tag
+      BBTangCMS::Config.new(tag_location)
+    end
+
+    def self.tag_location
+      "#{Rails.root}/config/tag.yml"
     end
 
     private

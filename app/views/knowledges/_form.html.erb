@@ -1,4 +1,4 @@
-<%= simple_form_for @knowledge, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @knowledge, :html => { :class => 'form-horizontal', :class => "form-inline", :remote => true } do |f| %>
   <div class="knowledge-head box">
   <span class="label label-info">head</span>
     <%= f.input :title %>
@@ -7,16 +7,25 @@
   </div>
   <div class="knowledge-content box">
     <span class="label label-info">content</span>
-    <%= f.input :body, :as => :kindeditor, :input_html => { :width => 800, :height => 300 } %>
+    <%= f.input :body, :as => :kindeditor, :input_html => { :width => 850, :height => 500 } %>
   </div>
   <div class="knowledge-footer box">
       <span class="label label-info">footer</span>
-    <%= f.input :tags, :input_html => { :rows =>"5", :cols =>"20" } %>
-    <%= f.input :timeline_ids, :input_html => { :rows =>"5", :cols =>"20" } %>
-    <%= f.input :knowledgebase_category_id %>
+    <%= f.input :identity_list,  :as => :check_boxes, :collection => Identity.all, :collection => @identities.uniq{|x| x.name},:checked => (@identities_choose.map(&:id) if @identities_choose), :input_html => { :rows =>"5", :cols =>"20" } %>
+
+    <% unless @timelines.empty? %>
+      <%= f.input :timeline_list,  :as => :check_boxes, :collection => @timelines.uniq{|x| x.name},:checked => @timelines_choose.map(&:id), :input_html => { :rows =>"5", :cols =>"20" } %>
+    <% end %>
+
+    <% unless @categories.empty? %>
+      <%= f.input :category_list,  :as => :check_boxes, :collection => @categories.uniq{|x| x.name},:checked => @categories_choose.map(&:id), :input_html => { :rows =>"5", :cols =>"20" } %>
+    <% end %>
+    <!--%= link_to "refresh", :action => "refresh", :remote => true %-->
+    <%= f.button :submit, 'refresh', :remote => true, :disable_with => 'loading...' %>
     <%= f.input :created_name %>
     <%= f.input :source_info %>
-    <%= f.input :auto_tags, :input_html => { :rows =>"5", :cols =>"20" } %>
+    <%= f.input :tag_list,:hint => "请输入标签名，并以英文逗号(',')隔开...", :input_html => { :rows =>"5", :cols =>"20" } %>
+    <!--%= f.input :auto_tags, :input_html => { :rows =>"5", :cols =>"20" } %-->
     <!--%= f.input :created_by %-->
     <!--%= f.input :updated_by %-->
     <!--%= f.input :deleted_at %-->
@@ -30,6 +39,6 @@
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                knowledge_path, :class => 'btn' %>
+                knowledges_path, :class => 'btn' %>
   </div>
 <% end %>

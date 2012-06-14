@@ -1,0 +1,7 @@
+$("#edit_<%= dom_id @knowledge %>").replaceWith("<%= j render 'refresh_form'%>");
+$("#new_<%= dom_id @knowledge %>").replaceWith("<%= j render 'refresh_form'%>");
+<% [:notice, :error, :alert, :message].each do |level| %>
+  <% unless flash[level].blank? %>
+$(".alert-message").replaceWith("<%= j render 'common/flashes'%>");
+  <% end %>
+<% end %>

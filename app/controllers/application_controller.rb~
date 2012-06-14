@@ -6,10 +6,6 @@ class ApplicationController < ActionController::Base
 
   attr_reader :current_action
 
-  def current_action
-    params[:action]
-  end
-
   private
   def add_initial_breadcrumbs
     breadcrumbs.add :homepage, root_path
@@ -17,6 +13,10 @@ class ApplicationController < ActionController::Base
 
   
   protected
+
+  def current_action
+    params[:action]
+  end
 
   def require_login
     return redirect_to(admin_session_path) unless session[:logged_in]

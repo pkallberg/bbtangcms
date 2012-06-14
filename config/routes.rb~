@@ -1,8 +1,13 @@
 BBTangCMS::Application.routes.draw do
-  resources :knowledges
+  resources :knowledges do
+    member do
+      post 'refresh'
+    end
+  end
 
   devise_for :users
 
+  root :to => 'dashboard#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

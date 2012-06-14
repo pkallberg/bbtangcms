@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120607081017) do
+ActiveRecord::Schema.define(:version => 20120612075942) do
 
   create_table "admin_settings", :force => true do |t|
     t.string   "name"
@@ -85,6 +85,18 @@ ActiveRecord::Schema.define(:version => 20120607081017) do
     t.string   "access_token_secret"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "category_bases", :force => true do |t|
+    t.string   "name"
+    t.string   "type"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.integer  "depth"
   end
 
   create_table "cms_module_configs", :force => true do |t|
@@ -196,6 +208,19 @@ ActiveRecord::Schema.define(:version => 20120607081017) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "follows", :force => true do |t|
+    t.integer  "followable_id",                      :null => false
+    t.string   "followable_type",                    :null => false
+    t.integer  "follower_id",                        :null => false
+    t.string   "follower_type",                      :null => false
+    t.boolean  "blocked",         :default => false, :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
+
+  add_index "follows", ["followable_id", "followable_type"], :name => "fk_followables"
+  add_index "follows", ["follower_id", "follower_type"], :name => "fk_follows"
 
   create_table "group_categories", :force => true do |t|
     t.string   "name"
@@ -439,7 +464,6 @@ ActiveRecord::Schema.define(:version => 20120607081017) do
     t.text     "content"
     t.text     "body"
     t.text     "focus_by"
-    t.text     "tags"
     t.integer  "created_by"
     t.integer  "views_count"
     t.boolean  "delta",               :default => true, :null => false
@@ -450,7 +474,6 @@ ActiveRecord::Schema.define(:version => 20120607081017) do
     t.integer  "answers_count"
     t.integer  "experts_count"
     t.integer  "designated_answerer"
-    t.text     "auto_tags"
     t.integer  "knowledge_id"
     t.boolean  "is_anonymous"
     t.boolean  "deleted"
@@ -505,6 +528,17 @@ ActiveRecord::Schema.define(:version => 20120607081017) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "settings", :force => true do |t|
+    t.string   "var",                      :null => false
+    t.text     "value"
+    t.integer  "thing_id"
+    t.string   "thing_type", :limit => 30
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  add_index "settings", ["thing_type", "thing_id", "var"], :name => "index_settings_on_thing_type_and_thing_id_and_var", :unique => true
 
   create_table "show_categories", :force => true do |t|
     t.string   "name"
@@ -576,7 +610,7 @@ ActiveRecord::Schema.define(:version => 20120607081017) do
     t.string   "taggable_type"
     t.integer  "tagger_id"
     t.string   "tagger_type"
-    t.string   "context",       :limit => 128
+    t.string   "context"
     t.datetime "created_at"
   end
 
@@ -584,26 +618,8 @@ ActiveRecord::Schema.define(:version => 20120607081017) do
   add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
 
   create_table "tags", :force => true do |t|
-    t.string   "name"
-    t.text     "follower_ids"
-    t.text     "knowledge_ids"
-    t.text     "summary"
-    t.text     "group_ids"
-    t.text     "blog_ids"
-    t.text     "resource_ids"
-    t.text     "question_ids"
-    t.text     "answer_ids"
-    t.integer  "created_by"
-    t.integer  "updated_by"
-    t.datetime "confirmed_at"
-    t.integer  "confirmed_by"
-    t.boolean  "delta",         :default => true, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "category"
+    t.string "name"
   end
-
-  add_index "tags", ["name"], :name => "name", :unique => true
 
   create_table "tasks", :force => true do |t|
     t.string   "name"

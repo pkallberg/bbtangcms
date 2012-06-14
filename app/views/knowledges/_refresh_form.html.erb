@@ -1,0 +1,43 @@
+<%= simple_form_for @knowledge, :html => { :class => 'form-horizontal', :class => "form-inline", :remote => true } do |f| %>
+  <div class="knowledge-head box">
+  <span class="label label-info">head</span>
+    <%= f.input :title %>
+    <%= f.input :summary, :input_html => { :rows =>"5", :cols =>"20" } %>
+    <!--%= f.input :content %-->
+  </div>
+  <div class="knowledge-content box">
+    <span class="label label-info">content</span>
+    <%= f.input :body, :as => :kindeditor, :input_html => { :width => 850, :height => 500 } %>
+  </div>
+  <div class="knowledge-footer box">
+      <span class="label label-info">footer</span>
+    <%= f.input :identity_list,  :as => :check_boxes, :collection => @identities.uniq{|x| x.name},:checked => @identities_choose.map(&:id),  :input_html => { :rows =>"5", :cols =>"20"} %>
+
+    <% unless @timelines.empty? %>
+      <%= f.input :timeline_list,  :as => :check_boxes, :collection => @timelines.uniq{|x| x.name},:checked => @timelines_choose.map(&:id), :input_html => { :rows =>"5", :cols =>"20" } %>
+    <% end %>
+    <% unless @categories.empty? %>
+      <%= f.input :category_list,  :as => :check_boxes, :collection => @categories.uniq{|x| x.name},:checked => @categories_choose.map(&:id), :input_html => { :rows =>"5", :cols =>"20" } %>
+    <% end %>
+    <!--%= link_to "refresh", :action => "refresh", :remote => true %-->
+    <%= f.button :submit, 'refresh', :remote => true %>
+    <%= f.input :created_name %>
+    <%= f.input :source_info %>
+    <%= f.input :tag_list,:hint => "请输入标签名，并以英文逗号(',')隔开...", :input_html => { :rows =>"5", :cols =>"20" } %>
+    <!--%= f.input :auto_tags, :input_html => { :rows =>"5", :cols =>"20" } %-->
+    <!--%= f.input :created_by %-->
+    <!--%= f.input :updated_by %-->
+    <!--%= f.input :deleted_at %-->
+    <!--%= f.input :deleted_by %-->
+    <!--%= f.input :delta %-->
+    <!--%= f.input :thanks_count %-->
+    <!--%= f.input :forwarding_count %-->
+    <!--%= f.input :comments_count %-->
+    <!--%= f.input :views_count %-->
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                knowledges_path, :class => 'btn' %>
+  </div>
+<% end %>

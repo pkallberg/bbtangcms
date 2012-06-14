@@ -10,7 +10,7 @@
 
 require 'delegate'
 
-module Askjane
+module BBTangCMS
   class Config < SimpleDelegator
     def initialize(file_name)
       super(symbolize_keys( YAML.load_file(file_name)[Rails.env] || YAML.load_file(file_name)))
@@ -25,20 +25,37 @@ module Askjane
     #def author_open_ids
     #  [self[:author, :open_id]].flatten.map {|uri| URI.parse(uri)}
     #end
+    
+    def self.default
+      BBTangCMS::Config.new(default_location)
+    end
+
+    def self.default_location
+      "#{Rails.root}/config/bbtangcms.yml"
+    end
 
     def self.sina
-      Askjane::Config.new(sina_location)
+      BBTangCMS::Config.new(sina_location)
     end
 
     def self.sina_location
       "#{Rails.root}/config/oauth/sina.yml"
     end
+    
     def self.qq
-      Askjane::Config.new(qq_location)
+      BBTangCMS::Config.new(qq_location)
     end
 
     def self.qq_location
       "#{Rails.root}/config/oauth/qq.yml"
+    end
+    
+    def self.tag
+      BBTangCMS::Config.new(tag_location)
+    end
+
+    def self.tag_location
+      "#{Rails.root}/config/tag.yml"
     end
 
     private

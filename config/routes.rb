@@ -1,5 +1,9 @@
 BBTangCMS::Application.routes.draw do
-  resources :knowledges
+  resources :knowledges do
+    member do
+      get 'refresh'
+    end
+  end
 
   devise_for :users
 

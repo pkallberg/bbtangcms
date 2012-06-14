@@ -43,7 +43,7 @@
         <!--td><%= knowledge.timeline_ids %></td-->
         <!--td><%= knowledge.knowledgebase_category_id %></td-->
         <td><%= knowledge.created_by %></td>
-        <td><%= knowledge.created_name %></td>
+        <!--td><%= knowledge.created_name %></td-->
         <td><%= knowledge.updated_by %></td>
         <!--td><%= knowledge.deleted_at %></td-->
         <!--td><%= knowledge.deleted_by %></td-->
