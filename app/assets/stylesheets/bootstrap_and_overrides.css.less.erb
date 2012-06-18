@@ -1,7 +1,6 @@
 //@import "twitter/bootstrap/bootstrap";
 @import "twitter/bootstrap";
 <%= "@import 'bootswatch/#{Setting.today_theme}/bootswatch';" %>
-
 <%= "@import 'bootswatch/#{Setting.today_theme}/variables';" %>
 
 
@@ -22,6 +21,21 @@
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
   box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+
+fieldset { margin-bottom:0;}
+fieldset legend { font-size:16px; font-weight:bold;}
+.actions { margin-bottom:0;}
+.buttons { margin-top:10px; }
+form {
+  margin-bottom:0;
+
+  div {
+
+      input, textarea, select, .uneditable-input {
+        width: auto;
+      }
+  }
 }
 
 

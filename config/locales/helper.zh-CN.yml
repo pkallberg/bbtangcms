@@ -14,4 +14,5 @@ zh-CN:
       edit: "编辑%{model}"
       back: "返回%{model}"
       destroy: "删除%{model}"
+      cancel: "取消"
       confirm: "你想好了吗?"

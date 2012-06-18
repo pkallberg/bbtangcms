@@ -2,7 +2,7 @@
   <div class="knowledge-head box">
   <span class="label label-info">head</span>
     <%= f.input :title %>
-    <%= f.input :summary, :input_html => { :rows =>"3", :cols =>"50" } %>
+    <%= f.input :summary, :input_html => { :rows =>"5", :cols =>"100" } %>
     <!--%= f.input :content %-->
   </div>
   <div class="knowledge-content box">
@@ -11,8 +11,8 @@
   </div>
 
   <div class="knowledge-tags box" id = "knowledge-tags">
-      <span class="label label-info">footer</span>
-    <% unless @identities.empty? %>      
+      <span class="label label-info">tags</span>
+    <% unless @identities.empty? %>
       <%= f.input :identity_list,  :as => :check_boxes, :collection => @identities.uniq{|x| x.name},:checked => (@identities_choose.map(&:id) if @identities_choose), :input_html => { :rows =>"5", :cols =>"20" } %>
     <% end %>
     <% unless @timelines.empty? %>

@@ -1,6 +1,6 @@
-  alert(<%= [:notice, :error, :alert, :message]%>);
-$("#edit_<%= dom_id @knowledge %>").replaceWith("<%= j render 'form'%>");
-$("#new_knowledge").replaceWith("<%= j render 'form'%>");
+
+$("#knowledge-tags").replaceWith("<%= render :partial =>'refresh_tag', :locals => {:f => f,:knowledge=>@knowledge}%>");
+$("#new_knowledge").replaceWith("<%= j render 'refresh_form'%>");
 
 KindEditor.create(
     'textarea[id="knowledge_body"]',
@@ -11,5 +11,3 @@ KindEditor.create(
       fileManagerJson: '/kindeditor/filemanager'
     }
     )
-
-

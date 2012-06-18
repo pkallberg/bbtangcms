@@ -1,19 +1,19 @@
-<!--The back content-->
+<!--The backup content-->
 <%= simple_form_for @knowledge, :html => { :class => 'form-horizontal', :class => "form-inline", :remote => true } do |f| %>
   <div class="knowledge-head box">
   <span class="label label-info">head</span>
     <%= f.input :title %>
-    <%= f.input :summary, :input_html => { :rows =>"5", :cols =>"20" } %>
+    <%= f.input :summary, :input_html => { :rows =>"5", :cols =>"100" } %>
     <!--%= f.input :content %-->
   </div>
   <div class="knowledge-content box">
     <span class="label label-info">content</span>
-    <%= f.input :body, :as => :kindeditor, :input_html => { :width => 850, :height => 500 } %>
+    <%= f.input :body, :input_html => { :width => 850, :height => 500 } %>
   </div>
 
   <div class="knowledge-tags box" id = "knowledge-tags">
       <span class="label label-info">footer</span>
-    <% unless @identities.empty? %>      
+    <% unless @identities.empty? %>
       <%= f.input :identity_list,  :as => :check_boxes, :collection => @identities.uniq{|x| x.name},:checked => (@identities_choose.map(&:id) if @identities_choose), :input_html => { :rows =>"5", :cols =>"20" } %>
     <% end %>
     <% unless @timelines.empty? %>

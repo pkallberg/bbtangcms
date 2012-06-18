@@ -12,6 +12,6 @@ zh-CN:
       show: "显示%{model}"
       new: "新建%{model}"
       edit: "编辑%{model}"
-      back: "返回"
+      back: "返回%{model}"
       destroy: "删除%{model}"
       confirm: "你想好了吗?"

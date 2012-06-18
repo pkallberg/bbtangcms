@@ -11,9 +11,9 @@ group :production, :development, :test do
 end
 
 #Rails 3.* logs assets in the output from rails server. These messages are pretty verbose. Adding this gem to your project's Gemfile will suppress those messages.
-#group :development do
-#  gem 'quiet_assets', git: 'git@github.com:AgilionApps/quiet_assets.git', tag: 'v0.1.0'
-#end
+group :development do
+  gem 'quiet_assets', git: 'git@github.com:AgilionApps/quiet_assets.git', tag: 'v0.1.0'
+end
 
 #group :test do
 #  gem 'sqlite3'
@@ -48,7 +48,7 @@ gem "show_for", "~> 0.2.5"
 
 #gem "twitter-bootstrap-rails", "~> 2.1.0"
 #gem "sass-twitter-bootstrap-rails", "~> 1.0.2"
-#This gem is meant to be used with bootstrap-sass. 
+#This gem is meant to be used with bootstrap-sass.
 #gem "bootswatch-rails", "~> 0.0.11"
 group :assets do
   gem 'therubyracer'
