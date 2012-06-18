@@ -12,7 +12,8 @@ end
 
 #Rails 3.* logs assets in the output from rails server. These messages are pretty verbose. Adding this gem to your project's Gemfile will suppress those messages.
 group :development do
-  gem 'quiet_assets', git: 'git@github.com:AgilionApps/quiet_assets.git', tag: 'v0.1.0'
+# gem 'quiet_assets', git: 'git@github.com:AgilionApps/quiet_assets.git', tag: 'v0.1.0'
+  gem 'quiet_assets', '1.0.0'
 end
 
 #group :test do
