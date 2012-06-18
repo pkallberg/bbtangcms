@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120612075942) do
+ActiveRecord::Schema.define(:version => 20120618054823) do
 
   create_table "admin_settings", :force => true do |t|
     t.string   "name"
@@ -204,7 +204,7 @@ ActiveRecord::Schema.define(:version => 20120612075942) do
   create_table "focus_on_groups", :force => true do |t|
     t.string   "name"
     t.integer  "created_by"
-    t.text     "members"
+    t.text     "members",    :limit => 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -215,8 +215,8 @@ ActiveRecord::Schema.define(:version => 20120612075942) do
     t.integer  "follower_id",                        :null => false
     t.string   "follower_type",                      :null => false
     t.boolean  "blocked",         :default => false, :null => false
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "follows", ["followable_id", "followable_type"], :name => "fk_followables"
@@ -291,7 +291,6 @@ ActiveRecord::Schema.define(:version => 20120612075942) do
     t.text     "summary"
     t.text     "content"
     t.text     "body"
-    t.text     "tags"
     t.text     "timeline_ids"
     t.integer  "knowledgebase_category_id"
     t.integer  "created_by"
@@ -362,15 +361,15 @@ ActiveRecord::Schema.define(:version => 20120612075942) do
 
   create_table "mom_shows", :force => true do |t|
     t.string   "title"
-    t.text     "body"
-    t.text     "content"
+    t.text     "body",             :limit => 16777215
+    t.text     "content",          :limit => 16777215
     t.string   "images"
-    t.text     "like_by"
-    t.integer  "like_by_count",    :default => 0
-    t.integer  "excerpt_count",    :default => 0
-    t.text     "excerpt_to"
-    t.text     "excerpt_from"
-    t.text     "tags"
+    t.text     "like_by",          :limit => 16777215
+    t.integer  "like_by_count",                        :default => 0
+    t.integer  "excerpt_count",                        :default => 0
+    t.text     "excerpt_to",       :limit => 16777215
+    t.text     "excerpt_from",     :limit => 16777215
+    t.text     "tags",             :limit => 16777215
     t.integer  "show_category_id"
     t.datetime "deleted_at"
     t.integer  "created_by"
@@ -384,11 +383,11 @@ ActiveRecord::Schema.define(:version => 20120612075942) do
     t.text     "body"
     t.integer  "draft"
     t.integer  "private"
-    t.text     "tags"
+    t.text     "tags",        :limit => 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "profile_id"
-    t.integer  "views_count", :default => 0
+    t.integer  "views_count",                     :default => 0
   end
 
   create_table "photos", :force => true do |t|
@@ -474,6 +473,7 @@ ActiveRecord::Schema.define(:version => 20120612075942) do
     t.integer  "answers_count"
     t.integer  "experts_count"
     t.integer  "designated_answerer"
+    t.text     "auto_tags"
     t.integer  "knowledge_id"
     t.boolean  "is_anonymous"
     t.boolean  "deleted"
@@ -491,10 +491,42 @@ ActiveRecord::Schema.define(:version => 20120612075942) do
     t.boolean  "deleted"
   end
 
+  create_table "r_objects", :force => true do |t|
+    t.integer  "object_id"
+    t.integer  "object_category"
+    t.integer  "recommend_id"
+    t.integer  "recommend_category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "r_tag_objects", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "object_id"
+    t.integer  "object_category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "r_user_knowledges", :force => true do |t|
     t.integer  "profile_id"
     t.integer  "knowledge_id"
     t.integer  "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "r_users", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "follow_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "r_users_objects", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "object_id"
+    t.integer  "object_category"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -549,8 +581,8 @@ ActiveRecord::Schema.define(:version => 20120612075942) do
 
   create_table "show_comments", :force => true do |t|
     t.string   "title"
-    t.text     "content"
-    t.text     "body"
+    t.text     "content",      :limit => 16777215
+    t.text     "body",         :limit => 16777215
     t.integer  "created_by"
     t.boolean  "state"
     t.integer  "confirmed_by"
@@ -620,6 +652,28 @@ ActiveRecord::Schema.define(:version => 20120612075942) do
   create_table "tags", :force => true do |t|
     t.string "name"
   end
+
+  create_table "tags_bak", :force => true do |t|
+    t.string   "name"
+    t.text     "follower_ids"
+    t.text     "knowledge_ids"
+    t.text     "summary"
+    t.text     "group_ids"
+    t.text     "blog_ids"
+    t.text     "resource_ids"
+    t.text     "question_ids"
+    t.text     "answer_ids"
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.datetime "confirmed_at"
+    t.integer  "confirmed_by"
+    t.boolean  "delta",         :default => true, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "category"
+  end
+
+  add_index "tags_bak", ["name"], :name => "name", :unique => true
 
   create_table "tasks", :force => true do |t|
     t.string   "name"

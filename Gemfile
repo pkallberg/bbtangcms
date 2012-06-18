@@ -11,9 +11,9 @@ group :production, :development, :test do
 end
 
 #Rails 3.* logs assets in the output from rails server. These messages are pretty verbose. Adding this gem to your project's Gemfile will suppress those messages.
-group :development do
-  gem 'quiet_assets', git: 'git@github.com:AgilionApps/quiet_assets.git', tag: 'v0.1.0'
-end
+#group :development do
+#  gem 'quiet_assets', git: 'git@github.com:AgilionApps/quiet_assets.git', tag: 'v0.1.0'
+#end
 
 #group :test do
 #  gem 'sqlite3'
@@ -81,14 +81,14 @@ gem 'jquery-rails'
 gem "rails-settings-cached", "~> 0.2.1"
 
 # To use debugger
- gem 'ruby-debug19', :require => 'ruby-debug'
+# gem 'ruby-debug19', :require => 'ruby-debug'
 
 # redis-search
 gem 'redis','~> 2.1.1'
-gem 'chinese_pinyin', '~> 0.3.0'
-gem 'rmmseg-cpp-huacnlee', '~> 0.2.8'
 gem 'redis-namespace','~> 1.0.2'
-gem 'redis-search', '0.7.0'
+#gem 'chinese_pinyin', '~> 0.3.0'
+#gem 'rmmseg-cpp-huacnlee', '~> 0.2.8'
+#gem 'redis-search', '0.7.0'
 
 gem 'settingslogic', '2.0.6' #为使用yml文件作为配置
 gem 'carrierwave','0.5.7'  #for kindeditor

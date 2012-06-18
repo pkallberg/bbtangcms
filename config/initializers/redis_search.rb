@@ -1,3 +1,4 @@
+=begin
 require "redis"
 require "redis-namespace"
 require "redis-search"
@@ -21,3 +22,4 @@ end
 #Tag.new
 #Group.new
 
+=end
