@@ -6,13 +6,6 @@ GIT
       actionpack (~> 3.0)
       activemodel (~> 3.0)
 
-GIT
-  remote: git@github.com:AgilionApps/quiet_assets.git
-  revision: a63a7292f82f385b2d453edcb293ef1661f5960d
-  tag: v0.1.0
-  specs:
-    quiet_assets (0.0.1)
-
 GEM
   remote: http://ruby.taobao.org/
   specs:
@@ -162,6 +155,8 @@ GEM
       mime-types
     polyglot (0.3.3)
     pyu-ruby-sasl (0.0.3.3)
+    quiet_assets (1.0.0)
+      rails (~> 3.1)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -286,7 +281,7 @@ DEPENDENCIES
   oauth_china (~> 0.4.0)
   omniauth (= 0.3.2)
   paperclip (~> 3.0)
-  quiet_assets!
+  quiet_assets (= 1.0.0)
   rails (= 3.2.2)
   rails-settings-cached (~> 0.2.1)
   rails_autolink (= 1.0.4)
