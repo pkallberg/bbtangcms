@@ -25,7 +25,7 @@ class KnowledgesController < ApplicationController
       format.json { render json: @knowledge }
     end
   end
-  
+
 
   # GET /knowledges/new
   # GET /knowledges/new.json
@@ -85,7 +85,7 @@ class KnowledgesController < ApplicationController
         @timelines += identity.children.all
       end
     end
-    
+
 
     unless @timelines_choose.empty?
       @timelines_choose.each do |timeline|
@@ -177,6 +177,8 @@ class KnowledgesController < ApplicationController
   def update
     @knowledge = Knowledge.find(params[:id])
     #debugger
+      @form_date = params[:knowledge]
+      @knowledge.from_json @form_date.to_json if @form_date
       @identities=Identity.all
       @identities_choose=[]
       @timelines_choose=[]

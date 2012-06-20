@@ -1,8 +1,6 @@
-
-$("#edit_<%= dom_id @knowledge %>").replaceWith("<%= j render 'form'%>");
-$("#new_knowledge").replaceWith("<%= j render 'form'%>");
-
-KindEditor.create(
+$("#edit_<%= dom_id @knowledge %>").replaceWith("<%= j render 'refresh_form'%>");
+$("#new_knowledge").replaceWith("<%= j render 'refresh_form'%>");
+var editor = KindEditor.create(
     'textarea[id="knowledge_body"]',
     {
       width : '850px',
@@ -10,4 +8,4 @@ KindEditor.create(
       uploadJson: '/kindeditor/upload',
       fileManagerJson: '/kindeditor/filemanager'
     }
-    )
+    );

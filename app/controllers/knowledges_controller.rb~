@@ -25,7 +25,7 @@ class KnowledgesController < ApplicationController
       format.json { render json: @knowledge }
     end
   end
-  
+
 
   # GET /knowledges/new
   # GET /knowledges/new.json
@@ -85,7 +85,7 @@ class KnowledgesController < ApplicationController
         @timelines += identity.children.all
       end
     end
-    
+
 
     unless @timelines_choose.empty?
       @timelines_choose.each do |timeline|
@@ -153,20 +153,20 @@ class KnowledgesController < ApplicationController
     #@timelines_choose.map!(&:id)
     #@categories_choose.map!(&:id)
     render :refresh
-  else
-    @knowledge.identity_list = @identities_choose.map(&:name) if not @identities_choose.empty?
-    @knowledge.timeline_list = @timelines_choose.map(&:name) if not @timelines_choose.empty?
-    @knowledge.category_list = @categories_choose.map(&:name) if not @categories_choose.empty?
-    debugger
-    if @knowledge.save
-      flash[:notice] = 'Knowledge was successfully updated.'
-      render js: %[window.location.pathname='#{knowledge_path(@knowledge)}']
-      #format.html { redirect_to @knowledge, notice: 'Knowledge was successfully created.' }
-      #format.json { render json: @knowledge, status: :created, location: @knowledge }
     else
-      respond_to do |format|
-        format.html { render action: "new" }
-        format.json { render json: @knowledge.errors, status: :unprocessable_entity }
+      @knowledge.identity_list = @identities_choose.map(&:name) if not @identities_choose.empty?
+      @knowledge.timeline_list = @timelines_choose.map(&:name) if not @timelines_choose.empty?
+      @knowledge.category_list = @categories_choose.map(&:name) if not @categories_choose.empty?
+      if @knowledge.save
+        flash[:notice] = 'Knowledge was successfully updated.'
+        render js: %[window.location.pathname='#{knowledge_path(@knowledge)}']
+        #format.html { redirect_to @knowledge, notice: 'Knowledge was successfully created.' }
+        #format.json { render json: @knowledge, status: :created, location: @knowledge }
+      else
+        respond_to do |format|
+          format.html { render action: "new" }
+          format.json { render json: @knowledge.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -177,6 +177,7 @@ class KnowledgesController < ApplicationController
   def update
     @knowledge = Knowledge.find(params[:id])
     #debugger
+      @knowledge.from_json @form_date.to_json
       @identities=Identity.all
       @identities_choose=[]
       @timelines_choose=[]

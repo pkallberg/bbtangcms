@@ -1,0 +1,13 @@
+
+<%- model_class = @model_class -%>
+<div class="page-header">
+  <h1><%=t('.archives', :default => t("helpers.titles.archives", :model => model_class.model_name.human)) %></h1>
+</div>
+<div class = "archives box">
+
+
+
+<%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)),
+            new_knowledge_path,
+            :class => 'btn btn-primary' %>
+</div>

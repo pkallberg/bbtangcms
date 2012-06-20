@@ -2,6 +2,7 @@ zh-CN:
   helpers:
     titles:
       index: "%{model}首页"
+      archives: "%{model}树"
       new: "新建%{model}"
       edit: "编辑%{model}"
       recent: "近期%{model}"
@@ -9,6 +10,7 @@ zh-CN:
     actions: "动作"
     links:
       index: "%{model}"
+      archives: "%{model}树"
       show: "显示%{model}"
       new: "新建%{model}"
       edit: "编辑%{model}"

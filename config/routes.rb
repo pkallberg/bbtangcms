@@ -8,6 +8,7 @@ BBTangCMS::Application.routes.draw do
   devise_for :users
 
   root :to => 'dashboard#index'
+  match "/archives/:model/" => "archives#index", :as => :archives, :via => :get
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
