@@ -58,8 +58,9 @@
 		<%= k.attribute :category_list %>
     <%= k.attribute :tag_list %>
 		<%= k.attribute :created_at, :format => :short %>
-		<%= k.attribute :created_by %>
-		<%= k.attribute :updated_by %>
+		<%= k.attribute :created_user %>
+		<%= k.attribute :updated_user %>
+		<%= k.attribute :updated_at, :format => :short %>
 		<!--%= k.association :tags, :to_sentence => true %-->
 		<!--%= k.association :timeline_ids, :to_sentence => true %-->
 		<!--%= k.association :knowledgebase_category_id, :to_sentence => true %-->

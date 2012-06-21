@@ -1,0 +1,4 @@
+class Recommend::DashboardController < Recommend::RecommendBaseController
+  def index
+  end
+end

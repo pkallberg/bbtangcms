@@ -1,0 +1,10 @@
+<%= show_for @recommend_event do |s| %>
+  <%= s.attribute :position %>
+  <%= s.attribute :name %>
+  <%= s.attribute :body %>
+  <%= s.attribute :created_at %>
+  <%= s.attribute :updated_at %>
+<% end %>
+
+<%= link_to 'Edit', edit_recommend_event_path(@recommend_event) %> |
+<%= link_to 'Back', recommend_events_path %>

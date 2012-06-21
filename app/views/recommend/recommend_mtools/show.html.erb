@@ -1,0 +1,10 @@
+<%= show_for @recommend_mtool do |s| %>
+  <%= s.attribute :position %>
+  <%= s.attribute :name %>
+  <%= s.attribute :body %>
+  <%= s.attribute :created_at %>
+  <%= s.attribute :updated_at %>
+<% end %>
+
+<%= link_to 'Edit', edit_recommend_mtool_path(@recommend_mtool) %> |
+<%= link_to 'Back', recommend_mtools_path %>

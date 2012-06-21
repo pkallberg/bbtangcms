@@ -1,0 +1,31 @@
+<h1>Listing recommend_recommend_events</h1>
+
+<table>
+  <tr>
+    <th>Position</th>
+    <th>Name</th>
+    <th>Body</th>
+    <th>Created at</th>
+    <th>Updated at</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @recommend_recommend_events.each do |recommend_recommend_event| %>
+  <tr>
+    <td><%= recommend_recommend_event.position %></td>
+    <td><%= recommend_recommend_event.name %></td>
+    <td><%= recommend_recommend_event.body %></td>
+    <td><%= recommend_recommend_event.created_at %></td>
+    <td><%= recommend_recommend_event.updated_at %></td>
+    <td><%= link_to 'Show', recommend_recommend_event %></td>
+    <td><%= link_to 'Edit', edit_recommend_recommend_event_path(recommend_recommend_event) %></td>
+    <td><%= link_to 'Destroy', recommend_recommend_event, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Recommend event', new_recommend_recommend_event_path %>

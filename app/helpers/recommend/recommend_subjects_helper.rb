@@ -1,0 +1,2 @@
+module Recommend::RecommendSubjectsHelper
+end

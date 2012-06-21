@@ -1,0 +1,14 @@
+<h3>内容配置项</h3>
+
+<div class="ci_list">
+  <ul>
+    <li> <%=link_to "标签推送", recommend_tags_path%> <br/><br/></li>
+    <li> <%=link_to "问答推送", recommend_questions_path%> <br/><br/></li>
+    <li> <%=link_to "专题推送", recommend_subjects_path%> <br/><br/></li>
+    <li> <%=link_to "考试推送", recommend_quizzes_path%> <br/><br/></li>
+    <li> <%=link_to "活动推送", recommend_events_path%> <br/><br/></li>
+    <li> <%=link_to "魔法工具推送", recommend_mtools_path%> <br/><br/></li>
+    <li> <%=link_to "客人态用户推送", recommend_users_path%> <br/><br/></li>
+    <li> <%=link_to "商品推送", recommend_products_path%> <br/><br/></li>
+  </ul>
+</div>

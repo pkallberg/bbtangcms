@@ -7,7 +7,7 @@
   </div>
   <div class="knowledge-content box">
     <span class="label label-info">content</span>
-    <%= f.input :body, :as => :kindeditor, :input_html => { :width => 850, :height => 500 } %>
+    <%= f.input :body, :width => 850, :height => 500 %>
   </div>
 
   <div class="knowledge-tags box" id = "knowledge-tags">

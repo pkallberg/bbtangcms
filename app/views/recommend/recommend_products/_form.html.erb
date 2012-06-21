@@ -1,0 +1,25 @@
+<%= simple_form_for(@recommend_recommend_product) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :position %>
+    <%= f.input :name %>
+    <%= f.input :image %>
+    <%= f.input :title %>
+    <%= f.input :price %>
+    <%= f.input :cnt_buy %>
+    <%= f.input :cnt_comment %>
+    <%= f.input :link_url %>
+    <% if @recommend_recommend_product.new_record? %>
+      <%= f.input :created_at, :as => :hidden, :input_html => { :value => Time.now } %>
+    <% else %>
+      <%= f.input :updated_at, :as => :hidden, :input_html => { :value => Time.now} %>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary', :disable_with => 'loading...' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                recommend_recommend_products_path, :class => 'btn' %>
+  </div>
+<% end %>

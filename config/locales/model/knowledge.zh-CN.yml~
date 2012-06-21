@@ -17,8 +17,10 @@ zh-CN:
         identity_list: "对象标签"
         knowledgebase_category_id: "分类标签"
         created_by: "创建者id"
-        created_name: "署名"
+        created_user: "创建者id"
+        created_name: "作者"
         updated_by: "编辑人"
+        updated_user: "编辑人"
         deleted_at: "删除时间"
         deleted_by: "删除人"
         delta: "delta"
@@ -29,4 +31,3 @@ zh-CN:
         source_info: "来源"
         auto_tags: "自动标签"
         created_at: "创建时间"
-

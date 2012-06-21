@@ -1,0 +1,22 @@
+<h3>内容配置项</h3>
+
+<div class="ci_list">
+  <ul>
+    <li> <%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendProduct.new.class.model_name.human)),
+            recommend_recommend_products_path %> </li>
+    <li> <%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendQuestion.new.class.model_name.human)),
+            recommend_recommend_questions_path %></li>
+    <li> <%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendSubject.new.class.model_name.human)),
+            recommend_recommend_subjects_path %></li>
+    <li> <%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendTag.new.class.model_name.human)),
+            recommend_recommend_tags_path %></li>
+    <li> <%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendUser.new.class.model_name.human)),
+            recommend_recommend_users_path %></li>
+    <li> <%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendQuiz.new.class.model_name.human)),
+            recommend_recommend_quizzes_path %> </li>
+    <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendEvent.new.class.model_name.human)),
+            recommend_recommend_events_path %></li>
+    <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendMtool.new.class.model_name.human)),
+            recommend_recommend_mtools_path %></li>
+  </ul>
+</div>

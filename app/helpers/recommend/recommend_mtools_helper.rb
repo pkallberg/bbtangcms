@@ -1,0 +1,2 @@
+module Recommend::RecommendMtoolsHelper
+end

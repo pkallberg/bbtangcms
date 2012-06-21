@@ -1,15 +1,15 @@
 <div class="well sidebar-nav">
-	<h3>Sidebar</h3>
+	<h3><%= t("layout.sidebar.model") %></h3>
 	<ul class="nav nav-list">
-		<li class="nav-header">Sidebar</li>
+		<li class="nav-header"><%= t("layout.sidebar.model") %></li>
 		<li><%= link_to t('.index', :default => t("helpers.links.index", :model => Knowledge.new.class.model_name.human)),
             knowledges_path %></li>
-		<li>%= link_to t('.archives', :default => t("helpers.links.archives", :model => Knowledge.new.class.model_name.human)),
+		<li><%= link_to t('.archives', :default => t("helpers.links.archives", :model => Knowledge.new.class.model_name.human)),
             archives_path(:model => Knowledge) %></li>
 		<li><%= link_to "Link3", "/path3"  %></li>
 	</ul>
 	<ul class="nav nav-list">
-		<li class="nav-header">Sidebar</li>
+		<li class="nav-header"><%= t("layout.sidebar.model") %></li>
 		<li><%= link_to t('.index', :default => t("helpers.links.index", :model => Knowledge.new.class.model_name.human)),
             knowledges_path %></li>
 		<li><%= link_to "Link2", "/path2"  %></li>
@@ -17,27 +17,32 @@
 	</ul>
 </div><!--/.well -->
 <div class="well sidebar-nav">
-	<h3>Sidebar</h3>
+	<h3><%= t("layout.sidebar.recommend") %></h3>
 	<ul class="nav nav-list">
-		<li class="nav-header">Sidebar</li>
-		<li><%= link_to t('.index', :default => t("helpers.links.index", :model => Knowledge.new.class.model_name.human)),
-            knowledges_path %></li>
-		<li><%= link_to "Link2", "/path2"  %></li>
-		<li><%= link_to "Link3", "/path3"  %></li>
-	</ul>
-	<ul class="nav nav-list">
-		<li class="nav-header">Sidebar</li>
-		<li><%= link_to t('.index', :default => t("helpers.links.index", :model => Knowledge.new.class.model_name.human)),
-            knowledges_path %></li>
-		<li><%= link_to "Link2", "/path2"  %></li>
-		<li><%= link_to "Link3", "/path3"  %></li>
+		<li class="nav-header"><%= t("layout.sidebar.recommend") %></li>
+		<li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendEvent.new.class.model_name.human)),
+            recommend_recommend_events_path %></li>
+    <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendMtool.new.class.model_name.human)),
+            recommend_recommend_mtools_path %></li>
+    <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendProduct.new.class.model_name.human)),
+            recommend_recommend_products_path %></li>
+    <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendQuestion.new.class.model_name.human)),
+            recommend_recommend_questions_path %></li>
+    <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendSubject.new.class.model_name.human)),
+            recommend_recommend_subjects_path %></li>
+    <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendTag.new.class.model_name.human)),
+            recommend_recommend_tags_path %></li>
+    <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendUser.new.class.model_name.human)),
+            recommend_recommend_users_path %></li>
+    <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendQuiz.new.class.model_name.human)),
+            recommend_recommend_quizzes_path %></li>
 	</ul>
 </div>
 <div class="well sidebar-nav">
   <h2><%= t('menu.cpanel') %></h2>
   <ul class="nav nav-list">
     <% if user_signed_in? %>
-      <li><p><%= t('common.login_as') %><%= link_to current_user, edit_user_registration_path %>. Not you? <%= link_to t("common.logout"), destroy_user_session_path %></p></li>
+      <li><p><%= t('common.login_as') %><%= link_to current_user, edit_user_registration_path %>. Not you? <%= link_to t("common.logout"), destroy_user_session_path, :method => :delete %></p></li>
     <% else %>
       <li><p>Please,<%= link_to t("common.register"), new_user_registration_path %> or <%= link_to t("common.login"), new_user_session_path %></p></li>
     <% end %>

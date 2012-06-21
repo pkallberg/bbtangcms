@@ -2,8 +2,8 @@ s is an RVM Project .rvmrc file, used to automatically load the ruby
 # development environment upon cd'ing into the directory
 
 # First we specify our desired <ruby>[@<gemset>], the @gemset name is optional.
-environment_id="ruby-1.9.2-p290@askjane"
-#rvm gemset create "ruby-1.9.2-p290@askjane"
+environment_id="ruby-1.9.2-p290@BBTangCMS"
+#rvm gemset create "ruby-1.9.2-p290@BBTangCMS"
 #
 # Uncomment following line if you want options to be set only for given project.
 #
@@ -20,7 +20,7 @@ if [[ -d "${rvm_path:-$HOME/.rvm}/environments" \
 then
   \. "${rvm_path:-$HOME/.rvm}/environments/$environment_id"
 
-  if [[ -s "${rvm_path:-$HOME/.rvm}/hooks/after_use" ]]
+  if [[ ls -s "${rvm_path:-$HOME/.rvm}/hooks/after_use" ]]
   then
     . "${rvm_path:-$HOME/.rvm}/hooks/after_use"
   fi
@@ -39,13 +39,13 @@ fi
 # necessary.
 #
 # filename=".gems"
-# if [[ -s "$filename" ]]
+# if [[ ls -s "$filename" ]]
 # then
 # rvm gemset import "$filename" | grep -v already | grep -v listed | grep -v complete | sed '/^$/d'
 # fi
 
 # If you use bundler, this might be useful to you:
-# if command -v bundle && [[ -s Gemfile ]]
+# if command -v bundle && [[ ls -s Gemfile ]]
 # then
 # bundle install
 # fi

@@ -5,7 +5,7 @@ class KnowledgesController < ApplicationController
   # GET /knowledges
   # GET /knowledges.json
   def index
-    @knowledges = Knowledge.paginate(:page => params[:page], :per_page => 15)
+    @knowledges = Knowledge.paginate(:page => params[:page], :per_page => 20).order('id DESC')
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), knowledges_path
     respond_to do |format|
       format.html # index.html.erb
@@ -250,7 +250,7 @@ class KnowledgesController < ApplicationController
   def destroy
     @knowledge = Knowledge.find(params[:id])
     @knowledge.destroy
-
+    flash[:notice] = 'Knowledge was destroy updated.'
     respond_to do |format|
       format.html { redirect_to knowledges_url }
       format.json { head :no_content }

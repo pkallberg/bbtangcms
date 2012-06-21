@@ -1,0 +1,20 @@
+# encoding: UTF-8
+private_letter:
+  id: 1
+  name: 私信
+  
+inform:
+  id: 2
+  name: 通知
+  
+invitation:
+  id: 3
+  name: 邀请
+  
+complaint:
+  id: 4
+  name: 举报
+  
+share:
+  id: 5
+  name: 分享

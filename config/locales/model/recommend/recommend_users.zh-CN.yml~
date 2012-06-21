@@ -1,0 +1,12 @@
+zh-CN:
+  activerecord:
+    models:
+      recommend/recommend_users: "主题推送"
+    attributes:
+      recommend/recommend_users:
+        id: "id"
+        position: "栏位"
+        name: "名称"
+        body: "正文"
+        created_at: "创建时间"
+        updated_at: "更新时间"

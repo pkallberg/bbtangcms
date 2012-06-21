@@ -25,4 +25,13 @@ class User < ActiveRecord::Base
     (User.find_by_email(email).blank?) ? false : true
   end
 
+  def to_s
+    if self.profile || self.profile.nickname.present?
+      self.profile.nickname
+    else
+      self.username.present? ? self.username : self.email
+    end
+  end
+
+
 end

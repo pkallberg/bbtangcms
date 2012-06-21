@@ -5,7 +5,7 @@ class KnowledgesController < ApplicationController
   # GET /knowledges
   # GET /knowledges.json
   def index
-    @knowledges = Knowledge.paginate(:page => params[:page], :per_page => 15)
+    @knowledges = Knowledge.paginate(:page => params[:page], :per_page => 20).order('id DESC').reverse
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), knowledges_path
     respond_to do |format|
       format.html # index.html.erb
@@ -177,7 +177,8 @@ class KnowledgesController < ApplicationController
   def update
     @knowledge = Knowledge.find(params[:id])
     #debugger
-      @knowledge.from_json @form_date.to_json
+      @form_date = params[:knowledge]
+      @knowledge.from_json @form_date.to_json if @form_date
       @identities=Identity.all
       @identities_choose=[]
       @timelines_choose=[]
@@ -249,7 +250,7 @@ class KnowledgesController < ApplicationController
   def destroy
     @knowledge = Knowledge.find(params[:id])
     @knowledge.destroy
-
+    flash[:notice] = 'Knowledge was destroy updated.'
     respond_to do |format|
       format.html { redirect_to knowledges_url }
       format.json { head :no_content }

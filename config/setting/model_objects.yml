@@ -1,0 +1,56 @@
+question_model_object:
+  id: 1
+  name: Question
+  
+answer_model_object:
+  id: 2
+  name: Answer
+  
+knowledge_model_object:
+  id: 3
+  name: Knowledge
+  
+topic_model_object:
+  id: 4
+  name: Topic  
+  
+comment_model_object:
+  id: 5
+  name: Comment
+  
+monshow_model_object:
+  id: 6
+  name: MomShow  
+  
+starman_model_object:
+  id: 7
+  name: Talent  
+  
+exper_model_object:
+  id: 8
+  name: Expert  
+  
+album_model_object:
+  id: 9
+  name: Album
+  
+photo_model_object:
+  id: 10
+  name: Photo
+  
+video_model_object:
+  id: 11
+  name: Video  
+  
+group_model_object:
+  id: 12
+  name: Group
+  
+
+  
+
+  
+
+  
+
+  

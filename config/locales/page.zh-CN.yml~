@@ -1,3 +1,11 @@
 zh-CN:
   layout:
-    
+    appname: "BBTangCMS"
+    sidebar:
+      model: "模块"
+      recommend: "推送"
+    menu:
+      unauthorized_user: "未授权用户"
+    recommend:
+      dashboard:
+        index: "推送首页"

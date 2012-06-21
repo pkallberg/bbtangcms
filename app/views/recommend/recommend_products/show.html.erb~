@@ -1,0 +1,21 @@
+<%- model_class = Recommend::RecommendProduct.new.class -%>
+<%= show_for @recommend_recommend_product do |s| %>
+  <%= s.attribute :position %>
+  <%= s.attribute :name %>
+  <%= s.attribute :image %>
+  <%= s.attribute :title %>
+  <%= s.attribute :price %>
+  <%= s.attribute :cnt_buy %>
+  <%= s.attribute :cnt_comment %>
+  <%= s.attribute :link_url %>
+  <%= s.attribute :created_at %>
+  <%= s.attribute :updated_at %>
+<% end %>
+
+<%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_recommend_recommend_product_path(@recommend_recommend_product), :class => 'btn' %> |
+<%= link_to t('.back', :default => t("helpers.links.back", :model => model_class.model_name.human)), recommend_recommend_products_path, :class => 'btn' %> |
+<%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), recommend_recommend_product_path(@recommend_recommend_product),
+:method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger'
+ :class => 'btn btn-danger' %>

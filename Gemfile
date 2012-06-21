@@ -8,6 +8,7 @@ gem 'rails', '3.2.2'
 
 group :production, :development, :test do
   gem 'mysql2'
+  gem "mongoid", "~> 3.0.0.rc"
 end
 
 #Rails 3.* logs assets in the output from rails server. These messages are pretty verbose. Adding this gem to your project's Gemfile will suppress those messages.
@@ -55,6 +56,7 @@ group :assets do
   gem 'therubyracer'
   gem "less-rails", "~> 2.2.3"
   gem "less-rails-bootstrap", "~> 2.0.13"
+  gem 'coffee-rails', '~> 3.2.1'
   gem 'less-rails-bootswatch', "~> 0.2.5"
   gem 'uglifier', '>= 1.0.3'
 end
@@ -92,7 +94,7 @@ gem 'redis-namespace','~> 1.0.2'
 #gem 'redis-search', '0.7.0'
 
 gem 'settingslogic', '2.0.6' #为使用yml文件作为配置
-gem 'carrierwave','0.5.7'  #for kindeditor
+gem "carrierwave", "~> 0.6.2"  #Upload files in your Ruby applications, map them to a range of ORMs, store them on different backends.
 gem 'rails_kindeditor', '~> 0.3.0' #for kindeditor
 gem 'sanitize','2.0.3'  #过滤html标签  requires Nokogiri >= 1.4.4  libxml2 >= 2.7.2
 gem 'will_paginate', '3.0.2' #分页控件

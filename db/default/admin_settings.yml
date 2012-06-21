@@ -1,0 +1,414 @@
+# encoding: utf-8
+
+# admin 基本配置
+setting1:
+  name: statistics
+  value: 'false'
+  description: 是否开启网站统计
+
+setting2:
+  name: site_close
+  value: 'false'
+  description: 网站是否关闭
+
+setting3:
+  name: site_close_info
+  value: 网站维护中...
+  description: 网站关闭信息
+
+setting4:
+  name: report_reason
+  value: 广告
+  type_name: report_reason
+  description: 举报原因
+
+setting5:
+  name: report_reason
+  value: 违法信息
+  type_name: report_reason
+  description: 举报原因
+
+setting6:
+  name: report_reason
+  value: 灌水
+  type_name: report_reason
+  description: 举报原因
+  
+setting7:
+  name: focus_group_size
+  value: 20
+  description: 关注组的数目
+  
+setting8:
+  name: email_notification_days
+  value: 0
+  description: 长时间未登录是否邮件通知
+
+# admin 友情链接
+setting9:
+  name: link
+  value: '{"name":"google","href":"http://www.google.com","sequence":"51","logo":"http://www.google.com/images/srpr/logo3w.png"}'
+  type_name: link
+  
+setting10:
+  name: link
+  value: '{"name":"\u767e\u5ea6","href":"http://www.baidu.com","logo":"http://www.baidu.com/img/baidu_sylogo1.gif","sequence":"50"}'
+  type_name: link
+
+# admin 邮件设置
+setting11:
+  name: smtp_email_host
+  value: smtp.163.com
+  
+setting12:
+  name: email_host
+  value: 163.com
+  
+setting13:
+  name: email_port
+  value: 25
+  
+setting14:
+  name: email_account
+  value: askjane@163.com
+
+setting15:
+  name: email_password
+  value: '#Starcraft$'
+  
+setting16:
+  name: email_reply_address
+  value: 
+
+# 网站默认设置
+setting17:
+  name: site_name
+  value: Askjane
+  type_name: code
+  description: 网站名称
+  
+setting18:
+  name: default_seo_title
+  value: Askjane
+  type_name: code
+  description: 网页title
+  
+setting19:
+  name: default_meta_description
+  value: Askjane
+  type_name: code
+  description: 网页description
+  
+setting20:
+  name: default_meta_keywords
+  value: Askjane
+  type_name: code
+  description: 网页关键字
+  
+setting21:
+  name: default_website_url
+  value: "http://localhost:3000"
+  type_name: code
+  description: 网站网址
+  
+setting22:
+  name: default_complaint_to_admin_id
+  value: 2
+  type_name: code
+  
+setting23:
+  name: default_sina_api_key
+  value: 2213782566
+  type_name: code
+  
+setting24:
+  name: default_sina_api_secret
+  value: 'b2f64e0a914855f21a87fd10a45f7af7'
+  type_name: code
+
+setting25:
+  name: topic_comments_pre_page
+  value: 3
+  type_name: code
+  description: Topic显示帖子回复数
+  
+setting26:
+  name: group_topics_pre_page
+  value: 3 
+  type_name: code
+  description: Topic显示数
+  
+setting27:
+  name: ezine_pre_page
+  value: 3 
+  type_name: code
+  description: Ezine显示数
+  
+setting28:
+  name: knowledges_comments_pre_page
+  value: 2 
+  type_name: code
+  description: Knowledge 显示学知识首页的回复数
+  
+setting29:
+  name: knowledge_comments_pre_page
+  value: 2 
+  type_name: code
+  description: Knowledge 显示某一条知识的回复数
+  
+setting30:
+  name: knowledges_categories_pre_page
+  value: 6 
+  type_name: code
+  description: Topic显示帖子回复数
+  
+setting31:
+  name: best_tags_of_knowledges
+  value: 5
+  type_name: code
+  description: Knowledge 显示热门搜索的标签数
+  
+setting32:
+  name: refresh_per_page
+  value: 10 
+  type_name: code
+  description: 点击‘查看更多’按钮，显示和刷新出来的个数
+  
+setting33:
+  name: groups_normal_display_num
+  value: 20 
+  type_name: code
+  description: group相关页面显示记录的数目
+  
+setting34:
+  name: groups_home_pre_block
+  value: 6 
+  type_name: code
+  description: group首页各区域中展示的记录数
+  
+setting35:
+  name: groups_show_hot_topics
+  value: 5 
+  type_name: code
+  description: group show页面,热门帖子的数目
+  
+setting36:
+  name: albums_per_page
+  value: 20 
+  type_name: code
+  description: albums每页显示个数
+  
+setting37:
+  name: photos_per_page
+  value: 20 
+  type_name: code
+  description: photos每页显示个数
+  
+setting38:
+  name: search_result_per_page
+  value: 20 
+  type_name: code
+  description: 检索页面显示记录条数
+  
+setting39:
+  name: user_home_list_pre_block
+  value: 4 
+  type_name: code
+  description: 登录后个人页面的 “...正在说“的topics数
+  
+setting40:
+  name: user_home_list_more_than_day
+  value: 3 
+  type_name: code
+  description: 登录后个人页面的 “...正在说“ more=》最近几天的数据\
+  
+setting41:
+  name: user_home_ezine_list_before_months
+  value: 4 
+  type_name: code
+  description: 登录后个人首页“往期电子杂志”显示数目
+  
+setting42:
+  name: refresh_all_page
+  value: 20 
+  type_name: code
+  description: talent expert 获取记录的条数
+  
+setting43:
+  name: comment_content_limit
+  value: 1000 
+  type_name: code
+  description: 回复的字符长度限制
+  
+setting44:
+  name: invite_helper_title
+  value: "想和朋友一起分享新鲜事？"
+  type_name: code
+  description: 邀请朋友页面，右侧提示部分文字
+  
+setting45:
+  name: invite_helper_content
+  value: "你可以使用邀请功能，邀请同时、同学、MSN好友、邮箱联系人加入我们，快试试吧。" 
+  type_name: code
+  description: 邀请朋友页面，右侧提示部分文字
+  
+setting47:
+  name: album_title_max
+  value: 50
+  type_name: code
+  description: 相册标题长度最大值限制
+  
+setting48:
+  name: answer_body_max
+  value: 2000
+  type_name: code
+  description: 答案长度限制
+  
+setting49:
+  name: message_content_max
+  value: 250
+  type_name: code
+  description: 消息长度限制
+  
+setting50:
+  name: photo_description_max
+  value: 200
+  type_name: code
+  description: 照片描述长度限制
+  
+setting51:
+  name: question_title_max
+  value: 200
+  type_name: code
+  description: 问题标题长度限制
+  
+setting52:
+  name: question_body_max
+  value: 2000
+  type_name: code
+  description: 问题内容长度限制
+  
+setting53:
+  name: tag_name_max
+  value: 14
+  type_name: code
+  description: tag名称长度限制
+  
+setting54:
+  name: video_title_max
+  value: 200
+  type_name: code
+  description: video名称长度限制
+  
+setting55:
+  name: profile_name_min
+  value: 2
+  type_name: code
+  description: 名字最小值
+  
+setting56:
+  name: profile_name_max
+  value: 15
+  type_name: code
+  description: 名字最大值
+  
+setting57:
+  name: profile_label_max
+  value: 70
+  type_name: code
+  description: 个人介绍最大值
+  
+setting58:
+  name: questions_index_limit
+  value: 1000
+  type_name: code
+  description: questions index 读取条数
+  
+setting59:
+  name: questions_per_page
+  value: 20
+  type_name: code
+  description: 每页显示的questions条数
+  
+setting60:
+  name: answers_per_page
+  value: 30
+  type_name: code
+  description: 每页显示的answers条数
+
+setting61:
+  name: save_url_controllers_list
+  value: 'albums,answers,comments,complaints_reports,experts,ezines,favorites,friends,groups,home,knowledges,message_boxes,photos,portal,profiles,questions,redis_searches,tags,talents,tasks,topics,videos,whole_searches'
+  type_name: code
+  description: 在登录之前要保存的转向地址的controller列表，不包含空格，用英文逗号隔开
+  
+setting62:
+  name: ip_black_list
+  value: ''
+  description: IP黑名单
+  
+setting63:
+  name: ip_white_list
+  value: ''
+  description: IP白名单
+  
+setting64:
+  name: profile_face_url
+  value: '/uploadfiles/:class/:attachment/:id/:basename/:style.:extension'
+  type_name: code
+  description: profile 头像上传目录
+  
+setting65:
+  name: profile_face_path
+  value: ':rails_root/public/uploadfiles/:class/:attachment/:id/:basename/:style.:extension'
+  type_name: code
+  description: profile 头像上传目录
+  
+setting66:
+  name: photo_file_url
+  value: '/uploadfiles/:class/:attachment/:id/:basename/:style.:extension'
+  type_name: code
+  description: photo上传目录
+  
+setting67:
+  name: photo_file_path
+  value: ':rails_root/public/uploadfiles/:class/:attachment/:id/:basename/:style.:extension'
+  type_name: code
+  description: photo上传目录
+  
+setting68:
+  name: cms_template_face_url
+  value: '/uploadfiles/:class/:attachment/:id/:basename/:style.:extension'
+  type_name: code
+  description: cms_template上传目录
+  
+setting69:
+  name: cms_template_face_path
+  value: ':rails_root/public/uploadfiles/:class/:attachment/:id/:basename/:style.:extension'
+  type_name: code
+  description: cms_template上传目录
+  
+setting70:
+  name: enzie_face_url
+  value: '/uploadfiles/:class/:attachment/:id/:basename/:style.:extension'
+  type_name: code
+  description: enzie上传目录
+  
+setting71:
+  name: enzie_face_path
+  value: ':rails_root/public/uploadfiles/:class/:attachment/:id/:basename/:style.:extension'
+  type_name: code
+  description: enzie上传目录
+  
+setting72:
+  name: focus_on_groups_size
+  value: 20
+  type_name: code
+  description: 关注分组数量限制
+  
+# 各网页SEO设置
+setting46:
+  name: questions#index
+  value: '{"title":"有问有答 棒棒糖bbtang.com","keywords":"母婴,问题","description":"专业问答"}'
+  type_name: seo 
+

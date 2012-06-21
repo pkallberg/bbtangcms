@@ -1,0 +1,30 @@
+# encoding: UTF-8
+show_mom:
+  id: 1
+  name: 晒辣妈
+  display_order: 1
+  
+show_baby:
+  id: 2
+  name: 晒宝宝
+  display_order: 2
+  
+show_album:
+  id: 3
+  name: 晒相册
+  display_order: 3
+  
+show_workmanship:
+  id: 4
+  name: 晒手艺
+  display_order: 4
+  
+show_hauseigen:
+  id: 5
+  name: 晒居家
+  display_order: 5
+  
+show_trip:
+  id: 6
+  name: 晒出游
+  display_order: 6

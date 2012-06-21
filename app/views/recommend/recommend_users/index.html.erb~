@@ -1,0 +1,38 @@
+<%- model_class = Recommend::RecommendUser.new.class -%>
+
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+<div class = "recommend_recommend_user box">
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th><%= model_class.human_attribute_name(:position) %></th>
+        <th><%= model_class.human_attribute_name(:name) %></th>
+        <th><%= model_class.human_attribute_name(:body) %></th>
+        <th><%= model_class.human_attribute_name(:created_at) %></th>
+        <th><%= model_class.human_attribute_name(:updated_at) %></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tbody>
+      <% @recommend_recommend_users.each do |recommend_recommend_user| %>
+        <tr>
+          <td><%= recommend_recommend_user.position %></td>
+          <td><%= recommend_recommend_user.name %></td>
+          <td><%= recommend_recommend_user.body %></td>
+          <td><%= recommend_recommend_user.created_at %></td>
+          <td><%= recommend_recommend_user.updated_at %></td>
+          <td><%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)), recommend_recommend_user %></td>
+          <td><%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_recommend_recommend_user_path(recommend_recommend_user) %></td>
+
+          <td><%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), recommend_recommend_user, confirm: 'Are you sure?', method: :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<br />
+
+  <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)), new_recommend_recommend_user_path %>
+</div>

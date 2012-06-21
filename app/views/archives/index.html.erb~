@@ -1,0 +1,22 @@
+<%- model_class = @model_class -%>
+<div class="page-header">
+  <h1><%=t('.archives', :default => t("helpers.titles.archives", :model => model_class.model_name.human)) %></h1>
+</div>
+<div class = "archives box">
+
+<h1>Category Sorting Example</h1>
+<p>Drag and drop the categories into a nested set then hit save</p>
+
+<ul id='sortable'>
+  <% for cat in CategoryBase.roots %>
+    <li id='category_<%= cat.id %>'>
+      <span><%= cat.name %></span>
+      <%= render 'shared/children', :item => cat unless cat.leaf? %>
+    </li>
+  <% end -%>
+</ul>
+
+<%= link_to t('.save_sorted', :default => t("helpers.links.save_sorted", :model => model_class.model_name.human)),
+            '#',
+            :class => 'btn btn-primary', :id => 'serialize'%>
+</div>

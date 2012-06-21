@@ -1,0 +1,123 @@
+# encoding: utf-8
+# 后台设置的分类条目，暂时的
+
+subject1:
+  id: 1
+  name: 基本设置
+  setting_type_id: 1
+  controller_name: base_settings
+  
+subject2:
+  id: 2
+  name: 友情链接
+  setting_type_id: 1
+  controller_name: links_settings
+  
+subject3:
+  id: 3
+  name: 上传图片设置
+  setting_type_id: 1
+  controller_name: 
+
+subject4:
+  id: 4
+  name: 邮件设置
+  setting_type_id: 1
+  controller_name: email_settings
+
+subject5:
+  id: 5
+  name: 短信设置
+  setting_type_id: 1
+  controller_name: 
+
+subject6:
+  id: 6
+  name: SEO设置
+  setting_type_id: 1
+  controller_name: seo_settings
+
+subject7:
+  id: 7
+  name: 代码参数设置
+  setting_type_id: 1
+  controller_name: code_settings
+
+subject8:
+  id: 8
+  name: 学知识
+  setting_type_id: 2
+  controller_name: 
+
+subject9:
+  id: 9
+  name: 找答案
+  setting_type_id: 2
+  controller_name: 
+
+subject10:
+  id: 10
+  name: 专家帮手
+  setting_type_id: 2
+  controller_name: 
+
+subject11:
+  id: 11
+  name: 妈妈圈子
+  setting_type_id: 2
+  controller_name: 
+
+subject12:
+  id: 12
+  name: 看达人
+  setting_type_id: 2
+  controller_name: 
+  
+subject13:
+  id: 13
+  name: 妈妈晒
+  setting_type_id: 2
+  controller_name: 
+
+subject14:
+  id: 14
+  name: 访问IP设置
+  setting_type_id: 3
+  controller_name: ip_settings
+
+subject15:
+  id: 15
+  name: 隐私设置
+  setting_type_id: 3
+  controller_name: 
+
+subject16:
+  id: 16
+  name: 防灌水设置
+  setting_type_id: 3
+  controller_name: 
+
+subject17:
+  id: 17
+  name: 推荐成员设置
+  setting_type_id: 3
+  controller_name: 
+
+subject18:
+  id: 18
+  name: 用户组
+  setting_type_id: 3
+  controller_name: 
+
+subject19:
+  id: 19
+  name: 积分规则
+  setting_type_id: 3
+  controller_name: 
+
+subject20:
+  id: 20
+  name: 广告设置
+  setting_type_id: 3
+  controller_name: 
+

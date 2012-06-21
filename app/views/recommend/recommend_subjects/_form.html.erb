@@ -1,0 +1,21 @@
+<%= simple_form_for(@recommend_recommend_subject) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :position, :as => :select, :collection => Recommend::RecommendSubject::POSITION.invert %>
+    <%= f.input :name %>
+    <%= f.input :body %>
+    <% if @recommend_recommend_subject.new_record? %>
+      <%= f.input :created_at, :as => :hidden, :input_html => { :value => Time.now } %>
+    <% else %>
+      <%= f.input :updated_at, :as => :hidden, :input_html => { :value => Time.now} %>
+    <% end %>
+    <!--%= f.input :ids %-->
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary', :disable_with => 'loading...' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                recommend_recommend_subjects_path, :class => 'btn' %>
+  </div>
+<% end %>

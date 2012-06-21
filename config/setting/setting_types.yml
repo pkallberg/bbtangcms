@@ -1,0 +1,15 @@
+# encoding: utf-8
+# 后台设置的分类，暂时的
+
+type1:
+  id: 1
+  name: 站点设置
+  
+type2:
+  id: 2
+  name: 版面设置
+  
+type3:
+  id: 3
+  name: 其它设置
+  

@@ -73,6 +73,15 @@ class Knowledge< ActiveRecord::Base
     Profile.find_by_user_id(self.created_by)
   end
 
+  def updated_user
+     find_user self.updated_by if self.updated_by.present?
+  end
+
+  def created_user
+     find_user self.created_by if self.created_by.present?
+  end
+
+
   # previous knowledeg of the current knowledeg
   def previous_item
     self.class.first(:conditions => ["knowledgebase_category_id = ? and id < ? and deleted_at is null", self.knowledgebase_category_id, self.id], :order => "id DESC")
@@ -96,6 +105,17 @@ class Knowledge< ActiveRecord::Base
   def count_focus
     self.thanks_count.to_i
   end
+  private
+  def find_user(user_id = nil)
+     (User.where :id => 1 ).first if user_id.present?
+    #if user_id.present?
+    #  u=User.where :id => user_id
+    #  unless u.empty?
+    #    u.first
+    #  end
+    #end
+  end
+
   class << self
     def find_recent(options = {})
       tag = options.delete(:tag)

@@ -1,0 +1,17 @@
+<%- model_class = Recommend::RecommendSubject.new.class -%>
+<%= show_for @recommend_recommend_subject do |s| %>
+  <%= s.attribute :position,:value => @recommend_recommend_subject.post_name %>
+  <%= s.attribute :name %>
+  <%= s.attribute :body %>
+  <%= s.attribute :created_at %>
+  <%= s.attribute :updated_at %>
+  <%= s.attribute :ids %>
+<% end %>
+
+<%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_recommend_recommend_subject_path(@recommend_recommend_subject), :class => 'btn' %> |
+<%= link_to t('.back', :default => t("helpers.links.back", :model => model_class.model_name.human)), recommend_recommend_subjects_path, :class => 'btn' %> |
+<%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), recommend_recommend_subject_path(@recommend_recommend_subject),
+              :method => 'delete',
+              :confirm => t('.confirm',
+              :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>

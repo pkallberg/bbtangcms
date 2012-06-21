@@ -1,0 +1,35 @@
+<%- model_class = Recommend::RecommendTag.new.class -%>
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+
+<div class = "recommend_recommend_tag box">
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th><%= model_class.human_attribute_name(:position) %></th>
+        <th><%= model_class.human_attribute_name(:name) %></th>
+        <th><%= model_class.human_attribute_name(:body) %></th>
+        <th><%= model_class.human_attribute_name(:created_at) %></th>
+        <th><%= model_class.human_attribute_name(:updated_at) %></th>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @recommend_recommend_tags.each do |recommend_recommend_tag| %>
+        <tr>
+          <td><%= recommend_recommend_tag.position,:value => @recommend_recommend_tag.post_name %></td>
+          <td><%= recommend_recommend_tag.name %></td>
+          <td><%= recommend_recommend_tag.body %></td>
+          <td><%= recommend_recommend_tag.created_at %></td>
+          <td><%= recommend_recommend_tag.updated_at %></td>
+          <td><%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)), recommend_recommend_tag %>|
+              <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_recommend_recommend_tag_path(recommend_recommend_tag) %>|
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), recommend_recommend_tag, confirm: 'Are you sure?', method: :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<br />
+
+<%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)), new_recommend_recommend_tag_path %>
+</div>

@@ -1,4 +1,4 @@
-<div class="navbar">
+<div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container-fluid">
       <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
@@ -9,25 +9,34 @@
         <ul class="nav">
           <li><%= link_to t('.index', :default => t("helpers.titles.index", :model => Knowledge.new.class.model_name.human)),
         knowledges_path %></li>
-          <li><%= link_to "Link2", "/path2"  %></li>
+          <li><%= link_to t('.index'),recommend_dashboard_path %></li>
           <li><%= link_to "Link3", "/path3"  %></li>
         </ul>
           <%= render "common/search_form" %>
       </div><!--/.nav-collapse -->
       <div class="btn-group pull-right">
-        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-          <i class="icon-user"></i> Username
-          <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Profile</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Sign Out</a></li>
-        </ul>
+        <% if user_signed_in? %>
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="icon-user"></i><%= "#{current_user}" %>
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Profile</a></li>
+            <li class="divider"></li>
+            <li><%= link_to t("common.logout"),destroy_user_session_path, :method => :delete %></li>
+          </ul>
+        <% else %>
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="icon-user"></i><%= t("layout.menu.unauthorized_user") %>
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to t("common.register"), new_user_registration_path %></li>
+            <li class="divider"></li>
+            <li><%= link_to t("common.login"), new_user_session_path %></li>
+          </ul>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
-
-
-

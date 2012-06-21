@@ -1,0 +1,12 @@
+zh-CN:
+  mongoid:
+    models:
+      recommend/recommend_mtool: "魔法工具"
+    attributes:
+      recommend/recommend_mtool:
+        id: "id"
+        position: "栏位"
+        name: "名称"
+        body: "正文"
+        created_at: "创建时间"
+        updated_at: "更新时间"

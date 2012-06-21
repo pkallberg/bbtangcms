@@ -1,0 +1,17 @@
+zh-CN:
+  activerecord:
+    models:
+      recommend/recommend_products: "产品推送"
+    attributes:
+      recommend/recommend_products:
+        id: "id"
+        position: "栏位"
+        name: "名称"
+        image: "图片"
+        title: "标题"
+        price: "价格"
+        cnt_buy: "购买数"
+        cnt_comment: "回复数"
+        link_url: "链接"
+        created_at: "创建时间"
+        updated_at: "更新时间"

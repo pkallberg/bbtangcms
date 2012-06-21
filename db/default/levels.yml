@@ -1,0 +1,22 @@
+# encoding: UTF-8
+simple_member_level:
+  id: 1
+  name: 普通会员
+  description: 普通会员
+  need_points: 0
+  
+talent_level:
+  id: 2
+  name: 达人
+  description: 达人， 拥有特殊贡献的普通会员升级而成
+  need_points: 2000
+  
+expert_level:
+  id: 3
+  name: 专家
+  description: 专家， 由管理员指定
+  
+vip_level:
+  id: 4
+  name: VIP
+  description: VIP， 需要充值升级
