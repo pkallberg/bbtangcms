@@ -10,7 +10,8 @@
           <li><%= link_to t('.index', :default => t("helpers.titles.index", :model => Knowledge.new.class.model_name.human)),
         knowledges_path %></li>
           <li><%= link_to t('.recommend'),recommend_dashboard_path %></li>
-          <li><%= link_to "Link3", "/path3"  %></li>
+          <li><%= link_to t('.index', :default => t("helpers.titles.index", :model => Profile.new.class.model_name.human)),
+        profiles_path %></li>
         </ul>
           <%= render "common/search_form" %>
       </div><!--/.nav-collapse -->

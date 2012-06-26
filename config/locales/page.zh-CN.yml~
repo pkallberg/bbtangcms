@@ -9,3 +9,6 @@ zh-CN:
     recommend:
       dashboard:
         index: "推送首页"
+  dashboard:
+    index:
+      recommend_title:  "推送"

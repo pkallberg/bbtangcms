@@ -2,9 +2,9 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :position %>
-    <%= f.input :name %>
-    <%= f.input :image %>
+    <%= f.input :position, :as => :select, :collection => Recommend::RecommendProduct::POSITION.invert %>
+    <%= f.input :order %>
+    <%= f.input :image, :as => :url %>
     <%= f.input :title %>
     <%= f.input :price %>
     <%= f.input :cnt_buy %>
@@ -20,6 +20,6 @@
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary', :disable_with => 'loading...' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                recommend_recommend_product_path, :class => 'btn' %>
+                recommend_recommend_products_path, :class => 'btn' %>
   </div>
 <% end %>

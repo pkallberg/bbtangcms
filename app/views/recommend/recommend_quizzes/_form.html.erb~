@@ -10,7 +10,7 @@
     <% else %>
       <%= f.input :updated_at, :as => :hidden, :input_html => { :value => Time.now} %>
     <% end %>
-    <%= f.input :ids %>
+    <!--%= f.input :ids %-->
   </div>
 
   <div class="form-actions">

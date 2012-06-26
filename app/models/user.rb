@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   end
 
   def to_s
-    if self.profile || self.profile.nickname.present?
+    if self.profile && self.profile.nickname.present?
       self.profile.nickname
     else
       self.username.present? ? self.username : self.email

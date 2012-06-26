@@ -5,6 +5,9 @@ BBTangCMS::Application.routes.draw do
       get 'refresh'
     end
   end
+
+  resources :profiles, :only => [:index, :show, :edit, :destroy]
+
   namespace :recommend do
     resources :recommend_products
     resources :recommend_questions

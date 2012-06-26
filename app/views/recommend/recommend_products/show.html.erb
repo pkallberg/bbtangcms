@@ -1,9 +1,11 @@
 <%- model_class = Recommend::RecommendProduct.new.class -%>
 <%= show_for @recommend_recommend_product do |s| %>
-  <%= s.attribute :position %>
-  <%= s.attribute :name %>
-  <%= s.attribute :image %>
   <%= s.attribute :title %>
+  <%= s.attribute :post_name %>
+  <%= s.attribute :order %>
+  <%= s.attribute :image do %>
+    <%= image_tag(@recommend_recommend_product.image) %>
+  <% end %>
   <%= s.attribute :price %>
   <%= s.attribute :cnt_buy %>
   <%= s.attribute :cnt_comment %>

@@ -5,11 +5,11 @@ class Profile < ActiveRecord::Base
     :class_name    => '::User', # note I added '::'
     :foreign_key   => 'user_id'
   belongs_to :level
-  has_many :tasks
+  #has_many :tasks
   belongs_to :user_data_statistic
 
-  has_many :r_user_knowledges
-  has_many :knowledges,:through => :r_user_knowledges
+  #has_many :r_user_knowledges
+  #has_many :knowledges,:through => :r_user_knowledges
 
   #attr_accessible :oauth_face_image_url # for getter and setters
 
@@ -31,18 +31,18 @@ class Profile < ActiveRecord::Base
 
   #validates :nickname, :real_name, :length => {
   validates :nickname,  :length => {
-    #:minimum => Askjane::MetaCache.get_config_data("profile_name_min").to_i,
-    :maximum => Askjane::MetaCache.get_config_data("profile_name_max").to_i}
-  validates :label, :profession, :length => {:maximum => Askjane::MetaCache.get_config_data("profile_label_max").to_i}
+    :minimum => BBTangCMS::MetaCache.get_config_data("profile_name_min").to_i,
+    :maximum => BBTangCMS::MetaCache.get_config_data("profile_name_max").to_i}
+  validates :label, :profession, :length => {:maximum => BBTangCMS::MetaCache.get_config_data("profile_label_max").to_i}
 
   #fixed bug, 当使用delegate_attributes的时候， 会需要loaded_[model]的方法
   def loaded_level?
     true
   end
 
-  #profile_face_url = Askjane::MetaCache.get_config_data("profile_face_url")
+  #profile_face_url = BBTangCMS::MetaCache.get_config_data("profile_face_url")
   profile_face_url = "/uploadfiles/:class/:attachment/:id/:style/:filename"
-  #    #profile_face_path = Askjane::MetaCache.get_config_data("profile_face_path")
+  #    #profile_face_path = BBTangCMS::MetaCache.get_config_data("profile_face_path")
   profile_face_path =":rails_root/public/uploadfiles/:class/:attachment/:id/:style/:filename"
 
   attr_accessible :face, :nickname, :gender, :agerange,
@@ -50,10 +50,12 @@ class Profile < ActiveRecord::Base
                   :city, :child_birthday, :child_gender,
                   :user_id, :notify_via_email, :notify_on_new_articles,
                   :notify_on_comments,:oauth_face_image_url,
-                  :baby_gender
-  #profile_face_url = Askjane::MetaCache.get_config_data("profile_face_url")
+                  :baby_gender,:real_name, :level_id, :birthday, :degree,
+                  :phone, :profession, :expert_field, :hobby, :focus_tags_on,
+                  :label, :weibo
+  #profile_face_url = BBTangCMS::MetaCache.get_config_data("profile_face_url")
   profile_face_url = "/uploadfiles/:class/:attachment/:id/:style/:filename"
-  #profile_face_path = Askjane::MetaCache.get_config_data("profile_face_path")
+  #profile_face_path = BBTangCMS::MetaCache.get_config_data("profile_face_path")
   profile_face_path =":rails_root/public/uploadfiles/:class/:attachment/:id/:style/:filename"
   has_attached_file :face,:default_url => "/assets/face/:style/missing.png",
     :default_style => :s120,
@@ -91,12 +93,12 @@ class Profile < ActiveRecord::Base
   A40     = 5
 
   AGERANGE = {
-    A20        => "#{I18n.t('activerecord.profiles.agerange.A20')}",
-    A20_25     => "#{I18n.t('activerecord.profiles.agerange.A20_25')}",
-    A25_30     => "#{I18n.t('activerecord.profiles.agerange.A25_30')}",
-    A30_35     => "#{I18n.t('activerecord.profiles.agerange.A30_35')}",
-    A35_40     => "#{I18n.t('activerecord.profiles.agerange.A35_40')}",
-    A40        => "#{I18n.t('activerecord.profiles.agerange.A40')}",
+    A20        => "#{I18n.t('activerecord.attributes.profile.agerange_1')}",
+    A20_25     => "#{I18n.t('activerecord.attributes.profile.agerange_2')}",
+    A25_30     => "#{I18n.t('activerecord.attributes.profile.agerange_3')}",
+    A30_35     => "#{I18n.t('activerecord.attributes.profile.agerange_4')}",
+    A35_40     => "#{I18n.t('activerecord.attributes.profile.agerange_5')}",
+    A40        => "#{I18n.t('activerecord.attributes.profile.agerange_6')}",
   }
 
   validates_inclusion_of :agerange, :in => AGERANGE.keys, :allow_nil=>true,
@@ -114,10 +116,10 @@ class Profile < ActiveRecord::Base
   BABYPLAN  = 4
 
   PRENGNANCYSTATUS = {
-    UNMARRIED        => "#{I18n.t('activerecord.profiles.pregnancy_status.unmarried')}",
-    MARRIEDNONPREGNANT     => "#{I18n.t('activerecord.profiles.pregnancy_status.married-non-pregnant')}",
-    PREGNANTING     => "#{I18n.t('activerecord.profiles.pregnancy_status.pregnanting')}",
-    BABYPLAN     => "#{I18n.t('activerecord.profiles.pregnancy_status.baby-plan')}",
+    UNMARRIED        => "#{I18n.t('activerecord.attributes.profile.pregnancy_status_1')}",
+    MARRIEDNONPREGNANT     => "#{I18n.t('activerecord.attributes.profile.pregnancy_status_2')}",
+    PREGNANTING     => "#{I18n.t('activerecord.attributes.profile.pregnancy_status_3')}",
+    BABYPLAN     => "#{I18n.t('activerecord.attributes.profile.pregnancy_status_4')}",
   }
 
   validates_inclusion_of :pregnancy_status, :in => PRENGNANCYSTATUS.keys, :allow_nil=>true,
@@ -136,11 +138,11 @@ class Profile < ActiveRecord::Base
   TIMELINE5  = 5
 
   PRENGNANCYTIMELINE = {
-    TIMELINE1        => "#{I18n.t('activerecord.profiles.pregnancy_timeline.timeline1')}",
-    TIMELINE2     => "#{I18n.t('activerecord.profiles.pregnancy_timeline.timeline2')}",
-    TIMELINE3     => "#{I18n.t('activerecord.profiles.pregnancy_timeline.timeline3')}",
-    TIMELINE4     => "#{I18n.t('activerecord.profiles.pregnancy_timeline.timeline4')}",
-    TIMELINE5     => "#{I18n.t('activerecord.profiles.pregnancy_timeline.timeline5')}",
+    TIMELINE1        => "#{I18n.t('activerecord.attributes.profile.pregnancy_timeline_1')}",
+    TIMELINE2     => "#{I18n.t('activerecord.attributes.profile.pregnancy_timeline_2')}",
+    TIMELINE3     => "#{I18n.t('activerecord.attributes.profile.pregnancy_timeline_3')}",
+    TIMELINE4     => "#{I18n.t('activerecord.attributes.profile.pregnancy_timeline_4')}",
+    TIMELINE5     => "#{I18n.t('activerecord.attributes.profile.pregnancy_timeline_5')}",
   }
 
   validates_inclusion_of :pregnancy_timeline, :in => PRENGNANCYTIMELINE.keys, :allow_nil=>true,
@@ -265,7 +267,7 @@ class Profile < ActiveRecord::Base
 
   # 返回推荐认识的人的集合(尚未剔除已经关注的，尚未加入管理员定义的)
   def deserve_to_focus
-    redis = Askjane::DefineRedis.define_recommendation_redis(Recommendation::Search.config.namespace,"deserve_to_focus")
+    redis = BBTangCMS::DefineRedis.define_recommendation_redis(Recommendation::Search.config.namespace,"deserve_to_focus")
     s = redis.zrange self.id,0,-1
     ids = []
     s.each do |t|
@@ -304,38 +306,38 @@ class Profile < ActiveRecord::Base
   # 推送专家
   def user_recommendation_talents(limit=nil)
     # TODO: need to use recommendation
-    Talent.talents.limit(limit||=Askjane::MetaCache.get_config_data("user_home_list_pre_block").to_i)
+    Talent.talents.limit(limit||=BBTangCMS::MetaCache.get_config_data("user_home_list_pre_block").to_i)
   end
 
   # 推送达人
   def user_recommendation_experts(limit=nil)
     # TODO: need to use recommendation
-    Expert.experts.limit(limit||=Askjane::MetaCache.get_config_data("user_home_list_pre_block").to_i)
+    Expert.experts.limit(limit||=BBTangCMS::MetaCache.get_config_data("user_home_list_pre_block").to_i)
   end
 
   # 推送groups category
   def user_recommendation_for_group_categories(limit=nil)
     # TODO: need to use recommendation
-    GroupCategory.limit(limit||=Askjane::MetaCache.get_config_data("user_home_list_pre_block").to_i)
+    GroupCategory.limit(limit||=BBTangCMS::MetaCache.get_config_data("user_home_list_pre_block").to_i)
   end
 
 
   # 推送groups
   def user_recommendation_for_groups(category, limit=nil)
     # TODO: need to use recommendation
-    GroupCategory.find_by_id(category).groups.limit(limit||=Askjane::MetaCache.get_config_data("user_home_list_pre_block"))
+    GroupCategory.find_by_id(category).groups.limit(limit||=BBTangCMS::MetaCache.get_config_data("user_home_list_pre_block"))
   end
 
   # 当前用登录后个人页面，  您关注的专家帮手正在说 相关数据
   def user_home_topics_of_experts(limit=nil)
     return [] if self.focus_user_on.blank?
-    limit ||= Askjane::MetaCache.get_config_data("user_home_list_pre_block")
+    limit ||= BBTangCMS::MetaCache.get_config_data("user_home_list_pre_block")
     Topic.find_by_sql("SELECT t.* FROM topics t                          \
                         LEFT JOIN profiles p                              \
                         ON t.created_by = p.user_id                                \
                         WHERE t.created_by in (#{self.focus_user_on})         \
                         AND p.id = 3                                           \
-                        AND t.created_at >= #{Date.today-Askjane::MetaCache.get_config_data("user_home_list_more_than_day").to_i} \
+                        AND t.created_at >= #{Date.today-BBTangCMS::MetaCache.get_config_data("user_home_list_more_than_day").to_i} \
                         ORDER BY t.created_at DESC                              \
                         LIMIT #{limit}")
   end
@@ -343,13 +345,13 @@ class Profile < ActiveRecord::Base
   # 当前用登录后个人页面，  您关注的圈子正在说 相关数据
   def user_home_topics_of_talents(limit=nil)
     return [] if self.focus_user_on.blank?
-    limit ||= Askjane::MetaCache.get_config_data("user_home_list_pre_block")
+    limit ||= BBTangCMS::MetaCache.get_config_data("user_home_list_pre_block")
     Topic.find_by_sql("SELECT t.* FROM topics t                          \
                         LEFT JOIN profiles p                              \
                         ON t.created_by = p.user_id                              \
                         WHERE t.created_by in (#{self.focus_user_on})         \
                         AND p.id = 2                                           \
-                        AND t.created_at >= #{Date.today-Askjane::MetaCache.get_config_data("user_home_list_more_than_day").to_i} \
+                        AND t.created_at >= #{Date.today-BBTangCMS::MetaCache.get_config_data("user_home_list_more_than_day").to_i} \
                         ORDER BY t.created_at DESC                              \
                         LIMIT #{limit}")
   end
@@ -357,10 +359,10 @@ class Profile < ActiveRecord::Base
   # 当前用登录后个人页面，  您关注的圈子正在说 相关数据
   def user_home_topics_of_groups(limit=nil)
     return [] if self.focus_group_on.blank?
-    limit ||= Askjane::MetaCache.get_config_data("user_home_list_pre_block")
+    limit ||= BBTangCMS::MetaCache.get_config_data("user_home_list_pre_block")
     Topic.find_by_sql("SELECT t.* FROM topics t                          \
                         WHERE t.group_id in (#{self.focus_group_on})      \
-                        AND t.created_at >= #{Date.today-Askjane::MetaCache.get_config_data("user_home_list_more_than_day").to_i} \
+                        AND t.created_at >= #{Date.today-BBTangCMS::MetaCache.get_config_data("user_home_list_more_than_day").to_i} \
                         ORDER BY t.created_at DESC                         \
                         LIMIT #{limit}")
   end
@@ -368,28 +370,28 @@ class Profile < ActiveRecord::Base
   # 当前用登录后个人页面，  您关注的问题 相关数据
   def user_home_questions(limit=nil)
     return [] if self.focus_question_on.blank?
-    limit ||= Askjane::MetaCache.get_config_data("user_home_list_pre_block")
+    limit ||= BBTangCMS::MetaCache.get_config_data("user_home_list_pre_block")
     Question.find_by_sql("SELECT q.* FROM questions q                          \
                           WHERE q.id in (#{self.focus_question_on})      \
-                          AND q.created_at >= #{Date.today-Askjane::MetaCache.get_config_data("user_home_list_more_than_day").to_i} \
+                          AND q.created_at >= #{Date.today-BBTangCMS::MetaCache.get_config_data("user_home_list_more_than_day").to_i} \
                           ORDER BY q.created_at DESC                         \
                           LIMIT #{limit}")
   end
 
   # 最新问题
   def user_latest_questions(limit=nil)
-    limit ||= Askjane::MetaCache.get_config_data("user_home_list_pre_block")
+    limit ||= BBTangCMS::MetaCache.get_config_data("user_home_list_pre_block")
     Question.find_by_sql("SELECT q.* FROM questions q                          \
-                          WHERE q.created_at >= #{Date.today-Askjane::MetaCache.get_config_data("user_home_list_more_than_day").to_i} \
+                          WHERE q.created_at >= #{Date.today-BBTangCMS::MetaCache.get_config_data("user_home_list_more_than_day").to_i} \
                           ORDER BY q.created_at DESC                         \
                           LIMIT #{limit}")
   end
 
   # 最新回答
   def user_latest_questions(limit=nil)
-    limit ||= Askjane::MetaCache.get_config_data("user_home_list_pre_block")
+    limit ||= BBTangCMS::MetaCache.get_config_data("user_home_list_pre_block")
     Question.find_by_sql("SELECT q.* FROM questions q                          \
-                          WHERE q.last_answer_time >= #{Date.today-Askjane::MetaCache.get_config_data("user_home_list_more_than_day").to_i} \
+                          WHERE q.last_answer_time >= #{Date.today-BBTangCMS::MetaCache.get_config_data("user_home_list_more_than_day").to_i} \
                           ORDER BY q.last_answer_time DESC                         \
                           LIMIT #{limit}")
   end

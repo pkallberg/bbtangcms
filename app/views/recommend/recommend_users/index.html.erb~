@@ -19,7 +19,7 @@
     <tbody>
       <% @recommend_recommend_users.each do |recommend_recommend_user| %>
         <tr>
-          <td><%= recommend_recommend_user.position %></td>
+          <td><%= recommend_recommend_user.post_name %></td>
           <td><%= recommend_recommend_user.name %></td>
           <td><%= recommend_recommend_user.body %></td>
           <td><%= recommend_recommend_user.created_at %></td>

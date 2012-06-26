@@ -1,0 +1,77 @@
+<%- model_class = Profile.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+
+<div class = "knowledges box">
+<table class = "table table-condensed"">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:user) %></th>
+      <th><%= model_class.human_attribute_name(:real_name) %></th>
+      <th><%= model_class.human_attribute_name(:nickname) %></th>
+      <th><%= model_class.human_attribute_name(:level) %></th>
+      <th><%= model_class.human_attribute_name(:gender) %></th>
+      <!--th><%= model_class.human_attribute_name(:face) %></th-->
+      <!--th><%= model_class.human_attribute_name(:birthday) %></th-->
+      <th><%= model_class.human_attribute_name(:degree) %></th>
+      <th><%= model_class.human_attribute_name(:city) %></th>
+      <th><%= model_class.human_attribute_name(:phone) %></th>
+      <!--th><%= model_class.human_attribute_name(:child_birthday) %></th-->
+      <!--th><%= model_class.human_attribute_name(:baby_gender) %></th-->
+      <!--th><%= model_class.human_attribute_name(:profession) %></th-->
+      <th><%= model_class.human_attribute_name(:expert_field) %></th>
+      <!--th><%= model_class.human_attribute_name(:hobby) %></th-->
+      <!--th><%= model_class.human_attribute_name(:focus_tags_on) %></th-->
+      <th><%= model_class.human_attribute_name(:pregnancy_status) %></th>
+      <th><%= model_class.human_attribute_name(:agerange) %></th>
+      <!--th><%= model_class.human_attribute_name(:pregnancy_timeline) %></th-->
+      <!--th><%= model_class.human_attribute_name(:label) %></th-->
+      <!--th><%= model_class.human_attribute_name(:weibo) %></th-->
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @profiles.each do |profile| %>
+      <tr>
+        <td><%= profile.user %></td>
+        <td><%= profile.real_name %></td>
+        <td><%= profile.nickname %></td>
+        <td><%= profile.level_id %></td>
+        <td><%= profile.gender %></td>
+        <!--td><%= image_tag get_face_url profile %></td-->
+        <!--td><%= profile.birthday %></td-->
+        <td><%= profile.degree %></td>
+        <td><%= profile.city %></td>
+        <td><%= profile.phone %></td>
+        <!--td><%= profile.child_birthday %></td-->
+        <!--td><%= profile.baby_gender %></td-->
+        <!--td><%= profile.profession %></td-->
+        <td><%= profile.expert_field %></td>
+        <!--td><%= profile.hobby %></td-->
+        <!--td><%= profile.focus_tags_on %></td-->
+        <td><%= profile.pregnancy_status %></td>
+        <td><%= profile.agerange %></td>
+        <!--td><%= profile.pregnancy_timeline %></td-->
+        <!--td><%= profile.label %></td-->
+        <!--td><%= profile.weibo %></td-->
+        <td>
+          <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)),
+                      profile_path(profile), :class => 'btn btn-mini' %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)),
+                      edit_profile_path(profile), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)),
+                      profile_path(profile),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @profiles %>
+<br />
+
+<!--%= link_to 'New Profile', new_profile_path %-->
+</div>

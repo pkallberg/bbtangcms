@@ -1,0 +1,47 @@
+
+<%= simple_form_for(@profile, :wrapper => :inline,) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :user_id, :as => :hidden %>
+    <%= f.input :real_name %>
+    <%= f.input :nickname %>
+    <%= f.association :level %>
+    <%= f.input :gender do %>
+        <%= f.collection_radio_buttons :gender,[[true, I18n.t("activerecord.attributes.profile.gender_female")] ,[false, I18n.t("activerecord.attributes.profile.gender_male")]], :first, :last %>
+    <% end %>
+    <!--%= f.input :face %-->
+    <%= f.input :birthday, :start_year => Time.now.year - 50 %>
+    <%= f.input :degree %>
+    <%= f.input :city, :html_tag => { :value => @profile.city.present? ? @profile.city : @contry } %>
+    <%= @profile.city.present? ? @profile.city : @contry %>
+    <%= f.input :phone, :as => :tel %>
+    <%= f.input :child_birthday , :start_year => Time.now.year - 20%>
+    <%= f.input :baby_gender do %>
+        <%= f.collection_radio_buttons :gender,[[true, I18n.t("activerecord.attributes.profile.baby_gender_1")] ,[false, I18n.t("activerecord.attributes.profile.baby_gender_2")]], :first, :last %>
+    <% end %>
+    <%= f.input :profession %>
+    <%= f.input :expert_field %>
+    <%= f.input :hobby %>
+    <%= f.input :focus_tags_on %>
+    <%= f.input :pregnancy_status do %>
+      <%= f.select(:pregnancy_status, options_for_select(Profile::PRENGNANCYSTATUS.invert,:selected =>(@profile.pregnancy_status ? @profile.pregnancy_status : "1"))) %>
+    <% end %>
+    <%= f.input :agerange do %>
+      <%= f.select(:agerange, options_for_select(Profile::AGERANGE.invert,:selected =>(@profile.agerange ? @profile.agerange : "1"))) %>
+    <% end %>
+    <%= f.input :pregnancy_timeline do %>
+      <%= f.select(:pregnancy_timeline, options_for_select(Profile::PRENGNANCYTIMELINE.invert,:selected =>(@profile.pregnancy_timeline ? @profile.pregnancy_timeline : "1"))) %>
+    <% end %>
+    <%= f.input :label %>
+    <%= f.input :weibo, :as => :url %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary', :disable_with => 'loading...' %>
+    <%= link_to t('.show', :default => t("helpers.links.show"), :model => @profile.class.model_name.human), profile_path(@profile), :class => 'btn' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel"), :model => @profile.class.model_name.human),
+                profiles_path, :class => 'btn' %>
+  </div>
+
+<% end %>

@@ -9,7 +9,7 @@
 </div>
 <div class="item box">
 <%- knowledge_model_class = Knowledge.new.class -%>
-<h1><%=t '.recent', :default => knowledge_model_class.model_name.human.pluralize %></h1>
+<h1><%=t '.title', :default => knowledge_model_class.model_name.human %></h1>
 
 <table class="table striped">
   <tr>
@@ -40,5 +40,5 @@
 </table>
 </div>
 <div class="item box">
-
+  <%= render 'recommend/dashboard/show'%>
 </div>

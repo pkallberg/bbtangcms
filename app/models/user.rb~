@@ -8,10 +8,9 @@ class User < ActiveRecord::Base
   has_one :profile, :class_name => "Profile"
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password,
-           :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me
 
-  attr_accessor :agree, :created_user, :updated_user
+  attr_accessor :agree
   validates_acceptance_of :agree, :message => I18n.t("must_be_agree")
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :login, :agree
@@ -27,21 +26,12 @@ class User < ActiveRecord::Base
   end
 
   def to_s
-    if self.profile || self.profile.nickname.present?
+    if self.profile and self.profile.nickname.present?
       self.profile.nickname
     else
       self.username.present? ? self.username : self.email
     end
   end
-
-  def self.updated_user
-     find_user self.updated_by if self.updated_by.present?
-  end
-
-  def self.created_user
-     find_user self.created_by if self.created_by.present?
-  end
-
 
 
 end

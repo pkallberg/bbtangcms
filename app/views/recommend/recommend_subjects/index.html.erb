@@ -22,9 +22,9 @@
     <td><%= recommend_recommend_subject.created_at %></td>
     <td><%= recommend_recommend_subject.updated_at %></td>
     <td><%= recommend_recommend_subject.ids %></td>
-    <td><%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)), recommend_recommend_subject %>|
-        <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_recommend_recommend_subject_path(recommend_recommend_subject) %>|
-        <%= link_to  t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), recommend_recommend_subject, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)), recommend_recommend_subject, :class => 'btn btn-mini' %>
+        <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_recommend_recommend_subject_path(recommend_recommend_subject), :class => 'btn btn-mini' %>
+        <%= link_to  t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), recommend_recommend_subject, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %></td>
   </tr>
 <% end %>
 </table>

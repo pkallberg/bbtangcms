@@ -8,12 +8,11 @@
 <%= "@import 'bootswatch/#{Setting.today_theme}/variables';" %>
 
 
-
-
 .container-fluid {
     padding-left: auto;
     padding-right: auto;
 }
+
 
 .box {
   /*background-color: #fff;*/

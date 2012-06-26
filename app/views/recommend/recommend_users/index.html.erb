@@ -24,10 +24,10 @@
           <td><%= recommend_recommend_user.body %></td>
           <td><%= recommend_recommend_user.created_at %></td>
           <td><%= recommend_recommend_user.updated_at %></td>
-          <td><%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)), recommend_recommend_user %></td>
-          <td><%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_recommend_recommend_user_path(recommend_recommend_user) %></td>
+          <td><%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)), recommend_recommend_user, :class => 'btn btn-mini' %></td>
+          <td><%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_recommend_recommend_user_path(recommend_recommend_user), :class => 'btn btn-mini' %></td>
 
-          <td><%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), recommend_recommend_user, confirm: 'Are you sure?', method: :delete %></td>
+          <td><%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), recommend_recommend_user, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %></td>
         </tr>
       <% end %>
     </tbody>

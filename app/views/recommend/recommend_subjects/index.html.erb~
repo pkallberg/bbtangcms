@@ -16,7 +16,7 @@
     <tbody>
 <% @recommend_recommend_subjects.each do |recommend_recommend_subject| %>
   <tr>
-    <td><%= recommend_recommend_subject.position %></td>
+    <td><%= recommend_recommend_subject.post_name %></td>
     <td><%= recommend_recommend_subject.name %></td>
     <td><%= recommend_recommend_subject.body %></td>
     <td><%= recommend_recommend_subject.created_at %></td>

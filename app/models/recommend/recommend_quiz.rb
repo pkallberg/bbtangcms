@@ -25,8 +25,19 @@ class Recommend::RecommendQuiz
 
   }
 
+  validates_presence_of :name, :body
+
   validates_inclusion_of :position, :in => POSITION.keys, :allow_nil=>true,
-      :message => "{{value}} must be in #{POSITION.values.join ','}"
+      :message => "{%{value}} must be in #{POSITION.values.join ','}"
+
+  validates :body, :presence => true, :if => Proc.new { |instance| ids_validator instance.body }
+
+  def ids_validator(str=nil)
+    ids = str.to_s.split(/，|,|;|；|\ +|\||\r\n/) if self.body
+    ids.each do |quiz|
+      errors.add(:body, "Quiz '#{quiz}' is not exist") if Quiz.find(quiz).nil?
+    end
+  end
 
   def set_ids
     self.ids = self.body.to_s.split(/，|,|;|；|\ +|\||\r\n/).collect{|q| q.split("/").last}.join(",") if self.body

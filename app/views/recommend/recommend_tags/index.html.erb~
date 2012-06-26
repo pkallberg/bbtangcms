@@ -16,7 +16,7 @@
     <tbody>
       <% @recommend_recommend_tags.each do |recommend_recommend_tag| %>
         <tr>
-          <td><%= recommend_recommend_tag.position,:value => @recommend_recommend_tag.post_name %></td>
+          <td><%= recommend_recommend_tag.post_name %></td>
           <td><%= recommend_recommend_tag.name %></td>
           <td><%= recommend_recommend_tag.body %></td>
           <td><%= recommend_recommend_tag.created_at %></td>
