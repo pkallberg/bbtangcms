@@ -1,8 +1,11 @@
-class Recommend::RecommendQuestionsController < ApplicationController
+class Recommend::RecommendQuestionsController < Recommend::RecommendBaseController
+  Model_class = Recommend::RecommendProduct.new.class
   # GET /recommend/recommend_questions
   # GET /recommend/recommend_questions.json
   def index
     @recommend_recommend_questions = Recommend::RecommendQuestion.all
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_questions_path
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +17,8 @@ class Recommend::RecommendQuestionsController < ApplicationController
   # GET /recommend/recommend_questions/1.json
   def show
     @recommend_recommend_question = Recommend::RecommendQuestion.find(params[:id])
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_question_path(@recommend_recommend_question)
 
     respond_to do |format|
       format.html # show.html.erb

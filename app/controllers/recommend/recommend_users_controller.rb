@@ -1,8 +1,11 @@
 class Recommend::RecommendUsersController < Recommend::RecommendBaseController
+  Model_class = Recommend::RecommendUser.new.class
   # GET /recommend/recommend_users
   # GET /recommend/recommend_users.json
   def index
     @recommend_recommend_users = Recommend::RecommendUser.all
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_users_path
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,6 +18,8 @@ class Recommend::RecommendUsersController < Recommend::RecommendBaseController
   def show
     @recommend_recommend_user = Recommend::RecommendUser.find(params[:id])
 
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_user_path
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @recommend_recommend_user }
@@ -26,6 +31,8 @@ class Recommend::RecommendUsersController < Recommend::RecommendBaseController
   def new
     @recommend_recommend_user = Recommend::RecommendUser.new
 
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), new_recommend_recommend_user_path
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @recommend_recommend_user }
@@ -35,6 +42,8 @@ class Recommend::RecommendUsersController < Recommend::RecommendBaseController
   # GET /recommend/recommend_users/1/edit
   def edit
     @recommend_recommend_user = Recommend::RecommendUser.find(params[:id])
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), edit_recommend_recommend_user_path(@recommend_recommend_user)
   end
 
   # POST /recommend/recommend_users

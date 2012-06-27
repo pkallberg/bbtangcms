@@ -32,7 +32,11 @@
     <%= f.input :source_info %>
 
     <!--%= f.input :auto_tags, :input_html => { :rows =>"5", :cols =>"20" } %-->
-    <%= f.input :created_by, :as => :hidden, :input_html => { :value => current_user.id} %>
+    <% if @knowledge.new_record? %>
+      <%= f.input :created_by, :as => :hidden, :input_html => { :value => current_user.id} %>
+    <% else %>
+      <%= f.input :updated_by, :as => :hidden, :input_html => { :value => current_user.id} %>
+    <% end %>
     <!--%= f.input :updated_by %-->
     <!--%= f.input :deleted_at %-->
     <!--%= f.input :deleted_by %-->

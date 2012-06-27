@@ -1,10 +1,12 @@
 # coding: utf-8
 class ProfilesController < ApplicationController
+  before_filter :authenticate_user!
+  Model_class = Profile.new.class
   # GET /profiles
   # GET /profiles.json
   def index
     @profiles = Profile.paginate(:page => params[:page], :per_page => 20).order('id DESC')
-
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), profiles_path
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @profiles }
@@ -92,6 +94,6 @@ class ProfilesController < ApplicationController
     ip ||= "116.228.214.170"
     is.find_ip_location(ip)
     #breakpoint
-    return is.country.gsub("市","")
+    return is.country[0].gsub("市","")
   end
 end

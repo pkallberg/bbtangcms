@@ -1,6 +1,7 @@
 zh-CN:
   layout:
     appname: "BBTangCMS"
+    recommend: "推送"
     sidebar:
       model: "模块"
       recommend: "推送"
@@ -13,6 +14,3 @@ zh-CN:
     dashboard:
       show:
         recommend_title:  "推送"
-  dashboard:
-    index:
-      recommend_title:  "推送"

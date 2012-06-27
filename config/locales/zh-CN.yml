@@ -1,6 +1,15 @@
 "zh-CN":
+  activerecord:
+    errors:
+      template:
+        header:
+          one: "一个错误导致 %{model} 不能被保存"
+          other: "%{count} 个错误导致 %{model} 不能被保存"
+        # The variable :count is also available
+        body: "下面列出问题所在："
   breadcrumbs:
-    homepage: 主页
+    homepage: "主页"
+    recommend: "推送"
     first: "First"
     second: "Second"
     third: "Third"

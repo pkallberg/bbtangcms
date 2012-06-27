@@ -1,6 +1,7 @@
 "zh-CN":
   breadcrumbs:
-    homepage: 主页
+    homepage: "主页"
+    recommend: "推送"
     first: "First"
     second: "Second"
     third: "Third"

@@ -1,8 +1,11 @@
-class Recommend::RecommendQuizzesController < ApplicationController
+class Recommend::RecommendQuizzesController < Recommend::RecommendBaseController
+  Model_class = Recommend::RecommendQuiz.new.class
   # GET /recommend/recommend_quizzes
   # GET /recommend/recommend_quizzes.json
   def index
     @recommend_recommend_quizzes = Recommend::RecommendQuiz.all
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_quizzes_path
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,6 +18,8 @@ class Recommend::RecommendQuizzesController < ApplicationController
   def show
     @recommend_recommend_quiz = Recommend::RecommendQuiz.find(params[:id])
 
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_quiz_path(@recommend_recommend_quiz)
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @recommend_recommend_quiz }
@@ -25,6 +30,9 @@ class Recommend::RecommendQuizzesController < ApplicationController
   # GET /recommend/recommend_quizzes/new.json
   def new
     @recommend_recommend_quiz = Recommend::RecommendQuiz.new
+
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), new_recommend_recommend_quiz_path
 
     respond_to do |format|
       format.html # new.html.erb

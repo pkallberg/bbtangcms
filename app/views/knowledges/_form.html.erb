@@ -1,6 +1,6 @@
 <%= simple_form_for @knowledge, :html => { :class => 'form-horizontal', :class => "form-inline", :remote => true } do |f| %>
   <div class="knowledge-head box">
-  <span class="label label-info">head</span>
+    <span class="label label-info">head</span>
     <%= f.input :title %>
     <%= f.input :summary, :input_html => { :rows =>"5", :cols =>"100" } %>
     <!--%= f.input :content %-->

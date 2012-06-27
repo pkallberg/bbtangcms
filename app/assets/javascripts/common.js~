@@ -1,4 +1,5 @@
-$(document).ready ->
+$(document).ready(function(){
     $('#flashes').find($('.close')).click(function(){
-    $(".flashes").remove()
+    $("#flashes").hide()
   });
+});

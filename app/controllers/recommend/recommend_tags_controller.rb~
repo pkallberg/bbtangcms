@@ -1,8 +1,12 @@
 class Recommend::RecommendTagsController < Recommend::RecommendBaseController
+
+  Model_class = Recommend::RecommendTag.new.class
   # GET /recommend/recommend_tags
   # GET /recommend/recommend_tags.json
   def index
     @recommend_recommend_tags = Recommend::RecommendTag.all
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_tags_path
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,9 +17,9 @@ class Recommend::RecommendTagsController < Recommend::RecommendBaseController
   # GET /recommend/recommend_tags/1
   # GET /recommend/recommend_tags/1.json
   def show
-      debugger
     @recommend_recommend_tag = Recommend::RecommendTag.find(params[:id])
 
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_tag_path(@recommend_recommend_tag)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @recommend_recommend_tag }
@@ -26,6 +30,8 @@ class Recommend::RecommendTagsController < Recommend::RecommendBaseController
   # GET /recommend/recommend_tags/new.json
   def new
     @recommend_recommend_tag = Recommend::RecommendTag.new
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), new_recommend_recommend_tag_path
 
     respond_to do |format|
       format.html # new.html.erb

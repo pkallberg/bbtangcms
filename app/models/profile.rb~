@@ -9,7 +9,7 @@ class Profile < ActiveRecord::Base
   belongs_to :user_data_statistic
 
   #has_many :r_user_knowledges
-  has_many :knowledges,:through => :r_user_knowledges
+  #has_many :knowledges,:through => :r_user_knowledges
 
   #attr_accessible :oauth_face_image_url # for getter and setters
 
@@ -29,8 +29,7 @@ class Profile < ActiveRecord::Base
   # 关联level， 直接使用level name
   # delegate_attributes :name, :to => :level
 
-  #validates :nickname, :real_name, :length => {
-  validates :nickname,  :length => {
+  validates :nickname, :real_name, :length => {
     :minimum => BBTangCMS::MetaCache.get_config_data("profile_name_min").to_i,
     :maximum => BBTangCMS::MetaCache.get_config_data("profile_name_max").to_i}
   validates :label, :profession, :length => {:maximum => BBTangCMS::MetaCache.get_config_data("profile_label_max").to_i}
@@ -52,7 +51,7 @@ class Profile < ActiveRecord::Base
                   :notify_on_comments,:oauth_face_image_url,
                   :baby_gender,:real_name, :level_id, :birthday, :degree,
                   :phone, :profession, :expert_field, :hobby, :focus_tags_on,
-                  :label, :weibo
+                  :label, :weibo, :updated_by, :created_at
   #profile_face_url = BBTangCMS::MetaCache.get_config_data("profile_face_url")
   profile_face_url = "/uploadfiles/:class/:attachment/:id/:style/:filename"
   #profile_face_path = BBTangCMS::MetaCache.get_config_data("profile_face_path")

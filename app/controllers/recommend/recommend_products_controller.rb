@@ -1,9 +1,11 @@
 class Recommend::RecommendProductsController < Recommend::RecommendBaseController
+  Model_class = Recommend::RecommendProduct.new.class
   # GET /recommend/recommend_products
   # GET /recommend/recommend_products.json
   def index
     @recommend_recommend_products = Recommend::RecommendProduct.all
 
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_products_path
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @recommend_recommend_products }
@@ -14,6 +16,8 @@ class Recommend::RecommendProductsController < Recommend::RecommendBaseControlle
   # GET /recommend/recommend_products/1.json
   def show
     @recommend_recommend_product = Recommend::RecommendProduct.find(params[:id])
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_product_path(@recommend_recommend_product)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,6 +30,8 @@ class Recommend::RecommendProductsController < Recommend::RecommendBaseControlle
   def new
     @recommend_recommend_product = Recommend::RecommendProduct.new
 
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), new_recommend_recommend_product_path
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @recommend_recommend_product }
@@ -35,6 +41,8 @@ class Recommend::RecommendProductsController < Recommend::RecommendBaseControlle
   # GET /recommend/recommend_products/1/edit
   def edit
     @recommend_recommend_product = Recommend::RecommendProduct.find(params[:id])
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), edit_recommend_recommend_product_path(@recommend_recommend_product)
   end
 
   # POST /recommend/recommend_products

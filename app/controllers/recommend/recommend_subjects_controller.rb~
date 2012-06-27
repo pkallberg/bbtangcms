@@ -1,8 +1,12 @@
-class Recommend::RecommendSubjectsController < ApplicationController
+class Recommend::RecommendSubjectsController < Recommend::RecommendBaseController
+
+  Model_class = Recommend::RecommendSubject.new.class
   # GET /recommend/recommend_subjects
   # GET /recommend/recommend_subjects.json
   def index
     @recommend_recommend_subjects = Recommend::RecommendSubject.all
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_subjects_path
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,6 +19,8 @@ class Recommend::RecommendSubjectsController < ApplicationController
   def show
     @recommend_recommend_subject = Recommend::RecommendSubject.find(params[:id])
 
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_subject_path(@recommend_recommend_subject)
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @recommend_recommend_subject }
@@ -25,6 +31,8 @@ class Recommend::RecommendSubjectsController < ApplicationController
   # GET /recommend/recommend_subjects/new.json
   def new
     @recommend_recommend_subject = Recommend::RecommendSubject.new
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), new_recommend_recommend_subject_path
 
     respond_to do |format|
       format.html # new.html.erb

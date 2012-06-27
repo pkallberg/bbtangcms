@@ -1,8 +1,12 @@
 class Recommend::RecommendMtoolsController < Recommend::RecommendBaseController
+
+  Model_class = Recommend::RecommendMtool.new.class
   # GET /recommend/recommend_mtools
   # GET /recommend/recommend_mtools.json
   def index
     @recommend_recommend_mtools = Recommend::RecommendMtool.all
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_mtools_path
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,6 +19,8 @@ class Recommend::RecommendMtoolsController < Recommend::RecommendBaseController
   def show
     @recommend_recommend_mtool = Recommend::RecommendMtool.find(params[:id])
 
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_mtool_path(@recommend_recommend_mtool)
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @recommend_recommend_mtool }
@@ -26,6 +32,8 @@ class Recommend::RecommendMtoolsController < Recommend::RecommendBaseController
   def new
     @recommend_recommend_mtool = Recommend::RecommendMtool.new
 
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), new_recommend_recommend_mtool_path
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @recommend_recommend_mtool }
@@ -35,6 +43,8 @@ class Recommend::RecommendMtoolsController < Recommend::RecommendBaseController
   # GET /recommend/recommend_mtools/1/edit
   def edit
     @recommend_recommend_mtool = Recommend::RecommendMtool.find(params[:id])
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), edit_recommend_recommend_mtool_path(@recommend_recommend_mtool)
   end
 
   # POST /recommend/recommend_mtools

@@ -1,8 +1,11 @@
 class Recommend::RecommendQuestionsController < Recommend::RecommendBaseController
+  Model_class = Recommend::RecommendProduct.new.class
   # GET /recommend/recommend_questions
   # GET /recommend/recommend_questions.json
   def index
     @recommend_recommend_questions = Recommend::RecommendQuestion.all
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_questions_path
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,6 +18,8 @@ class Recommend::RecommendQuestionsController < Recommend::RecommendBaseControll
   def show
     @recommend_recommend_question = Recommend::RecommendQuestion.find(params[:id])
 
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_question_path(@recommend_recommend_question)
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @recommend_recommend_question }
@@ -26,6 +31,8 @@ class Recommend::RecommendQuestionsController < Recommend::RecommendBaseControll
   def new
     @recommend_recommend_question = Recommend::RecommendQuestion.new
 
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), new_recommend_recommend_question_path
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @recommend_recommend_question }
@@ -35,6 +42,9 @@ class Recommend::RecommendQuestionsController < Recommend::RecommendBaseControll
   # GET /recommend/recommend_questions/1/edit
   def edit
     @recommend_recommend_question = Recommend::RecommendQuestion.find(params[:id])
+
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), edit_recommend_recommend_question_path(@recommend_recommend_question)
   end
 
   # POST /recommend/recommend_questions

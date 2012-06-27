@@ -6,9 +6,9 @@
     <%= f.input :name %>
     <%= f.input :body %>
     <% if @recommend_recommend_tag.new_record? %>
-      <%= f.input :created_at, :as => :hidden, :input_html => { :value => current_user.id} %>
+      <%= f.input :created_at, :as => :hidden, :input_html => { :value => Time.now } %>
     <% else %>
-      <%= f.input :updated_at, :as => :hidden, :input_html => { :value => current_user.id} %>
+      <%= f.input :updated_at, :as => :hidden, :input_html => { :value => Time.now} %>
     <% end %>
   </div>
 

@@ -1,10 +1,12 @@
 # coding: utf-8
 class ProfilesController < ApplicationController
+  before_filter :authenticate_user!
+  Model_class = Profile.new.class
   # GET /profiles
   # GET /profiles.json
   def index
     @profiles = Profile.paginate(:page => params[:page], :per_page => 20).order('id DESC')
-
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), profiles_path
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @profiles }
@@ -16,6 +18,7 @@ class ProfilesController < ApplicationController
   def show
     @profile = Profile.find(params[:id])
 
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), profile_path(@profile)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @profile }
@@ -40,6 +43,7 @@ class ProfilesController < ApplicationController
     ip = request.env["REMOTE_ADDR"] if not request.env["REMOTE_ADDR"] == '127.0.0.1'
     @contry = change_ip_to_city(ip)
     @profile = Profile.find(params[:id])
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), edit_profile_path(@profile)
   end
 
   # POST /profiles
