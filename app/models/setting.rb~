@@ -5,5 +5,6 @@ class Setting < Settingslogic
   #this not inset to db
   attr_accessor :today_theme
   self.today_theme = theme[Time.now.day.divmod(theme.count)[1]]
-  self.today_theme = theme[5]
+  self.min_nickname = 2
+  self.max_nickname = 35
 end

@@ -30,10 +30,11 @@ class Profile < ActiveRecord::Base
   # delegate_attributes :name, :to => :level
 
   validates :nickname, :real_name, :length => {
+    #:minimum => BBTangCMS::MetaCache.get_config_data("profile_name_min").to_i,
     :minimum => BBTangCMS::MetaCache.get_config_data("profile_name_min").to_i,
     :maximum => BBTangCMS::MetaCache.get_config_data("profile_name_max").to_i}
   validates :label, :profession, :length => {:maximum => BBTangCMS::MetaCache.get_config_data("profile_label_max").to_i}
-
+  debugger
   #fixed bug, 当使用delegate_attributes的时候， 会需要loaded_[model]的方法
   def loaded_level?
     true

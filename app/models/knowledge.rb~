@@ -107,12 +107,13 @@ class Knowledge< ActiveRecord::Base
   end
   private
   def find_user(user_id = nil)
-    if user_id.present?
-      u=User.where :id => user_id
-      unless u.empty?
-        u.first
-      end
-    end
+     (User.where :id => 1 ).first if user_id.present?
+    #if user_id.present?
+    #  u=User.where :id => user_id
+    #  unless u.empty?
+    #    u.first
+    #  end
+    #end
   end
 
   class << self
