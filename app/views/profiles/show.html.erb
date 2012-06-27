@@ -1,16 +1,21 @@
+<%- model_class = Profile.new.class -%>
 <%= show_for @profile do |s| %>
   <%= s.association :user %>
   <%= s.attribute :real_name %>
   <%= s.attribute :nickname %>
   <%= s.association :level %>
-  <%= s.attribute :gender %>
+  <%= s.attribute :gender do %>
+    <%= content_tag :span, t("activerecord.attributes.profile.gender_#{@profile.gender? ? 1 : 0}") %>
+  <% end %>
   <!--%= s.attribute :face %-->
   <%= s.attribute :birthday %>
   <%= s.attribute :degree %>
   <%= s.attribute :city %>
   <%= s.attribute :phone %>
   <%= s.attribute :child_birthday %>
-  <%= s.attribute :baby_gender %>
+  <%= s.attribute :baby_gender do %>
+    <%= content_tag :span, t("activerecord.attributes.profile.baby_gender_#{@profile.gender? ? 1 : 0}") %>
+  <% end %>
   <%= s.attribute :profession %>
   <%= s.attribute :expert_field %>
   <%= s.attribute :hobby %>
@@ -22,5 +27,5 @@
   <%= s.attribute :weibo %>
 <% end %>
 
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', profiles_path %>
+<%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_profile_path(@profile) %> |
+<%= link_to  t('.back', :default => t("helpers.links.back", :model => model_class.model_name.human)), profiles_path %>

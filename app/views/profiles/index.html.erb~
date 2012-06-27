@@ -34,7 +34,7 @@
   <tbody>
     <% @profiles.each do |profile| %>
       <tr>
-        <td><%= profile.user_id %></td>
+        <td><%= profile.user %></td>
         <td><%= profile.real_name %></td>
         <td><%= profile.nickname %></td>
         <td><%= profile.level_id %></td>

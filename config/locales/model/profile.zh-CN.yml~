@@ -1,6 +1,6 @@
 zh-CN:
   activerecord:
-    model:
+    models:
       profile: "个人资料"
     errors:
       models:
@@ -31,8 +31,8 @@ zh-CN:
         nickname: "昵称"
         real_name: "真实姓名"
         gender: "性别"
-        gender_male: "我是爸爸（或是未来的爸爸）"
-        gender_female: "我是妈妈（或是未来的妈妈）"
+        gender_0: "我是爸爸（或是未来的爸爸）"
+        gender_1: "我是妈妈（或是未来的妈妈）"
         province: "婚姻状态"
         city: "所在城市"
         birthday: "生日"

@@ -10,7 +10,7 @@
       <%= f.input :nickname %>
       <%= f.association :level %>
       <%= f.input :gender do %>
-          <%= f.collection_radio_buttons :gender,[[true, I18n.t("activerecord.attributes.profile.gender_female")] ,[false, I18n.t("activerecord.attributes.profile.gender_male")]], :first, :last %>
+          <%= f.collection_radio_buttons :gender,[[true, I18n.t("activerecord.attributes.profile.gender_1")] ,[false, I18n.t("activerecord.attributes.profile.gender_0")]], :first, :last %>
       <% end %>
       <!--%= f.input :face %-->
       <%= f.input :birthday, :start_year => Time.now.year - 50 %>
@@ -31,7 +31,7 @@
       <span class="label label-info">family</span>
       <%= f.input :child_birthday , :start_year => Time.now.year - 20%>
       <%= f.input :baby_gender do %>
-          <%= f.collection_radio_buttons :baby_gender,[[true, I18n.t("activerecord.attributes.profile.baby_gender_1")] ,[false, I18n.t("activerecord.attributes.profile.baby_gender_2")]], :first, :last %>
+          <%= f.collection_radio_buttons :baby_gender,[[true, I18n.t("activerecord.attributes.profile.baby_gender_1")] ,[false, I18n.t("activerecord.attributes.profile.baby_gender_0")]], :first, :last %>
       <% end %>
       <%= f.input :profession %>
       <%= f.input :expert_field %>

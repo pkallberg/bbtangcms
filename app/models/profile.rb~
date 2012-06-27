@@ -28,7 +28,7 @@ class Profile < ActiveRecord::Base
 
   # 关联level， 直接使用level name
   # delegate_attributes :name, :to => :level
-
+  debugger
   validates :nickname, :real_name, :length => {
     :minimum => BBTangCMS::MetaCache.get_config_data("profile_name_min").to_i,
     :maximum => BBTangCMS::MetaCache.get_config_data("profile_name_max").to_i}

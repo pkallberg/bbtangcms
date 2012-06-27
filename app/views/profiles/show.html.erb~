@@ -1,23 +1,28 @@
+<%- model_class = Profile.new.class -%>
 <%= show_for @profile do |s| %>
   <%= s.association :user %>
   <%= s.attribute :real_name %>
   <%= s.attribute :nickname %>
   <%= s.association :level %>
-  <%= s.attribute :gender %>
+  <%= s.attribute :gender do %>
+    <%= content_tag :span, t("activerecord.attributes.profile.gender_#{@profile.gender? ? 1 : 0}") %>
+  <% end %>
   <!--%= s.attribute :face %-->
   <%= s.attribute :birthday %>
   <%= s.attribute :degree %>
   <%= s.attribute :city %>
   <%= s.attribute :phone %>
   <%= s.attribute :child_birthday %>
-  <%= s.attribute :baby_gender %>
+  <%= s.attribute :baby_gender do %>
+    <%= content_tag :span, t("activerecord.attributes.profile.baby_gender_#{@profile.gender? ? 1 : 0}") %>
+  <% end %>
   <%= s.attribute :profession %>
   <%= s.attribute :expert_field %>
   <%= s.attribute :hobby %>
   <%= s.attribute :focus_tags_on %>
-  <%= s.attribute :pregnancy_status %>
-  <%= s.attribute :agerange %>
-  <%= s.attribute :pregnancy_timeline %>
+  <%= s.attribute :pregnancy_status, :value => @profile.pregnancystatus %>
+  <%= s.attribute :agerange, :value => @profile.age_range %>
+  <%= s.attribute :pregnancy_timeline, :value => @profile.pregnancytimeline %>
   <%= s.attribute :label %>
   <%= s.attribute :weibo %>
 <% end %>

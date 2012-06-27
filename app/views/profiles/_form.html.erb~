@@ -17,6 +17,15 @@
       <%= f.input :degree %>
       <%= f.input :city, :input_html => { :value => @profile.city.present? ? @profile.city : @contry } %>
       <%= f.input :phone, :as => :tel %>
+      <%= f.input :pregnancy_status do %>
+        <%= f.select(:pregnancy_status, options_for_select(Profile::PRENGNANCYSTATUS.invert,:selected =>(@profile.pregnancy_status ? @profile.pregnancy_status : "1"))) %>
+      <% end %>
+      <%= f.input :agerange do %>
+        <%= f.select(:agerange, options_for_select(Profile::AGERANGE.invert,:selected =>(@profile.agerange ? @profile.agerange : "1"))) %>
+      <% end %>
+      <%= f.input :pregnancy_timeline do %>
+        <%= f.select(:pregnancy_timeline, options_for_select(Profile::PRENGNANCYTIMELINE.invert,:selected =>(@profile.pregnancy_timeline ? @profile.pregnancy_timeline : "1"))) %>
+      <% end %>
     </div>
     <div class="profile box">
       <span class="label label-info">family</span>
@@ -31,15 +40,6 @@
       <span class="label label-info">focus_on</span>
       <%= f.input :hobby %>
       <%= f.input :focus_tags_on %>
-      <%= f.input :pregnancy_status do %>
-        <%= f.select(:pregnancy_status, options_for_select(Profile::PRENGNANCYSTATUS.invert,:selected =>(@profile.pregnancy_status ? @profile.pregnancy_status : "1"))) %>
-      <% end %>
-      <%= f.input :agerange do %>
-        <%= f.select(:agerange, options_for_select(Profile::AGERANGE.invert,:selected =>(@profile.agerange ? @profile.agerange : "1"))) %>
-      <% end %>
-      <%= f.input :pregnancy_timeline do %>
-        <%= f.select(:pregnancy_timeline, options_for_select(Profile::PRENGNANCYTIMELINE.invert,:selected =>(@profile.pregnancy_timeline ? @profile.pregnancy_timeline : "1"))) %>
-      <% end %>
       <%= f.input :label %>
       <%= f.input :weibo, :as => :url %>
     </div>
