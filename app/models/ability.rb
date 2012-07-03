@@ -79,7 +79,9 @@ class Ability
     can :create, Recommend::RecommendUser
   end
 
-
+  def create_recommend_recommend_hindex
+    can :create, Recommend::RecommendHindex
+  end
 ##################update ##########################
   def update_profile
     can :update, Profile
@@ -124,6 +126,10 @@ class Ability
   def update_recommend_recommend_user
     can :update, Recommend::RecommendUser
   end
+
+  def update_recommend_recommend_hindex
+    can :update, Recommend::RecommendHindex
+  end
 ##################read ##########################
   def read_profile
     can :update, Profile
@@ -164,6 +170,10 @@ class Ability
   def read_recommend_recommend_user
     can :read, Recommend::RecommendUser
   end
+
+  def read_recommend_recommend_hindex
+    can :read, Recommend::RecommendHindex
+  end
 ##################destroy ##########################
   def destroy_profile
     can :update, Profile
@@ -203,6 +213,10 @@ class Ability
 
   def destroy_recommend_recommend_user
     can :destroy, Recommend::RecommendUser
+  end
+
+  def destroy_recommend_recommend_hindex
+    can :destroy, Recommend::RecommendHindex
   end
 ##################other ##########################
   #def editor

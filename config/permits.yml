@@ -10,6 +10,7 @@ permit:
   create_recommend_recommend_subject: create_recommend_recommend_subject
   create_recommend_recommend_tag: create_recommend_recommend_tag
   create_recommend_recommend_user: create_recommend_recommend_user
+  create_recommend_recommend_hindex: create_recommend_recommend_hindex
   update_profile: update_profile
   update_knowledge: update_knowledge
   update_category_base: update_category_base
@@ -19,6 +20,7 @@ permit:
   update_recommend_recommend_subject: update_recommend_recommend_subject
   update_recommend_recommend_tag: update_recommend_recommend_tag
   update_recommend_recommend_user: update_recommend_recommend_user
+  update_recommend_recommend_hindex: update_recommend_recommend_hindex
   read_profile: read_profile
   read_knowledge: read_knowledge
   read_category_base: read_category_base
@@ -28,6 +30,7 @@ permit:
   read_recommend_recommend_subject: read_recommend_recommend_subject
   read_recommend_recommend_tag: read_recommend_recommend_tag
   read_recommend_recommend_user: read_recommend_recommend_user
+  read_recommend_recommend_hindex: read_recommend_recommend_hindex
   destroy_profile: destroy_profile
   destroy_knowledge: destroy_knowledge
   destroy_category_base: destroy_category_base
@@ -37,3 +40,4 @@ permit:
   destroy_recommend_recommend_subject: destroy_recommend_recommend_subject
   destroy_recommend_recommend_tag: destroy_recommend_recommend_tag
   destroy_recommend_recommend_user: destroy_recommend_recommend_user
+  destroy_recommend_recommend_hindex: destroy_recommend_recommend_hindex
