@@ -1,0 +1,21 @@
+<%= simple_form_for(@recommend_recommend_hindex) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :body, :as => :text, :input_html => { :rows =>"20", :cols =>"100" }  %>
+    <%= f.input :position, :as => :radio_buttons, :collection => Recommend::RecommendHindex::POSITION.invert %>
+    <%= f.input :color, :as => :radio_buttons, :collection => Recommend::RecommendHindex::COLOR.invert %>
+    <% if @recommend_recommend_hindex.new_record? %>
+      <%= f.input :created_at, :as => :hidden, :input_html => { :value => Time.now } %>
+    <% else %>
+      <%= f.input :updated_at, :as => :hidden, :input_html => { :value => Time.now} %>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                recommend_recommend_hindices_path, :class => 'btn' %>
+  </div>
+<% end %>

@@ -39,7 +39,7 @@ class CmsRole < ActiveRecord::Base
   end
 
 
-  def supper_admin
+  def supper_admin?
     true if self.name.to_s == "admin"
   end
 

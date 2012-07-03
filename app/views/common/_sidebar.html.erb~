@@ -20,10 +20,10 @@
 	<h3><%= t("layout.sidebar.recommend") %></h3>
 	<ul class="nav nav-list">
 		<li class="nav-header"><%= t("layout.sidebar.recommend") %></li>
-		<li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendEvent.new.class.model_name.human)),
-            recommend_recommend_events_path %></li>
-    <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendMtool.new.class.model_name.human)),
-            recommend_recommend_mtools_path %></li>
+		<!--li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendEvent.new.class.model_name.human)),
+            recommend_recommend_events_path %></li-->
+    <!--li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendMtool.new.class.model_name.human)),
+            recommend_recommend_mtools_path %></li-->
     <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendProduct.new.class.model_name.human)),
             recommend_recommend_products_path %></li>
     <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendQuestion.new.class.model_name.human)),

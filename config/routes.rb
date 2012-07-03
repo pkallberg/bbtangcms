@@ -17,6 +17,7 @@ BBTangCMS::Application.routes.draw do
     resources :recommend_subjects
     resources :recommend_quizzes
     resources :recommend_tags
+    resources :recommend_hindices
     root :to => 'dashboard#show', :as => :dashboard
   end
 

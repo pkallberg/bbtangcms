@@ -1,0 +1,23 @@
+<%- model_class = @recommend_hindex.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => t('helpers.titles.show', :model => model_class.model_name.human) %></h1>
+</div>
+
+
+<%= show_for @recommend_hindex do |s| %>
+  <%= s.attribute :name %>
+  <%= s.attribute :body, :value => (raw @recommend_hindex.body) %>
+  <%= s.attribute :position %>
+  <%= s.attribute :color %>
+  <%= s.attribute :created_at %>
+  <%= s.attribute :updated_at %>
+<% end %>
+
+
+<%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_recommend_recommend_hindex_path(@recommend_hindex), :class => 'btn' %> |
+<%= link_to t('.back', :default => t("helpers.links.back", :model => model_class.model_name.human)), recommend_recommend_hindices_path, :class => 'btn' %> |
+<%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), recommend_recommend_hindex_path(@recommend_hindex),
+              :method => 'delete',
+              :confirm => t('.confirm',
+              :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>

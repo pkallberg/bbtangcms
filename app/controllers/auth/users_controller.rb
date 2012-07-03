@@ -55,7 +55,7 @@ class Auth::UsersController < ApplicationController
   def create
     #@auth_user = Auth::User.new(params[:auth_user])
     @auth_user = User.new(params[:user])
-    @auth_user.skip_confirmation!
+
 
     respond_to do |format|
       if @auth_user.save
@@ -72,10 +72,12 @@ class Auth::UsersController < ApplicationController
   # PUT /auth/users/1.json
   def update
     #@auth_user = Auth::User.find(params[:id])
+
     @auth_user = User.find(params[:id])
     @auth_user.update_user_permit(params[:user][:cms_role_ids]) if params[:user].key? :cms_role_ids
     respond_to do |format|
       if @auth_user.update_attributes(params[:user])
+
         format.html { redirect_to auth_user_path(@auth_user), notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else

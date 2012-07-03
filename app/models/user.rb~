@@ -15,13 +15,16 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
-  attr_accessor :agree
+  attr_accessor :agree, :confirmation_now
   validates_acceptance_of :agree, :message => I18n.t("must_be_agree")
+  #validates_acceptance_of :confirmation_now
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation,
-             :remember_me, :username, :login, :agree,:cms_role_ids,:permit_ids
+             :remember_me, :username, :login, :agree,:cms_role_ids,
+             :permit_ids, :confirmation_now
 
   #before_validation :update_user_permit
+  before_save :if_confirmation_now
 
   #生成邀请link
   def invitations_link
@@ -49,7 +52,7 @@ class User < ActiveRecord::Base
     tmp = false
     if self.cms_roles.present?
       self.cms_roles.each do |cms_role|
-        if cms_role.name.to_s.include? "admin" and not cms_role.admin?
+        if cms_role.name.to_s.include? "admin"
           tmp = true
         end
       end
@@ -61,7 +64,7 @@ class User < ActiveRecord::Base
     tmp = false
     if self.cms_roles.present?
       self.cms_roles.each do |cms_role|
-        if cms_role.name.to_s.include? "admin"
+        if cms_role.name.to_s.include? "admin" and not cms_role.supper_admin?
           tmp = true
         end
       end
@@ -110,6 +113,15 @@ class User < ActiveRecord::Base
 
     if self.cms_role_ids.sort != new_cms_role_ids.sort
       self.permits = []
+    end
+  end
+
+  def if_confirmation_now
+    if self.confirmation_now.present?
+    debugger
+      self.skip_confirmation! if ["true","1",1,true].include? self.confirmation_now
+    else
+      self.confirmation_now = nil
     end
   end
 

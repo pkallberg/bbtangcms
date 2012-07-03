@@ -9,6 +9,8 @@
   <div class="form-inputs">
     <%= f.input :username %>
     <%= f.input :email %>
+    <!--%= f.input :confirmation_now, :as => :radio_buttons, :checked => @auth_user.confirmed? ? "true" : "false" %-->
+    <%= f.input :confirmation_now, :as => :boolean, :input_html => {:value =>  @auth_user.confirmed? ? true : false} %>
     <%= f.input :password, :as => :password %>
     <%= f.input :password_confirmation %>
 

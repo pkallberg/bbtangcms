@@ -6,6 +6,7 @@
 <%= show_for @auth_user do |s| %>
   <%= s.attribute :username %>
   <%= s.attribute :email %>
+  <%= s.attribute :confirmed_at %>
   <!--%= s.attribute :password %-->
   <%= s.association :cms_roles, :collection_tag => :ol do |cms_role| %>
     <li><%= cms_role.name if cms_role %></li>

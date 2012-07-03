@@ -11,8 +11,8 @@ class Ability
 
     case controller_namespace
       when 'auth'
-        #can :manage, :all if self.admin_group?
-        can :read, :all if @user.admin_group?
+        #can :manage, :all if self.limit_admin_group?
+        can :read, :all if @user.limit_admin_group?
       else
         # rules for non-admin controllers here
     end

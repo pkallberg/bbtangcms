@@ -23,7 +23,7 @@ BBTangCMS::Application.routes.draw do
   namespace :auth do
     resources :users
     resources :cms_roles
-    resources :assign_cms_permits
+    resources :assign_permits
     root :to => 'dashboard#show', :as => :dashboard
   end
 
