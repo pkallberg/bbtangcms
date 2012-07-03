@@ -1,0 +1,28 @@
+<%- model_class = CuPermit.new.class -%>
+<%= show_for @owner_user do |s| %>
+  <%= s.attribute :username %>
+  <%= s.attribute :email %>
+  <!--%= s.attribute :password %-->
+  <%= s.association :cms_roles, :collection_tag => :ol do |cms_role| %>
+    <li><%= cms_role.name if cms_role %></li>
+  <% end %>
+  <%= s.association :cms_roles, :collection_tag => :ol do |cms_role| %>
+    <%= cms_role.name %>
+    <% cms_role.cms_role_permits.each do |cms_role_permit| %>
+      <li><%= cms_role_permit.permit.name if cms_role_permit.permit %></li>
+    <% end %>
+  <% end %>
+  <%= s.association :permits, :collection_tag => :ol do |permit| %>
+    <li><%= permit if permit.present? %></li>
+  <% end %>
+  <%= s.attribute :sign_in_count %>
+  <%= s.attribute :last_sign_in_at %>
+<% end %>
+
+<%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_auth_assign_permit_path(@owner_user), :class => 'btn' %> |
+<%= link_to t('.back', :default => t("helpers.links.back", :model => model_class.model_name.human)), auth_assign_permits_path, :class => 'btn' %> |
+<%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), auth_assign_permit_path(@owner_user,:admin_group => params["admin_group"] ),
+              :method => 'delete',
+              :confirm => t('.confirm',
+              :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>

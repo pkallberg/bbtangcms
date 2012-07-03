@@ -1,4 +1,5 @@
 class Recommend::RecommendEventsController < Recommend::RecommendBaseController
+  load_and_authorize_resource
   Model_class = Recommend::RecommendEvent.new.class
   # GET /recommend/recommend_events
   # GET /recommend/recommend_events.json

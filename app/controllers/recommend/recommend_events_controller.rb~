@@ -18,7 +18,7 @@ class Recommend::RecommendEventsController < Recommend::RecommendBaseController
   def show
     @recommend_recommend_event = Recommend::RecommendEvent.find(params[:id])
 
-    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_event_path(@recommend_event)
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_event_path(@recommend_recommend_event)
 
     respond_to do |format|
       format.html # show.html.erb

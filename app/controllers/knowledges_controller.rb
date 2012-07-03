@@ -1,5 +1,5 @@
 class KnowledgesController < ApplicationController
-  before_filter :authenticate_user!
+  load_and_authorize_resource
   Model_class = Knowledge.new.class
 
   # GET /knowledges

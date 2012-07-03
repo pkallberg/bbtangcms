@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120618054823) do
+ActiveRecord::Schema.define(:version => 20120629113431) do
 
   create_table "admin_settings", :force => true do |t|
     t.string   "name"
@@ -72,6 +72,15 @@ ActiveRecord::Schema.define(:version => 20120618054823) do
     t.boolean  "is_expert"
   end
 
+  create_table "assignments", :force => true do |t|
+    t.integer  "user_id",     :null => false
+    t.integer  "cms_role_id", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "assignments", ["user_id", "cms_role_id"], :name => "index_assignments_on_user_id_and_cms_role_id"
+
   create_table "astests", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -90,9 +99,9 @@ ActiveRecord::Schema.define(:version => 20120618054823) do
   create_table "category_bases", :force => true do |t|
     t.string   "name"
     t.string   "type"
-    t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.text     "description", :limit => 16777215
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.integer  "parent_id"
     t.integer  "lft"
     t.integer  "rgt"
@@ -134,6 +143,12 @@ ActiveRecord::Schema.define(:version => 20120618054823) do
     t.datetime "updated_at"
   end
 
+  create_table "cms_roles", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "cms_templates", :force => true do |t|
     t.string   "name"
     t.string   "description"
@@ -166,6 +181,21 @@ ActiveRecord::Schema.define(:version => 20120618054823) do
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "cr_permits", :force => true do |t|
+    t.integer  "cms_role_id"
+    t.integer  "permit_id"
+    t.string   "type"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "cu_permits", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "permit_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "expert_fields", :force => true do |t|
@@ -204,7 +234,7 @@ ActiveRecord::Schema.define(:version => 20120618054823) do
   create_table "focus_on_groups", :force => true do |t|
     t.string   "name"
     t.integer  "created_by"
-    t.text     "members",    :limit => 16777215
+    t.text     "members"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -361,15 +391,15 @@ ActiveRecord::Schema.define(:version => 20120618054823) do
 
   create_table "mom_shows", :force => true do |t|
     t.string   "title"
-    t.text     "body",             :limit => 16777215
-    t.text     "content",          :limit => 16777215
+    t.text     "body"
+    t.text     "content"
     t.string   "images"
-    t.text     "like_by",          :limit => 16777215
-    t.integer  "like_by_count",                        :default => 0
-    t.integer  "excerpt_count",                        :default => 0
-    t.text     "excerpt_to",       :limit => 16777215
-    t.text     "excerpt_from",     :limit => 16777215
-    t.text     "tags",             :limit => 16777215
+    t.text     "like_by"
+    t.integer  "like_by_count",    :default => 0
+    t.integer  "excerpt_count",    :default => 0
+    t.text     "excerpt_to"
+    t.text     "excerpt_from"
+    t.text     "tags"
     t.integer  "show_category_id"
     t.datetime "deleted_at"
     t.integer  "created_by"
@@ -383,11 +413,17 @@ ActiveRecord::Schema.define(:version => 20120618054823) do
     t.text     "body"
     t.integer  "draft"
     t.integer  "private"
-    t.text     "tags",        :limit => 16777215
+    t.text     "tags"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "profile_id"
-    t.integer  "views_count",                     :default => 0
+    t.integer  "views_count", :default => 0
+  end
+
+  create_table "permits", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "photos", :force => true do |t|
@@ -456,6 +492,8 @@ ActiveRecord::Schema.define(:version => 20120618054823) do
     t.boolean  "baby_gender"
     t.string   "oauth_face_image_url"
     t.datetime "face_updated_at"
+    t.string   "degree"
+    t.string   "phone"
   end
 
   create_table "questions", :force => true do |t|
@@ -473,7 +511,6 @@ ActiveRecord::Schema.define(:version => 20120618054823) do
     t.integer  "answers_count"
     t.integer  "experts_count"
     t.integer  "designated_answerer"
-    t.text     "auto_tags"
     t.integer  "knowledge_id"
     t.boolean  "is_anonymous"
     t.boolean  "deleted"
@@ -581,8 +618,8 @@ ActiveRecord::Schema.define(:version => 20120618054823) do
 
   create_table "show_comments", :force => true do |t|
     t.string   "title"
-    t.text     "content",      :limit => 16777215
-    t.text     "body",         :limit => 16777215
+    t.text     "content"
+    t.text     "body"
     t.integer  "created_by"
     t.boolean  "state"
     t.integer  "confirmed_by"
@@ -652,28 +689,6 @@ ActiveRecord::Schema.define(:version => 20120618054823) do
   create_table "tags", :force => true do |t|
     t.string "name"
   end
-
-  create_table "tags_bak", :force => true do |t|
-    t.string   "name"
-    t.text     "follower_ids"
-    t.text     "knowledge_ids"
-    t.text     "summary"
-    t.text     "group_ids"
-    t.text     "blog_ids"
-    t.text     "resource_ids"
-    t.text     "question_ids"
-    t.text     "answer_ids"
-    t.integer  "created_by"
-    t.integer  "updated_by"
-    t.datetime "confirmed_at"
-    t.integer  "confirmed_by"
-    t.boolean  "delta",         :default => true, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "category"
-  end
-
-  add_index "tags_bak", ["name"], :name => "name", :unique => true
 
   create_table "tasks", :force => true do |t|
     t.string   "name"

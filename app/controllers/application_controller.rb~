@@ -1,13 +1,29 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :authenticate_user!
   before_filter :add_initial_breadcrumbs
   before_filter :create_profile
 
   attr_reader :current_action
 
+  #check_authorization :unless => :do_not_check_authorization?
+  check_authorization :unless => :devise_controller?
+
+
+  rescue_from CanCan::AccessDenied do |exception|
+    if current_user
+      if current_user.has_cms_role? :guest
+        redirect_to root_url, :alert => exception.message
+      else
+        #render :file => "#{Rails.root}/public/403.html", :status => 403
+        redirect_to "http://bbtang.com"
+      end
+    end
+  end
+
   def default_url_options
     if Rails.env.production?
-      { :host => "www.bbtang.com",
+      { :host => "cms.bbtang.com",
         #:locale => I18n.locale
       }
     else
@@ -39,7 +55,20 @@ class ApplicationController < ActionController::Base
   def add_initial_breadcrumbs
     breadcrumbs.add :homepage, root_path
   end
+  def do_not_check_authorization?
+    #respond_to?(:devise_controller?) or
+    #condition_one? or
+    #condition_two?
+    respond_to?(:devise_controller?)# or respond_to?(:dashboard_controller?)
+  end
 
+  #def condition_one?
+  # ...
+  #end
+
+  #def condition_two?
+  # ...
+  #end
 
   protected
 
@@ -50,5 +79,16 @@ class ApplicationController < ActionController::Base
   def set_content_type
     headers['Content-Type'] ||= 'text/html; charset=utf-8'
   end
+
+  private
+
+  def current_ability
+    # I am sure there is a slicker way to capture the controller namespace
+    controller_name_segments = params[:controller].split('/')
+    controller_name_segments.pop
+    controller_namespace = controller_name_segments.join('/').camelize
+    Ability.new(current_user, controller_namespace)
+  end
+end
 
 end

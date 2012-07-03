@@ -3,7 +3,6 @@ class Recommend::RecommendBaseController < ApplicationController
 
 
   #before_filter :require_login
-  before_filter :authenticate_user!
   protected
 
   def require_login

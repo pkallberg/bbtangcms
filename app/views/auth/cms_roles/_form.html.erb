@@ -1,0 +1,19 @@
+<%= simple_form_for([:auth,@auth_cms_role]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+
+    <% assign_permits = @auth_cms_role.assign_permits.collect {|assign_permit| assign_permit.permit}.compact %>
+    <% cms_role_permits = @auth_cms_role.cms_role_permits.collect {|cms_role_permit| cms_role_permit.permit}.compact %>
+
+    <%= f.association :cms_role_permits, :as => :check_boxes, :collection => Permit.all(:order => 'name'),:checked => ( cms_role_permits.map(&:id) if cms_role_permits.present?), :prompt => "Choose a permit" %>
+    <%= f.association :assign_permits, :as => :check_boxes, :collection => Permit.all(:order => 'name'), :checked => ( assign_permits.map(&:id) if assign_permits.present?), :prompt => "Choose a permit" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary', :disable_with => 'loading...' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                auth_cms_roles_path, :class => 'btn' %>
+  </div>
+<% end %>

@@ -6,8 +6,8 @@ BBTangCMS::Application.routes.draw do
     end
   end
 
-  resources :profiles, :only => [:index, :show, :edit, :destroy]
-
+  #resources :profiles, :only => [:index, :show, :edit, :destroy]
+  resources :profiles, :except => [:new, :create]
   namespace :recommend do
     resources :recommend_products
     resources :recommend_questions
@@ -17,6 +17,13 @@ BBTangCMS::Application.routes.draw do
     resources :recommend_subjects
     resources :recommend_quizzes
     resources :recommend_tags
+    root :to => 'dashboard#show', :as => :dashboard
+  end
+
+  namespace :auth do
+    resources :users
+    resources :cms_roles
+    resources :assign_cms_permits
     root :to => 'dashboard#show', :as => :dashboard
   end
 

@@ -42,6 +42,8 @@ class Recommend::RecommendTagsController < Recommend::RecommendBaseController
   # GET /recommend/recommend_tags/1/edit
   def edit
     @recommend_recommend_tag = Recommend::RecommendTag.find(params[:id])
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), edit_recommend_recommend_tag_path(@recommend_recommend_tag)
   end
 
   # POST /recommend/recommend_tags

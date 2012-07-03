@@ -1,0 +1,42 @@
+<%- model_class = CmsRole.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<div class = "cms_roles box">
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:cms_role_permits) %></th>
+      <th><%= model_class.human_attribute_name(:assign_permits) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @auth_cms_roles.each do |auth_cms_role| %>
+      <tr>
+        <td><%= auth_cms_role.name %></td>
+        <td><%= auth_cms_role.cms_role_permits.collect {|permit| permit.permit}.compact.map(&:name) %></td>
+        <td><%= auth_cms_role.assign_permits.collect {|permit| permit.permit}.compact.map(&:name) %></td>
+        <td>
+          <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)),
+                      auth_cms_role_path(auth_cms_role), :class => 'btn btn-mini' %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)),
+                       edit_auth_cms_role_path(auth_cms_role), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)),
+                      auth_cms_role_path(auth_cms_role),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+<%= will_paginate @auth_cms_roles %>
+<%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)),
+            new_auth_cms_role_path,
+            :class => 'btn btn-primary' %>
+</div>

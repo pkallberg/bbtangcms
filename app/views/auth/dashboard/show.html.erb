@@ -1,0 +1,12 @@
+<h1><%=t '.auth_title' %></h1>
+
+<div class="dashboard box">
+  <ul>
+    <li> <%= link_to t('.index', :default => t("helpers.links.index", :model => User.new.class.model_name.human)),
+            auth_users_path %> </li>
+    <li> <%= link_to t('.index', :default => t("helpers.links.index", :model => CmsRole.new.class.model_name.human)),
+            auth_cms_roles_path %></li>
+    <li> <%= link_to t('.assign_permit_title'),
+            auth_assign_permits_path %></li>
+  </ul>
+</div>

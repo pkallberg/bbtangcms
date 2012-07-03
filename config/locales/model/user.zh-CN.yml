@@ -4,7 +4,7 @@ zh-CN:
       user: "用户"
     attributes:
       user:
-        name: "姓氏"
+        username: "姓氏"
         email: "电子邮箱"
         password: "密码"
         password_confirmation: "确认密码"
@@ -35,3 +35,7 @@ zh-CN:
         create_user: "用户注册"
         edit_user: "编辑用户"
         remember_me: "记住登录状态"
+        cms_roles: "后台角色集合"
+        cms_role: "后台角色"
+        permits: "操作权限集合"
+        permit: "操作权限"

@@ -102,6 +102,8 @@ gem "will_paginate_twitter_bootstrap", "~> 1.0.0"
 
 gem "awesome_nested_set", "~> 2.1.3" #timelines表结构
 gem 'cancan' # permission
+#Role specific Permits for use with CanCan permission system
+#gem "cancan-permits", "~> 0.3.12"
 gem 'rails_autolink', '1.0.4'  #用于超链接中显示url， 直接点击跳转
 
 #With ActsAsTaggableOn, you can tag a single model on several contexts, such as skills, interests, and awards. It also provides other advanced functionality.

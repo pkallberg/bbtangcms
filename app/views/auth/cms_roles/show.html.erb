@@ -1,0 +1,23 @@
+<%- model_class = @auth_cms_role.class -%>
+<div class="page-header">
+  <h1><%=t '.show', :default => t('helpers.titles.show', :model => model_class.model_name.human) %></h1>
+</div>
+<%= show_for @auth_cms_role do |s| %>
+  <%= s.attribute :name %>
+  <%= s.association :cms_role_permits, :collection_tag => :ol do |cms_role_permit| %>
+    <li><%= cms_role_permit.permit.name if cms_role_permit.permit %></li>
+  <% end %>
+  <%= s.association :assign_permits, :collection_tag => :ol do |assign_permit| %>
+    <li><%= assign_permit.permit.name if assign_permit.permit %></li>
+  <% end %>
+
+<% end %>
+
+
+<%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_auth_cms_role_path(@auth_cms_role), :class => 'btn' %> |
+<%= link_to t('.back', :default => t("helpers.links.back", :model => model_class.model_name.human)), auth_cms_roles_path, :class => 'btn' %> |
+<%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), auth_cms_role_path(@auth_cms_role),
+              :method => 'delete',
+              :confirm => t('.confirm',
+              :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>

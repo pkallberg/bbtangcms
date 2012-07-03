@@ -10,6 +10,7 @@
   breadcrumbs:
     homepage: "主页"
     recommend: "推送"
+    auth: "授权认证"
     first: "First"
     second: "Second"
     third: "Third"
@@ -40,6 +41,7 @@
   common:
     menu:
       recommend: "推送首页"
+      auth: "授权认证首页"
     recent_action: "最近动作"
     available_content: "内容支持:"
     zh-cn: "中文"

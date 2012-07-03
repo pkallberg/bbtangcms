@@ -1,0 +1,14 @@
+zh-CN:
+  activerecord:
+    models:
+      cms_role: "后台角色"
+    attributes:
+      cms_role:
+        id: "id"
+        name: "名称"
+        cms_role_permit: "角色权限"
+        assign_permit: "角色分派权限"
+        cms_role_permits: "角色权限集合"
+        assign_permits: "角色分派权限集合"
+        created_at: "创建时间"
+        updated_at: "更新时间"

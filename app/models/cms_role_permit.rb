@@ -1,0 +1,2 @@
+class CmsRolePermit < CrPermit
+end

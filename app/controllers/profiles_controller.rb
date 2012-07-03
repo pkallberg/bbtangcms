@@ -1,6 +1,6 @@
 # coding: utf-8
 class ProfilesController < ApplicationController
-  before_filter :authenticate_user!
+  load_and_authorize_resource
   Model_class = Profile.new.class
   # GET /profiles
   # GET /profiles.json

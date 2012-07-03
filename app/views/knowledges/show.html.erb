@@ -1,6 +1,6 @@
 <%- model_class = @knowledge.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1><%=t '.title', :default => t('helpers.titles.show', :model => model_class.model_name.human) %></h1>
 </div>
 
 <div class="content box">
@@ -66,7 +66,7 @@
 		<!--%= k.association :knowledgebase_category_id, :to_sentence => true %-->
 	<% end %>
 </div>
-<div class="form-actions">
+<div class="actions">
   <%= link_to t('.back', :default => t("helpers.links.back", :model => model_class.model_name.human)),
               knowledges_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)),

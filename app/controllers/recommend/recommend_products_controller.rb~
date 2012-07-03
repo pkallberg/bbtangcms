@@ -30,7 +30,7 @@ class Recommend::RecommendProductsController < Recommend::RecommendBaseControlle
   def new
     @recommend_recommend_product = Recommend::RecommendProduct.new
 
-    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), new_recommend_recommend_mtool_path
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), new_recommend_recommend_product_path
 
     respond_to do |format|
       format.html # new.html.erb

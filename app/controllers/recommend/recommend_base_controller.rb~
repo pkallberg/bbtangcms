@@ -3,7 +3,6 @@ class Recommend::RecommendBaseController < ApplicationController
 
 
   #before_filter :require_login
-  before_filter :authenticate_user!
   protected
 
   def require_login
@@ -15,6 +14,7 @@ class Recommend::RecommendBaseController < ApplicationController
   end
   private
   def add_initial_breadcrumbs
+    breadcrumbs.add :homepage, root_path
     breadcrumbs.add :recommend, recommend_dashboard_path
   end
 end

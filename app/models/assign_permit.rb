@@ -1,0 +1,2 @@
+class AssignPermit < CrPermit
+end

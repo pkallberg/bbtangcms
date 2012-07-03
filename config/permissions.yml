@@ -1,0 +1,61 @@
+---
+roles:
+  user: !!null
+  admin:
+    role_permit:
+      mannage: all
+    assign_permit: all # for eg update the role
+  updateor_admin:
+    role_permit:
+      create_profile: create_profile
+      create_knowledge: create_knowledge
+      create_category_base: create_category_base
+      update_profile: create_profile
+      update_knowledge: create_knowledge
+      update_category_base: create_category_base
+      read_profile: create_profile
+      read_knowledge: create_knowledge
+      read_category_base: create_category_base
+      destroy_profile: create_profile
+      destroy_knowledge: create_knowledge
+      destroy_category_base: create_category_base
+    assign_permit:
+      create_profile: create_profile
+      create_knowledge: create_knowledge
+      create_category_base: create_category_base
+      update_profile: create_profile
+      update_knowledge: create_knowledge
+      update_category_base: create_category_base
+      read_profile: create_profile
+      read_knowledge: create_knowledge
+      read_category_base: create_category_base
+      destroy_profile: create_profile
+      destroy_knowledge: create_knowledge
+      destroy_category_base: create_category_base
+  operatoradmin:
+    role_permit:
+      create_profile: create_profile
+      create_knowledge: create_knowledge
+      create_category_base: create_category_base
+      update_profile: create_profile
+      update_knowledge: create_knowledge
+      update_category_base: create_category_base
+      read_profile: create_profile
+      read_knowledge: create_knowledge
+      read_category_base: create_category_base
+      destroy_profile: create_profile
+      destroy_knowledge: create_knowledge
+      destroy_category_base: create_category_base
+    assign_permit:
+      create_profile: create_profile
+      create_knowledge: create_knowledge
+      create_category_base: create_category_base
+      update_profile: create_profile
+      update_knowledge: create_knowledge
+      update_category_base: create_category_base
+      read_profile: create_profile
+      read_knowledge: create_knowledge
+      read_category_base: create_category_base
+      destroy_profile: create_profile
+      destroy_knowledge: create_knowledge
+      destroy_category_base: create_category_base

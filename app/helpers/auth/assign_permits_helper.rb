@@ -1,0 +1,2 @@
+module Auth::AssignPermitsHelper
+end

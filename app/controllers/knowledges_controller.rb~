@@ -1,4 +1,5 @@
 class KnowledgesController < ApplicationController
+  load_and_authorize_resource
   before_filter :authenticate_user!
   Model_class = Knowledge.new.class
 
@@ -132,23 +133,9 @@ class KnowledgesController < ApplicationController
         end
       end
     end
-    unless @knowledge.timelines.empty?
-      @knowledge.timelines.each do |timeline|
-        #timeline = Timeline.find_by_name(timeline.name)
-        Timeline.where(name:timeline.name).each do |t|
-          @timelines_choose.push(t) if @identities_choose.include? t.parent
-        end
-      end
-    end
 
-    unless @knowledge.categories.empty?
-      @knowledge.categories.each do |category|
-        #category = Category.find_by_name(category.name)
-        Category.where(name:category.name).each do |c|
-          @categories_choose.push(c) if @timelines_choose.include? c.parent
-        end
-      end
-    end
+
+
     #####################################
     unless @identities_choose.empty?
       @identities_choose.each do |identity|

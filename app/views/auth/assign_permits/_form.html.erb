@@ -1,0 +1,24 @@
+<%= simple_form_for([:auth,@owner_user], :url =>auth_assign_permit_path(@owner_user)) do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :email do %>
+    <%= @owner_user.email %>
+  <% end %>
+
+  <div class="form-inputs">
+    <%= f.association :permits do %>
+      <% if @admin_user.present? %>
+        <% @admin_user.cms_roles.each do |cms_role| %>
+          <%= cms_role%>
+          <%= f.association :permits, :as => :check_boxes, :collection => @admin_user.admin_assign_permits(cms_role),:checked => ( @owner_user.permits.map(&:id) if  @owner_user.permits.present?) %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary', :disable_with => 'loading...' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                auth_assign_permits_path, :class => 'btn' %>
+  </div>
+<% end %>

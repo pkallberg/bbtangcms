@@ -19,7 +19,7 @@ class Recommend::RecommendMtoolsController < Recommend::RecommendBaseController
   def show
     @recommend_recommend_mtool = Recommend::RecommendMtool.find(params[:id])
 
-    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_mtool_path(@recommend_mtool)
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_mtool_path(@recommend_recommend_mtool)
 
     respond_to do |format|
       format.html # show.html.erb

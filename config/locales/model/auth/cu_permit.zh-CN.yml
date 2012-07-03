@@ -1,0 +1,13 @@
+zh-CN:
+  activerecord:
+    models:
+      cu_permit: "后台用户权限分派"
+    attributes:
+      cu_permit:
+        id: "id"
+        user_id: "用户 id"
+        user: "用户"
+        permits: "权限集合"
+        permit: "权限"
+        created_at: "创建时间"
+        updated_at: "更新时间"

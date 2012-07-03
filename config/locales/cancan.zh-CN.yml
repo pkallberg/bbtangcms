@@ -1,0 +1,8 @@
+# in config/locales/cancan.zh-CN.yml
+zh-CN:
+  unauthorized:
+    manage:
+      all: "'%{subject}'的'%{action}'未经授权."
+      user: "不允许管理其他用户帐户."
+    update:
+      project: "不允许更新此项目."

@@ -43,6 +43,8 @@ class Recommend::RecommendSubjectsController < Recommend::RecommendBaseControlle
   # GET /recommend/recommend_subjects/1/edit
   def edit
     @recommend_recommend_subject = Recommend::RecommendSubject.find(params[:id])
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), edit_recommend_recommend_subject_path(@recommend_recommend_subject)
   end
 
   # POST /recommend/recommend_subjects

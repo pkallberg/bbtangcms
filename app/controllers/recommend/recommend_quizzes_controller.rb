@@ -1,4 +1,5 @@
 class Recommend::RecommendQuizzesController < Recommend::RecommendBaseController
+  load_and_authorize_resource
   Model_class = Recommend::RecommendQuiz.new.class
   # GET /recommend/recommend_quizzes
   # GET /recommend/recommend_quizzes.json

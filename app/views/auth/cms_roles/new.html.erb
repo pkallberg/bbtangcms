@@ -1,0 +1,5 @@
+<%- model_class = @auth_cms_role.class -%>
+<div class="page-header">
+  <h1><%=t '.new', :default => t('helpers.titles.new', :model => model_class.model_name.human) %></h1>
+</div>
+<%= render 'form' %>

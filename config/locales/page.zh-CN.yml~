@@ -1,18 +1,28 @@
 zh-CN:
   layout:
     appname: "BBTangCMS"
+    recommend: "推送"
+    auth: "授权认证"
     sidebar:
       model: "模块"
       recommend: "推送"
     menu:
       unauthorized_user: "未授权用户"
-    recommend:
-      dashboard:
-        index: "推送首页"
+    #recommend:
+    #  dashboard:
+    #    show: "推送首页"
+    #auth:
+    # dashboard:
+    #   show: "授权认证首页"
   recommend:
     dashboard:
       show:
         recommend_title:  "推送"
-  dashboard:
-    index:
-      recommend_title:  "推送"
+  auth:
+    dashboard:
+      show:
+        auth_title:  "授权认证"
+        assign_permit_title:  "权限分派"
+    assign_permits:
+      index:
+        title: "权限分派首页"

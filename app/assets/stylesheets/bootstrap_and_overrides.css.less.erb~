@@ -1,11 +1,6 @@
 //@import "twitter/bootstrap/bootstrap";
 @import "twitter/bootstrap";
-/*
-*= <%= "depend_on 'bootswatch/#{Setting.today_theme}/bootswatch';" %>
-*= <%= "depend_on 'bootswatch/#{Setting.today_theme}/variables';" %>
-*/
-<%= "@import 'bootswatch/#{Setting.today_theme}/bootswatch';" %>
-<%= "@import 'bootswatch/#{Setting.today_theme}/variables';" %>
+
 
 
 
@@ -42,14 +37,7 @@ form {
   }
 }
 
-/*#topcontrol {
-    position: fixed;
-    bottom: 5px;
-    right: 5px;
-    opacity: 0;
-    cursor: pointer;
-}
-*/
+
 textarea {
       width: auto;
       height: auto;

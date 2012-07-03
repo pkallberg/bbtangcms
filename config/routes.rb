@@ -20,6 +20,13 @@ BBTangCMS::Application.routes.draw do
     root :to => 'dashboard#show', :as => :dashboard
   end
 
+  namespace :auth do
+    resources :users
+    resources :cms_roles
+    resources :assign_permits
+    root :to => 'dashboard#show', :as => :dashboard
+  end
+
   devise_for :users
 
   root :to => 'dashboard#index'
