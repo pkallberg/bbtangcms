@@ -25,20 +25,21 @@
 #  end
 #end
 ##################default cms_roles
-#BBTangCMS::Config.cms_roles[:roles].each do |r|
-#  if r.present?
-#    CmsRole.create!(:name => r)
-#  end
-#end
-#admin = CmsRole.find_by_name(:name => "admin")
-#editoradmin = CmsRole.find_by_name(:name => "editoradmin")
-#editor = CmsRole.find_by_name(:name => "editor")
-#operatoradmin = CmsRole.find_by_name(:name => "operatoradmin")
-#operator = CmsRole.find_by_name(:name => "operator")
-# UserRoles :Admin
-#user1 = User.find_by_email("864248765@qq.com")
-#user1.roles << admin
-#user2.roles << editoradmin
+BBTangCMS::Config.cms_roles[:roles].each do |r|
+  if r.present?
+    CmsRole.find_or_create_by_name(r)
+  end
+end
+admin = CmsRole.find_by_name("admin")
+editoradmin = CmsRole.find_by_name("editoradmin")
+editor = CmsRole.find_by_name("editor")
+operatoradmin = CmsRole.find_by_name("operatoradmin")
+operator = CmsRole.find_by_name("operator")
+#UserRoles :Admin
+user1 = User.find_by_email("864248765@qq.com")
+user1.cms_roles << admin
+user2 = User.find_by_email("wangy5278@163.com")
+user2.cms_roles << admin
 #################setting permits the first you should makesure you do it in cancan Ability
 if BBTangCMS::Config.permits.has_key? :permit
   BBTangCMS::Config.permits[:permit].each do |kv|
