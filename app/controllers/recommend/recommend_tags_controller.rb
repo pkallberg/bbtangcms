@@ -4,7 +4,8 @@ class Recommend::RecommendTagsController < Recommend::RecommendBaseController
   # GET /recommend/recommend_tags
   # GET /recommend/recommend_tags.json
   def index
-    @recommend_recommend_tags = Recommend::RecommendTag.all
+    @recommend_recommend_tags = Recommend::RecommendTag.all.entries
+    #@recommend_recommend_tags = Recommend::RecommendTag.paginate(:page => params[:page], :per_page => 20).order('id DESC')
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_tags_path
 

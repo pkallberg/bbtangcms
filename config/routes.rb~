@@ -1,5 +1,7 @@
 BBTangCMS::Application.routes.draw do
 
+  match "common/search" :as => :common_search
+
   resources :knowledges do
     member do
       get 'refresh'
@@ -17,6 +19,7 @@ BBTangCMS::Application.routes.draw do
     resources :recommend_subjects
     resources :recommend_quizzes
     resources :recommend_tags
+    resources :recommend_hindices
     root :to => 'dashboard#show', :as => :dashboard
   end
 

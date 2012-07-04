@@ -1,5 +1,7 @@
 BBTangCMS::Application.routes.draw do
 
+  match "common/search", :as => :common_search
+
   resources :knowledges do
     member do
       get 'refresh'

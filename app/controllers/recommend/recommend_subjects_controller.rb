@@ -4,7 +4,7 @@ class Recommend::RecommendSubjectsController < Recommend::RecommendBaseControlle
   # GET /recommend/recommend_subjects
   # GET /recommend/recommend_subjects.json
   def index
-    @recommend_recommend_subjects = Recommend::RecommendSubject.all
+    @recommend_recommend_subjects = Recommend::RecommendSubject.all.entries
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_subjects_path
 

@@ -15,9 +15,9 @@
       <!--th><%= model_class.human_attribute_name(:tags) %></th-->
       <!--th><%= model_class.human_attribute_name(:timeline_ids) %></th-->
       <!--th><%= model_class.human_attribute_name(:knowledgebase_category_id) %></th-->
-      <th><%= model_class.human_attribute_name(:created_by) %></th>
+      <th><%= model_class.human_attribute_name(:created_user) %></th>
       <!--th><%= model_class.human_attribute_name(:created_name) %></th-->
-      <th><%= model_class.human_attribute_name(:updated_by) %></th>
+      <th><%= model_class.human_attribute_name(:updated_user) %></th>
       <!--th><%= model_class.human_attribute_name(:deleted_at) %></th-->
       <!--th><%= model_class.human_attribute_name(:deleted_by) %></th-->
       <!--th><%= model_class.human_attribute_name(:delta) %></th-->
@@ -42,9 +42,9 @@
         <!--td><%= knowledge.tags %></td-->
         <!--td><%= knowledge.timeline_ids %></td-->
         <!--td><%= knowledge.knowledgebase_category_id %></td-->
-        <td><%= knowledge.created_by %></td>
+        <td><%= knowledge.created_user %></td>
         <!--td><%= knowledge.created_name %></td-->
-        <td><%= knowledge.updated_by %></td>
+        <td><%= knowledge.updated_user %></td>
         <!--td><%= knowledge.deleted_at %></td-->
         <!--td><%= knowledge.deleted_by %></td-->
         <!--td><%= knowledge.delta %></td-->

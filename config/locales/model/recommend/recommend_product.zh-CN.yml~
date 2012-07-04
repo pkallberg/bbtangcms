@@ -6,7 +6,7 @@ zh-CN:
       recommend/recommend_product:
         id: "id"
         position: "栏位"
-        name: "名称"
+        order: "序号"
         image: "图片地址"
         title: "标题"
         price: "价格"

@@ -118,11 +118,22 @@ class User < ActiveRecord::Base
 
   def if_confirmation_now
     if self.confirmation_now.present?
-    debugger
       self.skip_confirmation! if ["true","1",1,true].include? self.confirmation_now
     else
       self.confirmation_now = nil
     end
+  end
+
+  def cms_user?
+    tmp = false
+    if self.cms_roles.present?
+      self.cms_roles.each do |cms_role|
+        if cms_role.name.to_s.include? "guest" or CmsRole.all.include? cms_role
+          tmp = true
+        end
+      end
+    end
+    return tmp
   end
 
 end

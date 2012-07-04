@@ -18,3 +18,4 @@ zh-CN:
       destroy: "删除%{model}"
       cancel: "取消"
       confirm: "你想好了吗?"
+      save_sorted: "保存排列"

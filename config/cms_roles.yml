@@ -1,2 +1,2 @@
 #encoding: utf-8
-roles: ['admin','editoradmin','editor','operatoradmin','operator']
+roles: ['admin','editoradmin','editor','operatoradmin','operator','guest']

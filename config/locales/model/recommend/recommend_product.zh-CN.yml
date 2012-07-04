@@ -4,7 +4,8 @@ zh-CN:
       recommend/recommend_product: "产品推送"
     attributes:
       recommend/recommend_product:
-        id: "id"
+        _id: "id"
+        _type: "字段类型"
         position: "栏位"
         order: "序号"
         image: "图片地址"

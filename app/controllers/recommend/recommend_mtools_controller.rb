@@ -4,7 +4,7 @@ class Recommend::RecommendMtoolsController < Recommend::RecommendBaseController
   # GET /recommend/recommend_mtools
   # GET /recommend/recommend_mtools.json
   def index
-    @recommend_recommend_mtools = Recommend::RecommendMtool.all
+    @recommend_recommend_mtools = Recommend::RecommendMtool.all.entries
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_mtools_path
 

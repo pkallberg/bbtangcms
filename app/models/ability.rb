@@ -132,15 +132,15 @@ class Ability
   end
 ##################read ##########################
   def read_profile
-    can :update, Profile
+    can :read, Profile
   end
 
   def read_knowledge
-    can :update, Knowledge
+    can :read, Knowledge
   end
 
   def read_category_base
-    can :update, CategoryBase
+    can :read, CategoryBase
   end
 
   def read_recommend_recommend_mtool
@@ -176,15 +176,15 @@ class Ability
   end
 ##################destroy ##########################
   def destroy_profile
-    can :update, Profile
+    can :destroy, Profile
   end
 
   def destroy_knowledge
-    can :update, Knowledge
+    can :destroy, Knowledge
   end
 
   def destroy_category_base
-    can :update, CategoryBase
+    can :destroy, CategoryBase
   end
 
   def destroy_recommend_recommend_mtool
@@ -248,6 +248,7 @@ class Ability
     #can :index, Product
     #can :show, Product
     can :index, :dashboard
+    can :search, :common
   end
 
   #def initialize(user)

@@ -7,7 +7,15 @@ require 'askjane/redis'
 #require 'sanitize'  # 去除字符串中的html标签
 #require 'rails_autolink'   # This is an extraction of the `auto_link` method from rails
 
-# include the extension 
+# include the extension
 ActiveRecord::Base.class_eval do
   include BBTangCMS::ActiveRecordExtensions
+end
+
+class String
+
+  def class_exists?(class_name = nil)
+    class_name = self if class_name.nil?
+    eval("#{class_name}.is_a?(Class)") if eval("defined?(#{class_name})") == "constant"
+  end
 end

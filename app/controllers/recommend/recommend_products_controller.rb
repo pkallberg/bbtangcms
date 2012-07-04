@@ -4,7 +4,7 @@ class Recommend::RecommendProductsController < Recommend::RecommendBaseControlle
   # GET /recommend/recommend_products
   # GET /recommend/recommend_products.json
   def index
-    @recommend_recommend_products = Recommend::RecommendProduct.all
+    @recommend_recommend_products = Recommend::RecommendProduct.all.entries
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_products_path
     respond_to do |format|

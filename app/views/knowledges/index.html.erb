@@ -35,7 +35,7 @@
     <% @knowledges.each do |knowledge| %>
       <tr>
         <td><%= link_to knowledge.id, knowledge_path(knowledge) %></td>
-        <td><%= knowledge.title %></td>
+        <td><%= link_to knowledge.title, "http://bbtang.com/knowledges/#{knowledge.to_param}", html_options = {} %></td>
         <td><%= knowledge.summary %></td>
         <!--td><%= knowledge.content %></td-->
         <!--td><%= knowledge.body %></td-->

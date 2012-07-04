@@ -124,4 +124,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def is_cms_user?
+    tmp = false
+    if self.cms_roles.present?
+      self.cms_roles.each do |cms_role|
+        if cms_role.name.to_s.include? "guest" or CmsRole.all.include? cms_role
+          tmp = true
+        end
+      end
+    end
+    return tmp
+  end
+
 end

@@ -1,10 +1,10 @@
 zh-CN:
-  activerecord:
+  mongoid:
     models:
       recommend/recommend_event: "事件推送"
     attributes:
       recommend/recommend_event:
-        id: "id"
+        _id: "id"
         position: "栏位"
         name: "名称"
         body: "正文"
