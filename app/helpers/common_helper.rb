@@ -4,7 +4,7 @@ module CommonHelper
       if whitelist
       #model_class.columns.collect{|column| [model_class.human_attribute_name(column.name),column.name]}
       #model_class.attribute_names.collect{|column| [model_class.human_attribute_name(column),column]}
-        model_class.attr_accessible[:default].collect{|column| [model_class.human_attribute_name(column),column]}
+        model_class.accessible_attributes.collect{|column| [model_class.human_attribute_name(column),column]}
       else
         model_class.column_names.collect{|column| [model_class.human_attribute_name(column),column]}
       end

@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
 
   #check_authorization :unless => :do_not_check_authorization?
   check_authorization :unless => :devise_controller?
+  check_authorization :unless => :do_not_check_authorization?
 
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -59,7 +60,9 @@ class ApplicationController < ActionController::Base
     #respond_to?(:devise_controller?) or
     #condition_one? or
     #condition_two?
-    respond_to?(:devise_controller?)# or respond_to?(:dashboard_controller?)
+    #respond_to?(:devise_controller?)# or respond_to?(:dashboard_controller?)
+    debugger
+    true if params[:controller] == "kindeditor/assets"
   end
 
   #def condition_one?
@@ -89,6 +92,6 @@ class ApplicationController < ActionController::Base
     controller_namespace = controller_name_segments.join('/').camelize
     Ability.new(current_user, controller_namespace)
   end
-end
+
 
 end

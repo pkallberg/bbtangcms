@@ -26,3 +26,6 @@ zh-CN:
     assign_permits:
       index:
         #title: "权限分派首页"
+  common:
+    search_result:
+      title: "搜索结果"

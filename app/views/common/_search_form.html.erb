@@ -1,17 +1,17 @@
 <%= form_tag(common_search_url,:class=>"navbar-search") do %>
   <%= text_field_tag(:q,params[:q] || I18n.t("menu.search"), :class => "search-query") %>
   <!--%- @model_class = params[:controller].capitalize.singularize if params[:controller].capitalize.singularize.class_exists? -%-->
-
+  <%- @type_choose = params[:type] if (params.has_key? :type) and params[:type].present? -%>
   <%- @model_class = params[:controller].classify.constantize if params[:controller].classify.class_exists?  -%>
   <%- @model_class = params[:controller].gsub(/\w+([@\s\/]+)/,"").classify.constantize if params[:controller].gsub(/\w+([@\s\/]+)/,"").classify.class_exists?  -%>
-  <% if @model_class.present? %>
+  <% unless @model_class.nil? %>
     <%= hidden_field_tag 'model', @model_class.to_s %>
     <% if (@model_class.method_defined? :columns) or (@model_class.respond_to? :columns) %>
      <!--%= select_tag "type", options_from_collection_for_select(@model_class.columns, "name", "name")%-->
-     <%= select_tag "type", options_for_select(model_columns_collection(@model_class))%>
+     <%= select_tag "type", options_for_select(model_columns_collection(@model_class),@type_choose)%>
     <% else %>
       <% if (@model_class.method_defined? :fields) or (@model_class.respond_to? :fields) %>
-        <%= select_tag "type", options_for_select(model_columns_collection(@model_class)) %>
+        <%= select_tag "type", options_for_select(model_columns_collection(@model_class),@type_choose) %>
         <!--%= select_tag "type", options_from_collection_for_select(@model_class.fields.to_a, "first", "first")%-->
       <% end %>
     <% end %>

@@ -24,7 +24,8 @@ class Recommend::RecommendUser
 
   }
 
-  validates_presence_of :name, :body
+  #validates_presence_of :name, :body
+  validates_presence_of :body
   validates_inclusion_of :position, :in => POSITION.keys, :allow_nil=>true,
       :message => "{%{value}} must be in #{POSITION.values.join ','}"
 

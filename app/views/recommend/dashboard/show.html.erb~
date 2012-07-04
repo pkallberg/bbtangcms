@@ -14,6 +14,8 @@
             recommend_recommend_users_path %></li>
     <li> <%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendQuiz.new.class.model_name.human)),
             recommend_recommend_quizzes_path %> </li>
+    <li> <%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendHindex.new.class.model_name.human)),
+            recommend_recommend_hindices_path %> </li>
     <!--li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendEvent.new.class.model_name.human)),
             recommend_recommend_events_path %></li-->
     <!--li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendMtool.new.class.model_name.human)),

@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
   attr_reader :current_action
 
   #check_authorization :unless => :do_not_check_authorization?
-  check_authorization :unless => :devise_controller?
+  #check_authorization :unless => :devise_controller?
+  check_authorization :unless => :do_not_check_authorization?
 
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -56,15 +57,16 @@ class ApplicationController < ActionController::Base
     breadcrumbs.add :homepage, root_path
   end
   def do_not_check_authorization?
-    #respond_to?(:devise_controller?) or
-    #condition_one? or
+    respond_to?(:devise_controller?) or
+    skip_rails_kindeditor?# or
     #condition_two?
-    respond_to?(:devise_controller?)# or respond_to?(:dashboard_controller?)
+    #respond_to?(:devise_controller?)# or respond_to?(:dashboard_controller?)
+    #debugger
   end
 
-  #def condition_one?
-  # ...
-  #end
+  def skip_rails_kindeditor?
+    true if params[:controller] == "kindeditor/assets"
+  end
 
   #def condition_two?
   # ...

@@ -41,6 +41,9 @@
   common:
     menu:
       recommend: "推送首页"
+      auth: "授权认证首页"
+    search_result:
+      title: "%{model}搜索结果"
     recent_action: "最近动作"
     available_content: "内容支持:"
     zh-cn: "中文"

@@ -35,7 +35,7 @@ class Recommend::RecommendQuiz
   def ids_validator(str=nil)
     ids = str.to_s.split(/，|,|;|；|\ +|\||\r\n/) if self.body
     ids.each do |quiz|
-      errors.add(:body, "User '#{quiz}' is not exist") if Quiz.find(quiz).nil?
+      errors.add(:body, "Quiz '#{quiz}' is not exist") if Quiz.find(quiz).nil?
     end
   end
 

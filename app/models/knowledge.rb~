@@ -107,7 +107,7 @@ class Knowledge< ActiveRecord::Base
   end
   private
   def find_user(user_id = nil)
-     (User.where :id => 1 ).first if user_id.present?
+     (User.where :id => user_id ).first if user_id.present?
     #if user_id.present?
     #  u=User.where :id => user_id
     #  unless u.empty?

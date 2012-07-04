@@ -13,7 +13,11 @@ class Knowledge< ActiveRecord::Base
   has_many :r_user_knowledges
   has_many :profiles,:through => :r_user_knowledges
 
-
+  attr_accessible :title, :summary, :body, :created_name,
+                  :deleted_at, :source_info,
+                  :views_count, :comments_count, :forwarding_count,
+                  :thanks_count, :created_at, :updated_at,
+                  :updated_by
   #缩略图
   #has_attached_file :thumbnail,
    # :default_style => :s120,
