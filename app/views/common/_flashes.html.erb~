@@ -1,3 +1,4 @@
+11111111
 <% [:notice, :error, :alert, :message].each do |level| %>
   <% unless flash[level].blank? %>
     <div class="alert-<%= level.to_s %>" data-alert="alert">

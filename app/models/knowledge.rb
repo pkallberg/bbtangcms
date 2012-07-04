@@ -17,7 +17,8 @@ class Knowledge< ActiveRecord::Base
                   :deleted_at, :source_info,
                   :views_count, :comments_count, :forwarding_count,
                   :thanks_count, :created_at, :updated_at,
-                  :updated_by
+                  :updated_by, :identity_list, :tag_list,
+                  :created_by,:timeline_list,:category_list
   #缩略图
   #has_attached_file :thumbnail,
    # :default_style => :s120,

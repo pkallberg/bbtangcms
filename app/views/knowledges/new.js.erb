@@ -1,5 +1,6 @@
-$("#edit_<%= dom_id @knowledge %>").replaceWith("<%= j render 'refresh_form'%>");
-$("#new_knowledge").replaceWith("<%= j render 'refresh_form'%>");
+$("#new_knowledge").html("<%= escape_javascript(render(:partial => 'knowledges/form', locals: { knowledge: @knowledge })) %>");
+
+$("#flashes").replaceWith("<%= j render 'common/flashes'%>");
 
 var editor = KindEditor.create(
     'textarea[id="knowledge_body"]',

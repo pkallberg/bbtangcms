@@ -1,6 +1,5 @@
 class KnowledgesController < ApplicationController
   load_and_authorize_resource
-  before_filter :authenticate_user!
   Model_class = Knowledge.new.class
 
   # GET /knowledges
@@ -165,20 +164,22 @@ class KnowledgesController < ApplicationController
     #@timelines_choose.map!(&:id)
     #@categories_choose.map!(&:id)
     render :refresh
+  else
+    @knowledge.identity_list = @identities_choose.map(&:name) if not @identities_choose.empty?
+    @knowledge.timeline_list = @timelines_choose.map(&:name) if not @timelines_choose.empty?
+    @knowledge.category_list = @categories_choose.map(&:name) if not @categories_choose.empty?
+    if @knowledge.save
+      flash[:notice] = 'Knowledge was successfully updated.'
+      render js: %[window.location.pathname='#{knowledge_path(@knowledge)}']
+      #format.html { redirect_to @knowledge, notice: 'Knowledge was successfully created.' }
+      #format.json { render json: @knowledge, status: :created, location: @knowledge }
     else
-      @knowledge.identity_list = @identities_choose.map(&:name) if not @identities_choose.empty?
-      @knowledge.timeline_list = @timelines_choose.map(&:name) if not @timelines_choose.empty?
-      @knowledge.category_list = @categories_choose.map(&:name) if not @categories_choose.empty?
-      if @knowledge.save
-        flash[:notice] = 'Knowledge was successfully updated.'
-        render js: %[window.location.pathname='#{knowledge_path(@knowledge)}']
-        #format.html { redirect_to @knowledge, notice: 'Knowledge was successfully created.' }
-        #format.json { render json: @knowledge, status: :created, location: @knowledge }
-      else
-        respond_to do |format|
-          format.html { render action: "new" }
-          format.json { render json: @knowledge.errors, status: :unprocessable_entity }
-        end
+      flash[:notice] = 'Knowledge updated failure.'
+      respond_to do |format|
+        format.html { render action: "new" }
+        format.js { render action: "new" }
+        format.json { render json: @knowledge.errors, status: :unprocessable_entity }
+      end
       end
     end
   end
@@ -259,8 +260,10 @@ class KnowledgesController < ApplicationController
         flash[:notice] = 'Knowledge was successfully updated.'
         render js: %[window.location.pathname='#{knowledge_path(@knowledge)}']
       else
+        flash[:notice] = 'Knowledge updated failure.'
         respond_to do |format|
-          format.html { render action: "edit" }
+          #format.html { render action: "edit" }
+          format.js { render action: "edit" }
           format.json { render json: @knowledge.errors, status: :unprocessable_entity }
         end
       end

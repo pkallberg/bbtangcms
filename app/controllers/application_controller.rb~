@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+   respond_to :json, :html, :js
   protect_from_forgery
   before_filter :authenticate_user!
   before_filter :add_initial_breadcrumbs
@@ -7,7 +8,7 @@ class ApplicationController < ActionController::Base
   attr_reader :current_action
 
   #check_authorization :unless => :do_not_check_authorization?
-  check_authorization :unless => :devise_controller?
+  #check_authorization :unless => :devise_controller?
   check_authorization :unless => :do_not_check_authorization?
 
 
@@ -57,17 +58,16 @@ class ApplicationController < ActionController::Base
     breadcrumbs.add :homepage, root_path
   end
   def do_not_check_authorization?
-    #respond_to?(:devise_controller?) or
-    #condition_one? or
+    respond_to?(:devise_controller?) or
+    skip_rails_kindeditor?# or
     #condition_two?
     #respond_to?(:devise_controller?)# or respond_to?(:dashboard_controller?)
-    debugger
-    true if params[:controller] == "kindeditor/assets"
+    #debugger
   end
 
-  #def condition_one?
-  # ...
-  #end
+  def skip_rails_kindeditor?
+    true if params[:controller] == "kindeditor/assets"
+  end
 
   #def condition_two?
   # ...

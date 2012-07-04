@@ -16,7 +16,6 @@
     <% unless @identities.empty? %>
       <%= f.input :identity_list,  :as => :check_boxes, :collection => @identities.uniq{|x| x.name},:checked => (@identities_choose.map(&:id) if @identities_choose.present?), :input_html => { :rows =>"5", :cols =>"20" } %>
     <% end %>
-    <%= @timelines_choose%>
     <% unless @timelines.empty? %>
       <%= f.input :timeline_list,  :as => :check_boxes, :collection => @timelines.uniq{|x| x.name},:checked => (@timelines_choose.map(&:id) if @timelines_choose.present?), :input_html => { :rows =>"5", :cols =>"20" } %>
     <% end %>

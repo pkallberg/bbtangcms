@@ -32,7 +32,9 @@
           <div class="span12">
             <div class="row-fluid">
             <div class="span10">
-              <%= render :partial => 'common/flashes' %>
+              <div id ="flashes">
+                <%= render :partial => 'common/flashes' %>
+              </div>
               <%= yield %>
             </div>
             <div class="span2">

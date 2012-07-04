@@ -5,7 +5,7 @@ class CommonController < ApplicationController
       @model_class = params[:model].constantize
       @results = @model_class.where params[:type] => params[:q]
       if @results.empty?
-        @results = @model_class.where("#{params[:type].to_s}. like '%#{params[:q]}%'")
+        @results = @model_class.where("#{params[:type].to_s} like '%#{params[:q]}%'")
       end
     end
     render :template => 'common/search_result.html.erb'

@@ -42,9 +42,6 @@
           </div>
         </div><!--/row-->
       </div><!--/content-->
-      <div id="topcontrol" title="Scroll Back to Top">
-        <%= image_tag "up.png",:size => "48*48" %>
-      </div>
       <hr>
       <footer>
         <%= render :partial => 'common/footer' %>

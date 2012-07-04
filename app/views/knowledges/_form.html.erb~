@@ -1,4 +1,4 @@
-<%= simple_form_for @knowledge, :html => { :class => 'form-horizontal', :class => "form-inline", :remote => true } do |f| %>
+<%= simple_form_for @knowledge,:format => :html, :html => { :class => 'form-horizontal', :remote => true } do |f| %>
   <div class="knowledge-head box">
     <span class="label label-info">head</span>
     <%= f.input :title %>
