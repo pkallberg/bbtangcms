@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
-   respond_to :json, :html, :js
   protect_from_forgery
-  before_filter :authenticate_user!
+  before_filter :authenticate_user! unless => :
   before_filter :add_initial_breadcrumbs
   before_filter :create_profile
 

@@ -68,7 +68,7 @@ gem "breadcrumbs", "~> 0.1.6"
 gem "paperclip", "~> 3.0"
 gem "gravatar_image_tag", "~> 1.1.2"
 
-gem 'jquery-rails'
+gem 'jquery-rails', "~> 1.0.19"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -87,8 +87,8 @@ gem "rails-settings-cached", "~> 0.2.1"
  gem 'ruby-debug19', :require => 'ruby-debug'
 
 # redis-search
-gem 'redis','~> 2.1.1'
-gem 'redis-namespace','~> 1.0.2'
+#gem 'redis','~> 2.1.1'
+#gem 'redis-namespace','~> 1.0.2'
 #gem 'chinese_pinyin', '~> 0.3.0'
 #gem 'rmmseg-cpp-huacnlee', '~> 0.2.8'
 #gem 'redis-search', '0.7.0'
@@ -96,6 +96,7 @@ gem 'redis-namespace','~> 1.0.2'
 gem 'settingslogic', '2.0.6' #为使用yml文件作为配置
 gem "carrierwave", "~> 0.6.2"  #Upload files in your Ruby applications, map them to a range of ORMs, store them on different backends.
 gem 'rails_kindeditor', '~> 0.3.0' #for kindeditor
+gem "mime-types", "~> 1.19"
 gem 'sanitize','2.0.3'  #过滤html标签  requires Nokogiri >= 1.4.4  libxml2 >= 2.7.2
 gem 'will_paginate', '3.0.2' #分页控件
 gem "will_paginate_twitter_bootstrap", "~> 1.0.0"

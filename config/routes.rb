@@ -2,6 +2,15 @@ BBTangCMS::Application.routes.draw do
 
   match "common/search", :as => :common_search
 
+
+  namespace :kindeditor do
+    #post "/upload" => "assets#create"
+    match '/upload' => 'assets#create', :via => :post
+    match '/filemanager' => 'assets#list', :via => :get
+    #get  "/filemanager" => "assets#list"
+  end
+
+
   resources :knowledges do
     member do
       get 'refresh'

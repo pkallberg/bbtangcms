@@ -10,6 +10,7 @@ class CmsRole < ActiveRecord::Base
 
   def set_assign_permits_list (assign_permit_list = [])
     if assign_permit_list.present? and assign_permit_list != [""]
+      self.assign_permits.destroy_all
       assign_permit_list.each do |permit_id|
         self.assign_permits.create( permit_id: permit_id) if Permit.exists? permit_id
       end
@@ -20,6 +21,7 @@ class CmsRole < ActiveRecord::Base
   def set_cms_role_permits_list (cms_role_permits = [])
 
     if cms_role_permits.present? and cms_role_permits != [""]
+      self.cms_role_permits.destroy_all
       cms_role_permits.each do |permit_id|
         self.cms_role_permits.create(permit_id: permit_id) if Permit.exists? permit_id
       end

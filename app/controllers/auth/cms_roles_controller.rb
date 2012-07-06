@@ -65,7 +65,6 @@ class Auth::CmsRolesController < ApplicationController
   # PUT /auth/cms_roles/1.json
   def update
     @auth_cms_role = CmsRole.find(params[:id])
-
     @auth_cms_role.set_cms_role_permits_list(params["cms_role"]["cms_role_permit_ids"]) if params["cms_role"]["cms_role_permit_ids"].present?
     @auth_cms_role.set_assign_permits_list(params["cms_role"]["assign_permit_ids"]) if params["cms_role"]["assign_permit_ids"].present?
 
