@@ -32,7 +32,7 @@
     <%= link_to t('.back', :default => t("helpers.links.back", :model => model_class.model_name.human)),
               questions_path, :class => 'btn'  %>
   <% end %>
-  <% if can? :update, @knowledge %>
+  <% if can? :update, @question %>
     <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)),
               edit_question_path(@question), :class => 'btn' %>
   <% end %>

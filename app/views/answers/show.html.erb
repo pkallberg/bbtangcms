@@ -20,5 +20,20 @@
   <%= s.attribute :is_expert %>
 <% end %>
 
-<%= link_to 'Edit', edit_answer_path(@answer) %> |
-<%= link_to 'Back', answers_path %>
+<div class="actions">
+  <% if can? :read, @answer %>
+    <%= link_to t('.back', :default => t("helpers.links.back", :model => model_class.model_name.human)),
+              question_answers_path(@question), :class => 'btn'  %>
+  <% end %>
+  <% if can? :update, @answer %>
+    <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)),
+              edit_question_answer_path(@question,@answer), :class => 'btn' %>
+  <% end %>
+  <% if can? :destroy, @answer %>
+    <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)),
+              [@question,@answer],
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+  <% end %>
+</div>

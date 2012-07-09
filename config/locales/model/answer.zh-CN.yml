@@ -19,7 +19,7 @@ zh-CN:
         deleted_by: "删除用户id"
         is_anonymous: "是否匿名"
         no_help_count: "没有帮助数"
-        no_help_ids:"没有帮助ids"
+        no_help_ids: "没有帮助ids"
         delta: "delta"
         state: "状态"
         created_at: "创建时间"
