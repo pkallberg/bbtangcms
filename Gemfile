@@ -84,7 +84,9 @@ gem 'jquery-rails', "~> 1.0.19"
 gem "rails-settings-cached", "~> 0.2.1"
 
 # To use debugger
- gem 'ruby-debug19', :require => 'ruby-debug'
+group :development do
+  gem 'ruby-debug19', :require => 'ruby-debug'
+end
 
 # redis-search
 #gem 'redis','~> 2.1.1'
