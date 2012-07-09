@@ -5,6 +5,7 @@ zh-CN:
     auth: "授权认证"
     sidebar:
       model: "模块"
+      archives: "归档"
       recommend: "推送"
     menu:
       unauthorized_user: "未授权用户"

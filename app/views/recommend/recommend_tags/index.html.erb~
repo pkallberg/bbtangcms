@@ -22,8 +22,13 @@
           <td><%= recommend_recommend_tag.created_at %></td>
           <td><%= recommend_recommend_tag.updated_at %></td>
           <td><%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)), recommend_recommend_tag, :class => 'btn btn-mini' %>
+              <% if can? :update, recommend_recommend_tag %>
               <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_recommend_recommend_tag_path(recommend_recommend_tag), :class => 'btn btn-mini' %>
-              <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), recommend_recommend_tag, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %></td>
+              <% end %>
+              <% if can? :destroy, recommend_recommend_tag %>
+                <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), recommend_recommend_tag, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
+              <% end %>
+              </td>
         </tr>
       <% end %>
     </tbody>
@@ -31,5 +36,7 @@
 
 <br />
 
-<%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)), new_recommend_recommend_tag_path %>
+<% if can? :create, Recommend::RecommendSubject %>
+  <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)), new_recommend_recommend_tag_path %>
+<% end %>
 </div>

@@ -23,9 +23,14 @@
           <td><%= recommend_recommend_question.created_at %></td>
           <td><%= recommend_recommend_question.updated_at %></td>
           <td><%= recommend_recommend_question.body_knowledge %></td>
-          <td><%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)), recommend_recommend_question %>|
-              <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_recommend_recommend_question_path(recommend_recommend_question) %>|
-              <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), recommend_recommend_question, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %></td>
+          <td><%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)), recommend_recommend_question, :class => 'btn btn-mini' %>
+              <% if can? :update, recommend_recommend_question %>
+                <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_recommend_recommend_question_path(recommend_recommend_question), :class => 'btn btn-mini' %>
+              <% end %>
+              <% if can? :destroy, recommend_recommend_question %>
+                <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), recommend_recommend_question, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
+              <% end %>
+              </td>
         </tr>
       <% end %>
     </tbody>

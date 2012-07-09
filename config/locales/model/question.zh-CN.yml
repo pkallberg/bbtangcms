@@ -1,0 +1,36 @@
+zh-CN:
+  activerecord:
+    models:
+      question: "问题"
+    attributes:
+      question:
+        id: "id"
+        title: "标题"
+        content: "内容"
+        body: "正文"
+        focus_by: "关注人id列表"
+        focus_users: "关注人列表"
+        created_by: "创建者id"
+        views_count: "浏览数"
+        last_answer_time: "最近回答时间"
+        best_answer_id: "最佳回答人id"
+        best_answer: "最佳回答人"
+        created_at: "创建时间"
+        updated_at: "创建时间"
+        answers_count: "答案总数"
+        experts_count: "专家总数"
+        designated_answerer: "指定答题人id"
+        designated_answerer_user: "指定答题人"
+        auto_tags: "自动标签"
+        knowledge_id: "知识id"
+        is_anonymous: "是否匿名"
+        deleted: "删除"
+
+        created_user: "创建者"
+        updated_by: "编辑人"
+        updated_user: "编辑人"
+        soft_deleted: "软删除"
+        deleted_at: "删除时间"
+        deleted_by: "删除用户id"
+        deleted_user: "删除用户"
+        delta: "delta"

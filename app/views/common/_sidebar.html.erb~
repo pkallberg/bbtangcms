@@ -2,18 +2,20 @@
   <div class="well sidebar-nav">
 	  <h3><%= t("layout.sidebar.model") %></h3>
 	  <ul class="nav nav-list">
-		  <li class="nav-header"><%= t("layout.sidebar.model") %></li>
+		  <li class="nav-header"><%= t("layout.sidebar.archives") %></li>
 		  <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Knowledge.new.class.model_name.human)),
               knowledges_path %></li>
 		  <li><%= link_to t('.archives', :default => t("helpers.links.archives", :model => Knowledge.new.class.model_name.human)),
               archives_path(:model => Knowledge) %></li>
-		  <li><%= link_to "Link3", "/path3"  %></li>
+		  <li><%= link_to t('.archives', :default => t("helpers.links.archives", :model => Question.new.class.model_name.human)),
+              archives_path(:model => Question) %></li>
 	  </ul>
 	  <ul class="nav nav-list">
 		  <li class="nav-header"><%= t("layout.sidebar.model") %></li>
 		  <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Knowledge.new.class.model_name.human)),
               knowledges_path %></li>
-		  <li><%= link_to "Link2", "/path2"  %></li>
+		  <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Question.new.class.model_name.human)),
+              questions_path %></li>
 		  <li><%= link_to "Link3", "/path3"  %></li>
 	  </ul>
   </div><!--/.well -->
@@ -27,8 +29,8 @@
               recommend_recommend_mtools_path %></li-->
       <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendProduct.new.class.model_name.human)),
               recommend_recommend_products_path %></li>
-      <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendQuestion.new.class.model_name.human)),
-              recommend_recommend_questions_path %></li>
+      <!--li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendQuestion.new.class.model_name.human)),
+              recommend_recommend_questions_path %></li-->
       <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendSubject.new.class.model_name.human)),
               recommend_recommend_subjects_path %></li>
       <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendTag.new.class.model_name.human)),

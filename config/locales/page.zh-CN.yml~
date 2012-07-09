@@ -28,4 +28,4 @@ zh-CN:
         #title: "权限分派首页"
   common:
     search_result:
-      title: "%{ model }搜索结果"
+      title: "搜索结果"

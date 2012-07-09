@@ -1,0 +1,88 @@
+
+<%- model_class = Question.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+
+<div class = "questions box">
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <!--th><%= model_class.human_attribute_name(:title) %></th-->
+      <!--th><%= model_class.human_attribute_name(:title) %></th-->
+      <!--th><%= model_class.human_attribute_name(:focus_by) %></th-->
+      <th><%= model_class.human_attribute_name(:created_by) %></th>
+      <th><%= model_class.human_attribute_name(:views_count) %></th>
+      <!--th><%= model_class.human_attribute_name(:title) %>Delta</th-->
+      <th><%= model_class.human_attribute_name(:last_answer_time) %></th>
+      <th><%= model_class.human_attribute_name(:best_answer_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name(:updated_at) %></th>
+      <th><%= model_class.human_attribute_name(:answers_count) %></th>
+      <th><%= model_class.human_attribute_name(:experts_count) %></th>
+      <th><%= model_class.human_attribute_name(:designated_answerer) %></th>
+      <!--th><%= model_class.human_attribute_name(:knowledge_id) %>Auto tags</th-->
+      <th><%= model_class.human_attribute_name(:knowledge_id) %></th>
+      <th><%= model_class.human_attribute_name(:is_anonymous) %></th>
+      <!--th><%= model_class.human_attribute_name(:knowledge_id) %>Auto tags</th-->
+      <th><%= model_class.human_attribute_name(:deleted_by) %></th>
+      <!--th><%= model_class.human_attribute_name(:deleted_at) %></th-->
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= link_to question.id, question_path(question) %></td>
+        <td><%= question.title %></td>
+        <!--td><%= question.content %></td-->
+        <!--td><%= question.body %></td-->
+        <!--td><%= question.focus_by %></td-->
+        <td><%= question.created_by %></td>
+        <td><%= question.views_count %></td>
+        <!--td--><!--%= question.delta %--><!--/td-->
+        <td><%= time_tag question.last_answer_time, :format => :short %></td>
+        <td><%= question.best_answer_id %></td>
+        <td><%=time_tag question.created_at, :format => :short if question.created_at?  %></td>
+        <td><%=time_tag question.updated_at, :format => :short if question.updated_at?   %></td>
+        <td><%= question.answers_count %></td>
+        <td><%= question.experts_count %></td>
+        <td><%= question.designated_answerer %></td>
+        <!--td--><!--%= question.auto_tags %--><!--/td-->
+        <td><%= question.knowledge_id %></td>
+        <td><%= question.is_anonymous %></td>
+        <!--td><!--%= question.deleted %--><!--/td-->
+        <td><%= question.deleted_by %></td>
+        <!--td><%=time_tag question.deleted_at, :format => :short if question.deleted_at? %></td-->
+        <td>
+          <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)),
+                      question_path(question), :class => 'btn btn-mini' %>
+          <% if can? :update, question %>
+            <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)),
+                      edit_question_path(question), :class => 'btn btn-mini' %>
+          <% end %>
+          <% if can? :destroy, question %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)),
+                      question_path(question),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @questions %>
+
+<br />
+
+<% if can? :create, Question %>
+  <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)),
+            new_question_path,
+            :class => 'btn btn-primary' %>
+<% end %>
+</div>

@@ -10,6 +10,12 @@ BBTangCMS::Application.routes.draw do
     #get  "/filemanager" => "assets#list"
   end
 
+  resources :questions do
+    resources :answers
+    #member do
+    #  get 'refresh'
+    #end
+  end
 
   resources :knowledges do
     member do

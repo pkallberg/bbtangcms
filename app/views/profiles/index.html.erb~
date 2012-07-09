@@ -38,7 +38,7 @@
         <td><%= profile.real_name %></td>
         <td><%= profile.nickname %></td>
         <td><%= profile.level_id %></td>
-        <td><%= profile.gender %></td>
+        <td><%= t("activerecord.attributes.profile.gender_#{profile.gender? ? 1 : 0}") %></td>
         <!--td><%= image_tag get_face_url profile %></td-->
         <!--td><%= profile.birthday %></td-->
         <td><%= profile.degree %></td>

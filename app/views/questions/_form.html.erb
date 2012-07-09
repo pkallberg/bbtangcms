@@ -1,0 +1,37 @@
+<%= simple_form_for(@question) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <!--%= f.input :content %-->
+    <%= f.input :body, :as => :kindeditor %>
+    <!--%= f.input :focus_by %-->
+    <% if @question.new_record? %>
+      <%= f.input :created_by, :as => :hidden, :input_html => { :value => (current_user.id if current_user.present?) } %>
+    <% end %>
+    <!--%= f.input :created_by %-->
+    <!--%= f.input :views_count %-->
+    <!--%= f.input :delta %-->
+    <!--%= f.input :last_answer_time %-->
+    <!--%= f.input :best_answer_id %-->
+    <% if @question.new_record? %>
+      <%= f.input :created_at, :as => :hidden, :input_html => { :value => Time.now } %>
+    <% else %>
+      <%= f.input :updated_at, :as => :hidden, :input_html => { :value => Time.now} %>
+    <% end %>
+    <!--%= f.input :answers_count %-->
+    <!--%= f.input :experts_count %-->
+    <!--%= f.input :designated_answerer %-->
+    <!--%= f.input :auto_tags %-->
+    <!--%= f.input :knowledge_id %-->
+    <%= f.input :is_anonymous %>
+    <%= f.input :soft_deleted, :as => :boolean, :input_html => {:checked =>  @question.deleted_at? ? "checked" : ""} %>
+    <!--%= f.input :deleted %-->
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary', :disable_with => 'loading...' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                questions_path, :class => 'btn' %>
+  </div>
+<% end %>

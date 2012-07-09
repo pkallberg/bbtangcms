@@ -168,6 +168,9 @@ class KnowledgesController < ApplicationController
     @knowledge.identity_list = @identities_choose.map(&:name) if not @identities_choose.empty?
     @knowledge.timeline_list = @timelines_choose.map(&:name) if not @timelines_choose.empty?
     @knowledge.category_list = @categories_choose.map(&:name) if not @categories_choose.empty?
+
+    @knowledge.if_soft_deleted(current_user) if params[:knowledge][:soft_deleted].present?
+
     if @knowledge.save
       flash[:notice] = 'Knowledge was successfully updated.'
       render js: %[window.location.pathname='#{knowledge_path(@knowledge)}']
@@ -254,6 +257,9 @@ class KnowledgesController < ApplicationController
       params[:knowledge]["identity_list"] = @identities_choose.map(&:name) if not @identities_choose.empty?
       params[:knowledge]["timeline_list"] = @timelines_choose.map(&:name) if not @timelines_choose.empty?
       params[:knowledge]["category_list"] = @categories_choose.map(&:name) if not @categories_choose.empty?
+
+    @knowledge.if_soft_deleted(current_user) if params[:knowledge][:soft_deleted].present?
+
       if @knowledge.update_attributes(params[:knowledge])
         #format.html { redirect_to @knowledge, notice: 'Knowledge was successfully updated.' }
         #format.json { head :no_content }

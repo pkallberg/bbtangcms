@@ -6,9 +6,15 @@ BBTangCMS::Application.routes.draw do
   namespace :kindeditor do
     #post "/upload" => "assets#create"
     match '/upload' => 'assets#create', :via => :post
-    get  "/filemanager" => "assets#list"
+    match '/filemanager' => 'assets#list', :via => :get
+    #get  "/filemanager" => "assets#list"
   end
 
+  resources :questions do
+    #member do
+    #  get 'refresh'
+    #end
+  end
 
   resources :knowledges do
     member do

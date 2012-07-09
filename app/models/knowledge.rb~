@@ -12,13 +12,13 @@ class Knowledge< ActiveRecord::Base
 
   has_many :r_user_knowledges
   has_many :profiles,:through => :r_user_knowledges
-
+  attr_accessor :soft_deleted
   attr_accessible :title, :summary, :body, :created_name,
                   :deleted_at, :source_info,
                   :views_count, :comments_count, :forwarding_count,
                   :thanks_count, :created_at, :updated_at,
                   :updated_by, :identity_list, :tag_list,
-                  :created_by,:timeline_list
+                  :created_by,:timeline_list,:category_list, :soft_deleted
   #缩略图
   #has_attached_file :thumbnail,
    # :default_style => :s120,
@@ -72,6 +72,21 @@ class Knowledge< ActiveRecord::Base
   #  ("SELECT * FROM knowledges WHERE concat(',',concat(tags,',')) LIKE '%,"<<tag_id<<",%' ORDER BY created_at DESC")
   #end
 
+  def if_soft_deleted(user = nil)
+    if self.soft_deleted.present? and user.present?
+      if ["true","1",1,true].include? self.soft_deleted
+        self.deleted_at = Time.now
+        self.deleted_by = user.id if user.id.present?
+      else
+        self.deleted_at = Time.now
+        self.deleted_by = user.id
+      end
+    end
+  end
+
+  def deleted_user
+    User.find(self.deleted_by) if (self.deleted_by.present?) and (User.exists? self.deleted_by)
+  end
 
   # 作者
   def owner

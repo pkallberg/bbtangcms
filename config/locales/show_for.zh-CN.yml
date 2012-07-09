@@ -1,0 +1,5 @@
+zh-CN:
+  show_for:
+    blank: "未指定"
+    "yes": "是"
+    "no": "否"

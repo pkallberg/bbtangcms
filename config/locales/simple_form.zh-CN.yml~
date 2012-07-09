@@ -12,7 +12,7 @@ zh-CN:
       default_message: "请审查以下问题："
     hints:
       defaults:
-        name: "选择填写名称字段"
+        name: "请选择填写名称字段"
     # Labels and hints examples
     # labels:
     #   defaults:

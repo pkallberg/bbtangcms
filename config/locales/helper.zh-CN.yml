@@ -7,6 +7,7 @@ zh-CN:
       edit: "编辑%{model}"
       recent: "近期%{model}"
       show: "显示%{model}"
+      search: "%{model}搜索"
 
     actions: "动作"
     links:
@@ -20,3 +21,4 @@ zh-CN:
       cancel: "取消"
       confirm: "你想好了吗?"
       save_sorted: "保存排列"
+      search: "搜索%{model}"

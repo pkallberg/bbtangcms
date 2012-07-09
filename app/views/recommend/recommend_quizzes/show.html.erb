@@ -8,10 +8,16 @@
   <%= s.attribute :ids %>
 <% end %>
 
-<%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_recommend_recommend_quiz_path(@recommend_recommend_quiz), :class => 'btn' %> |
-<%= link_to t('.back', :default => t("helpers.links.back", :model => model_class.model_name.human)), recommend_recommend_quizzes_path, :class => 'btn' %> |
-<%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), recommend_recommend_quiz_path(@recommend_recommend_quiz),
+<% if can? :update, @recommend_recommend_quiz %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_recommend_recommend_quiz_path(@recommend_recommend_quiz), :class => 'btn' %> |
+<% end %>
+<% if can? :read, @recommend_recommend_quiz %>
+  <%= link_to t('.back', :default => t("helpers.links.back", :model => model_class.model_name.human)), recommend_recommend_quizzes_path, :class => 'btn' %> |
+<% end %>
+<% if can? :destroy, @recommend_recommend_quiz %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), recommend_recommend_quiz_path(@recommend_recommend_quiz),
               :method => 'delete',
               :confirm => t('.confirm',
               :default => t("helpers.links.confirm", :default => 'Are you sure?')),
               :class => 'btn btn-danger' %>
+<% end %>

@@ -11,7 +11,7 @@
     <%= f.input :username %>
     <%= f.input :email %>
     <!--%= f.input :password, :as => :password %-->
-    <%= f.input :confirmation_now, :as => :boolean, :input_html => {:value =>  @auth_user.confirmed? ? true : false} %>
+    <%= f.input :confirmation_now, :as => :boolean, :input_html => {:checked =>  @auth_user.confirmed? ? "checked" : ""} %>
     <%= f.association :cms_roles, :as => :check_boxes, :collection => CmsRole.all(:order => 'name'), :checked => ( @auth_user.cms_roles.map(&:id) if @auth_user.cms_roles.present?) %>
 
   </div>

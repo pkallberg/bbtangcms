@@ -8,6 +8,9 @@ class CommonController < ApplicationController
         @results = @model_class.where("#{params[:type].to_s} like '%#{params[:q]}%'")
       end
     end
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => @model_class.model_name.human), :search
+
     render :template => 'common/search_result.html.erb'
   end
 end

@@ -1,6 +1,5 @@
 <%- model_class = Recommend::RecommendTag.new.class -%>
 <%= show_for @recommend_recommend_tag do |s| %>
-  <%= @recommend_recommend_tag.post_name%>
   <%= s.attribute :position,:value => @recommend_recommend_tag.post_name %>
   <%= s.attribute :name %>
   <%= s.attribute :body %>

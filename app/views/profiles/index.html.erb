@@ -58,13 +58,17 @@
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)),
                       profile_path(profile), :class => 'btn btn-mini' %>
-          <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)),
+          <% if can? :update, profile %>
+            <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)),
                       edit_profile_path(profile), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)),
+          <% end %>
+          <% if can? :destroy, knowledge %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)),
                       profile_path(profile),
                       :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
                       :class => 'btn btn-mini btn-danger' %>
+          <% end %>
         </td>
       </tr>
     <% end %>

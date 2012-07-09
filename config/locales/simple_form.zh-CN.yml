@@ -2,6 +2,8 @@ zh-CN:
   simple_form:
     "yes": '是'
     "no": '否'
+    "true": '真'
+    "false": '假'
     required:
       text: '必填项'
       mark: '*'

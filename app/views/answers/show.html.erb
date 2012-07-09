@@ -1,0 +1,24 @@
+<%= show_for @answer do |s| %>
+  <%= s.attribute :content %>
+  <%= s.attribute :body %>
+  <%= s.attribute :created_by %>
+  <%= s.attribute :question_id %>
+  <%= s.attribute :opposition_count %>
+  <%= s.attribute :opposition_ids %>
+  <%= s.attribute :approval_count %>
+  <%= s.attribute :approval_ids %>
+  <%= s.attribute :expert_count %>
+  <%= s.attribute :deleted_at %>
+  <%= s.attribute :deleted_by %>
+  <%= s.attribute :is_anonymous %>
+  <%= s.attribute :no_help_count %>
+  <%= s.attribute :no_help_ids %>
+  <%= s.attribute :delta %>
+  <%= s.attribute :state %>
+  <%= s.attribute :created_at %>
+  <%= s.attribute :updated_at %>
+  <%= s.attribute :is_expert %>
+<% end %>
+
+<%= link_to 'Edit', edit_answer_path(@answer) %> |
+<%= link_to 'Back', answers_path %>
