@@ -18,13 +18,15 @@
 .sass-cache
 capybara-*.html
 .rspec
+development.sphinx.conf
 /.bundle
 /vendor/bundle
 /log/*
 /tmp/*
 /db/*.sqlite3
+/db/sphinx
 /public/system/*
-/public/uploads/*
+public/uploads
 /coverage/
 /spec/tmp/*
 **.orig

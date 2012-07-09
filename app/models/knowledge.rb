@@ -45,17 +45,13 @@ class Knowledge< ActiveRecord::Base
   scope :not_deleted,  where("knowledgebase.deleted_at is NULL")
   scope :id_equals, lambda { |input_id| where("knowledgebase.id = ?", input_id)}
 
-=begin
   define_index do
    indexes title
    indexes content
-   indexes tags
-   has :created_at
    where "deleted_at is null"
    #声明使用实时索引
    set_property :delta => true
   end
-=end
 
   # find the knowledges whose tags include param
   def self.find_knowledges_with_tag(tag_id)
