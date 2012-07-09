@@ -5,10 +5,13 @@ class Question < ActiveRecord::Base
   acts_as_followable
   #include Redis::Search
   #include Recommendation::Search
+
+  before_validation :repear_save
+
   attr_accessor :soft_deleted
 
     attr_accessible :title, :body, :created_by, :created_at,
-                  :updated_at, :is_anonymous, :soft_deleted
+                  :updated_at, :is_anonymous, :soft_deleted, :score
 
 
   self_model_name  #引入self_model_name
@@ -133,6 +136,10 @@ class Question < ActiveRecord::Base
   # question 的所有者
   def owner
     Profile.find_by_user_id(self.created_by)
+  end
+
+  def repear_save
+    self.content = Sanitize.clean(self.body).strip
   end
 
   # 返回最佳答案

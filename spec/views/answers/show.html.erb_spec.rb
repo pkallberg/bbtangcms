@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "answers/show" do
   before(:each) do
-    @answer = assign(:answer, stub_model(Answer,
+    @answers = assign(:answers, stub_model(Answers,
       :content => "MyText",
       :body => "MyText",
       :created_by => 1,

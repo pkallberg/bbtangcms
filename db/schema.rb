@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706085024) do
+ActiveRecord::Schema.define(:version => 20120709031712) do
 
   create_table "admin_settings", :force => true do |t|
     t.string   "name"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20120706085024) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_expert"
+    t.integer  "deleted_by"
   end
 
   create_table "assignments", :force => true do |t|
@@ -516,6 +517,7 @@ ActiveRecord::Schema.define(:version => 20120706085024) do
     t.boolean  "deleted"
     t.integer  "deleted_by"
     t.datetime "deleted_at"
+    t.integer  "score"
   end
 
   create_table "quizzes", :force => true do |t|

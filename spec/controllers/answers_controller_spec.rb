@@ -21,7 +21,7 @@ require 'spec_helper'
 describe AnswersController do
 
   # This should return the minimal set of attributes required to create a valid
-  # Answer. As you add validations to Answer, be sure to
+  # Answers. As you add validations to Answers, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
     {}
@@ -36,67 +36,67 @@ describe AnswersController do
 
   describe "GET index" do
     it "assigns all answers as @answers" do
-      answer = Answer.create! valid_attributes
+      answers = Answers.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:answers).should eq([answer])
+      assigns(:answers).should eq([answers])
     end
   end
 
   describe "GET show" do
-    it "assigns the requested answer as @answer" do
-      answer = Answer.create! valid_attributes
-      get :show, {:id => answer.to_param}, valid_session
-      assigns(:answer).should eq(answer)
+    it "assigns the requested answers as @answers" do
+      answers = Answers.create! valid_attributes
+      get :show, {:id => answers.to_param}, valid_session
+      assigns(:answers).should eq(answers)
     end
   end
 
   describe "GET new" do
-    it "assigns a new answer as @answer" do
+    it "assigns a new answers as @answers" do
       get :new, {}, valid_session
-      assigns(:answer).should be_a_new(Answer)
+      assigns(:answers).should be_a_new(Answers)
     end
   end
 
   describe "GET edit" do
-    it "assigns the requested answer as @answer" do
-      answer = Answer.create! valid_attributes
-      get :edit, {:id => answer.to_param}, valid_session
-      assigns(:answer).should eq(answer)
+    it "assigns the requested answers as @answers" do
+      answers = Answers.create! valid_attributes
+      get :edit, {:id => answers.to_param}, valid_session
+      assigns(:answers).should eq(answers)
     end
   end
 
   describe "POST create" do
     describe "with valid params" do
-      it "creates a new Answer" do
+      it "creates a new Answers" do
         expect {
-          post :create, {:answer => valid_attributes}, valid_session
-        }.to change(Answer, :count).by(1)
+          post :create, {:answers => valid_attributes}, valid_session
+        }.to change(Answers, :count).by(1)
       end
 
-      it "assigns a newly created answer as @answer" do
-        post :create, {:answer => valid_attributes}, valid_session
-        assigns(:answer).should be_a(Answer)
-        assigns(:answer).should be_persisted
+      it "assigns a newly created answers as @answers" do
+        post :create, {:answers => valid_attributes}, valid_session
+        assigns(:answers).should be_a(Answers)
+        assigns(:answers).should be_persisted
       end
 
-      it "redirects to the created answer" do
-        post :create, {:answer => valid_attributes}, valid_session
-        response.should redirect_to(Answer.last)
+      it "redirects to the created answers" do
+        post :create, {:answers => valid_attributes}, valid_session
+        response.should redirect_to(Answers.last)
       end
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved answer as @answer" do
+      it "assigns a newly created but unsaved answers as @answers" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Answer.any_instance.stub(:save).and_return(false)
-        post :create, {:answer => {}}, valid_session
-        assigns(:answer).should be_a_new(Answer)
+        Answers.any_instance.stub(:save).and_return(false)
+        post :create, {:answers => {}}, valid_session
+        assigns(:answers).should be_a_new(Answers)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Answer.any_instance.stub(:save).and_return(false)
-        post :create, {:answer => {}}, valid_session
+        Answers.any_instance.stub(:save).and_return(false)
+        post :create, {:answers => {}}, valid_session
         response.should render_template("new")
       end
     end
@@ -104,60 +104,60 @@ describe AnswersController do
 
   describe "PUT update" do
     describe "with valid params" do
-      it "updates the requested answer" do
-        answer = Answer.create! valid_attributes
+      it "updates the requested answers" do
+        answers = Answers.create! valid_attributes
         # Assuming there are no other answers in the database, this
-        # specifies that the Answer created on the previous line
+        # specifies that the Answers created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Answer.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => answer.to_param, :answer => {'these' => 'params'}}, valid_session
+        Answers.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+        put :update, {:id => answers.to_param, :answers => {'these' => 'params'}}, valid_session
       end
 
-      it "assigns the requested answer as @answer" do
-        answer = Answer.create! valid_attributes
-        put :update, {:id => answer.to_param, :answer => valid_attributes}, valid_session
-        assigns(:answer).should eq(answer)
+      it "assigns the requested answers as @answers" do
+        answers = Answers.create! valid_attributes
+        put :update, {:id => answers.to_param, :answers => valid_attributes}, valid_session
+        assigns(:answers).should eq(answers)
       end
 
-      it "redirects to the answer" do
-        answer = Answer.create! valid_attributes
-        put :update, {:id => answer.to_param, :answer => valid_attributes}, valid_session
-        response.should redirect_to(answer)
+      it "redirects to the answers" do
+        answers = Answers.create! valid_attributes
+        put :update, {:id => answers.to_param, :answers => valid_attributes}, valid_session
+        response.should redirect_to(answers)
       end
     end
 
     describe "with invalid params" do
-      it "assigns the answer as @answer" do
-        answer = Answer.create! valid_attributes
+      it "assigns the answers as @answers" do
+        answers = Answers.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Answer.any_instance.stub(:save).and_return(false)
-        put :update, {:id => answer.to_param, :answer => {}}, valid_session
-        assigns(:answer).should eq(answer)
+        Answers.any_instance.stub(:save).and_return(false)
+        put :update, {:id => answers.to_param, :answers => {}}, valid_session
+        assigns(:answers).should eq(answers)
       end
 
       it "re-renders the 'edit' template" do
-        answer = Answer.create! valid_attributes
+        answers = Answers.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Answer.any_instance.stub(:save).and_return(false)
-        put :update, {:id => answer.to_param, :answer => {}}, valid_session
+        Answers.any_instance.stub(:save).and_return(false)
+        put :update, {:id => answers.to_param, :answers => {}}, valid_session
         response.should render_template("edit")
       end
     end
   end
 
   describe "DELETE destroy" do
-    it "destroys the requested answer" do
-      answer = Answer.create! valid_attributes
+    it "destroys the requested answers" do
+      answers = Answers.create! valid_attributes
       expect {
-        delete :destroy, {:id => answer.to_param}, valid_session
-      }.to change(Answer, :count).by(-1)
+        delete :destroy, {:id => answers.to_param}, valid_session
+      }.to change(Answers, :count).by(-1)
     end
 
     it "redirects to the answers list" do
-      answer = Answer.create! valid_attributes
-      delete :destroy, {:id => answer.to_param}, valid_session
-      response.should redirect_to(answers_url)
+      answers = Answers.create! valid_attributes
+      delete :destroy, {:id => answers.to_param}, valid_session
+      response.should redirect_to(answers_index_url)
     end
   end
 

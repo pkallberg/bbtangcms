@@ -6,15 +6,14 @@
     <!--%= f.input :content %-->
     <%= f.input :body, :as => :kindeditor %>
     <!--%= f.input :focus_by %-->
-    <% if @question.new_record? %>
-      <%= f.input :created_by, :as => :hidden, :input_html => { :value => (current_user.id if current_user.present?) } %>
-    <% end %>
+    <%= f.input :score, :as =>:integer %>
     <!--%= f.input :created_by %-->
     <!--%= f.input :views_count %-->
     <!--%= f.input :delta %-->
     <!--%= f.input :last_answer_time %-->
     <!--%= f.input :best_answer_id %-->
     <% if @question.new_record? %>
+      <%= f.input :created_by, :as => :hidden, :input_html => { :value => (current_user.id if current_user.present?) } %>
       <%= f.input :created_at, :as => :hidden, :input_html => { :value => Time.now } %>
     <% else %>
       <%= f.input :updated_at, :as => :hidden, :input_html => { :value => Time.now} %>

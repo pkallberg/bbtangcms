@@ -7,7 +7,10 @@ class AnswersController < ApplicationController
   # GET /answers.json
   def index
     #@answers = Answer.all
-    @answers = @question.answer.paginate(:page => params[:page], :per_page => 20).order('id DESC')
+
+    @answers = @question.answers.paginate(:page => params[:page], :per_page => 20).order('id DESC')
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), question_answers_path(@question)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -19,7 +22,9 @@ class AnswersController < ApplicationController
   # GET /answers/1.json
   def show
     #@answer = Answer.find(params[:id])
-    @answer = @question.answer.find(params[:id])
+    @answer = @question.answers.find(params[:id])
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), question_answer_path(@question,@answer)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -31,7 +36,8 @@ class AnswersController < ApplicationController
   # GET /answers/new.json
   def new
     #@answer = Answer.new
-    @answer = @question.answer.new
+    @answer = @question.answers.new
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), new_question_answer_path(@question)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,14 +48,15 @@ class AnswersController < ApplicationController
   # GET /answers/1/edit
   def edit
     #@answer = Answer.find(params[:id])
-    @answer = @question.answer.find(params[:id])
+    @answer = @question.answers.find(params[:id])
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), edit_question_answer_path(@question)
   end
 
   # POST /answers
   # POST /answers.json
   def create
     #@answer = Answer.new(params[:answer])
-    @answer = @question.answer.new(params[:answer])
+    @answer = @question.answers.new(params[:answer])
     @answer.if_soft_deleted(current_user) if params[:answer][:soft_deleted].present?
 
     respond_to do |format|
@@ -67,7 +74,7 @@ class AnswersController < ApplicationController
   # PUT /answers/1.json
   def update
     #@answer = Answer.find(params[:id])
-    @answer = @question.answer.find(params[:id])
+    @answer = @question.answers.find(params[:id])
     @answer.if_soft_deleted(current_user) if params[:answer][:soft_deleted].present?
 
     respond_to do |format|
@@ -85,7 +92,7 @@ class AnswersController < ApplicationController
   # DELETE /answers/1.json
   def destroy
     #@answer = Answer.find(params[:id])
-    @answer = @question.answer.find(params[:id])
+    @answer = @question.answers.find(params[:id])
     @answer.destroy
 
     respond_to do |format|
@@ -97,6 +104,7 @@ class AnswersController < ApplicationController
   private
 
     def load_parent
+
       @question = Question.find(params[:question_id])
     end
 end

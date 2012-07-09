@@ -25,7 +25,7 @@ zh-CN:
         knowledge_id: "知识id"
         is_anonymous: "是否匿名"
         deleted: "删除"
-
+        score: "评分"
         created_user: "创建者"
         updated_by: "编辑人"
         updated_user: "编辑人"

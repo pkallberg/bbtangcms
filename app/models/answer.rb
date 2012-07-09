@@ -7,6 +7,12 @@ class Answer < ActiveRecord::Base
 
   after_initialize :init
 
+  before_validation :repear_save
+  after_save :update_question
+
+  attr_accessor :soft_deleted
+    attr_accessible :body, :created_by, :created_at, :state,
+                  :updated_at, :is_anonymous, :soft_deleted, :is_expert
 =begin
   define_index do
     indexes content
@@ -36,6 +42,9 @@ class Answer < ActiveRecord::Base
     Profile.find_by_user_id(self.created_by)
   end
 
+  def repear_save
+    self.content = Sanitize.clean(self.body).strip
+  end
 
   def if_soft_deleted(user = nil)
     if self.soft_deleted.present? and user.present?
@@ -51,6 +60,14 @@ class Answer < ActiveRecord::Base
 
   def deleted_user
     User.find(self.deleted_by) if (self.deleted_by.present?) and (User.exists? self.deleted_by)
+  end
+
+  def update_question
+    if self.question_id.present? and Question.exists? self.question_id
+      question = Question.find(self.question_id)
+      question.answers_count = question.answers_count.to_i + 1
+      question.save
+    end
   end
 
 end

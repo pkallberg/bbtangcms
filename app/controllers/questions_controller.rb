@@ -44,6 +44,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1/edit
   def edit
     @question = Question.find(params[:id])
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), edit_question_path
   end
 
   # POST /questions
@@ -67,6 +68,7 @@ class QuestionsController < ApplicationController
   # PUT /questions/1.json
   def update
     @question = Question.find(params[:id])
+
     @question.if_soft_deleted(current_user) if params[:question][:soft_deleted].present?
 
     respond_to do |format|

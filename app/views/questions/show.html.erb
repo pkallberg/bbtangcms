@@ -6,7 +6,8 @@
 
 <%= show_for @question do |s| %>
   <%= s.attribute :title %>
-  <%= s.attribute :content %>
+  <!--%= s.attribute :content %-->
+  <%= s.attribute :score %>
   <%= s.attribute :body, :value => (raw @question.body) %>
   <%= s.attribute :focus_by %>
   <%= s.attribute :created_by %>

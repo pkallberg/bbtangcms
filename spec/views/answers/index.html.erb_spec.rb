@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "answers/index" do
   before(:each) do
     assign(:answers, [
-      stub_model(Answer,
+      stub_model(Answers,
         :content => "MyText",
         :body => "MyText",
         :created_by => 1,
@@ -21,7 +21,7 @@ describe "answers/index" do
         :state => "State",
         :is_expert => false
       ),
-      stub_model(Answer,
+      stub_model(Answers,
         :content => "MyText",
         :body => "MyText",
         :created_by => 1,
