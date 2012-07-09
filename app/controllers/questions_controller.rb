@@ -5,7 +5,8 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.paginate(:page => params[:page], :per_page => 20).order('id DESC')
+    @questions = Question.paginate(:page => params[:page], :per_page => 20).order('score DESC')
+
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), questions_path
 
@@ -51,7 +52,7 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(params[:question])
-    @question.if_soft_deleted(current_user) if params[:question][:soft_deleted].present?
+    @question.if_soft_deleted(params[:question][:soft_deleted],current_user) if params[:question][:soft_deleted].present?
 
     respond_to do |format|
       if @question.save
@@ -69,7 +70,7 @@ class QuestionsController < ApplicationController
   def update
     @question = Question.find(params[:id])
 
-    @question.if_soft_deleted(current_user) if params[:question][:soft_deleted].present?
+    @question.if_soft_deleted(params[:question][:soft_deleted],current_user) if params[:question][:soft_deleted].present?
 
     respond_to do |format|
       if @question.update_attributes(params[:question])
@@ -92,5 +93,22 @@ class QuestionsController < ApplicationController
       format.html { redirect_to questions_url }
       format.json { head :no_content }
     end
+  end
+
+  #question_list = [1,2,3]
+  def resetscore
+    if params.has_key? :question_list
+      question_list = params[:question_list]
+      select_questions = Question.where id: question_list
+    else
+      select_questions = Question.all
+    end
+
+    select_questions.each do |question|
+      question.score = 0
+      question.save
+    end
+
+    redirect_to questions_url
   end
 end

@@ -13,7 +13,7 @@ zh-CN:
         created_by: "创建者id"
         views_count: "浏览数"
         last_answer_time: "最近回答时间"
-        best_answer_id: "最佳回答人id"
+        best_answer_id: "最佳回答id"
         best_answer: "最佳回答人"
         created_at: "创建时间"
         updated_at: "创建时间"

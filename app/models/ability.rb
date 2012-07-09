@@ -47,6 +47,14 @@ class Ability
     can :create, CategoryBase
   end
 
+  def create_question
+    can :create, Question
+  end
+
+  def create_question_answer
+    can :create, Answer, :question => Question.new
+  end
+
   def create_recommend_recommend_event
     can :create, Recommend::RecommendEvent
   end
@@ -93,6 +101,14 @@ class Ability
 
   def update_category_base
     can :update, CategoryBase
+  end
+
+  def update_question
+    can :update, Question
+  end
+
+  def update_question_answer
+    can :update, Answer, :question => Question.new
   end
 
   def update_recommend_recommend_event
@@ -143,6 +159,14 @@ class Ability
     can :read, CategoryBase
   end
 
+  def read_question
+    can :read, Question
+  end
+
+  def read_question_answer
+    can :read, Answer, :question => Question.new
+  end
+
   def read_recommend_recommend_mtool
     can :read, Recommend::RecommendMtool
   end
@@ -187,6 +211,14 @@ class Ability
     can :destroy, CategoryBase
   end
 
+  def destroy_question
+    can :destroy, Question
+  end
+
+  def destroy_question_answer
+    can :destroy, Answer, :question => Question.new
+  end
+
   def destroy_recommend_recommend_mtool
     can :destroy, Recommend::RecommendMtool
   end
@@ -218,6 +250,12 @@ class Ability
   def destroy_recommend_recommend_hindex
     can :destroy, Recommend::RecommendHindex
   end
+  ##############other permit
+
+  def resetscore_question
+    can :resetscore, Question
+  end
+
 ##################other ##########################
   #def editor
   #  can :manage, Employee

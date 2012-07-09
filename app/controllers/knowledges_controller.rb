@@ -169,7 +169,8 @@ class KnowledgesController < ApplicationController
     @knowledge.timeline_list = @timelines_choose.map(&:name) if not @timelines_choose.empty?
     @knowledge.category_list = @categories_choose.map(&:name) if not @categories_choose.empty?
 
-    @knowledge.if_soft_deleted(current_user) if params[:knowledge][:soft_deleted].present?
+    @knowledge.if_soft_deleted(params[:knowledge][:soft_deleted],current_user) if params[:knowledge][:soft_deleted].present?
+
 
     if @knowledge.save
       flash[:notice] = 'Knowledge was successfully updated.'
@@ -258,7 +259,7 @@ class KnowledgesController < ApplicationController
       params[:knowledge]["timeline_list"] = @timelines_choose.map(&:name) if not @timelines_choose.empty?
       params[:knowledge]["category_list"] = @categories_choose.map(&:name) if not @categories_choose.empty?
 
-    @knowledge.if_soft_deleted(current_user) if params[:knowledge][:soft_deleted].present?
+    @knowledge.if_soft_deleted(params[:knowledge][:soft_deleted],current_user) if params[:knowledge][:soft_deleted].present?
 
       if @knowledge.update_attributes(params[:knowledge])
         #format.html { redirect_to @knowledge, notice: 'Knowledge was successfully updated.' }

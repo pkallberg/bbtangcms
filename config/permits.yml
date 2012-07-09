@@ -2,6 +2,8 @@ permit:
   create_profile: create_profile
   create_knowledge: create_knowledge
   create_category_base: create_category_base
+  create_question: create_question
+  create_question_answer: create_question_answer
   #create_recommend_recommend_event: create_recommend_recommend_event
   #create_recommend_recommend_mtool: create_recommend_recommend_mtool
   create_recommend_recommend_product: create_recommend_recommend_product
@@ -14,6 +16,8 @@ permit:
   update_profile: update_profile
   update_knowledge: update_knowledge
   update_category_base: update_category_base
+  update_question: update_question
+  update_question_answer: update_question_answer
   update_recommend_recommend_product: update_recommend_recommend_product
   update_recommend_recommend_question: update_recommend_recommend_question
   update_recommend_recommend_quiz: update_recommend_recommend_quiz
@@ -24,6 +28,8 @@ permit:
   read_profile: read_profile
   read_knowledge: read_knowledge
   read_category_base: read_category_base
+  read_question: read_question
+  read_question_answer: read_question_answer
   read_recommend_recommend_product: read_recommend_recommend_product
   read_recommend_recommend_question: read_recommend_recommend_question
   read_recommend_recommend_quiz: read_recommend_recommend_quiz
@@ -34,6 +40,8 @@ permit:
   destroy_profile: destroy_profile
   destroy_knowledge: destroy_knowledge
   destroy_category_base: destroy_category_base
+  destroy_question: destroy_question
+  destroy_question_answer: destroy_question_answer
   destroy_recommend_recommend_product: destroy_recommend_recommend_product
   destroy_recommend_recommend_question: destroy_recommend_recommend_question
   destroy_recommend_recommend_quiz: destroy_recommend_recommend_quiz
@@ -41,3 +49,4 @@ permit:
   destroy_recommend_recommend_tag: destroy_recommend_recommend_tag
   destroy_recommend_recommend_user: destroy_recommend_recommend_user
   destroy_recommend_recommend_hindex: destroy_recommend_recommend_hindex
+  resetscore_question: resetscore_question

@@ -45,17 +45,13 @@ class Knowledge< ActiveRecord::Base
   scope :not_deleted,  where("knowledgebase.deleted_at is NULL")
   scope :id_equals, lambda { |input_id| where("knowledgebase.id = ?", input_id)}
 
-=begin
   define_index do
    indexes title
    indexes content
-   indexes tags
-   has :created_at
    where "deleted_at is null"
    #声明使用实时索引
    set_property :delta => true
   end
-=end
 
   # find the knowledges whose tags include param
   def self.find_knowledges_with_tag(tag_id)
@@ -72,14 +68,14 @@ class Knowledge< ActiveRecord::Base
   #  ("SELECT * FROM knowledges WHERE concat(',',concat(tags,',')) LIKE '%,"<<tag_id<<",%' ORDER BY created_at DESC")
   #end
 
-  def if_soft_deleted(user = nil)
-    if self.soft_deleted.present? and user.present?
+  def if_soft_deleted(soft_deleted =nil, user = nil)
+    if soft_deleted.present? and user.present?
       if ["true","1",1,true].include? self.soft_deleted
         self.deleted_at = Time.now
         self.deleted_by = user.id if user.id.present?
       else
-        self.deleted_at = Time.now
-        self.deleted_by = user.id
+        self.deleted_at = nil
+        self.deleted_by = nil
       end
     end
   end

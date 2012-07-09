@@ -17,13 +17,13 @@
   <%= s.attribute :best_answer_id %>
   <%= s.attribute :created_at %>
   <%= s.attribute :updated_at %>
-  <%= s.attribute :answers_count %>
+  <%= s.attribute :answers_count, :value => (link_to @question.answers_count, question_answers_path(@question) if @question.present? ) %>
   <%= s.attribute :experts_count %>
   <%= s.attribute :designated_answerer %>
   <!--%= s.attribute :auto_tags %-->
   <%= s.attribute :knowledge_id %>
   <%= s.attribute :is_anonymous %>
-  <%= s.attribute :deleted_by %>
+  <!--%= s.attribute :deleted_by %-->
   <%= s.attribute :deleted_user %>
   <%= s.attribute :deleted_at, :format => :short %>
 <% end %>

@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
   load_and_authorize_resource
+  #load_and_authorize_resource :answer, :through => [:question]
   Model_class = Answer.new.class
 
   before_filter :load_parent
@@ -57,7 +58,7 @@ class AnswersController < ApplicationController
   def create
     #@answer = Answer.new(params[:answer])
     @answer = @question.answers.new(params[:answer])
-    @answer.if_soft_deleted(current_user) if params[:answer][:soft_deleted].present?
+    @answer.if_soft_deleted(params[:answer][:soft_deleted],current_user) if params[:answer][:soft_deleted].present?
 
     respond_to do |format|
       if @answer.save
@@ -75,7 +76,7 @@ class AnswersController < ApplicationController
   def update
     #@answer = Answer.find(params[:id])
     @answer = @question.answers.find(params[:id])
-    @answer.if_soft_deleted(current_user) if params[:answer][:soft_deleted].present?
+    @answer.if_soft_deleted(params[:answer][:soft_deleted],current_user) if params[:answer][:soft_deleted].present?
 
     respond_to do |format|
       if @answer.update_attributes(params[:answer])

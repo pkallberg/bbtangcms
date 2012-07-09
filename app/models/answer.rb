@@ -42,13 +42,19 @@ class Answer < ActiveRecord::Base
     Profile.find_by_user_id(self.created_by)
   end
 
+  def created_user
+    User.find(self.created_by) if (self.created_by.present?) and (User.exists? self.created_by)
+  end
+
+
+
   def repear_save
     self.content = Sanitize.clean(self.body).strip
   end
 
-  def if_soft_deleted(user = nil)
-    if self.soft_deleted.present? and user.present?
-      if ["true","1",1,true].include? self.soft_deleted
+  def if_soft_deleted(soft_deleted =nil, user = nil)
+    if soft_deleted.present? and user.present?
+      if ["true","1",1,true].include? soft_deleted
         self.deleted_at = Time.now
         self.deleted_by = user.id if user.id.present?
       else

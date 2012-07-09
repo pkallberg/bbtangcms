@@ -8,6 +8,7 @@ zh-CN:
         content: "内容"
         body: "正文"
         created_by: "创建者id"
+        created_user: "创建者"
         question_id: "问题id"
         question: "问题"
         opposition_count: "反对数"

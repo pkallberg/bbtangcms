@@ -68,9 +68,9 @@ class Knowledge< ActiveRecord::Base
   #  ("SELECT * FROM knowledges WHERE concat(',',concat(tags,',')) LIKE '%,"<<tag_id<<",%' ORDER BY created_at DESC")
   #end
 
-  def if_soft_deleted(user = nil)
-    if self.soft_deleted.present? and user.present?
-      if ["true","1",1,true].include? self.soft_deleted
+  def if_soft_deleted(soft_deleted =nil, user = nil)
+    if soft_deleted.present? and user.present?
+      if ["true","1",1,true].include? soft_deleted
         self.deleted_at = Time.now
         self.deleted_by = user.id if user.id.present?
       else

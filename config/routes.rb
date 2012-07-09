@@ -11,6 +11,9 @@ BBTangCMS::Application.routes.draw do
   end
 
   resources :questions do
+    collection do
+      get 'resetscore'
+    end
     resources :answers
     #member do
     #  get 'refresh'

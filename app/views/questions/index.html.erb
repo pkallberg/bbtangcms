@@ -15,7 +15,7 @@
       <!--th><%= model_class.human_attribute_name(:title) %></th-->
       <!--th><%= model_class.human_attribute_name(:title) %></th-->
       <!--th><%= model_class.human_attribute_name(:focus_by) %></th-->
-      <th><%= model_class.human_attribute_name(:created_by) %></th>
+      <th><%= model_class.human_attribute_name(:created_user) %></th>
       <th><%= model_class.human_attribute_name(:views_count) %></th>
       <!--th><%= model_class.human_attribute_name(:title) %>Delta</th-->
       <th><%= model_class.human_attribute_name(:last_answer_time) %></th>
@@ -29,7 +29,7 @@
       <th><%= model_class.human_attribute_name(:knowledge_id) %></th>
       <th><%= model_class.human_attribute_name(:is_anonymous) %></th>
       <!--th><%= model_class.human_attribute_name(:knowledge_id) %>Auto tags</th-->
-      <th><%= model_class.human_attribute_name(:deleted_by) %></th>
+      <th><%= model_class.human_attribute_name(:deleted_user) %></th>
       <!--th><%= model_class.human_attribute_name(:deleted_at) %></th-->
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -40,12 +40,12 @@
       <tr>
         <td><%= link_to question.id, question_path(question) %></td>
         <td><%= question.title %></td>
-        <td><%= link_to question.answers_count, question_answers_path(question) %></td>
+        <td><%= link_to question.answers_count, question_answers_path(question) if question.present?  %></td>
         <td><%= question.score %></td>
         <!--td><%= question.content %></td-->
         <!--td><%= question.body %></td-->
         <!--td><%= question.focus_by %></td-->
-        <td><%= question.created_by %></td>
+        <td><%= question.created_user %></td>
         <td><%= question.views_count %></td>
         <!--td--><!--%= question.delta %--><!--/td-->
         <td><%= time_tag question.last_answer_time, :format => :short %></td>
@@ -56,18 +56,21 @@
         <td><%= question.experts_count %></td>
         <td><%= question.designated_answerer %></td>
         <!--td--><!--%= question.auto_tags %--><!--/td-->
-        <td><%= question.knowledge_id %></td>
+        <td><%= link_to question.knowledge_id, knowledge_path(question.knowledge_id) if question.knowledge_id.present? %></td>
         <td><%= question.is_anonymous %></td>
         <!--td><!--%= question.deleted %--><!--/td-->
-        <td><%= question.deleted_by %></td>
+        <td><%= question.deleted_user %></td>
         <!--td><%=time_tag question.deleted_at, :format => :short if question.deleted_at? %></td-->
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)),
-                      question_answers_path(question), :class => 'btn btn-mini' %>
+                      question_path(question), :class => 'btn btn-mini' %>
           <% if can? :update, question %>
             <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)),
                       edit_question_path(question), :class => 'btn btn-mini' %>
           <% end %>
+        <%= link_to t('.resetscore', :default => t("helpers.links.resetscore", :model => model_class.model_name.human)),
+              resetscore_questions_path(:question_list => [question.id]),
+              :class => 'btn btn-mini' %>
           <% if can? :destroy, question %>
             <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)),
                       question_path(question),
@@ -81,7 +84,9 @@
   </tbody>
 </table>
 <%= will_paginate @questions %>
-
+<!--%= @questions.map(&:id)%-->
+<!--%= @questions.length%-->
+<!--%= @questions.count%-->
 <br />
 
 <% if can? :create, Question %>
@@ -89,4 +94,7 @@
             new_question_path,
             :class => 'btn btn-primary' %>
 <% end %>
+  <%= link_to t('.resetscore', :default => t("helpers.links.resetscore", :model => model_class.model_name.human)),
+            resetscore_questions_path(:question_list => @questions.map(&:id)),
+            :class => 'btn btn-primary btn-danger' %>
 </div>

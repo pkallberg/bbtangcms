@@ -7,7 +7,7 @@ zh-CN:
       edit: "编辑%{model}"
       recent: "近期%{model}"
       show: "显示%{model}"
-      search: "搜索%{model}"
+      search: "%{model}搜索"
 
     actions: "动作"
     links:

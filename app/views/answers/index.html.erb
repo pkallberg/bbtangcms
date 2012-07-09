@@ -10,7 +10,7 @@
     <th><%= model_class.human_attribute_name(:id) %></th>
     <!--th><!--%= model_class.human_attribute_name(:content) %></th-->
     <!--th><!--%= model_class.human_attribute_name(:body) %></th-->
-    <th><%= model_class.human_attribute_name(:created_by) %></th>
+    <th><%= model_class.human_attribute_name(:created_user) %></th>
     <th><%= model_class.human_attribute_name(:question_id) %></th>
     <th><%= model_class.human_attribute_name(:opposition_count) %></th>
     <!--th><!--%= model_class.human_attribute_name(:opposition_ids) %></th-->
@@ -37,7 +37,7 @@
     <td><%= answer.id %></td>
     <!--td><!--%= answer.content %></td-->
     <!--td><!--%= answer.body %></td-->
-    <td><%= answer.created_by %></td>
+    <td><%= answer.created_user %></td>
     <td><%= link_to answer.question_id, question_path(answer.question_id) if answer.question_id.present? %></td>
     <td><%= answer.opposition_count %></td>
     <!--td><!--%= answer.opposition_ids %></td-->
