@@ -1,5 +1,5 @@
-$("#edit_<%= dom_id @knowledge %>").replaceWith("<%= j render 'refresh_form'%>");
-$("#new_knowledge").replaceWith("<%= j render 'refresh_form'%>");
+$("#edit_<%= dom_id @knowledge %>").replaceWith("<%= j render 'knowledges/form'%>");
+$("#new_knowledge").replaceWith("<%= j render 'knowledges/form'%>");
 
 var editor = KindEditor.create(
     'textarea[id="knowledge_body"]',

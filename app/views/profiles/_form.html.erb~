@@ -4,7 +4,6 @@
   <div class="form-inputs">
   <div class="profile box">
     <span class="label label-info">personal_info</span>
-      <%= "#{Rails.configuration.self_settings['profile_name_max']}".to_i%>
       <%= f.input :user_id, :as => :hidden %>
       <%= f.input :real_name %>
       <%= f.input :nickname %>

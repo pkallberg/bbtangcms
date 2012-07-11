@@ -85,7 +85,21 @@ gem "rails-settings-cached", "~> 0.2.1"
 
 # To use debugger
 group :development do
+  gem 'linecache19', '0.5.13'
+  gem 'ruby-debug-base19', '0.11.26'
   gem 'ruby-debug19', :require => 'ruby-debug'
+
+  #curl -OL http://rubyforge.org/frs/download.php/75414/linecache19-0.5.13.gem
+  #curl -OL http://rubyforge.org/frs/download.php/75414/linecache19-0.5.13.gem
+  #curl -OL http://rubyforge.org/frs/download.php/75415/ruby-debug-base19-0.11.26.gem
+  #gem install linecache19-0.5.13.gem -- --with-ruby-include="${MY_RUBY_HOME/rubies/src}"
+  #gem install ruby-debug-base19-0.11.26 -- --with-ruby-include="${MY_RUBY_HOME/rubies/src}"
+
+
+  #other case
+  #gem 'linecache19', :git => 'git://github.com/mark-moseley/linecache'
+  #gem 'ruby-debug-base19x', '~> 0.11.30.pre4'
+  #gem 'ruby-debug19'
 end
 
 # redis-search

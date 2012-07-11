@@ -4,6 +4,9 @@
   <%= s.attribute :real_name %>
   <%= s.attribute :nickname %>
   <%= s.association :level %>
+  <%= s.attribute :face  do %>
+    <% image_tag @profile.face(:s120) %>
+  <% end %>
   <%= s.attribute :gender do %>
     <%= content_tag :span, t("activerecord.attributes.profile.gender_#{@profile.gender? ? 1 : 0}") %>
   <% end %>
@@ -27,5 +30,5 @@
   <%= s.attribute :weibo %>
 <% end %>
 
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', profiles_path %>
+<%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_profile_path(@profile) %> |
+<%= link_to  t('.back', :default => t("helpers.links.back", :model => model_class.model_name.human)), profiles_path %>

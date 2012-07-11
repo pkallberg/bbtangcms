@@ -34,16 +34,16 @@ class Profile < ActiveRecord::Base
     :minimum => BBTangCMS::MetaCache.get_config_data("profile_name_min").to_i,
     :maximum => BBTangCMS::MetaCache.get_config_data("profile_name_max").to_i}
   validates :label, :profession, :length => {:maximum => BBTangCMS::MetaCache.get_config_data("profile_label_max").to_i}
-  debugger
+
   #fixed bug, 当使用delegate_attributes的时候， 会需要loaded_[model]的方法
   def loaded_level?
     true
   end
 
-  #profile_face_url = BBTangCMS::MetaCache.get_config_data("profile_face_url")
-  profile_face_url = "/uploadfiles/:class/:attachment/:id/:style/:filename"
-  #    #profile_face_path = BBTangCMS::MetaCache.get_config_data("profile_face_path")
-  profile_face_path =":rails_root/public/uploadfiles/:class/:attachment/:id/:style/:filename"
+  #profile_face_url = Askjane::MetaCache.get_config_data("profile_face_url")
+  profile_face_url = "/uploads/paperclip/:class/:attachment/:id/:style/:filename"
+  #    #profile_face_path = Askjane::MetaCache.get_config_data("profile_face_path")
+  profile_face_path =":rails_root/public/uploads/paperclip/:class/:attachment/:id/:style/:filename"
 
   attr_accessible :face, :nickname, :gender, :agerange,
                   :pregnancy_status, :pregnancy_timeline,

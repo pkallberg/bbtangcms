@@ -36,7 +36,7 @@
 
 <br />
 
-<% if can? :create, Recommend::RecommendTag %>
+<% if can? :create, "Recommend::RecommendTag" %>
   <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)), new_recommend_recommend_tag_path %>
 <% end %>
 </div>

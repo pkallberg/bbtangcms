@@ -28,11 +28,17 @@
   </div>
   <div class="knowledge-footer box">
   <span class="label label-info">footer</span>
+    <%= f.input :tag_list,:hint => "请输入标签名，并以英文逗号(',')隔开...", :input_html => { :rows =>"5", :cols =>"20" } %>
     <%= f.input :created_name %>
     <%= f.input :source_info %>
-    <%= f.input :tag_list,:hint => "请输入标签名，并以英文逗号(',')隔开...", :input_html => { :rows =>"5", :cols =>"20" } %>
+    <%= f.input :soft_deleted, :as => :boolean, :input_html => {:value =>  @knowledge.deleted_at? ? true : false} %>
+
     <!--%= f.input :auto_tags, :input_html => { :rows =>"5", :cols =>"20" } %-->
-    <%= f.input :created_by, :as => :hidden, :value => current_user.id if current_user %>
+    <% if @knowledge.new_record? %>
+      <%= f.input :created_by, :as => :hidden, :input_html => { :value => current_user.id} %>
+    <% else %>
+      <%= f.input :updated_by, :as => :hidden, :input_html => { :value => current_user.id} %>
+    <% end %>
     <!--%= f.input :updated_by %-->
     <!--%= f.input :deleted_at %-->
     <!--%= f.input :deleted_by %-->

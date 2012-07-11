@@ -11,7 +11,7 @@
       <%= f.input :gender do %>
           <%= f.collection_radio_buttons :gender,[[true, I18n.t("activerecord.attributes.profile.gender_1")] ,[false, I18n.t("activerecord.attributes.profile.gender_0")]], :first, :last %>
       <% end %>
-      <!--%= f.input :face %-->
+      <%= f.input :face %>
       <%= f.input :birthday, :start_year => Time.now.year - 50 %>
       <%= f.input :degree %>
       <%= f.input :city, :input_html => { :value => @profile.city.present? ? @profile.city : @contry } %>
