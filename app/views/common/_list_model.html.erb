@@ -1,45 +1,39 @@
-
-<%- model_class = @model_class unless @model_class.nil? -%>
-
-<div class="page-header">
-  <h1><%=t 'common.search_result.title' %></h1>
-</div>
 <% unless model_class.nil?%>
-  <div class = "results box">
+  <div class = "items box">
     <table class="table table-condensed">
       <thead>
         <tr>
-          <% model_columns_collection(@model_class,whitelist = true,except = ["summary","body","content","thanks_count", "forwarding_count", "comments_count", "views_count"]).each do |column|%>
-            <th><%= model_class.human_attribute_name(column[1])  if column.present? %></th>
+          <% model_columns_collection(@model_class, whitelist = true,except = ["summary","body","content","thanks_count", "forwarding_count", "comments_count", "views_count"]).each do |column|%>
+            <th><%= model_class.human_attribute_name(column[1]) if column.present?  %></th>
           <% end %>
           <th><%=t '.actions', :default => t("helpers.actions") %></th>
         </tr>
       </thead>
       <tbody>
-        <% if @results.present? %>
-          <% @results.each do |result| %>
+        <% if item_list.present? %>
+          <% item_list.each do |item| %>
             <tr>
-            <% model_columns_collection(@model_class,whitelist = true,except = ["summary","body","content","thanks_count", "forwarding_count", "comments_count", "views_count"]).each do |column|%>
-              <td><%= result.read_attribute(column[1])  if column.present? %></td>
+            <% model_columns_collection(@model_class, whitelist = true,except = ["summary","body","content","thanks_count", "forwarding_count", "comments_count", "views_count"]).each do |column|%>
+              <td><%= item.read_attribute(column[1]) if column.present?  %></td>
             <% end %>
               <td>
-                <% if self.respond_to? "auth_#{result.class.to_s.underscore.gsub("/","_")}_path" %>
+                <% if self.respond_to? "auth_#{item.class.to_s.underscore.gsub("/","_")}_path" %>
                           <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)),
-                             send("auth_#{result.class.to_s.underscore.gsub("/","_")}_path", result), :class => 'btn btn-mini' %>
+                             send("auth_#{item.class.to_s.underscore.gsub("/","_")}_path", item), :class => 'btn btn-mini' %>
                 <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)),
-                            send("edit_auth_#{result.class.to_s.underscore.gsub("/","_")}_path", result), :class => 'btn btn-mini' %>
+                            send("edit_auth_#{item.class.to_s.underscore.gsub("/","_")}_path", item), :class => 'btn btn-mini' %>
                 <!--%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)),
-                             send("auth_#{result.class.to_s.underscore.gsub("/","_")}_path", result)
+                             send("auth_#{item.class.to_s.underscore.gsub("/","_")}_path", item)
                             :method => :delete,
                             :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
                             :class => 'btn btn-mini btn-danger' %-->
                 <% else %>
                   <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)),
-                               send("#{result.class.to_s.underscore.gsub("/","_")}_path", result), :class => 'btn btn-mini' %>
+                               send("#{item.class.to_s.underscore.gsub("/","_")}_path", item), :class => 'btn btn-mini' %>
                   <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)),
-                              send("edit_#{result.class.to_s.underscore.gsub("/","_")}_path", result), :class => 'btn btn-mini' %>
+                              send("edit_#{item.class.to_s.underscore.gsub("/","_")}_path", item), :class => 'btn btn-mini' %>
                   <!--%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)),
-                               send("#{result.class.to_s.underscore.gsub("/","_")}_path", result)
+                               send("#{item.class.to_s.underscore.gsub("/","_")}_path", item)
                               :method => :delete,
                               :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
                               :class => 'btn btn-mini btn-danger' %-->
@@ -53,3 +47,4 @@
 
   </div>
 <% end %>
+<!--%= render 'common/list_model', :model_class => (@model_class unless @model_class.nil?), :item_list => item_list  %-->

@@ -2,11 +2,17 @@
 <div class="page-header">
   <h1><%=t('.archives', :default => t("helpers.titles.archives", :model => model_class.model_name.human)) %></h1>
 </div>
+<div class = "search_tag box">
+  <%= form_tag(search_tag_path, :html => { :class=>"well form-search" }) do%>
+    <%= search_field_tag :search_tag,(params[:tags] || I18n.t("menu.search_tag")), :class => "input-medium search-query" %>
+    <!--%= f.button :submit, :class => 'btn', :disable_with => 'search ...' %-->
+    <% unless @model_class.nil? %>
+      <%= hidden_field_tag 'model', @model_class.to_s %>
+    <% end %>
+  <% end %>
+</div>
 <div class = "archives box">
-
-<h1>Category Sorting Example</h1>
 <p>Drag and drop the categories into a nested set then hit save</p>
-
 <ul id='sortable'>
   <% for cat in CategoryBase.roots %>
     <li id='category_<%= cat.id %>'>
@@ -16,7 +22,7 @@
   <% end -%>
 </ul>
 
-<%= link_to t('.save_sorted', :default => t("helpers.links.save_sorted", :model => model_class.model_name.human)),
+<!--%= link_to t('.save_sorted', :default => t("helpers.links.save_sorted", :model => model_class.model_name.human)),
             '#',
-            :class => 'btn btn-primary', :id => 'serialize'%>
+            :class => 'btn btn-primary', :id => 'serialize'%-->
 </div>

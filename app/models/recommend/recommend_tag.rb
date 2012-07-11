@@ -13,6 +13,8 @@ class Recommend::RecommendTag
   P2  = "question_baby"
   P3  = "knowledge_baby"
   P4  = "knowledge_mom"
+  P5  = "knowledge_index1"
+  P6  = "knowledge_index2"
 
 
   POSITION = {
@@ -20,6 +22,8 @@ class Recommend::RecommendTag
     P2     => "#{I18n.t('mongoid.attributes.recommend/recommend_tag.p2')}",
     P3     => "#{I18n.t('mongoid.attributes.recommend/recommend_tag.p3')}",
     P4     => "#{I18n.t('mongoid.attributes.recommend/recommend_tag.p4')}",
+    P5     => "#{I18n.t('mongoid.attributes.recommend/recommend_tag.p5')}",
+    P6     => "#{I18n.t('mongoid.attributes.recommend/recommend_tag.p6')}",
     #A35_40     => "#{I18n.t('activerecord.profiles.agerange.A35_40')}",
 
   }

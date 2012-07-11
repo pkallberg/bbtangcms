@@ -1,3 +1,4 @@
+# coding: utf-8
 class Knowledge< ActiveRecord::Base
     DEFAULT_LIMIT = 15
 
@@ -116,6 +117,11 @@ class Knowledge< ActiveRecord::Base
 
   def repear_save
     self.content = Sanitize.clean(self.body).strip
+    ##(/，|,|;|；|\ +|\||\r\n/)
+    self.tag_list = sort_tag_list(self.tag_list) if self.tag_list.present?
+    self.timeline_list = sort_tag_list(self.timeline_list) if self.timeline_list.present?
+    self.category_list = sort_tag_list(self.category_list) if self.category_list.present?
+    self.identity_list = sort_tag_list(self.identity_list) if self.identity_list..present?
   end
 
   def count_focus
@@ -130,6 +136,14 @@ class Knowledge< ActiveRecord::Base
     #    u.first
     #  end
     #end
+  end
+
+  def sort_tag_list(tag_list= [])
+    tag_str = ''
+    tag_list.each do |tag|
+      tag_str = tag_str+ ',' + tag
+    end
+    tag_str.to_s.split(/，|,|;|；|\ +|\||\r\n/) if tag_str.present?
   end
 
   class << self

@@ -12,7 +12,7 @@ BBTangCMS::Application.routes.draw do
 
   resources :questions do
     collection do
-      match 'resetscore'
+      get 'resetscore'
     end
     resources :answers
     #member do

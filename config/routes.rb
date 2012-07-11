@@ -3,6 +3,7 @@ BBTangCMS::Application.routes.draw do
   match "common/search", :as => :common_search
 
 
+
   namespace :kindeditor do
     #post "/upload" => "assets#create"
     match '/upload' => 'assets#create', :via => :post
@@ -53,6 +54,7 @@ BBTangCMS::Application.routes.draw do
   root :to => 'dashboard#index'
   match "/archives/:model/" => "archives#index", :as => :archives, :via => :get
   match "/archives/savesort" => 'archives#savesort'
+  match "/archives/search_tag" => 'archives#search_tag', :as => :search_tag
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

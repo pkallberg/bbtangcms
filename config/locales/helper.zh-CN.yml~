@@ -8,6 +8,8 @@ zh-CN:
       recent: "近期%{model}"
       show: "显示%{model}"
       search: "%{model}搜索"
+      search_tag: "%{model}搜索"
+      resetscore: "重置%{model}评分"
 
     actions: "动作"
     links:
@@ -22,3 +24,4 @@ zh-CN:
       confirm: "你想好了吗?"
       save_sorted: "保存排列"
       search: "搜索%{model}"
+      resetscore: "重置%{model}评分"

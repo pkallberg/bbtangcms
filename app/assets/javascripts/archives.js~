@@ -17,7 +17,11 @@
       $("#sortable").disableSelection(); // make links not clickable
       $('#serialize').click(function (){
         var c = {set : JSON.stringify($('#sortable').nestedSortable('toHierarchy', {startDepthCount: 0}))};
-        $.post("savesort", c, $('#output').html('<p id="flash_notice">Saved Successfully</p>'));
+        $.post("/archives/savesort", c, $('#output').html('<p id="flash_notice">Saved Successfully</p>'));
         return false;
       });
     });
+    $('#<%= child.name %>').find($('.close')).click(function(){
+    $('#<%= child.name %>').modal({
+    keyboard: false
+    })

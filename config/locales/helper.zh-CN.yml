@@ -8,6 +8,7 @@ zh-CN:
       recent: "近期%{model}"
       show: "显示%{model}"
       search: "%{model}搜索"
+      search_tag: "%{model}标签搜索"
       resetscore: "重置%{model}评分"
 
     actions: "动作"
