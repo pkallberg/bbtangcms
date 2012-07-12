@@ -1,9 +1,12 @@
 permit:
   create_profile: create_profile
   create_knowledge: create_knowledge
-  create_category_base: create_category_base
+  #create_category_base: create_category_base
   create_question: create_question
   create_question_answer: create_question_answer
+  create_tag_identity: create_tag_identity
+  create_tag_identities_timeline: create_tag_identities_timeline
+  create_tag_identities_timelines_category: create_tag_identities_timelines_category
   #create_recommend_recommend_event: create_recommend_recommend_event
   #create_recommend_recommend_mtool: create_recommend_recommend_mtool
   create_recommend_recommend_product: create_recommend_recommend_product
@@ -15,9 +18,12 @@ permit:
   create_recommend_recommend_hindex: create_recommend_recommend_hindex
   update_profile: update_profile
   update_knowledge: update_knowledge
-  update_category_base: update_category_base
+  #update_category_base: update_category_base
   update_question: update_question
   update_question_answer: update_question_answer
+  #update_tag_identity: update_tag_identity
+  #update_tag_identities_timeline: update_tag_identities_timeline
+  update_tag_identities_timelines_category: create_tag_identities_timelines_category
   update_recommend_recommend_product: update_recommend_recommend_product
   update_recommend_recommend_question: update_recommend_recommend_question
   update_recommend_recommend_quiz: update_recommend_recommend_quiz
@@ -27,9 +33,12 @@ permit:
   update_recommend_recommend_hindex: update_recommend_recommend_hindex
   read_profile: read_profile
   read_knowledge: read_knowledge
-  read_category_base: read_category_base
+  #read_category_base: read_category_base
   read_question: read_question
   read_question_answer: read_question_answer
+  read_tag_identity: read_tag_identity
+  read_tag_identities_timeline: read_tag_identities_timeline
+  read_tag_identities_timelines_category: read_tag_identities_timelines_category
   read_recommend_recommend_product: read_recommend_recommend_product
   read_recommend_recommend_question: read_recommend_recommend_question
   read_recommend_recommend_quiz: read_recommend_recommend_quiz
@@ -39,9 +48,12 @@ permit:
   read_recommend_recommend_hindex: read_recommend_recommend_hindex
   destroy_profile: destroy_profile
   destroy_knowledge: destroy_knowledge
-  destroy_category_base: destroy_category_base
+  #destroy_category_base: destroy_category_base
   destroy_question: destroy_question
   destroy_question_answer: destroy_question_answer
+  #destroy_tag_identity: destroy_tag_identity
+  #destroy_tag_identities_timeline: destroy_tag_identities_timeline
+  destroy_tag_identities_timelines_category: destroy_tag_identities_timelines_category
   destroy_recommend_recommend_product: destroy_recommend_recommend_product
   destroy_recommend_recommend_question: destroy_recommend_recommend_question
   destroy_recommend_recommend_quiz: destroy_recommend_recommend_quiz

@@ -1,0 +1,15 @@
+zh-CN:
+  activerecord:
+    models:
+      category: "分类标签"
+    attributes:
+      category:
+        id: "id"
+        name: "名称"
+        description: "描述"
+        parent_id: "父标签id"
+        parent: "父标签"
+        child: "子标签"
+        children: "子标签集合"
+        created_at: "创建时间"
+        updated_at: "更新时间"

@@ -1,26 +1,26 @@
 <% if current_user.present? and current_user.is_cms_user? %>
   <div class="well sidebar-nav">
-	  <h3><%= t("layout.sidebar.model") %></h3>
+	  <h3><%= t("common.sidebar.model") %></h3>
 	  <ul class="nav nav-list">
-		  <li class="nav-header"><%= t("layout.sidebar.archives") %></li>
-		  <li><%= link_to t('.archives', :default => t("helpers.links.archives", :model => Knowledge.new.class.model_name.human)),
+		  <li class="nav-header"><%= t("common.sidebar.archives") %></li>
+		  <li><%= link_to t("helpers.links.archives", :model => Knowledge.new.class.model_name.human),
               archives_path(:model => Knowledge) %></li>
-		  <li><%= link_to t('.archives', :default => t("helpers.links.archives", :model => Question.new.class.model_name.human)),
+		  <li><%= link_to t("helpers.links.archives", :model => Question.new.class.model_name.human),
               archives_path(:model => Question) %></li>
 	  </ul>
 	  <ul class="nav nav-list">
-		  <li class="nav-header"><%= t("layout.sidebar.model") %></li>
+		  <li class="nav-header"><%= t("common.sidebar.model") %></li>
 		  <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Knowledge.new.class.model_name.human)),
               knowledges_path %></li>
 		  <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Question.new.class.model_name.human)),
               questions_path %></li>
-		  <li><%= link_to "Link3", "/path3"  %></li>
+		  <li><%= link_to t('.tags'),tag_dashboard_path %></li>
 	  </ul>
   </div><!--/.well -->
   <div class="well sidebar-nav">
-	  <h3><%= t("layout.sidebar.recommend") %></h3>
+	  <h3><%= t("common.sidebar.recommend") %></h3>
 	  <ul class="nav nav-list">
-		  <li class="nav-header"><%= t("layout.sidebar.recommend") %></li>
+		  <li class="nav-header"><%= t("common.sidebar.recommend") %></li>
 		  <!--li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendEvent.new.class.model_name.human)),
               recommend_recommend_events_path %></li-->
       <!--li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendMtool.new.class.model_name.human)),

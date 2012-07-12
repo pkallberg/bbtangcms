@@ -3,10 +3,6 @@ zh-CN:
     appname: "BBTangCMS"
     recommend: "推送"
     auth: "授权认证"
-    sidebar:
-      model: "模块"
-      archives: "归档"
-      recommend: "推送"
     menu:
       unauthorized_user: "未授权用户"
     #recommend:
@@ -27,6 +23,16 @@ zh-CN:
     assign_permits:
       index:
         #title: "权限分派首页"
+  tag:
+    dashboard:
+      show:
+        tags_title: "标签云"
+        identity_title: "对象标签首页"
   common:
+    sidebar:
+      model: "模块"
+      archives: "归档"
+      recommend: "推送"
+      tags: "标签树"
     search_result:
       title: "搜索结果"

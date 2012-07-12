@@ -1,3 +1,6 @@
 class Identity < CategoryBase
+  validates :name, :presence => true, :uniqueness => true
 
+  def parent
+  end
 end

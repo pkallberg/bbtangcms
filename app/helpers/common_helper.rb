@@ -20,4 +20,18 @@ module CommonHelper
     end
     return model_columns_list
   end
+
+  def get_tag_list_path(tag = nil )
+    if tag.present?
+      if tag.class == Category
+        return link_to tag, tag_identity_timeline_category_path(tag.parent.parent,tag.parent,tag)
+      end
+      if tag.class == Timeline
+        return link_to tag, tag_identity_timeline_categories_path(tag.parent,tag)
+      end
+      if tag.class == Identity
+        return link_to tag, tag_identity_timelines_path(tag)
+      end
+    end
+  end
 end

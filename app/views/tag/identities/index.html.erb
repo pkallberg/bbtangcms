@@ -1,0 +1,46 @@
+
+<%- model_class = Identity.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+
+<div class = "identities box">
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:parent) %></th>
+      <th><%= model_class.human_attribute_name(:children) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name(:updated_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+<% @tag_identities.each do |tag_identity| %>
+  <tr>
+    <td><%= tag_identity.id %></td>
+    <td><%= tag_identity.name %></td>
+    <td><%= link_to tag_identity.parent_id if tag_identity.parent_id.present? %></td>
+    <td><%= link_to tag_identity.children.count, tag_identity_timelines_path(tag_identity) if tag_identity.children.present? %></td>
+    <td><%=time_tag tag_identity.created_at, :format => :default if tag_identity.created_at?    %></td>
+    <td><%=time_tag tag_identity.updated_at, :format => :default if tag_identity.updated_at?    %></td>
+    <td><%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)),
+                      tag_identity_path(tag_identity), :class => 'btn btn-mini' %></td>
+    <!--td><!--%= link_to 'Edit', edit_tag_identity_path(tag_identity) %></td-->
+    <!--td><!--%= link_to 'Destroy', tag_identity, confirm: 'Are you sure?', method: :delete %></td-->
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<% if can? :create, "Identity" %>
+  <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)),
+        new_tag_identity_path,
+        :class => 'btn btn-primary'  %>
+<% end %>
+</div>
