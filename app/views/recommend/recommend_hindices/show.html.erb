@@ -7,8 +7,8 @@
 <%= show_for @recommend_hindex do |s| %>
   <%= s.attribute :name %>
   <%= s.attribute :body, :value => (raw @recommend_hindex.body) %>
-  <%= s.attribute :position %>
-  <%= s.attribute :color %>
+  <%= s.attribute :post_name %>
+  <%= s.attribute :color_name %>
   <%= s.attribute :created_at %>
   <%= s.attribute :updated_at %>
 <% end %>

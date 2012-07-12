@@ -102,7 +102,7 @@ GEM
     less-rails-bootswatch (0.2.7)
       less-rails-bootstrap (~> 2.0.13)
     libv8 (3.3.10.4)
-    linecache19 (0.5.12)
+    linecache19 (0.5.13)
       ruby_core_source (>= 0.1.4)
     log4r (1.1.10)
     macaddr (1.6.1)
@@ -229,7 +229,7 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.10.0)
-    ruby-debug-base19 (0.11.25)
+    ruby-debug-base19 (0.11.26)
       columnize (>= 0.3.1)
       linecache19 (>= 0.5.11)
       ruby_core_source (>= 0.1.4)
@@ -308,6 +308,7 @@ DEPENDENCIES
   less-rails (~> 2.2.3)
   less-rails-bootstrap (~> 2.0.13)
   less-rails-bootswatch (~> 0.2.5)
+  linecache19 (= 0.5.13)
   mime-types (~> 1.19)
   mongoid (~> 3.0.0.rc)
   mysql2
@@ -323,6 +324,7 @@ DEPENDENCIES
   rails_kindeditor (~> 0.3.0)
   rspec
   rspec-rails
+  ruby-debug-base19 (= 0.11.26)
   ruby-debug19
   sanitize (= 2.0.3)
   settingslogic (= 2.0.6)

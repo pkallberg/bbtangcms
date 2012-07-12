@@ -2,6 +2,8 @@ zh-CN:
   simple_form:
     "yes": '是'
     "no": '否'
+    "true": '真'
+    "false": '假'
     required:
       text: '必填项'
       mark: '*'
@@ -13,6 +15,7 @@ zh-CN:
     hints:
       defaults:
         name: "请选择填写名称字段"
+        search_tags: "请选择填写名称字段"
     # Labels and hints examples
     # labels:
     #   defaults:

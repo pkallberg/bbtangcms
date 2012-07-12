@@ -62,7 +62,7 @@
             <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)),
                       edit_profile_path(profile), :class => 'btn btn-mini' %>
           <% end %>
-          <% if can? :destroy, knowledge %>
+          <% if can? :destroy, profile %>
             <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)),
                       profile_path(profile),
                       :method => :delete,

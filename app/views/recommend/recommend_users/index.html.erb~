@@ -42,7 +42,7 @@
   </table>
 <br />
 
-<% if can? :update, Recommend::RecommendUser %>
+<% if can? :create, Recommend::RecommendUser %>
   <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)), new_recommend_recommend_user_path %>
 <% end %>
 </div>

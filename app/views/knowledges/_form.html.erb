@@ -1,9 +1,8 @@
-<%= simple_form_for @knowledge, :html => { :class => "form-inline", :remote => true } do |f| %>
+<%= simple_form_for(@knowledge, :html => { :class => "form-inline", :remote => true }) do |f| %>
   <div class="knowledge-head box">
     <span class="label label-info">head</span>
     <%= f.input :title %>
     <%= f.input :summary, :input_html => { :rows =>"5", :cols =>"100" } %>
-    <!--%= f.input :content %-->
   </div>
   <div class="knowledge-content box">
     <span class="label label-info">content</span>
@@ -13,14 +12,14 @@
   <div class="knowledge-tags box" id = "knowledge-tags">
       <span class="label label-info">tags</span>
     <% unless @identities.empty? %>
-      <%= f.input :identity_list,  :as => :check_boxes, :collection => @identities.uniq{|x| x.name},:checked => (@identities_choose.map(&:id) if @identities_choose), :input_html => { :rows =>"5", :cols =>"20" } %>
+      <%= f.input :identity_list,  :as => :check_boxes, :collection => @identities.uniq{|x| x.name},:checked => (@identities_choose.map(&:id) if @identities_choose.compact.present?), :input_html => { :rows =>"5", :cols =>"20" } %>
     <% end %>
     <% unless @timelines.empty? %>
-      <%= f.input :timeline_list,  :as => :check_boxes, :collection => @timelines.uniq{|x| x.name},:checked => @timelines_choose.map(&:id), :input_html => { :rows =>"5", :cols =>"20" } %>
+      <%= f.input :timeline_list,  :as => :check_boxes, :collection => @timelines.uniq{|x| x.name},:checked => (@timelines_choose.map(&:id)  if @timelines_choose.compact.present?), :input_html => { :rows =>"5", :cols =>"20" } %>
     <% end %>
 
     <% unless @categories.empty? %>
-      <%= f.input :category_list,  :as => :check_boxes, :collection => @categories.uniq{|x| x.name},:checked => @categories_choose.map(&:id), :input_html => { :rows =>"5", :cols =>"20" } %>
+      <%= f.input :category_list,  :as => :check_boxes, :collection => @categories.uniq{|x| x.name},:checked => (@categories_choose.map(&:id)  if @categories_choose.compact.present?), :input_html => { :rows =>"5", :cols =>"20" } %>
     <% end %>
     <!--%= link_to "refresh", :action => "refresh", :remote => true %-->
     <%= f.button :submit, 'refresh', :class => "btn btn-info", :remote => true, :disable_with => 'loading...' %>

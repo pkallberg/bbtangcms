@@ -1,10 +1,11 @@
 //@import "twitter/bootstrap/bootstrap";
 @import "twitter/bootstrap";
 /*
-*= <%= "depend_on 'bootswatch/#{Setting.today_theme}/bootswatch';" %>
-*= <%= "depend_on 'bootswatch/#{Setting.today_theme}/variables';" %>
+*= <%= "require 'bootswatch/#{Setting.today_theme}/bootswatch';" %>
+*= <%= "require 'bootswatch/#{Setting.today_theme}/variables';" %>
 */
-
+<%= "@import 'bootswatch/#{Setting.today_theme}/bootswatch';" %>
+<%= "@import 'bootswatch/#{Setting.today_theme}/variables';" %>
 
 
 
@@ -41,6 +42,20 @@ form {
   }
 }
 
+.modal {
+    background-clip: padding-box;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    left: 35%;
+    /*margin: 50px 0 0 50px;*/
+    overflow: auto;
+    position: fixed;
+    top: 35%;
+    width: 1050px;
+    z-index: 1050;
+}
 
 textarea {
       width: auto;

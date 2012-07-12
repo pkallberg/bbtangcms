@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120709031712) do
+ActiveRecord::Schema.define(:version => 20120711084710) do
 
   create_table "admin_settings", :force => true do |t|
     t.string   "name"
@@ -338,6 +338,9 @@ ActiveRecord::Schema.define(:version => 20120709031712) do
     t.integer  "views_count",                              :default => 0,    :null => false
     t.string   "source_info",               :limit => 100
     t.text     "auto_tags"
+    t.string   "face_file_name"
+    t.string   "face_content_type"
+    t.string   "face_file_size"
   end
 
   create_table "levels", :force => true do |t|

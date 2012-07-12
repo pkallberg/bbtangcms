@@ -21,6 +21,7 @@
     pages: "页面"
     archives: "归档"
     search: "搜索"
+    search_tag: "标签搜索"
     users: "会员"
     tagcloud: "标签云"
     recent_post: "近期文章"

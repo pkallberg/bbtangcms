@@ -40,10 +40,10 @@ class Profile < ActiveRecord::Base
     true
   end
 
-  #profile_face_url = BBTangCMS::MetaCache.get_config_data("profile_face_url")
-  profile_face_url = "/uploadfiles/:class/:attachment/:id/:style/:filename"
-  #    #profile_face_path = BBTangCMS::MetaCache.get_config_data("profile_face_path")
-  profile_face_path =":rails_root/public/uploadfiles/:class/:attachment/:id/:style/:filename"
+  #profile_face_url = Askjane::MetaCache.get_config_data("profile_face_url")
+  profile_face_url = "/uploads/paperclip/:class/:attachment/:id/:style/:filename"
+  #    #profile_face_path = Askjane::MetaCache.get_config_data("profile_face_path")
+  profile_face_path =":rails_root/public/uploads/paperclip/:class/:attachment/:id/:style/:filename"
 
   attr_accessible :face, :nickname, :gender, :agerange,
                   :pregnancy_status, :pregnancy_timeline,
@@ -53,10 +53,8 @@ class Profile < ActiveRecord::Base
                   :baby_gender,:real_name, :level_id, :birthday, :degree,
                   :phone, :profession, :expert_field, :hobby, :focus_tags_on,
                   :label, :weibo, :updated_by, :created_at
-  #profile_face_url = BBTangCMS::MetaCache.get_config_data("profile_face_url")
-  profile_face_url = "/uploadfiles/:class/:attachment/:id/:style/:filename"
-  #profile_face_path = BBTangCMS::MetaCache.get_config_data("profile_face_path")
-  profile_face_path =":rails_root/public/uploadfiles/:class/:attachment/:id/:style/:filename"
+
+
   has_attached_file :face,:default_url => "/assets/face/:style/missing.png",
     :default_style => :s120,
     :styles => {

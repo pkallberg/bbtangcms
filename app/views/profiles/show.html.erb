@@ -4,6 +4,9 @@
   <%= s.attribute :real_name %>
   <%= s.attribute :nickname %>
   <%= s.association :level %>
+  <%= s.attribute :face  do %>
+    <% image_tag @profile.face(:s120) if @profile.face.present? %>
+  <% end %>
   <%= s.attribute :gender do %>
     <%= content_tag :span, t("activerecord.attributes.profile.gender_#{@profile.gender? ? 1 : 0}") %>
   <% end %>

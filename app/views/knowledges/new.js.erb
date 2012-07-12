@@ -11,3 +11,6 @@ var editor = KindEditor.create(
       fileManagerJson: '/kindeditor/filemanager'
     }
     );
+<% unless @knowledge.errors.present? %>
+  window.location.pathname="<%= knowledge_path(@knowledge) %>"
+<% end %>

@@ -1,8 +1,9 @@
+# coding: utf-8
 class ArchivesController < ApplicationController
   authorize_resource :class => false
   def index
     @model_class = params[:model].constantize
-    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => @model_class.model_name.human), archives_path(:model => @model_class)
+    breadcrumbs.add I18n.t("helpers.titles.archives", :model => @model_class.model_name.human), archives_path(:model => @model_class)
     @knowledges = Knowledge.paginate(:page => params[:page], :per_page => 15)
   end
 
@@ -27,5 +28,22 @@ class ArchivesController < ApplicationController
       sort_children(child, childitem) unless child['children'].nil?
       prevchild = childitem
     end
+  end
+  def search_tag
+    if (params.has_key? "model") and (params["model"].present?)
+      @model_class = params[:model].constantize
+      #query_word = params[:q]
+      #@results = @model_class.where params[:type] => query_word
+      # if params[:type].singularize.gsub("_id","").classify.class_exists?
+      #if @results.empty?
+      #  @results = @model_class.where("#{params[:type].to_s} like '%#{query_word}%'")
+      #end
+      search_tag = params[:type].split(/，|,|;|；|\ +|\||\r\n/)
+      @results = @model_class.tagged_with search_tag
+    end
+
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => @model_class.model_name.human), :search
+
+    render :template => 'common/search_result.html.erb'
   end
 end

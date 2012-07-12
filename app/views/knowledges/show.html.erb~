@@ -47,6 +47,9 @@
 	<%= show_for @knowledge do |k| %>
 		<%= k.attribute :title %>
 		<%= k.attribute :summary %>
+    <%= s.attribute :face  do %>
+      <% image_tag @knowledge.face(:s120) if @knowledge.face.present? %>
+    <% end %>
 		<%= k.attribute :body, :value => (raw @knowledge.body)%>
 		<%= k.attribute :thanks_count %>
 		<%= k.attribute :forwarding_count %>
@@ -62,6 +65,7 @@
 		<%= k.attribute :updated_user %>
 		<%= k.attribute :updated_at, :format => :short %>
 		<%= k.attribute :deleted_by %>
+		<%= k.attribute :deleted_user %>
 		<%= k.attribute :deleted_at, :format => :short %>
 		<!--%= k.association :tags, :to_sentence => true %-->
 		<!--%= k.association :timeline_ids, :to_sentence => true %-->

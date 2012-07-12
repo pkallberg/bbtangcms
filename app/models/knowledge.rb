@@ -1,3 +1,4 @@
+# coding: utf-8
 class Knowledge< ActiveRecord::Base
     DEFAULT_LIMIT = 15
 
@@ -11,26 +12,47 @@ class Knowledge< ActiveRecord::Base
   has_one :quiz
 
   has_many :r_user_knowledges
-  has_many :profiles,:through => :r_user_knowledges
+  has_many :knowledges,:through => :r_user_knowledges
   attr_accessor :soft_deleted
-  attr_accessible :title, :summary, :body, :created_name,
+  attr_accessible :title, :face, :summary, :body, :created_name,
                   :deleted_at, :source_info,
                   :views_count, :comments_count, :forwarding_count,
                   :thanks_count, :created_at, :updated_at,
                   :updated_by, :identity_list, :tag_list,
                   :created_by,:timeline_list,:category_list, :soft_deleted
-  #缩略图
-  #has_attached_file :thumbnail,
-   # :default_style => :s120,
-   # :styles => {
-   #   :normal => "75x75#",
-   #   :s120 => "120x120#",
-   #   :s48 => "48x48#",
-   #   :s32 => "32x32#",
-   #   :s16 => "16x16#"
-   #   },
-   # :url => "/uploadfiles/:class/:attachment/:id/:basename/:style.:extension",
-   # :path => ":rails_root/public/uploadfiles/:class/:attachment/:id/:basename/:style.:extension"
+
+  #knowledge_face_url = Askjane::MetaCache.get_config_data("knowledge_face_url")
+  knowledge_face_url = "/uploads/paperclip/:class/:attachment/:id/:style/:filename"
+  #    #knowledge_face_path = Askjane::MetaCache.get_config_data("knowledge_face_path")
+  knowledge_face_path =":rails_root/public/uploads/paperclip/:class/:attachment/:id/:style/:filename"
+
+  has_attached_file :face,:default_url => "/assets/face/:style/missing.png",
+    :default_style => :s120,
+    :styles => {
+      :normal => "180x180#",
+      :s120 => "120x120#",
+      :s48 => "48x48#",
+      :s32 => "32x32#",
+      :s16 => "16x16#"
+      },
+    :url => knowledge_face_url,
+    :path => knowledge_face_path
+
+  #validates_attachment :face, :presence => true,
+  validates_attachment :face,
+                       :content_type => {:content_type => ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png', 'image/bmp']}, :allow_nil=>true
+                       #:size => { :in => 0..2.megabytes }
+
+  #validates :face, :attachment_presence => true
+  #validates_with AttachmentPresenceValidator, :attributes => :face
+  validates_attachment_size :face, :less_than => 2.megabytes,
+                          :unless => Proc.new {|m| m[:face].nil?}
+
+  before_post_process :image?
+  def image?
+    #breakpoint
+    !((self.face.content_type =~ /^image\/*/).nil?)
+  end
 
   #自身的model name
   self_model_name #引入 self_model_name
@@ -86,7 +108,7 @@ class Knowledge< ActiveRecord::Base
 
   # 作者
   def owner
-    Profile.find_by_user_id(self.created_by)
+    knowledge.find_by_user_id(self.created_by)
   end
 
   def updated_user
@@ -116,6 +138,11 @@ class Knowledge< ActiveRecord::Base
 
   def repear_save
     self.content = Sanitize.clean(self.body).strip
+    ##(/，|,|;|；|\ +|\||\r\n/)
+    self.tag_list = sort_tag_list(self.tag_list) if self.tag_list.present?
+    self.timeline_list = sort_tag_list(self.timeline_list) if self.timeline_list.present?
+    self.category_list = sort_tag_list(self.category_list) if self.category_list.present?
+    self.identity_list = sort_tag_list(self.identity_list) if self.identity_list..present?
   end
 
   def count_focus
@@ -130,6 +157,14 @@ class Knowledge< ActiveRecord::Base
     #    u.first
     #  end
     #end
+  end
+
+  def sort_tag_list(tag_list= [])
+    tag_str = ''
+    tag_list.each do |tag|
+      tag_str = tag_str+ ',' + tag
+    end
+    tag_str.to_s.split(/，|,|;|；|\ +|\||\r\n/) if tag_str.present?
   end
 
   class << self

@@ -27,5 +27,6 @@
 </table>
 
 <br />
-
+<% if can? :create, "Recomment::RecommendMtool" %>
+<% end %>
 <%= link_to 'New Recommend mtool', new_recommend_recommend_mtool_path %>

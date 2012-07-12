@@ -3,4 +3,17 @@
   <h1><%=t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human,
                                    :default => "Edit #{model_class.model_name.human}") %></h1>
 </div>
+<% unless @knowledge.new_record? %>
+  <div class="knowledge-face box">
+    <%= simple_form_for(@knowledge, :html => { :class => "form-inline", :remote => true, :id => "edit_knowledge_face" }) do |f| %>
+      <%= f.input :face  do %>
+        <%= f.file_field :face %>
+        <%= image_tag @knowledge.face(:s32) if @knowledge.face.present? %>
+      <% end %>
+      <div class="form-actions">
+        <%= f.button :submit, :class => 'btn-primary', :disable_with => 'loading...' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 <%= render :partial => 'form' %>
