@@ -11,6 +11,15 @@ BBTangCMS::Application.routes.draw do
     #get  "/filemanager" => "assets#list"
   end
 
+  namespace :tag do
+    resources :identities , :only => [:index, :show, :new, :create] do
+      resources :timelines, :only => [:index, :show, :new, :create] do
+        resources :categories
+      end
+    end
+    root :to => 'dashboard#show', :as => :dashboard
+  end
+
   resources :questions do
     collection do
       get 'resetscore'
@@ -48,6 +57,7 @@ BBTangCMS::Application.routes.draw do
     resources :assign_permits
     root :to => 'dashboard#show', :as => :dashboard
   end
+
 
   devise_for :users
 

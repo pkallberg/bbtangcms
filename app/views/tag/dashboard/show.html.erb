@@ -1,0 +1,18 @@
+<h1><%=t '.tags_title' %></h1>
+<div class="tagroot box">
+  <ul>
+    <li> <%= link_to t('.identity_title', :default => t("helpers.links.index", :model => Identity.new.class.model_name.human)),
+            tag_identities_path %> </li>
+  </ul>
+</div>
+
+<div class="tagtree box">
+  <ul>
+    <li> <%= link_to "Root_tag",tag_identities_path %></li>
+      <% @root_tags.each do |identity| %>
+        <span><%= get_tag_list_path identity  %> <%= "( #{identity.children.count} )" if identity.children.present?  %></span>
+        <%= render 'children', :item => identity unless identity.leaf? %>
+      <% end %>
+    </li>
+  </ul>
+</div>

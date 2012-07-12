@@ -37,7 +37,8 @@ class Recommend::RecommendTag
   def ids_validator(str=nil)
     ids = str.to_s.split(/，|,|;|；|\ +|\||\r\n/) if self.body
     ids.each do |tag|
-      errors.add(:body, "Tag '#{tag}' is not exist") if CategoryBase.find(tag).nil?
+      #errors.add(:body, "Tag '#{tag}' is not exist") unless CategoryBase.find_by_name(tag).present?
+      errors.add(:body, "Tag '#{tag}' is not exist") unless ActsAsTaggableOn::Tag.find_by_name(tag).present?
     end
   end
 

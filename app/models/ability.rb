@@ -51,8 +51,21 @@ class Ability
     can :create, Question
   end
 
+
   def create_question_answer
     can :create, Answer, :question => Question.new
+  end
+
+  def create_tag_identity
+    can :create, Identity
+  end
+
+  def create_tag_identities_timeline
+    can :create, Timeline, :identity => Identity.new
+  end
+
+  def create_tag_identities_timelines_category
+    can :create, Category, :identity => Identity.new, :timeline => Timeline.new
   end
 
   def create_recommend_recommend_event
@@ -111,6 +124,18 @@ class Ability
     can :update, Answer, :question => Question.new
   end
 
+  def update_tag_identity
+    can :update, Identity
+  end
+
+  def update_tag_identities_timeline
+    can :update, Timeline, :identity => Identity.new
+  end
+
+  def update_tag_identities_timelines_category
+    can :update, Category, :identity => Identity.new, :timeline => Timeline.new
+  end
+
   def update_recommend_recommend_event
     can :update, Recommend::RecommendEvent
   end
@@ -167,6 +192,18 @@ class Ability
     can :read, Answer, :question => Question.new
   end
 
+  def read_tag_identity
+    can :read, Identity
+  end
+
+  def read_tag_identities_timeline
+    can :read, Timeline, :identity => Identity.new
+  end
+
+  def read_tag_identities_timelines_category
+    can :read, Category, :identity => Identity.new, :timeline => Timeline.new
+  end
+
   def read_recommend_recommend_mtool
     can :read, Recommend::RecommendMtool
   end
@@ -217,6 +254,18 @@ class Ability
 
   def destroy_question_answer
     can :destroy, Answer, :question => Question.new
+  end
+
+  def destroy_tag_identity
+    can :destroy, Identity
+  end
+
+  def destroy_tag_identities_timeline
+    can :destroy, Timeline, :identity => Identity.new
+  end
+
+  def destroy_tag_identities_timelines_category
+    can :destroy, Category, :identity => Identity.new, :timeline => Timeline.new
   end
 
   def destroy_recommend_recommend_mtool
@@ -285,7 +334,11 @@ class Ability
     #can [:index,:destroy,:show] , User
     #can :index, Product
     #can :show, Product
+
     can :index, :dashboard
+    # bellow is defining for "Tag::DashboardController " any it work as follow line(cancan 1.6.7)
+    #and also shuld same with auth/dashboard but I filter, with another method
+    can :show, :dashboard
     can :search, :common
   end
 

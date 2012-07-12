@@ -1,0 +1,22 @@
+<%- model_class = @category.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => t('helpers.titles.show', :model => model_class.model_name.human) %></h1>
+</div>
+
+<%= show_for @category do |s| %>
+  <%= s.attribute :name %>
+  <%= s.attribute :parent, :value => (link_to  @timeline, tag_identity_timeline_path(@identity,@timeline) if (@category.parent_id.present? and @timeline.present? and @identity.present?))  %>
+  <%= s.attribute :children %>
+  <%= s.attribute :description %>
+  <%= s.attribute :created_at %>
+  <%= s.attribute :updated_at %>
+<% end %>
+
+<div class="actions">
+  <% if can? :update, @category.class %>
+    <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_tag_identity_timeline_category_path(@identity,@timeline,@category), :class => 'btn' %> |
+  <% end %>
+  <% if can? :read, @category.class %>
+    <%= link_to t('.back', :default => t("helpers.links.back", :model => model_class.model_name.human)), tag_identity_timeline_categories_path(@identity,@timeline) , :class => 'btn'%>
+  <% end %>
+</div>

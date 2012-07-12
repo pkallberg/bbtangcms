@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
         redirect_to root_url, :alert => exception.message
       else
         #render :file => "#{Rails.root}/public/403.html", :status => 403
+        sign_out current_user
         redirect_to "http://bbtang.com"
       end
     end

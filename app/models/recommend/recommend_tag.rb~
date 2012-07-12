@@ -14,7 +14,7 @@ class Recommend::RecommendTag
   P3  = "knowledge_baby"
   P4  = "knowledge_mom"
   P5  = "knowledge_index1"
-  P5  = "knowledge_index2"
+  P6  = "knowledge_index2"
 
 
   POSITION = {
@@ -37,7 +37,7 @@ class Recommend::RecommendTag
   def ids_validator(str=nil)
     ids = str.to_s.split(/，|,|;|；|\ +|\||\r\n/) if self.body
     ids.each do |tag|
-      errors.add(:body, "Tag '#{tag}' is not exist") if CategoryBase.find(tag).nil?
+      errors.add(:body, "Tag '#{tag}' is not exist") unless CategoryBase.find_by_name(tag).present?
     end
   end
 

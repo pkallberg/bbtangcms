@@ -1,0 +1,17 @@
+<%= simple_form_for([:tag,@tag_identity]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <!--%= f.input :parent_id %-->
+    <!--%= f.input :created_at %-->
+    <!--%= f.input :updated_at %-->
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary', :disable_with => 'loading...' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                tag_identities_path, :class => 'btn' %>
+  </div>
+<% end %>
