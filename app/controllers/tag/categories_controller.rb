@@ -1,6 +1,10 @@
 class Tag::CategoriesController < Tag::TagBaseController
   load_and_authorize_resource
-  #load_and_authorize_resource :category, :through => [:identity,:timeline], :shallow => true
+  #load_and_authorize_resource :identity
+  #load_and_authorize_resource :timeline
+  #load_resource :identity
+  #load_resource :timeline
+  #load_and_authorize_resource :category, :through => [:timeline], :shallow => true
   Model_class = Category.new.class
   before_filter :load_parent
 
@@ -74,7 +78,7 @@ class Tag::CategoriesController < Tag::TagBaseController
     @tag_category.parent_id = @timeline.id if @timeline.present?
 
     respond_to do |format|
-      if @tag_category.update_attributes(params[:tag_category])
+      if @tag_category.update_attributes(params[:category])
         format.html { redirect_to tag_identity_timeline_category_path(@identity,@timeline,@tag_category), notice: 'Category was successfully updated.' }
         format.json { head :no_content }
       else

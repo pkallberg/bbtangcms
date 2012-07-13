@@ -20,7 +20,7 @@ class CategoryBase < ActiveRecord::Base
 
   private
   def auto_add_description
-     self.description = "description for #{self.name}" if self.description =nil or self.description = ''
+     self.description = "description for #{self.name}" unless self.description.present?
   end
 
 end

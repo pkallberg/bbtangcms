@@ -1,6 +1,8 @@
 class Tag::TimelinesController < Tag::TagBaseController
-  #load_and_authorize_resource
-  load_and_authorize_resource :timeline, :through => [:identity], :shallow => true
+  load_and_authorize_resource
+  #load_resource :identity
+  #load_and_authorize_resource :timeline, :through => [:identity], :shallow => true
+  #load_and_authorize_resource :nested => :identity
   Model_class = Timeline.new.class
   before_filter :load_parent
 
@@ -74,7 +76,7 @@ class Tag::TimelinesController < Tag::TagBaseController
     @tag_timeline.parent_id = @identity.id if @identity.present?
 
     respond_to do |format|
-      if @tag_timeline.update_attributes(params[:tag_timeline])
+      if @tag_timeline.update_attributes(params[:timeline])
         format.html { redirect_to @tag_timeline, notice: 'Timeline was successfully updated.' }
         format.json { head :no_content }
       else

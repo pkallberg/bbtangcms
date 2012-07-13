@@ -1,6 +1,6 @@
 class Identity < CategoryBase
   validates :name, :presence => true, :uniqueness => true
-
-  def parent
+  def timelines
+    self.children
   end
 end

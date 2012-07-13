@@ -67,7 +67,7 @@ class Tag::IdentitiesController < Tag::TagBaseController
     @tag_identity = Identity.find(params[:id])
 
     respond_to do |format|
-      if @tag_identity.update_attributes(params[:tag_identity])
+      if @tag_identity.update_attributes(params[:identity])
         format.html { redirect_to @tag_identity, notice: 'Identity was successfully updated.' }
         format.json { head :no_content }
       else
