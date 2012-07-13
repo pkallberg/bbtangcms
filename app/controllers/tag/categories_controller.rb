@@ -1,6 +1,6 @@
 class Tag::CategoriesController < Tag::TagBaseController
   load_and_authorize_resource
-  #load_and_authorize_resource :answer, :through => [:question]
+  #load_and_authorize_resource :category, :through => [:identity,:timeline], :shallow => true
   Model_class = Category.new.class
   before_filter :load_parent
 

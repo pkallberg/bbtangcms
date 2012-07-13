@@ -53,7 +53,7 @@ class Ability
 
 
   def create_question_answer
-    can :create, Answer, :question => Question.new
+    can :create, Answer#, :question => Question.new
   end
 
   def create_tag_identity
@@ -61,11 +61,13 @@ class Ability
   end
 
   def create_tag_identities_timeline
-    can :create, Timeline, :identity => Identity.new
+    # can :manage, Category, :restaurant => {:user_id => user.id}
+    can :create, Timeline
   end
 
   def create_tag_identities_timelines_category
-    can :create, Category, :identity => Identity.new, :timeline => Timeline.new
+    #debugger
+    can :create, Category#, :identity => Identity.new, :timeline => Timeline.new
   end
 
   def create_recommend_recommend_event
@@ -121,7 +123,7 @@ class Ability
   end
 
   def update_question_answer
-    can :update, Answer, :question => Question.new
+    can :update, Answer#, :question => Question.new
   end
 
   def update_tag_identity
@@ -129,11 +131,11 @@ class Ability
   end
 
   def update_tag_identities_timeline
-    can :update, Timeline, :identity => Identity.new
+    can :update, Timeline#, :identity => Identity.new
   end
 
   def update_tag_identities_timelines_category
-    can :update, Category, :identity => Identity.new, :timeline => Timeline.new
+    can :update, Category#, :identity => Identity.new, :timeline => Timeline.new
   end
 
   def update_recommend_recommend_event
@@ -189,7 +191,7 @@ class Ability
   end
 
   def read_question_answer
-    can :read, Answer, :question => Question.new
+    can :read, Answer#, :question => Question.new
   end
 
   def read_tag_identity
@@ -197,11 +199,11 @@ class Ability
   end
 
   def read_tag_identities_timeline
-    can :read, Timeline, :identity => Identity.new
+    can :read, Timeline#, :identity => Identity.new
   end
 
   def read_tag_identities_timelines_category
-    can :read, Category, :identity => Identity.new, :timeline => Timeline.new
+    can :read, Category#, :identity => Identity.new, :timeline => Timeline.new
   end
 
   def read_recommend_recommend_mtool
@@ -253,7 +255,7 @@ class Ability
   end
 
   def destroy_question_answer
-    can :destroy, Answer, :question => Question.new
+    can :destroy, Answer#, :question => Question.new
   end
 
   def destroy_tag_identity
@@ -261,11 +263,11 @@ class Ability
   end
 
   def destroy_tag_identities_timeline
-    can :destroy, Timeline, :identity => Identity.new
+    can :destroy, Timeline#, :identity => Identity.new
   end
 
   def destroy_tag_identities_timelines_category
-    can :destroy, Category, :identity => Identity.new, :timeline => Timeline.new
+    can :destroy, Category#, :identity => Identity.new, :timeline => Timeline.new
   end
 
   def destroy_recommend_recommend_mtool
