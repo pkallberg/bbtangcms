@@ -1,6 +1,6 @@
 class Tag::TimelinesController < Tag::TagBaseController
   #load_and_authorize_resource
-  load_and_authorize_resource :timeline, :through => [:identity]
+  load_and_authorize_resource :timeline, :through => [:identity], :shallow => true
   Model_class = Timeline.new.class
   before_filter :load_parent
 
