@@ -30,8 +30,8 @@ development:
   reconnect: false
   database: askjane_development
   host: 127.0.0.1
-  username: root
-  password: root
+  username: bbtang
+  password: bbtang
   socket: /var/lib/mysql/mysql.sock
   pool: 55
   
@@ -42,8 +42,8 @@ auth:
   database: auth
   pool: 55
   host: 127.0.0.1
-  username: root
-  password: root
+  username: bbtang
+  password: bbtang
   socket: /var/lib/mysql/mysql.sock
 
 group_production:
@@ -53,8 +53,8 @@ group_production:
   database: group_development
   pool: 55
   host: localhost
-  username: root
-  password: root
+  username: bbtang
+  password: bbtang
 
 group_development:
   adapter: mysql2
@@ -63,8 +63,8 @@ group_development:
   database: group_development
   pool: 55
   host: localhost
-  username: root
-  password: root
+  username: bbtang
+  password: bbtang
 
 bbtcms_development:
   adapter: mysql2
@@ -73,8 +73,8 @@ bbtcms_development:
   database: bbtcms_development
   pool: 55
   host: localhost
-  username: root
-  password: root
+  username: bbtang
+  password: bbtang
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -86,8 +86,8 @@ test:
   database: askjane_test
   pool: 55
   host: 127.0.0.1
-  username: root
-  password: root
+  username: bbtang
+  password: bbtang
   socket: /var/lib/mysql/mysql.sock
 
 production:
@@ -97,6 +97,6 @@ production:
   database: askjane_development
   pool: 55
   host: 127.0.0.1
-  username: root
-  password: root
+  username: bbtang
+  password: bbtang
   socket: /var/lib/mysql/mysql.sock
