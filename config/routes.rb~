@@ -12,9 +12,9 @@ BBTangCMS::Application.routes.draw do
   end
 
   namespace :tag do
-    resources :identities , :only => [:index, :show, :new, :create] do
-      resources :timelines do
-        resources :categories
+    resources :identities, :shallow => true , :only => [:index, :show, :new, :create] do
+      resources :timelines, :shallow => true, :only => [:index, :show, :new, :create] do
+        resources :categories, :shallow => true
       end
     end
     root :to => 'dashboard#show', :as => :dashboard

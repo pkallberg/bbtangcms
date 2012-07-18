@@ -17,15 +17,15 @@ class Ability
         # rules for non-admin controllers here
     end
 
-    @user.cms_roles.each { |role| send(role.name.downcase) if self.respond_to? role.name.downcase }
+    @user.cms_roles.each { |role| send(role.name.downcase) if (role.present? and  self.respond_to? role.name.downcase) }
 
     @user.cms_roles.each do |cr|
       cr.cms_role_permits.each do |crp|
-        send(crp.permit.name.downcase) if self.respond_to? crp.permit.name.downcase
+        send(crp.permit.name.downcase) if (crp.permit.present? and self.respond_to? crp.permit.name.downcase)
       end
     end
 
-    @user.permits.each { |permit| send(permit.name.downcase) if self.respond_to? permit.name.downcase }
+    @user.permits.each { |permit| send(permit.name.downcase) if (permit.present? and self.respond_to? permit.name.downcase) }
 
 
     #if @user.cms_roles.size == 0
@@ -131,7 +131,7 @@ class Ability
   end
 
   def update_tag_identities_timeline
-    can :update, Timeline#, :identity => Identity.new
+    can :update, Timeline => Identity#, :identity => Identity.new
   end
 
   def update_tag_identities_timelines_category

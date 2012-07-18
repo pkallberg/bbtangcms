@@ -38,7 +38,7 @@
 
 <br />
 
-<% if can? :create, "Identity" %>
+<% if can? :create, Identity %>
   <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)),
         new_tag_identity_path,
         :class => 'btn btn-primary'  %>
