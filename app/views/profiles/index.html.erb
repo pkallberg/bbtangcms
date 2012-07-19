@@ -7,6 +7,7 @@
 <table class = "table table-condensed"">
   <thead>
     <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:user) %></th>
       <th><%= model_class.human_attribute_name(:real_name) %></th>
       <th><%= model_class.human_attribute_name(:nickname) %></th>
@@ -34,6 +35,7 @@
   <tbody>
     <% @profiles.each do |profile| %>
       <tr>
+        <td><%= link_to profile.id, profile_path(profile) %></td>
         <td><%= profile.user %></td>
         <td><%= profile.real_name %></td>
         <td><%= profile.nickname %></td>

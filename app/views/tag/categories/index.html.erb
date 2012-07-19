@@ -21,7 +21,7 @@
   <tbody>
     <% @tag_categories.each do |tag_category| %>
       <tr>
-        <td><%= tag_category.id %></td>
+        <td><%= link_to tag_category.id, tag_identity_timeline_category_path(@identity,@timeline,tag_category) %></td>
         <td><%= tag_category.name %></td>
         <td><%= link_to  @timeline, tag_identity_timeline_path(@identity,@timeline) if (tag_category.parent_id.present? and @identity.present? and @timeline.present?) %></td>
         <td><%= link_to tag_category.children.count if tag_category.children.present? %></td>

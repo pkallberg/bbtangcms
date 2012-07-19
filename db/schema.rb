@@ -235,7 +235,7 @@ ActiveRecord::Schema.define(:version => 20120711084710) do
   create_table "focus_on_groups", :force => true do |t|
     t.string   "name"
     t.integer  "created_by"
-    t.text     "members"
+    t.text     "members",    :limit => 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -395,15 +395,15 @@ ActiveRecord::Schema.define(:version => 20120711084710) do
 
   create_table "mom_shows", :force => true do |t|
     t.string   "title"
-    t.text     "body"
-    t.text     "content"
+    t.text     "body",             :limit => 16777215
+    t.text     "content",          :limit => 16777215
     t.string   "images"
-    t.text     "like_by"
-    t.integer  "like_by_count",    :default => 0
-    t.integer  "excerpt_count",    :default => 0
-    t.text     "excerpt_to"
-    t.text     "excerpt_from"
-    t.text     "tags"
+    t.text     "like_by",          :limit => 16777215
+    t.integer  "like_by_count",                        :default => 0
+    t.integer  "excerpt_count",                        :default => 0
+    t.text     "excerpt_to",       :limit => 16777215
+    t.text     "excerpt_from",     :limit => 16777215
+    t.text     "tags",             :limit => 16777215
     t.integer  "show_category_id"
     t.datetime "deleted_at"
     t.integer  "created_by"
@@ -417,11 +417,12 @@ ActiveRecord::Schema.define(:version => 20120711084710) do
     t.text     "body"
     t.integer  "draft"
     t.integer  "private"
-    t.text     "tags"
+    t.text     "tags",         :limit => 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "profile_id"
-    t.integer  "views_count", :default => 0
+    t.integer  "views_count",                      :default => 0
+    t.integer  "thanks_count"
   end
 
   create_table "permits", :force => true do |t|
@@ -438,6 +439,12 @@ ActiveRecord::Schema.define(:version => 20120711084710) do
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.string   "photo_file_size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pictures", :force => true do |t|
+    t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -515,12 +522,14 @@ ActiveRecord::Schema.define(:version => 20120711084710) do
     t.integer  "answers_count"
     t.integer  "experts_count"
     t.integer  "designated_answerer"
+    t.text     "auto_tags"
     t.integer  "knowledge_id"
     t.boolean  "is_anonymous"
     t.boolean  "deleted"
     t.integer  "deleted_by"
     t.datetime "deleted_at"
     t.integer  "score"
+    t.integer  "thanks_count"
   end
 
   create_table "quizzes", :force => true do |t|
@@ -606,12 +615,12 @@ ActiveRecord::Schema.define(:version => 20120711084710) do
   end
 
   create_table "settings", :force => true do |t|
-    t.string   "var",                      :null => false
-    t.text     "value"
+    t.string   "var",                            :null => false
+    t.text     "value",      :limit => 16777215
     t.integer  "thing_id"
     t.string   "thing_type", :limit => 30
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   add_index "settings", ["thing_type", "thing_id", "var"], :name => "index_settings_on_thing_type_and_thing_id_and_var", :unique => true
@@ -625,8 +634,8 @@ ActiveRecord::Schema.define(:version => 20120711084710) do
 
   create_table "show_comments", :force => true do |t|
     t.string   "title"
-    t.text     "content"
-    t.text     "body"
+    t.text     "content",      :limit => 16777215
+    t.text     "body",         :limit => 16777215
     t.integer  "created_by"
     t.boolean  "state"
     t.integer  "confirmed_by"
@@ -696,6 +705,28 @@ ActiveRecord::Schema.define(:version => 20120711084710) do
   create_table "tags", :force => true do |t|
     t.string "name"
   end
+
+  create_table "tags_bak", :force => true do |t|
+    t.string   "name"
+    t.text     "follower_ids"
+    t.text     "knowledge_ids"
+    t.text     "summary"
+    t.text     "group_ids"
+    t.text     "blog_ids"
+    t.text     "resource_ids"
+    t.text     "question_ids"
+    t.text     "answer_ids"
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.datetime "confirmed_at"
+    t.integer  "confirmed_by"
+    t.boolean  "delta",         :default => true, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "category"
+  end
+
+  add_index "tags_bak", ["name"], :name => "name", :unique => true
 
   create_table "tasks", :force => true do |t|
     t.string   "name"

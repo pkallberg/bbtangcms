@@ -5,7 +5,7 @@ class KnowledgesController < ApplicationController
   # GET /knowledges
   # GET /knowledges.json
   def index
-    @knowledges = Knowledge.paginate(:page => params[:page], :per_page => 20).order('id DESC')
+    @knowledges = Knowledge.paginate(:page => params[:page].order('id DESC')
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), knowledges_path
     respond_to do |format|
       format.html # index.html.erb
@@ -162,40 +162,41 @@ class KnowledgesController < ApplicationController
         format.json { render json: @knowledge.errors, status: :unprocessable_entity }
       end
     end
-  end
-  if params[:commit] == 'refresh'
-    #unless @timelines.empty?
-    #  @timelines.each do |timelines|
-    #    @categories_list += timeline.children.all
-    #  end
-    #end
-    #@identities_choose.map!(&:id)
-    #@timelines_choose.map!(&:id)
-    #@categories_choose.map!(&:id)
-
-    render :refresh
   else
-    @knowledge.identity_list = @identities_choose.map(&:name) if @identities_choose.present?
-    @knowledge.timeline_list = @timelines_choose.map(&:name) if @timelines_choose.present?
-    @knowledge.category_list = @categories_choose.map(&:name) if @categories_choose.present?
+    if params[:commit] == 'refresh'
+      #unless @timelines.empty?
+      #  @timelines.each do |timelines|
+      #    @categories_list += timeline.children.all
+      #  end
+      #end
+      #@identities_choose.map!(&:id)
+      #@timelines_choose.map!(&:id)
+      #@categories_choose.map!(&:id)
 
-    @knowledge.if_soft_deleted(params[:knowledge][:soft_deleted],current_user) if params[:knowledge][:soft_deleted].present?
-
-
-    if @knowledge.save
-      flash[:notice] = 'Knowledge was successfully updated.'
-      #render js: %[window.location.pathname='#{knowledge_path(@knowledge)}']
-      #format.html { redirect_to @knowledge, notice: 'Knowledge was successfully created.' }
-      #format.json { render json: @knowledge, status: :created, location: @knowledge }
-      #because update the file field not use render js
-      render :new
+      render :refresh
     else
-      flash[:notice] = 'Knowledge updated failure.'
-      respond_to do |format|
-        format.html { render action: "new" }
-        format.js { render action: "new" }
-        format.json { render json: @knowledge.errors, status: :unprocessable_entity }
-      end
+      @knowledge.identity_list = @identities_choose.map(&:name) if @identities_choose.present?
+      @knowledge.timeline_list = @timelines_choose.map(&:name) if @timelines_choose.present?
+      @knowledge.category_list = @categories_choose.map(&:name) if @categories_choose.present?
+
+      @knowledge.if_soft_deleted(params[:knowledge][:soft_deleted],current_user) if params[:knowledge][:soft_deleted].present?
+
+
+      if @knowledge.save
+        flash[:notice] = 'Knowledge was successfully updated.'
+        #render js: %[window.location.pathname='#{knowledge_path(@knowledge)}']
+        #format.html { redirect_to @knowledge, notice: 'Knowledge was successfully created.' }
+        #format.json { render json: @knowledge, status: :created, location: @knowledge }
+        #because update the file field not use render js
+        render :new
+      else
+        flash[:notice] = 'Knowledge updated failure.'
+        respond_to do |format|
+          format.html { render action: "new" }
+          format.js { render action: "new" }
+          format.json { render json: @knowledge.errors, status: :unprocessable_entity }
+        end
+        end
       end
     end
   end
@@ -254,51 +255,51 @@ class KnowledgesController < ApplicationController
         end
       end
 
-  if params[:knowledge].has_key? :face
-    respond_to do |format|
-      if @knowledge.update_attributes(params[:knowledge])
-        format.html { redirect_to @knowledge, notice: 'knowledge was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @knowledge.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-    if params[:commit] == 'refresh'
-      @form_date = params[:knowledge]
-      params[:knowledge][:face] = nil if params[:knowledge].has_key? :face
-      @knowledge.from_json @form_date.to_json if @form_date.present?
-      #unless @timelines.empty?
-      #  @timelines.each do |timelines|
-      #    @categories_list += timeline.children.all
-      #  end
-      #end
-      #@identities_choose.map!(&:id)
-      #@timelines_choose.map!(&:id)
-      #@categories_choose.map!(&:id)
-      render :refresh
-    else
-      params[:knowledge]["identity_list"] = @identities_choose.map(&:name) if @identities_choose.present?
-      params[:knowledge]["timeline_list"] = @timelines_choose.map(&:name) if @timelines_choose.present?
-      params[:knowledge]["category_list"] = @categories_choose.map(&:name) if @categories_choose.present?
-
-    @knowledge.if_soft_deleted(params[:knowledge][:soft_deleted],current_user) if params[:knowledge][:soft_deleted].present?
-
-      if @knowledge.update_attributes(params[:knowledge])
-        #format.html { redirect_to @knowledge, notice: 'Knowledge was successfully updated.' }
-        #format.json { head :no_content }
-        flash[:notice] = 'Knowledge was successfully updated.'
-        #render js: %[window.location.pathname='#{knowledge_path(@knowledge)}']
-        #because update the file field not use render js
-        render :edit
-      else
-        flash[:notice] = 'Knowledge updated failure.'
-        respond_to do |format|
+    if params[:knowledge].has_key? :face
+      respond_to do |format|
+        if @knowledge.update_attributes(params[:knowledge])
+          format.html { redirect_to @knowledge, notice: 'knowledge was successfully updated.' }
+          format.json { head :no_content }
+        else
           format.html { render action: "edit" }
-          format.js { render action: "edit" }
           format.json { render json: @knowledge.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      if params[:commit] == 'refresh'
+        @form_date = params[:knowledge]
+        params[:knowledge][:face] = nil if params[:knowledge].has_key? :face
+        @knowledge.from_json @form_date.to_json if @form_date.present?
+        #unless @timelines.empty?
+        #  @timelines.each do |timelines|
+        #    @categories_list += timeline.children.all
+        #  end
+        #end
+        #@identities_choose.map!(&:id)
+        #@timelines_choose.map!(&:id)
+        #@categories_choose.map!(&:id)
+        render :refresh
+      else
+        params[:knowledge]["identity_list"] = @identities_choose.map(&:name) if @identities_choose.present?
+        params[:knowledge]["timeline_list"] = @timelines_choose.map(&:name) if @timelines_choose.present?
+        params[:knowledge]["category_list"] = @categories_choose.map(&:name) if @categories_choose.present?
+
+      @knowledge.if_soft_deleted(params[:knowledge][:soft_deleted],current_user) if params[:knowledge][:soft_deleted].present?
+
+        if @knowledge.update_attributes(params[:knowledge])
+          #format.html { redirect_to @knowledge, notice: 'Knowledge was successfully updated.' }
+          #format.json { head :no_content }
+          flash[:notice] = 'Knowledge was successfully updated.'
+          #render js: %[window.location.pathname='#{knowledge_path(@knowledge)}']
+          #because update the file field not use render js
+          render :edit
+        else
+          flash[:notice] = 'Knowledge updated failure.'
+          respond_to do |format|
+            format.html { render action: "edit" }
+            format.js { render action: "edit" }
+            format.json { render json: @knowledge.errors, status: :unprocessable_entity }
+          end
         end
       end
     end

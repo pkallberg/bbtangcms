@@ -7,6 +7,7 @@
 <table class = "table table-condensed"">
   <thead>
     <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:user) %></th>
       <th><%= model_class.human_attribute_name(:real_name) %></th>
       <th><%= model_class.human_attribute_name(:nickname) %></th>
@@ -62,7 +63,7 @@
             <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)),
                       edit_profile_path(profile), :class => 'btn btn-mini' %>
           <% end %>
-          <% if can? :destroy, knowledge %>
+          <% if can? :destroy, profile %>
             <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)),
                       profile_path(profile),
                       :method => :delete,

@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.paginate(:page => params[:page], :per_page => 20).order('id DESC')
+    @profiles = Profile.paginate(:page => params[:page]).order('id DESC')
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), profiles_path
     respond_to do |format|
       format.html # index.html.erb

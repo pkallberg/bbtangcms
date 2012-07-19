@@ -46,4 +46,14 @@ class ArchivesController < ApplicationController
 
     render :template => 'common/search_result.html.erb'
   end
+  def item_list
+    @model_class = params[:model].constantize
+    @item = CategoryBase.find params[:item_id]
+    @item_list = @model_class.tagged_with([@item.name]).order('id DESC')
+
+    respond_to do |format|
+      format.html # item_list.html.erb
+      format.js
+    end
+  end
 end

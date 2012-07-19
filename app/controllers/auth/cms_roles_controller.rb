@@ -4,7 +4,7 @@ class Auth::CmsRolesController < ApplicationController
   # GET /auth/cms_roles
   # GET /auth/cms_roles.json
   def index
-    @auth_cms_roles = CmsRole.paginate(:page => params[:page], :per_page => 20).order('id DESC')
+    @auth_cms_roles = CmsRole.paginate(:page => params[:page]).order('id DESC')
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), auth_cms_roles_path
     respond_to do |format|

@@ -21,7 +21,7 @@
   <tbody>
 <% @tag_identities.each do |tag_identity| %>
   <tr>
-    <td><%= tag_identity.id %></td>
+    <td><%= link_to tag_identity.id, tag_identity_path(tag_identity) %></td>
     <td><%= tag_identity.name %></td>
     <td><%= link_to tag_identity.parent_id if tag_identity.parent_id.present? %></td>
     <td><%= link_to tag_identity.children.count, tag_identity_timelines_path(tag_identity) if tag_identity.children.present? %></td>

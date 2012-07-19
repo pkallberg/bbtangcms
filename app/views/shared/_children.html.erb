@@ -1,24 +1,15 @@
 <ul>
   <% item.children.each do |child| %>
     <li id='category_<%=child.id %>'>
-      <%- item_list = @model_class.tagged_with([child.name]).paginate(:page => params[:page], :per_page => 10).order('id DESC')%>
+      <!--%- item_list = @model_class.tagged_with([child.name]).paginate(:page => params[:page], :per_page => 10).order('id DESC')%-->
+      <%- item_list = @model_class.tagged_with([child.name]).order('id DESC')%>
       <span><%= child.name %>(<%= item_list.count%>)</span>
       <% if item_list.present? %>
-        <a class="btn btn-mini" data-toggle="modal" href="#<%= child.id %>" >More info</a>
-        <div class="modal hide" id="<%= child.id %>">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">×</button>
-            <h3>Tags as: <%= child.name %></h3>
-          </div>
-          <div class="modal-body">
-            <%- model_class = @model_class unless @model_class.nil? -%>
-            <%= render 'common/list_model', :model_class => (@model_class unless @model_class.nil?), :item_list => item_list  %>
-          </div>
-          <div class="modal-footer">
-            <a href="#" class="btn" data-dismiss="modal">Close</a>
-            <!--a href="#" class="btn btn-primary">Save changes</a-->
-          </div>
-        </div>
+        <!--%= link_to "More info",archive_item_list_path(:model => @model_class, :item_id => child.id), :remote => true, :class => "btn btn-mini", "data-toggle" => "modal", :id => ("archive_item_list_"+child.id.to_s)%-->
+        <!--%= link_to "More info", archive_item_list_path(:model => @model_class, :item_id => child.id), :remote => true, :class => "btn btn-mini", "data-target" => "##{child.id}", "data-toggle" => "modal", :id => ("archive_item_list_"+child.id.to_s)%-->
+        <%= link_to "More info", archive_item_list_path(:model => @model_class, :item_id => child.id), :remote => true, :class => "btn btn-mini",  "data-toggle" => "modal", :id => ("archive_item_list_"+child.id.to_s)%>
+        <div id="<%= "#{child.id}" %>" class="modal hide" style="display: none;"></div>
+        <!--%= render 'common/list_model', :model_class => (@model_class unless @model_class.nil?), :item_list => item_list, :item => child  %-->
       <% end %>
       <%= render 'shared/children', :item => child unless child.leaf? %>
     </li>

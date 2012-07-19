@@ -12,7 +12,7 @@ class Tag::CategoriesController < Tag::TagBaseController
   # GET /tag/categories.json
   def index
     #@tag_categories = Category.all
-    @tag_categories = @timeline.children.paginate(:page => params[:page], :per_page => 20).order('id DESC')
+    @tag_categories = @timeline.children.paginate(:page => params[:page]).order('id DESC')
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), tag_identity_timeline_categories_path(@identity,@timeline)
 

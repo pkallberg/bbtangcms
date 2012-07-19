@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.paginate(:page => params[:page], :per_page => 20).order('score DESC')
+    @questions = Question.paginate(:page => params[:page]).order('score DESC')
 
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), questions_path
