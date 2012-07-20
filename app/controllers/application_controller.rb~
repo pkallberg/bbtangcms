@@ -119,7 +119,6 @@ class ApplicationController < ActionController::Base
     session[:old_controller] = params[:controller]
     session[:old_action] = params[:action]
     session[:old_instance_id] = params[:id]
-    session[:old_page] = nil if model_class.nil?
 
   end
 
