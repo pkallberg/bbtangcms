@@ -1,6 +1,6 @@
-$(document).ready(function(){
+jQuery(document).ready(function(){
     $('#flashes').find($('.close')).click(function(){
     /*$("#flashes").hide()*/
-    $("#flashes").remove()
+    $("#flashes").remove();
   });
 });

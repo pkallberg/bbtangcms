@@ -11,7 +11,9 @@ class Question < ActiveRecord::Base
   attr_accessor :soft_deleted
 
     attr_accessible :title, :body, :created_by, :created_at,
-                  :updated_at, :is_anonymous, :soft_deleted, :score
+                  :updated_at, :is_anonymous, :soft_deleted,
+                  :score, :identity_list, :timeline_list,
+                  :category_list, :tag_list
 
 
   self_model_name  #引入self_model_name

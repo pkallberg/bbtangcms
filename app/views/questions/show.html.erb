@@ -10,6 +10,10 @@
   <%= s.attribute :score %>
   <%= s.attribute :body, :value => (raw @question.body) %>
   <%= s.attribute :focus_by %>
+  <%= s.association :identity_list %>
+  <%= s.association :timeline_list %>
+  <%= s.association :category_list %>
+  <%= s.association :tag_list %>
   <%= s.attribute :created_by %>
   <%= s.attribute :views_count %>
   <%= s.attribute :delta %>

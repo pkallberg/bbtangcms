@@ -23,11 +23,10 @@ BBTangCMS::Application.routes.draw do
   resources :questions do
     collection do
       get 'resetscore'
+      match 'update_timelines'
+      match 'update_categories'
     end
     resources :answers
-    #member do
-    #  get 'refresh'
-    #end
   end
 
   resources :knowledges do
