@@ -1,0 +1,7 @@
+/*$("<%= escape_javascript( render(:partial => 'common/list_model', locals: {  :model_class => @model_class, :item_list => @item_list, :item => @item }) ) %>").appendTo("<%= "#archive_item_list_#{@item.id}" %>").hide().fadeIn();*/
+$("#<%= "#{@item.id}" %>").replaceWith("<%= escape_javascript( render(:partial => 'common/list_model', locals: {  :model_class => @model_class, :item_list => @item_list, :item => @item }) ) %>");
+$(document).ready(function(){
+    $('.modal').find($('.close')).click(function(){
+    $(".modal").hide();
+  });
+});

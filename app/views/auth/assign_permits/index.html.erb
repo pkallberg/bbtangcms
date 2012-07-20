@@ -6,6 +6,7 @@
     <h2><%= admin.name %></h2>
     <table class="table table-condensed">
       <tr>
+        <th><%= admin_model_class.human_attribute_name(:id) %></th>
         <th><%= admin_model_class.model_name.human %></th>
         <th><%= admin_model_class.human_attribute_name(:cms_roles) %></th>
         <th><%= admin_model_class.human_attribute_name(:permits) %></th>
@@ -13,6 +14,7 @@
       </tr>
       <% @admin_user.owner_users(admin.name.to_s).each do |owner_user| %>
         <tr>
+        <td><%= link_to owner_user.id, auth_assign_permit_path(owner_user) %></td>
           <td><%= owner_user %></td>
           <td><%= owner_user.cms_roles.map(&:name) %></td>
           <td><%= owner_user.permits.map(&:name)%></td>

@@ -38,12 +38,22 @@ class ArchivesController < ApplicationController
       #if @results.empty?
       #  @results = @model_class.where("#{params[:type].to_s} like '%#{query_word}%'")
       #end
-      search_tag = params[:type].split(/，|,|;|；|\ +|\||\r\n/)
+      search_tag = params[:search_tag].split(/，|,|;|；|\ +|\||\r\n/)
       @results = @model_class.tagged_with search_tag
     end
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => @model_class.model_name.human), :search
 
     render :template => 'common/search_result.html.erb'
+  end
+  def item_list
+    @model_class = params[:model].constantize
+    @item = CategoryBase.find params[:item_id]
+    @item_list = @model_class.tagged_with([@item.name]).order('id DESC')
+
+    respond_to do |format|
+      format.html # item_list.html.erb
+      format.js
+    end
   end
 end

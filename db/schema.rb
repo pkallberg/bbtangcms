@@ -443,6 +443,12 @@ ActiveRecord::Schema.define(:version => 20120711084710) do
     t.datetime "updated_at"
   end
 
+  create_table "pictures", :force => true do |t|
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "preferences", :force => true do |t|
     t.string   "name"
     t.integer  "owner_id",                 :null => false
@@ -523,6 +529,7 @@ ActiveRecord::Schema.define(:version => 20120711084710) do
     t.integer  "deleted_by"
     t.datetime "deleted_at"
     t.integer  "score"
+    t.integer  "thanks_count"
   end
 
   create_table "quizzes", :force => true do |t|

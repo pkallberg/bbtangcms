@@ -27,7 +27,9 @@ development.sphinx.conf
 /db/*.sqlite3
 /db/sphinx
 /public/system/*
+
 public/uploads/*
+
 /coverage/
 /spec/tmp/*
 **.orig

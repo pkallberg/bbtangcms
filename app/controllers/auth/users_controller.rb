@@ -5,7 +5,7 @@ class Auth::UsersController < ApplicationController
   # GET /auth/users.json
   def index
     #@auth_users = Auth::User.all
-    @auth_users = User.paginate(:page => params[:page], :per_page => 20).order('id DESC')
+    @auth_users = User.paginate(:page => params[:page]).order('id DESC')
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), auth_users_path
     respond_to do |format|

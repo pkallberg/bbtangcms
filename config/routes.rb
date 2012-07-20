@@ -65,6 +65,7 @@ BBTangCMS::Application.routes.draw do
   match "/archives/:model/" => "archives#index", :as => :archives, :via => :get
   match "/archives/savesort" => 'archives#savesort'
   match "/archives/search_tag" => 'archives#search_tag', :as => :search_tag
+  match '/archives/:model/item_list/:item_id/' => "archives#item_list", :as => :archive_item_list, :via => :get
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

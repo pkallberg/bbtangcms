@@ -16,7 +16,14 @@
 <ul id='sortable'>
   <% for cat in CategoryBase.roots %>
     <li id='category_<%= cat.id %>'>
-      <span><%= cat.name %></span>
+      <%- root_item_list = @model_class.tagged_with([cat.name]).order('id DESC')%>
+      <span><%= cat.name %>(<%= root_item_list.count%>)</span>
+      <% if root_item_list.present? %>
+        <!--%= link_to "More info",archive_item_list_path(:model => model_class, :item_id => cat.id), :remote => true, :class => "btn btn-mini", "data-toggle" => "modal", :id => ("archive_item_list_"+cat.id.to_s)%-->
+        <%= link_to "More info",archive_item_list_path(:model => model_class, :item_id => cat.id), :remote => true, :class => "btn btn-mini", "data-toggle" => "modal", :id => ("archive_item_list_"+cat.id.to_s) %>
+        <div class="modal hide" id='<%= "#{cat.id}" %>' ></div>
+        <!--%= render 'common/list_model', :model_class => (@model_class unless @model_class.nil?), :item_list => root_item_list, :item => cat  %-->
+      <% end %>
       <%= render 'shared/children', :item => cat unless cat.leaf? %>
     </li>
   <% end -%>

@@ -14,17 +14,24 @@
 #/log/*.log
 #/tmp
 *.rbc
+*.bak
 *.sassc
 .sass-cache
 capybara-*.html
 .rspec
+development.sphinx.conf
 /.bundle
 /vendor/bundle
 /log/*
 /tmp/*
 /db/*.sqlite3
+/db/sphinx
 /public/system/*
-/public/uploads/image/*
+<<<<<<< HEAD
+/public/uploads
+=======
+public/uploads/*
+>>>>>>> 63ad4681db35875b8a917b1ef49bc82a8e25a5c0
 /coverage/
 /spec/tmp/*
 **.orig

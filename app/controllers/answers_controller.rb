@@ -9,7 +9,7 @@ class AnswersController < ApplicationController
   def index
     #@answers = Answer.all
 
-    @answers = @question.answers.paginate(:page => params[:page], :per_page => 20).order('id DESC')
+    @answers = @question.answers.paginate(:page => params[:page]).order('id DESC')
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), question_answers_path(@question)
 

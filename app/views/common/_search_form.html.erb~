@@ -1,5 +1,5 @@
 <%= form_tag(common_search_url,:class=>"navbar-search") do %>
-  <%= text_field_tag(:q,params[:q] || I18n.t("menu.search"), :class => "search-query", :placeholder => I18n.t("menu.search")) %>
+  <%= text_field_tag(:q,params[:q], :class => "search-query", :placeholder => I18n.t("menu.search")) %>
   <!--%- @model_class = params[:controller].capitalize.singularize if params[:controller].capitalize.singularize.class_exists? -%-->
   <%- @type_choose = params[:type] if (params.has_key? :type) and params[:type].present? -%>
   <%- @model_class = params[:controller].classify.constantize if params[:controller].classify.class_exists?  -%>

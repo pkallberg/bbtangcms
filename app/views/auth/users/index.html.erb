@@ -16,7 +16,7 @@
   <tbody>
     <% @auth_users.each do |auth_user| %>
       <tr>
-        <td><%= auth_user.id %></td>
+        <td><%= link_to auth_user.id, auth_user_path(auth_user) %></td>
         <td><%= auth_user.username %></td>
         <td><%= auth_user.email %></td>
         <td>

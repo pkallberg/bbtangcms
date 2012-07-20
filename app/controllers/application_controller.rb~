@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   before_filter :add_initial_breadcrumbs
   before_filter :create_profile
+  before_filter :set_page_number
 
   attr_reader :current_action
 
@@ -23,14 +24,17 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def default_url_options
-    if Rails.env.production?
-      { :host => "cms.bbtang.com",
-        #:locale => I18n.locale
-      }
-    else
-      {}
-    end
+  def default_url_options(options = {})
+    options.merge! :host => "cms.bbtang.com" if Rails.env.production?
+    options.merge! :page => session[:old_page] if session[:old_page].present?# and !(params[:page].eql? session[:old_page])
+    options
+    #if Rails.env.production?
+    #  { :host => "cms.bbtang.com",
+    #    #:locale => I18n.locale
+    #  }
+    #else
+    #  {}
+    #end
   end
 
 
@@ -66,7 +70,6 @@ class ApplicationController < ActionController::Base
   end
 
   def skip_rails_kindeditor?
-
     true if params[:controller] == "kindeditor/assets"
   end
 
@@ -83,6 +86,39 @@ class ApplicationController < ActionController::Base
   def set_content_type
     headers['Content-Type'] ||= 'text/html; charset=utf-8'
   end
+
+  def set_page_number
+    if session[:old_controller].eql? params[:controller]
+      #if (['update','show','edit','create','destroy'].include? session[:old_action])# and !(session[:old_action].eql? params[:action])
+      model_class = params[:controller].classify.constantize if params[:controller].classify.class_exists?
+      model_class = params[:controller].gsub(/\w+([\/]+)/,"").classify.constantize if params[:controller].gsub(/\w+([\/]+)/,"").classify.class_exists?
+
+
+      if model_class.present?
+        same_index_action = (params[:action].eql?(session[:old_action]) and params[:action].eql? "index" if params[:action].present? and session[:old_action].present?)
+        diff_instance_id = !params[:id].eql?(session[:old_instance_id]) if params[:id].present? and session[:old_instance_id].present?
+        same_page = session[:old_page].eql? params[:page]
+        same_controller = session[:old_controller].eql? params[:controller]
+
+        session[:old_page] = case true
+          when (same_index_action and !same_page) then (params[:page].present? ? params[:page] : '1')
+          when (same_index_action and same_page) then nil
+          when diff_instance_id then nil
+          when !same_controller  then nil
+          when (!(params[:action].eql? "index") and !(session[:old_action].eql? "index") and !diff_instance_id) then  (session[:old_page].present? session[:old_page] : params[:page])
+        end
+
+      end
+
+    end
+
+    # save old_controller and old_action in session
+    session[:old_controller] = params[:controller]
+    session[:old_action] = params[:action]
+    session[:old_instance_id] = params[:id]
+  end
+
+
 
   private
 

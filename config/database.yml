@@ -34,7 +34,7 @@ development:
   password: bbtang
   socket: /var/lib/mysql/mysql.sock
   pool: 55
-  
+
 auth:
   adapter: mysql2
   encoding: utf8
