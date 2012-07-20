@@ -1,5 +1,0 @@
-<h1>New recommend_recommend_tag</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', recommend_recommend_tags_path %>

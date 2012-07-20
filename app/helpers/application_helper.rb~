@@ -1,7 +1,0 @@
-module ApplicationHelper
-  def bootstrap_theme_choose
-    theme = %w(amelia cerulean cyborg journal readable simplex slate spacelab spruce superhero united)
-    #"@import 'bootswatch/#{theme[3]}/bootswatch';@import 'bootswatch/#{theme[3]}/variables';"
-     "@import 'bootswatch/#{theme[3]}/bootswatch';@import 'bootswatch/#{theme[3]}/variables';"
-  end
-end

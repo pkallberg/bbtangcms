@@ -1,5 +1,0 @@
-<h1>New recommend_recommend_user</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', recommend_recommend_users_path %>
