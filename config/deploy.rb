@@ -32,7 +32,6 @@ set :deploy_to, "/home/#{user}/bbtang/#{application}"
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
 set :keep_releases, 15
-after "deploy:restart", "deploy:cleanup"
 
 after 'deploy:update_code', 'deploy:migrate'
 
