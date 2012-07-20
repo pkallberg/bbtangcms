@@ -1,5 +1,0 @@
-<h1>New recommend_recommend_subject</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', recommend_recommend_subjects_path %>

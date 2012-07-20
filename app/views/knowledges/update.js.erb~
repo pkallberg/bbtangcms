@@ -1,6 +1,0 @@
-<% [:notice, :error, :alert, :message].each do |level| %>
-  <% unless flash[level].blank? %>
-  $(".alert-message").replaceWith("<%= j render 'common/flashes'%>");
-  <% end %>
-<% end %>
-
