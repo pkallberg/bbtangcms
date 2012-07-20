@@ -338,6 +338,7 @@ class Ability
     #can :show, Product
 
     can :index, :dashboard
+    can [:index,:item_list,:search_tag], :archive
     # bellow is defining for "Tag::DashboardController " any it work as follow line(cancan 1.6.7)
     #and also shuld same with auth/dashboard but I filter, with another method
     can :show, :dashboard

@@ -1,4 +1,4 @@
-<%= simple_form_for([:auth,@owner_user], :url =>auth_assign_permit_path(@owner_user)) do |f| %>
+<%= simple_form_for([:auth,@owner_user], :url =>auth_assign_permit_path(@owner_user), :html => { :class => ".form-horizontal" }) do |f| %>
   <%= f.error_notification %>
   <%= f.input :email do %>
     <%= @owner_user.email %>

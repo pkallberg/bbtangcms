@@ -26,8 +26,9 @@ class ApplicationController < ActionController::Base
 
   def default_url_options(options = {})
     options.merge! :host => "cms.bbtang.com" if Rails.env.production?
-    options.merge! :page => session[:old_page] if session[:old_page].present?# and !(params[:page].eql? session[:old_page])
+    options.merge! :page => session[:old_page]# if session[:old_page].present?# and !(params[:page].eql? session[:old_page])
     options
+
     #if Rails.env.production?
     #  { :host => "cms.bbtang.com",
     #    #:locale => I18n.locale
@@ -88,26 +89,28 @@ class ApplicationController < ActionController::Base
   end
 
   def set_page_number
-    if session[:old_controller].eql? params[:controller]
-      #if (['update','show','edit','create','destroy'].include? session[:old_action])# and !(session[:old_action].eql? params[:action])
-      model_class = params[:controller].classify.constantize if params[:controller].classify.class_exists?
-      model_class = params[:controller].gsub(/\w+([\/]+)/,"").classify.constantize if params[:controller].gsub(/\w+([\/]+)/,"").classify.class_exists?
+
+    #if (['update','show','edit','create','destroy'].include? session[:old_action])# and !(session[:old_action].eql? params[:action])
+    model_class = params[:controller].classify.constantize if params[:controller].classify.class_exists?
+    model_class = params[:controller].gsub(/\w+([\/]+)/,"").classify.constantize if params[:controller].gsub(/\w+([\/]+)/,"").classify.class_exists?
 
 
-      if model_class.present?
-        same_index_action = (params[:action].eql?(session[:old_action]) and params[:action].eql? "index" if params[:action].present? and session[:old_action].present?)
-        diff_instance_id = !params[:id].eql?(session[:old_instance_id]) if params[:id].present? and session[:old_instance_id].present?
-        same_page = session[:old_page].eql? params[:page]
-        same_controller = session[:old_controller].eql? params[:controller]
+    if model_class.present?
+      same_index_action = (params[:action].eql?(session[:old_action]) and params[:action].eql? "index" if params[:action].present? and session[:old_action].present?)
+      diff_instance_id = !params[:id].eql?(session[:old_instance_id]) if params[:id].present? and session[:old_instance_id].present?
+      same_page = session[:old_page].eql? params[:page]
+      same_controller = session[:old_controller].eql? params[:controller]
 
-        session[:old_page] = case true
-          when (same_index_action and !same_page) then (params[:page].present? ? params[:page] : '1')
-          when (same_index_action and same_page) then nil
-          when diff_instance_id then nil
-          when !same_controller  then nil
-          when (!(params[:action].eql? "index") and !(session[:old_action].eql? "index") and !diff_instance_id) then  (session[:old_page].present? ? session[:old_page] : params[:page])
-        end
-
+      session[:old_page] = case true
+        when (same_index_action and same_page) then nil
+        when (same_index_action and !same_page) then (params[:page].present? ? params[:page] : '1')
+        when (params[:page].present? and !(params[:page].eql? "1")) then params[:page]
+        when diff_instance_id then nil
+        when !same_controller  then nil
+        when (!(params[:action].eql? "index") and !(session[:old_action].eql? "index") and !diff_instance_id) then  (session[:old_page].present? ? session[:old_page] : params[:page])
+        when (same_controller and !(params[:page].present?) and (params[:action].eql?("index"))) then nil
+        else
+          nil
       end
 
     end
@@ -116,6 +119,8 @@ class ApplicationController < ActionController::Base
     session[:old_controller] = params[:controller]
     session[:old_action] = params[:action]
     session[:old_instance_id] = params[:id]
+    session[:old_page] = nil if model_class.nil?
+
   end
 
 
