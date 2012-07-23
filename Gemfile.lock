@@ -175,8 +175,6 @@ GEM
       cocaine (>= 0.0.2)
       mime-types
     polyglot (0.3.3)
-    prototype-rails (3.2.1)
-      rails (~> 3.2)
     pyu-ruby-sasl (0.0.3.3)
     quiet_assets (1.0.0)
       rails (~> 3.1)
@@ -319,7 +317,6 @@ DEPENDENCIES
   oauth_china (~> 0.4.0)
   omniauth (= 0.3.2)
   paperclip (~> 3.0)
-  prototype-rails (~> 3.2.1)
   quiet_assets (= 1.0.0)
   rails (= 3.2.2)
   rails-settings-cached (~> 0.2.1)

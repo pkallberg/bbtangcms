@@ -78,6 +78,7 @@ class QuestionsController < ApplicationController
 
     if @question_identities.present?
       @question_identities.each do |identity|
+
         identity = Identity.find_by_name(identity.name)
         @timelines += identity.children.all if identity.present?
       end
@@ -175,22 +176,22 @@ class QuestionsController < ApplicationController
   def update_timelines
     # updates identity and timelines based on genre selected
     identity = Identity.find(params[:identity_id])
-    timelines = identity.children.all
-    categories = []
+    @timelines = identity.children.all
+    @categories = []
 
-    render :update do |page|
-      page.replace_html 'timeline_list', :partial => 'timelines', :object => timelines
-      page.replace_html 'category_list',   :partial => 'categories',   :object => categories
-    end
+    #render :update_timelines do |page|
+    #  page.replace_html 'timeline_list', :partial => 'timelines', :object => timelines
+    #  page.replace_html 'category_list',   :partial => 'categories',   :object => categories
+    #end
   end
 
   def update_categories
     # updates categories based on timeline selected
     timeline = Timeline.find(params[:timeline_id])
-    categories  = timeline.children.all
+    @categories  = timeline.children.all
 
-    render :update do |page|
-      page.replace_html 'category_list', :partial => 'categories', :object => categories
-    end
+    #render :update_categories do |page|
+    #  page.replace_html 'category_list', :partial => 'categories', :object => categories
+    #end
   end
 end

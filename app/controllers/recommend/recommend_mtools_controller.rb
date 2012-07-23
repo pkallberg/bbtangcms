@@ -1,5 +1,5 @@
 class Recommend::RecommendMtoolsController < Recommend::RecommendBaseController
-  load_and_authorize_resource
+  load_and_authorize_resource  :class =>"Recommend::RecommendMtool"
   Model_class = Recommend::RecommendMtool.new.class
   # GET /recommend/recommend_mtools
   # GET /recommend/recommend_mtools.json

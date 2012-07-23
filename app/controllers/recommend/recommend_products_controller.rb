@@ -1,5 +1,5 @@
 class Recommend::RecommendProductsController < Recommend::RecommendBaseController
-  load_and_authorize_resource
+  load_and_authorize_resource  :class =>"Recommend::RecommendProduct"
   Model_class = Recommend::RecommendProduct.new.class
   # GET /recommend/recommend_products
   # GET /recommend/recommend_products.json

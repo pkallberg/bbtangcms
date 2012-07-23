@@ -1,4 +1,5 @@
-<%= simple_form_for(@question, :html => { :class => "form-inline" }) do |f| %>
+
+<%= simple_form_for(@question, :html => { :class => "form-inline"}) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -14,21 +15,22 @@
     <!--%= f.input :best_answer_id %-->
 
     <span class="label label-info">tags</span>
-    <%= f.input :identity_list, :collection => @identities,  :selected => (@question_identities.map(&:id) if @question_identities.present?),
+    <%= f.input :identity_list, :collection => @identities,  :prompt   => "Select an timeline",   :selected => (@question_identities.map(&:id) if @question_identities.present?),
+         :input_html => { :rows =>"5", :cols =>"20"}
+      %>
+    <!--%= f.input :identity_list, :collection => @identities,  :selected => (@question_identities.map(&:id) if @question_identities.present?),
          :input_html => { :rows =>"5", :cols =>"20" ,
              :onchange => "#{remote_function(:url  => {:action => 'update_timelines'},:with => "'identity_id='+value")}"
 
             }
-      %>
+      %-->
+
     <%= f.input :timeline_list do %>
-      <div id="timeline_list">
-        <%= render :partial => 'timelines', :object => @timelines  %>
-      </div>
+      <%= render :partial => 'timelines', :object => @timelines  %>
     <% end %>
     <%= f.input :category_list do %>
-    <div id="category_list">
       <%= render :partial => 'categories', :object => @categories  %>
-    </div>
+
     <% end %>
 
     <%= f.input :tag_list,:hint => "请输入标签名，并以英文逗号(',')隔开...", :input_html => { :rows =>"5", :cols =>"20" } %>

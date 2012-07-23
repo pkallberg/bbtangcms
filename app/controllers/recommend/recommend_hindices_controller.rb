@@ -1,5 +1,5 @@
 class Recommend::RecommendHindicesController < Recommend::RecommendBaseController
-  load_and_authorize_resource
+  load_and_authorize_resource :class =>"Recommend::RecommendHindex"
   Model_class = Recommend::RecommendHindex.new.class
   # GET /recommend/recommend_hindices
   # GET /recommend/recommend_hindices.json

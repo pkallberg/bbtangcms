@@ -18,6 +18,8 @@ edit_tag_identity_timeline_category GET    /tag/identities/:identity_id/timeline
                        tag_identity GET    /tag/identities/:id(.:format)                                                     tag/identities#show
                       tag_dashboard        /tag(.:format)                                                                    tag/dashboard#show
                resetscore_questions GET    /questions/resetscore(.:format)                                                   questions#resetscore
+         update_timelines_questions        /questions/update_timelines(.:format)                                             questions#update_timelines
+        update_categories_questions        /questions/update_categories(.:format)                                            questions#update_categories
                    question_answers GET    /questions/:question_id/answers(.:format)                                         answers#index
                                     POST   /questions/:question_id/answers(.:format)                                         answers#create
                 new_question_answer GET    /questions/:question_id/answers/new(.:format)                                     answers#new
@@ -154,5 +156,6 @@ edit_tag_identity_timeline_category GET    /tag/identities/:identity_id/timeline
                            archives GET    /archives/:model(.:format)                                                        archives#index
                   archives_savesort        /archives/savesort(.:format)                                                      archives#savesort
                          search_tag        /archives/search_tag(.:format)                                                    archives#search_tag
+                  archive_item_list GET    /archives/:model/item_list/:item_id(.:format)                                     archives#item_list
                                     POST   /kindeditor/upload(.:format)                                                      kindeditor/assets#create
                                     GET    /kindeditor/filemanager(.:format)                                                 kindeditor/assets#list
