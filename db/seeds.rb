@@ -36,10 +36,10 @@ editor = CmsRole.find_by_name("editor")
 operatoradmin = CmsRole.find_by_name("operatoradmin")
 operator = CmsRole.find_by_name("operator")
 #UserRoles :Admin
-user1 = User.find_by_email("864248765@qq.com")
-user1.cms_roles << admin
-user2 = User.find_by_email("wangy5278@163.com")
-user2.cms_roles << admin
+#user1 = User.find_by_email("864248765@qq.com")
+#user1.cms_roles << admin
+#user2 = User.find_by_email("wangy5278@163.com")
+#user2.cms_roles << admin
 #################setting permits the first you should makesure you do it in cancan Ability
 if BBTangCMS::Config.permits.has_key? :permit
   BBTangCMS::Config.permits[:permit].each do |kv|

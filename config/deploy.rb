@@ -1,16 +1,17 @@
 require "bundler/capistrano"
 
-# RVM bootstrap   
-$:.unshift(File .expand_path( "~/.rvm/lib" ))   
-set :rvm_ruby_string ,  'ruby-1.9.3-p194@askjane' #这个值是你要用rvm的gemset。名字要和系统里有的要一样。   
-set :rvm_type ,  :user   # Don't use system-wide RVM   
+# RVM bootstrap
+#$:.unshift(File .expand_path( "~/.rvm/lib" ))
+set :rvm_ruby_string ,  'ruby-1.9.3-p194@askjane' #这个值是你要用rvm的gemset。名字要和系统里有的要一样。
+#set :rvm_ruby_string, ENV['GEM_HOME'].gsub(/.*\//,"") # Read from local system
+set :rvm_type ,  :user   # Don't use system-wide RVM
 require 'rvm/capistrano'
- 
-set :stages, %w(online vv)     
-set :default_stage, "vv"       
+
+set :stages, %w(online vv)
+set :default_stage, "vv"
 require 'capistrano/ext/multistage'
-    
-set :application, "bbtcms"    
+
+set :application, "bbtcms"
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 set :scm, :git
 set :scm_username, 'git'
