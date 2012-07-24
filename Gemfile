@@ -81,7 +81,7 @@ gem 'jquery-rails', "~> 1.0.19"
 # gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
 gem "rails-settings-cached", "~> 0.2.1"
 
 # To use debugger
