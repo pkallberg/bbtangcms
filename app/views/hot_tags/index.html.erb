@@ -1,0 +1,8 @@
+<ul class="nav nav-tabs" id= "tag_cloud_head">
+  <li class="active">
+    <%= link_to t("helpers.links.index", :model => Knowledge.new.class.model_name.human),hot_tags_path(:model => Knowledge),:remote => true %>
+  </li>
+  <li><%= link_to t("helpers.links.index", :model => Question.new.class.model_name.human),hot_tags_path(:model => Question),:remote => true %></li>
+  <li><%= link_to t("helpers.links.index", :model => Profile.new.class.model_name.human),hot_tags_path(:model => Profile),:remote => true %></li>
+</ul>
+<%= render 'detail', tags: @tags, timelines: @timelines, categories: @categories, identities: @identities %>

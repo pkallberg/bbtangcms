@@ -7,6 +7,8 @@
               archives_path(:model => Knowledge) %></li>
 		  <li><%= link_to t("helpers.links.archives", :model => Question.new.class.model_name.human),
               archives_path(:model => Question) %></li>
+		  <li><%= link_to "tag cloud",
+              hot_tags_path(:model => Knowledge) %></li>
 	  </ul>
 	  <ul class="nav nav-list">
 		  <li class="nav-header"><%= t("common.sidebar.model") %></li>
@@ -39,6 +41,8 @@
               recommend_recommend_quizzes_path %></li>
       <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendHindex.new.class.model_name.human)),
               recommend_recommend_hindices_path %></li>
+      <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendPtag.new.class.model_name.human)),
+              recommend_recommend_ptags_path %></li>
 	  </ul>
   </div>
   <div class="well sidebar-nav">

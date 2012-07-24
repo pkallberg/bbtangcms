@@ -106,6 +106,9 @@ class Ability
   def create_recommend_recommend_hindex
     can :create, Recommend::RecommendHindex
   end
+  def create_recommend_recommend_ptag
+    can :create, Recommend::RecommendPtag
+  end
 ##################update ##########################
   def update_profile
     can :update, Profile
@@ -175,6 +178,9 @@ class Ability
   def update_recommend_recommend_hindex
     can :update, Recommend::RecommendHindex
   end
+  def update_recommend_recommend_ptag
+    can :update, Recommend::RecommendPtag
+  end
 ##################read ##########################
   def read_profile
     can :read, Profile
@@ -238,6 +244,9 @@ class Ability
 
   def read_recommend_recommend_hindex
     can :read, Recommend::RecommendHindex
+  end
+  def read_recommend_recommend_ptag
+    can :read, Recommend::RecommendPtag
   end
 ##################destroy ##########################
   def destroy_profile
@@ -303,6 +312,9 @@ class Ability
   def destroy_recommend_recommend_hindex
     can :destroy, Recommend::RecommendHindex
   end
+  def destroy_recommend_recommend_ptag
+    can :destroy, Recommend::RecommendPtag
+  end
   ##############other permit
 
   def resetscore_question
@@ -341,6 +353,7 @@ class Ability
 
     can :index, :dashboard
     can [:index,:item_list,:search_tag], :archive
+    can :index, :hot_tags
     # bellow is defining for "Tag::DashboardController " any it work as follow line(cancan 1.6.7)
     #and also shuld same with auth/dashboard but I filter, with another method
     can :show, :dashboard

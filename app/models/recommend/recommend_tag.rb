@@ -35,7 +35,7 @@ class Recommend::RecommendTag
   validates :body, :presence => true, :if => Proc.new { |instance| ids_validator instance.body }
 
   def ids_validator(str=nil)
-    ids = str.to_s.split(/，|,|;|；|\ +|\||\r\n/) if self.body
+    ids = str.to_s.split(/，|,|;|；|\ +|\||\r\n/).collect {|t| t if t.present?}.uniq.compact if self.body
     ids.each do |tag|
       #errors.add(:body, "Tag '#{tag}' is not exist") unless CategoryBase.find_by_name(tag).present?
       errors.add(:body, "Tag '#{tag}' is not exist") unless ActsAsTaggableOn::Tag.find_by_name(tag).present?

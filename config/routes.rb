@@ -46,6 +46,7 @@ BBTangCMS::Application.routes.draw do
     resources :recommend_subjects
     resources :recommend_quizzes
     resources :recommend_tags
+    resources :recommend_ptags
     resources :recommend_hindices
     root :to => 'dashboard#show', :as => :dashboard
   end
@@ -61,10 +62,13 @@ BBTangCMS::Application.routes.draw do
   devise_for :users
 
   root :to => 'dashboard#index'
+  match "/archives/hot_tags/" => "hot_tags#index", :as => :hot_tags, :via => :get
   match "/archives/:model/" => "archives#index", :as => :archives, :via => :get
   match "/archives/savesort" => 'archives#savesort'
   match "/archives/search_tag" => 'archives#search_tag', :as => :search_tag
   match '/archives/:model/item_list/:item_id/' => "archives#item_list", :as => :archive_item_list, :via => :get
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

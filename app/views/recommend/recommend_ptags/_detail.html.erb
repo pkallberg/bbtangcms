@@ -1,0 +1,62 @@
+<div id = "hot_tags_dail">
+  <% if @model_class.present?%>
+    <div id = "hot_tags_dail">
+      <%- model_class = @model_class.new.class -%>
+      <div class="page-header">
+        <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+      </div>
+
+      <%- identity_model_class = Identity.new.class -%>
+      <%- timeline_model_class = Timeline.new.class -%>
+      <%- category_model_class = Category.new.class -%>
+      <div class="tabbable box"> <!-- Only required for left/right tabs -->
+        <ul class="nav nav-tabs">
+          <% if identities.present? %>
+          <li class="active"><%= link_to identity_model_class.model_name.human.pluralize,"##{@model_class.to_s.downcase}_identities", "data-toggle" => "tab"%></li>
+          <% end %>
+          <% if timelines.present? %>
+          <li><%= link_to timeline_model_class.model_name.human.pluralize,"##{@model_class.to_s.downcase}_timelines", "data-toggle" => "tab"%></li>
+          <% end %>
+          <% if categories.present? %>
+          <li><%= link_to category_model_class.model_name.human.pluralize,"##{@model_class.to_s.downcase}_categories", "data-toggle" => "tab"%></li>
+          <% end %>
+          <% if tags.present? %>
+          <li><%= link_to '自定义标签s',"##{@model_class.to_s.downcase}_tags", "data-toggle" => "tab"%></li>
+          <% end %>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id='<%= "#{@model_class.to_s.downcase}_identities" %>'>
+          <% if identities.present? %>
+            <% tag_cloud(identities, %w(css1 css2 css3 css4 css5)) do |tag, css_class| %>
+              <%= link_to "#{tag.name}", "#", :class => css_class, :title => tag.count %>
+            <% end %>
+          <% end %>
+          </div>
+          <div class="tab-pane" id='<%= "#{@model_class.to_s.downcase}_timelines" %>'>
+          <% if timelines.present? %>
+            <% tag_cloud(timelines, %w(css1 css2 css3 css4 css5)) do |tag, css_class| %>
+              <%= link_to "#{tag.name}", "#", :class => css_class, :title => tag.count %>
+            <% end %>
+          <% end %>
+          </div>
+          <div class="tab-pane" id='<%= "#{@model_class.to_s.downcase}_categories" %>'>
+          <% if categories.present? %>
+            <% tag_cloud(categories, %w(css1 css2 css3 css4 css5)) do |tag, css_class| %>
+              <%= link_to "#{tag.name}", "#", :class => css_class, :title => tag.count %>
+            <% end %>
+          <% end %>
+          </div>
+          <div class="tab-pane" id='<%= "#{@model_class.to_s.downcase}_tags" %>'>
+          <% if categories.present? %>
+            <% tag_cloud(tags, %w(css1 css2 css3 css4 css5)) do |tag, css_class| %>
+              <%= link_to "#{tag.name}", "#", :class => css_class, :title => tag.count %>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    no content ...
+  <% end %>
+</div>

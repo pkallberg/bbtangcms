@@ -1,0 +1,2 @@
+module HotTagsHelper
+end
