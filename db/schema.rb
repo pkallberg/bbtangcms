@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120723090102) do
+ActiveRecord::Schema.define(:version => 20120726050040) do
 
   create_table "admin_settings", :force => true do |t|
     t.string   "name"
@@ -447,6 +447,8 @@ ActiveRecord::Schema.define(:version => 20120723090102) do
     t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "album_id"
+    t.string   "description"
   end
 
   create_table "preferences", :force => true do |t|
@@ -679,14 +681,20 @@ ActiveRecord::Schema.define(:version => 20120723090102) do
   add_index "simple_captcha_data", ["key"], :name => "idx_key"
 
   create_table "subjects", :force => true do |t|
-    t.string  "title"
-    t.string  "title2"
-    t.text    "content"
-    t.text    "body"
-    t.text    "summary"
-    t.integer "category"
-    t.integer "sort_index"
-    t.text    "releated_ids"
+    t.string   "title"
+    t.string   "title2"
+    t.text     "content"
+    t.text     "body"
+    t.text     "summary"
+    t.integer  "category"
+    t.integer  "sort_index"
+    t.text     "releated_ids"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "deleted_by_id"
+    t.datetime "deleted_at"
+    t.integer  "created_by"
+    t.integer  "updated_by"
   end
 
   create_table "taggings", :force => true do |t|
