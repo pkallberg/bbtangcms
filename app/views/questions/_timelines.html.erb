@@ -1,0 +1,14 @@
+
+<!--%= collection_select("question", "timeline_list", timelines, :id, :name,
+                     {:prompt   => "Select an timeline",  :selected => (@question_timelines.map(&:id) if @question_timelines.present?)},
+                     {:onchange => "#{remote_function(:url  => {:action => "update_categories"},
+                                                      :with => "'timeline_id='+value")}"}) %-->
+<%= collection_select("question", "timeline_list", timelines, :id, :name,
+                     {:prompt   => "Select an timeline",  :selected => (@question_timelines.map(&:id) if @question_timelines.present?)}
+                     ) %>
+
+
+<!--%= grouped_collection_select("question", "timeline_list", timelines, :id, :name,
+                     {:prompt   => "Select an timeline"},
+                     {:onchange => "#{remote_function(:url  => {:action => "update_categories"},
+                                                      :with => "'timeline_id='+value")}"})%-->

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120711084710) do
+ActiveRecord::Schema.define(:version => 20120723090102) do
 
   create_table "admin_settings", :force => true do |t|
     t.string   "name"
@@ -703,7 +703,10 @@ ActiveRecord::Schema.define(:version => 20120711084710) do
   add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
 
   create_table "tags", :force => true do |t|
-    t.string "name"
+    t.string  "name"
+    t.integer "knowledges_count"
+    t.integer "questions_count"
+    t.integer "profiles_count"
   end
 
   create_table "tags_bak", :force => true do |t|

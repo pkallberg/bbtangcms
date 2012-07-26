@@ -69,7 +69,7 @@ gem "paperclip", "~> 3.0"
 gem "gravatar_image_tag", "~> 1.1.2"
 
 gem 'jquery-rails', "~> 1.0.19"
-
+#gem "prototype-rails", "~> 3.2.1"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -80,7 +80,8 @@ gem 'jquery-rails', "~> 1.0.19"
 # gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
+gem 'rvm-capistrano'
 gem "rails-settings-cached", "~> 0.2.1"
 
 # To use debugger

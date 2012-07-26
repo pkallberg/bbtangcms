@@ -90,7 +90,7 @@ class KnowledgesController < ApplicationController
       @timelines_choose.each do |timeline|
         #timeline = Timeline.find_by_name(timeline.name)
         #@categories += timeline.children.all
-        Timeline.where(name:timeline.name).each do |t|
+        Timeline.where(name: timeline.name).each do |t|
           @categories += t.children.all if @identities_choose.include? t.parent
         end
       end

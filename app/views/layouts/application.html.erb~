@@ -12,10 +12,11 @@
     <![endif]-->
 
   <%= javascript_include_tag "application" %>
+
   <%= csrf_meta_tag %>
   <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= stylesheet_link_tag "application", :media => "all", :id => "application_css"%>
 
     <%= favicon_link_tag 'favicon.ico' %>
 
@@ -48,8 +49,6 @@
       <hr>
       <footer>
         <%= render :partial => 'common/footer' %>
-        <%=session[:old_page]%>
-        <%= params[:page]%>
       </footer>
 
     </div> <!-- /container -->

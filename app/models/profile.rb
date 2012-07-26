@@ -7,11 +7,12 @@ class Profile < ActiveRecord::Base
   belongs_to :level
   #has_many :tasks
   belongs_to :user_data_statistic
-
+  acts_as_taggable_on :tags
   #has_many :r_user_knowledges
   #has_many :knowledges,:through => :r_user_knowledges
 
   #attr_accessible :oauth_face_image_url # for getter and setters
+  before_save :update_tags_count
 
   define_index do
    indexes nickname
@@ -468,6 +469,54 @@ class Profile < ActiveRecord::Base
   # 专家？
   def is_expert?
     self.level_id == 3 ? true : false
+  end
+
+  def update_tags_count
+    tags_list = [:tags, :timelines, :categories, :identities]
+    tags_list.each do |tag|
+      tag = tag.to_s.singularize
+      if self.respond_to?("#{tag}_list_changed?")
+        #if self.send("#{tag}_list_changed?") == true
+        t_list_changes = self.send("#{tag}_list_changes")
+        if t_list_changes.present? and t_list_changes.count == 2
+          if t_list_changes.first.class == String
+            old_t = t_list_changes.first.split(',').collect {|t| t.gsub(' ',"")}    else
+            old_t = t_list_changes.first
+          end
+          if t_list_changes.last.class == String
+            new_t = t_list_changes.last.split(',').collect {|t| t.gsub(' ',"")}    else
+            new_t = t_list_changes.last
+          end
+          set_tags_count(old_tags = old_t,new_tags = new_t)
+        end
+      end
+    end
+  end
+
+  def set_tags_count(old_tags = [],new_tags = [],count_type=self.class.to_s.downcase.pluralize)
+
+    #add count
+    insert_tags = new_tags - old_tags
+    if insert_tags.present?
+      insert_tags.each do |t|
+        if ActsAsTaggableOn::Tag.where(name: t).present?
+          tag = ActsAsTaggableOn::Tag.where(name: t).first
+          tag.send("#{count_type}_count=",tag.send("#{count_type}_count").to_i.next)
+          tag.save
+        end
+      end
+    end
+    # pred  count
+    pred_tags = old_tags - new_tags
+    if pred_tags.present?
+      pred_tags.each do |t|
+        if ActsAsTaggableOn::Tag.where(name: t).present?
+          tag = ActsAsTaggableOn::Tag.where(name: t).first
+          tag.send("#{count_type}_count=",tag.send("#{count_type}_count").to_i.pred)
+          tag.save
+        end
+      end
+    end
   end
 
 end

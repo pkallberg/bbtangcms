@@ -1,0 +1,10 @@
+$("#question_timeline_list").replaceWith("<%= escape_javascript(render(:partial => 'timelines', object: @timelines )) %>");
+$("#question_category_list").replaceWith("<%= escape_javascript(render(:partial => 'categories', object: @categories )) %>");
+
+$(function($) {
+$("#question_timeline_list").change(function() {
+$.ajax({url: '/questions/update_categories',
+data: 'timeline_id=' + this.value,
+dataType: 'script'})
+});
+}); 

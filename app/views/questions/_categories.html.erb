@@ -1,0 +1,2 @@
+<%= collection_select('question', "category_list", categories, :id, :name,
+                     {:prompt   => "Select a category",  :selected => (@question_categories.map(&:id) if @question_categories.present?)}) %>
