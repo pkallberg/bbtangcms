@@ -4,7 +4,7 @@ zh-CN:
       recommend/recommend_subject: "主题推送"
     attributes:
       recommend/recommend_subject:
-        _id: "id"
+        _id: "ID"
         _type: "字段类型"
         position: "栏位"
         name: "名称"

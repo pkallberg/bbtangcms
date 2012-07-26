@@ -1,9 +1,12 @@
+# encoding: utf-8
 class ApplicationController < ActionController::Base
+
   protect_from_forgery
   before_filter :authenticate_user!
   before_filter :add_initial_breadcrumbs
   before_filter :create_profile
   before_filter :set_page_number
+  before_filter :set_seo_meta
 
   attr_reader :current_action
 
@@ -78,7 +81,7 @@ class ApplicationController < ActionController::Base
   # ...
   #end
 
-  protected
+
 
   def current_action
     params[:action]
@@ -119,10 +122,41 @@ class ApplicationController < ActionController::Base
     session[:old_controller] = params[:controller]
     session[:old_action] = params[:action]
     session[:old_instance_id] = params[:id]
+    session[:old_page] = nil if model_class.nil?
 
   end
 
+  def set_seo_meta(title = '',meta_keywords = '', meta_description = '')
+    g_obj = guessed_object
+    if g_obj.present?
+      [:title, :name, :nickname].each do |col|
+        @page_title = g_obj.send col  if g_obj.respond_to? col
+      end
 
+      @meta_keywords = g_obj.tag_list.join(",") if g_obj.respond_to? :tag_list
+      @meta_description = g_obj.summary if g_obj.respond_to? :summary
+      @meta_description = g_obj.description if g_obj.respond_to? :description
+    end
+
+    if title.present?
+      @page_title = "#{title}"
+    end
+    @meta_keywords = meta_keywords if meta_keywords.present?
+    @meta_description = meta_description if meta_description.present?
+  end
+
+  def guessed_object
+    @model_class = params[:controller].classify.constantize if params[:controller].classify.class_exists?
+    @model_class = params[:controller].gsub(/\w+([\/]+)/,"").classify.constantize if params[:controller].gsub(/\w+([\/]+)/,"").classify.class_exists?
+    debugger
+    if @model_class.present?
+      @model_class.where(params[:id]).first if params[:id].present?
+      #guessed_instance_variable_name = "@#{@model_class.name.singularize.downcase}"
+      #if self.instance_variable_defined? guessed_instance_variable_name
+      #  self.instance_variable_get guessed_instance_variable_name
+      #end
+    end
+  end
 
   private
 

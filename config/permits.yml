@@ -2,6 +2,7 @@ permit:
   create_profile: create_profile
   create_knowledge: create_knowledge
   #create_category_base: create_category_base
+  create_subject: create_subject
   create_question: create_question
   create_question_answer: create_question_answer
   create_tag_identity: create_tag_identity
@@ -20,6 +21,7 @@ permit:
   update_profile: update_profile
   update_knowledge: update_knowledge
   #update_category_base: update_category_base
+  update_subject: update_subject
   update_question: update_question
   update_question_answer: update_question_answer
   #update_tag_identity: update_tag_identity
@@ -36,6 +38,7 @@ permit:
   read_profile: read_profile
   read_knowledge: read_knowledge
   #read_category_base: read_category_base
+  read_subject: read_subject
   read_question: read_question
   read_question_answer: read_question_answer
   read_tag_identity: read_tag_identity
@@ -52,6 +55,7 @@ permit:
   destroy_profile: destroy_profile
   destroy_knowledge: destroy_knowledge
   #destroy_category_base: destroy_category_base
+  destroy_subject: destroy_subject
   destroy_question: destroy_question
   destroy_question_answer: destroy_question_answer
   #destroy_tag_identity: destroy_tag_identity

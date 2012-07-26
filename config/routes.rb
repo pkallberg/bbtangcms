@@ -1,7 +1,11 @@
 BBTangCMS::Application.routes.draw do
 
-  match "common/search", :as => :common_search
-
+  namespace :auth do
+    resources :users
+    resources :cms_roles
+    resources :assign_permits
+    root :to => 'dashboard#show', :as => :dashboard
+  end
 
 
   namespace :kindeditor do
@@ -9,24 +13,6 @@ BBTangCMS::Application.routes.draw do
     match '/upload' => 'assets#create', :via => :post
     match '/filemanager' => 'assets#list', :via => :get
     #get  "/filemanager" => "assets#list"
-  end
-
-  namespace :tag do
-    resources :identities , :only => [:index, :show, :new, :create] do
-      resources :timelines, :only => [:index, :show, :new, :create] do
-        resources :categories
-      end
-    end
-    root :to => 'dashboard#show', :as => :dashboard
-  end
-
-  resources :questions do
-    collection do
-      get 'resetscore'
-      match 'update_timelines'
-      match 'update_categories'
-    end
-    resources :answers
   end
 
   resources :knowledges do
@@ -37,6 +23,16 @@ BBTangCMS::Application.routes.draw do
 
   #resources :profiles, :only => [:index, :show, :edit, :destroy]
   resources :profiles, :except => [:new, :create]
+
+  resources :questions do
+    collection do
+      get 'resetscore'
+      match 'update_timelines'
+      match 'update_categories'
+    end
+    resources :answers
+  end
+
   namespace :recommend do
     resources :recommend_products
     resources :recommend_questions
@@ -51,16 +47,23 @@ BBTangCMS::Application.routes.draw do
     root :to => 'dashboard#show', :as => :dashboard
   end
 
-  namespace :auth do
-    resources :users
-    resources :cms_roles
-    resources :assign_permits
+  resources :subjects
+
+  namespace :tag do
+    resources :identities , :only => [:index, :show, :new, :create] do
+      resources :timelines, :only => [:index, :show, :new, :create] do
+        resources :categories
+      end
+    end
     root :to => 'dashboard#show', :as => :dashboard
   end
 
 
+
+
   devise_for :users
 
+  match "common/search", :as => :common_search
   root :to => 'dashboard#index'
   match "/archives/hot_tags/" => "hot_tags#index", :as => :hot_tags, :via => :get
   match "/archives/:model/" => "archives#index", :as => :archives, :via => :get

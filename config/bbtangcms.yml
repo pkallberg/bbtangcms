@@ -1,6 +1,7 @@
 # config/application.yml
 #theme = %w(amelia cerulean cyborg journal readable simplex slate spacelab spruce superhero united)
 defaults: &defaults
+  app_name: "BBTangCMS"
   cool:
     saweet: nested settings
   neat_setting: 24

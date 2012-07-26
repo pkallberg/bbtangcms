@@ -16,6 +16,8 @@
               knowledges_path %></li>
 		  <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Question.new.class.model_name.human)),
               questions_path %></li>
+		  <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Subject.new.class.model_name.human)),
+              subjects_path %></li>
 		  <li><%= link_to t('.tags'),tag_dashboard_path %></li>
 	  </ul>
   </div><!--/.well -->

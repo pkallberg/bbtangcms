@@ -47,6 +47,10 @@ class Ability
     can :create, CategoryBase
   end
 
+  def create_subject
+    can :create, Subject
+  end
+
   def create_question
     can :create, Question
     can [:update_timelines, :update_categories] , :questions
@@ -122,6 +126,10 @@ class Ability
     can :update, CategoryBase
   end
 
+  def update_subject
+    can :update, Subject
+  end
+
   def update_question
     can :update, Question
     can [:update_timelines, :update_categories] , :questions
@@ -194,6 +202,10 @@ class Ability
     can :read, CategoryBase
   end
 
+  def read_subject
+    can :read, Subject
+  end
+
   def read_question
     can :read, Question
   end
@@ -259,6 +271,10 @@ class Ability
 
   def destroy_category_base
     can :destroy, CategoryBase
+  end
+
+  def destroy_subject
+    can :destroy, Subject
   end
 
   def destroy_question

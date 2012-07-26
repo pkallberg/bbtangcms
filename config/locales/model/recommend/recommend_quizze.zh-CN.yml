@@ -4,7 +4,7 @@ zh-CN:
       recommend/recommend_quiz: "考试推送"
     attributes:
       recommend/recommend_quiz:
-        _id: "id"
+        _id: "ID"
         _type: "字段类型"
         position: "栏位"
         name: "名称"

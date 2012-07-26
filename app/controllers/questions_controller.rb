@@ -92,7 +92,7 @@ class QuestionsController < ApplicationController
       end
     end
 
-    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), edit_question_path
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), edit_question_path(@question)
   end
 
   # POST /questions

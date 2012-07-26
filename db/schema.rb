@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120726050040) do
+ActiveRecord::Schema.define(:version => 20120726064703) do
 
   create_table "admin_settings", :force => true do |t|
     t.string   "name"
@@ -689,12 +689,15 @@ ActiveRecord::Schema.define(:version => 20120726050040) do
     t.integer  "category"
     t.integer  "sort_index"
     t.text     "releated_ids"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.integer  "deleted_by_id"
     t.datetime "deleted_at"
     t.integer  "created_by"
     t.integer  "updated_by"
+    t.string   "face_file_name"
+    t.string   "face_content_type"
+    t.string   "face_file_size"
   end
 
   create_table "taggings", :force => true do |t|
