@@ -15,6 +15,7 @@ end
 #  tag.save
 #end
 # another method may work better
+=begin
 tags_list = [:tags, :timelines, :categories, :identities]
 objects_list = [Knowledge,Question,Profile]
 objects_list.each do |object|
@@ -25,3 +26,4 @@ objects_list.each do |object|
     end
   end
 end
+=end
