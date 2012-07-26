@@ -54,6 +54,6 @@ less.autoRefresh = function(time)
         fnImport(path, imports);
     }
 };
-jQuery(document).ready(function($){
-    less.autoRefresh(time = 600000);
-});
+//jQuery(document).ready(function($){
+//    less.autoRefresh(time = 600000);
+//});

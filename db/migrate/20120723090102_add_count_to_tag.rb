@@ -15,13 +15,13 @@ end
 #  tag.save
 #end
 # another method may work better
-#tags_list = [:tags, :timelines, :categories, :identities]
-#objects_list = [Knowledge,Question,Profile]
-#objects_list.each do |object|
-#  tags_list.each do |t|
-#    object.tag_counts_on(t).each do |tag|
-#      tag.knowledges_count = tag.count
-#      tag.save
-#    end
-#  end
-#end
+tags_list = [:tags, :timelines, :categories, :identities]
+objects_list = [Knowledge,Question,Profile]
+objects_list.each do |object|
+  tags_list.each do |t|
+    object.tag_counts_on(t).each do |tag|
+      tag.knowledges_count = tag.count
+      tag.save
+    end
+  end
+end
