@@ -8,7 +8,7 @@ gem 'rails', '3.2.2'
 
 group :production, :development, :test do
   gem 'mysql2'
-  gem "mongoid", "~> 3.0.0.rc"
+  gem "mongoid", "~> 3.0.2"
 end
 
 #Rails 3.* logs assets in the output from rails server. These messages are pretty verbose. Adding this gem to your project's Gemfile will suppress those messages.

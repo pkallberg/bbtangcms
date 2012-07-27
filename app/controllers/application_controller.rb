@@ -150,7 +150,7 @@ class ApplicationController < ActionController::Base
     @model_class = params[:controller].gsub(/\w+([\/]+)/,"").classify.constantize if params[:controller].gsub(/\w+([\/]+)/,"").classify.class_exists?
 
     if @model_class.present?
-      @model_class.where(params[:id]).first if params[:id].present?
+      @model_class.where(id: params[:id]).first if params[:id].present?
       #guessed_instance_variable_name = "@#{@model_class.name.singularize.downcase}"
       #if self.instance_variable_defined? guessed_instance_variable_name
       #  self.instance_variable_get guessed_instance_variable_name
