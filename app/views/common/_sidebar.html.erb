@@ -1,31 +1,33 @@
 <% if current_user.present? and current_user.is_cms_user? %>
   <div class="well sidebar-nav">
-	  <h3><%= t("common.sidebar.model") %></h3>
-	  <ul class="nav nav-list">
-		  <li class="nav-header"><%= t("common.sidebar.archives") %></li>
-		  <li><%= link_to t("helpers.links.archives", :model => Knowledge.new.class.model_name.human),
+    <h3><%= t("common.sidebar.model") %></h3>
+    <ul class="nav nav-list">
+      <li class="nav-header"><%= t("common.sidebar.archives") %></li>
+      <li><%= link_to t("helpers.links.archives", :model => Knowledge.new.class.model_name.human),
               archives_path(:model => Knowledge) %></li>
-		  <li><%= link_to t("helpers.links.archives", :model => Question.new.class.model_name.human),
+      <li><%= link_to t("helpers.links.archives", :model => Question.new.class.model_name.human),
               archives_path(:model => Question) %></li>
-		  <li><%= link_to "tag cloud",
+      <li><%= link_to "tag cloud",
               hot_tags_path(:model => Knowledge) %></li>
-	  </ul>
-	  <ul class="nav nav-list">
-		  <li class="nav-header"><%= t("common.sidebar.model") %></li>
-		  <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Knowledge.new.class.model_name.human)),
+    </ul>
+    <ul class="nav nav-list">
+      <li class="nav-header"><%= t("common.sidebar.model") %></li>
+      <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Knowledge.new.class.model_name.human)),
               knowledges_path %></li>
-		  <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Question.new.class.model_name.human)),
+      <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Question.new.class.model_name.human)),
               questions_path %></li>
-		  <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Subject.new.class.model_name.human)),
+      <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Subject.new.class.model_name.human)),
               subjects_path %></li>
-		  <li><%= link_to t('.tags'),tag_dashboard_path %></li>
-	  </ul>
+      <li><%= link_to t('.tags'),tag_dashboard_path %></li>
+      <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Attachment.new.class.model_name.human)),
+              attachments_path %></li>
+    </ul>
   </div><!--/.well -->
   <div class="well sidebar-nav">
-	  <h3><%= t("common.sidebar.recommend") %></h3>
-	  <ul class="nav nav-list">
-		  <li class="nav-header"><%= t("common.sidebar.recommend") %></li>
-		  <!--li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendEvent.new.class.model_name.human)),
+    <h3><%= t("common.sidebar.recommend") %></h3>
+    <ul class="nav nav-list">
+      <li class="nav-header"><%= t("common.sidebar.recommend") %></li>
+      <!--li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendEvent.new.class.model_name.human)),
               recommend_recommend_events_path %></li-->
       <!--li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendMtool.new.class.model_name.human)),
               recommend_recommend_mtools_path %></li-->
@@ -45,7 +47,7 @@
               recommend_recommend_hindices_path %></li>
       <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendPtag.new.class.model_name.human)),
               recommend_recommend_ptags_path %></li>
-	  </ul>
+    </ul>
   </div>
   <div class="well sidebar-nav">
     <h2><%= t('menu.cpanel') %></h2>

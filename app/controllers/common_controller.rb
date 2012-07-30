@@ -28,7 +28,7 @@ class CommonController < ApplicationController
         if q_type.singularize.gsub("_id","").classify.class_exists?
           ass_result = []
           ass_model =  q_type.singularize.gsub("_id","").classify.constantize
-          debugger
+
           human_col.each do |col|
             if ass_model.column_names.include? col
               ass_result.append (ass_model.where col => q_word).first if (ass_model.where col => q_word).present?

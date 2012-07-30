@@ -51,6 +51,10 @@ class Ability
     can :create, Subject
   end
 
+  def create_attachment
+    can :create, Attachment
+  end
+
   def create_question
     can :create, Question
     can [:update_timelines, :update_categories] , :questions
@@ -130,6 +134,10 @@ class Ability
     can :update, Subject
   end
 
+  def update_attachment
+    can :update, Attachment
+  end
+
   def update_question
     can :update, Question
     can [:update_timelines, :update_categories] , :questions
@@ -206,6 +214,10 @@ class Ability
     can :read, Subject
   end
 
+  def read_attachment
+    can :read, Attachment
+  end
+
   def read_question
     can :read, Question
   end
@@ -275,6 +287,10 @@ class Ability
 
   def destroy_subject
     can :destroy, Subject
+  end
+
+  def destroy_attachment
+    can :destroy, Attachment
   end
 
   def destroy_question

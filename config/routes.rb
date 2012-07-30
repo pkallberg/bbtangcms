@@ -1,5 +1,7 @@
 BBTangCMS::Application.routes.draw do
 
+  resources :attachments
+
   namespace :auth do
     resources :users
     resources :cms_roles

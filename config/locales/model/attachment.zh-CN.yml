@@ -1,0 +1,45 @@
+zh-CN:
+  activerecord:
+    models:
+      attachment: "附件"
+    errors:
+      models:
+        attachment:
+          attributes:
+            attachment_content_type:
+              invalid: "附件格式错误！"
+            attachment_file_size:
+              in_between: "上传附件不得超过2M。"
+            attachment_file_name:
+              too_short: "附件名太短！"
+              too_long: "附件名太长！"
+    attributes:
+      attachment:
+        id: "ID"
+        attachment: "附件"
+        attachment_content_type: "附件格式"
+        attachment_file_size: "附件大小"
+        attachment_file_name: "附件名称"
+        purpose: "图片添加位置"
+        link: "附件url"
+        p1: "自学当妈首页专题推荐"
+        p2: "有问有答首页专家推荐"
+        p3: "知识文章"
+        p4: "问答提问"
+        p5: "个人设置"
+        p6: "首页专题"
+        p7: "首页专家"
+        p8: "首页蜜糖组"
+        p9: "首页专家组"
+        p10: "商品推荐"
+        note: "备注"
+        created_user: "创建者"
+        created_by_id: "创建者ID"
+        created_at: "创建时间"
+        updated_at: "更新时间"
+        updated_by_id: "编辑人ID"
+        updated_user: "编辑人"
+        soft_deleted: "软删除"
+        deleted_at: "删除时间"
+        deleted_by_id: "删除用户ID"
+        deleted_user: "删除用户"

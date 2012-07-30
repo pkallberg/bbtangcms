@@ -62,9 +62,10 @@
           <% end %>
         </td>
       </tr>
-<% end %>
+    <% end %>
+  </tbody>
 </table>
-
+<%= will_paginate @subjects %>
 <br />
 
 <% if can? :create, Subject %>

@@ -1,0 +1,53 @@
+<%- model_class = @attachment.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => t('helpers.titles.show', :model => model_class.model_name.human) %></h1>
+</div>
+
+<%= show_for @attachment do |s| %>
+  <%= s.attribute :attachment  do %>
+    <ol>
+    <% ({:original => nil}.merge Attachment.attachment_definitions[:attachment][:styles]).each do |style| %>
+    <li>
+    <%= image_tag @attachment.attachment(style.first) if @attachment.attachment.present? %></br>
+    <%= @attachment.attachment.url(style.first) %>
+    </li>
+    <% end %>
+    </ol>
+  <% end %>
+  <%= s.attribute :attachment_file_name %>
+  <%= s.attribute :attachment_content_type %>
+  <%= s.attribute :attachment_file_size %>
+  <%= s.attribute :purpose, :value => @attachment.purpose_name %>
+  <%= s.attribute :note %>
+  <%= s.attribute :created_by_id %>
+  <%= s.attribute :created_user %>
+  <%= s.attribute :created_at %>
+
+  <%= s.attribute :updated_by_id %>
+  <%= s.attribute :updated_user %>
+  <%= s.attribute :updated_at %>
+
+  <%= s.attribute :deleted_by_id %>
+  <%= s.attribute :deleted_user %>
+  <%= s.attribute :deleted_at %>
+
+
+<% end %>
+
+<div class="actions">
+  <% if can? :read, @attachment %>
+    <%= link_to t('.back', :default => t("helpers.links.back", :model => model_class.model_name.human)),
+                attachments_path, :class => 'btn'  %>
+  <% end %>
+  <% if can? :update, @attachment %>
+    <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)),
+              edit_attachment_path(@attachment), :class => 'btn' %>
+  <% end %>
+  <% if can? :destroy, @attachment %>
+    <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)),
+                attachment_path(@attachment),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+  <% end %>
+</div>

@@ -1,0 +1,29 @@
+<%= simple_form_for(@attachment, :html => { :class => "form-inline" }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :attachment  do %>
+      <%= f.file_field :attachment %>
+      <%= image_tag @attachment.attachment(:s32) if @attachment.attachment.present? %>
+    <% end %>
+    <!--%= f.input :purpose %-->
+    <%= f.input :purpose, as: :check_boxes, :collection => Attachment::PURPOSE.invert,:checked => (@attachment.purpose.split(",") if @attachment.purpose.present?) %>
+    <%= f.input :note %>
+    <!--%= f.input :deleted_by_id %-->
+    <!--%= f.input :deleted_at %-->
+    <!--%= f.input :created_by_id %-->
+    <!--%= f.input :updated_by_id %-->
+    <%= f.input :soft_deleted, :as => :boolean, :input_html => {:checked =>  @attachment.deleted_at? ? "checked" : ""} %>
+    <% if @attachment.new_record? %>
+      <%= f.input :created_by_id, :as => :hidden, :input_html => { :value => current_user.id} %>
+    <% else %>
+      <%= f.input :updated_by_id, :as => :hidden, :input_html => { :value => current_user.id} %>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary', :disable_with => 'loading...' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                attachments_path, :class => 'btn' %>
+  </div>
+<% end %>
