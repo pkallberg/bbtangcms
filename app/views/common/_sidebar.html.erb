@@ -1,3 +1,4 @@
+<div id= "default_sidebar">
 <% if current_user.present? and current_user.is_cms_user? %>
   <div class="well sidebar-nav">
     <h3><%= t("common.sidebar.model") %></h3>
@@ -50,8 +51,11 @@
     </ul>
   </div>
   <div class="well sidebar-nav">
-    <h2><%= t('menu.cpanel') %></h2>
+    <h3><%= t('menu.cpanel') %></h3>
     <ul class="nav nav-list">
+      <% if current_user.present? and current_user.admin_group? %>
+        <li><%= link_to t('.admin'),admin_base_settings_path %></li>
+      <% end %>
       <% if user_signed_in? %>
         <li><p><%= t('common.login_as') %><%= link_to current_user, edit_user_registration_path %>. Not you? <%= link_to t("common.logout"), destroy_user_session_path, :method => :delete %></p></li>
       <% else %>
@@ -60,3 +64,4 @@
     <ul>
   </div>
 <% end %>
+</div>

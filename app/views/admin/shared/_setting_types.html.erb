@@ -1,0 +1,18 @@
+<div class="well sidebar-nav">
+  <% SettingType.all.each do |type| %>
+    <ul class="nav nav-list">
+      <%= render "admin/shared/setting_subject_list", :type => type %>
+    </ul>
+  <% end %>
+  <ul class="nav nav-list">
+    <h3><%= t('menu.cpanel') %></h3>
+    <% if current_user.present? and current_user.admin_group? %>
+      <li><%= link_to t('.admin'),admin_base_settings_path %></li>
+    <% end %>
+    <% if user_signed_in? %>
+      <li><%= t('common.login_as') %><%= link_to current_user, edit_user_registration_path %>. Not you? <%= link_to t("common.logout"), destroy_user_session_path, :method => :delete %></li>
+    <% else %>
+      <li>Please,<%= link_to t("common.register"), new_user_registration_path %> or <%= link_to t("common.login"), new_user_session_path %></li>
+    <% end %>
+  <ul>
+</div>

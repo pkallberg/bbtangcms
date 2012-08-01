@@ -1,0 +1,8 @@
+<div id="middle-nav-bar">
+  <%= render "shared/middle_nav_bar", :setting_type => setting_type, :setting_subject => setting_subject, :setting_subject_action => setting_subject_action %>
+</div>
+<div id="content">
+  <% if not setting_subject.file_name.blank? %>
+    <%= render "settings_html/#{setting_subject.file_name}",  :setting_type => setting_type, :setting_subject => setting_subject %>
+  <% end %>
+</div>

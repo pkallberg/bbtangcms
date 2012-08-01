@@ -1,0 +1,159 @@
+<% if @link.present? %>
+  <% @url = "/admin/links_settings/update_link" %>
+<% else %>
+  <% @url = "/admin/links_settings/create_link" %>
+<% end %>
+
+<%= form_tag @url, :id => "links_settings_form", :multipart => true, :method => :post do %>
+
+  <% #setting-type-id %>
+  <div class="field" style="display:none;">
+    <div class="field-label">
+      <%= label_tag :setting_type_id, "Setting_type_id:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <%= text_field_tag :setting_type_id, @setting_type.id.to_s %>
+      </p>
+      <p>
+      </p>
+    </div>
+  </div>
+
+  <% #setting-subject-id %>
+  <div class="field" style="display:none;">
+    <div class="field-label">
+      <%= label_tag :setting_subject_id, "Setting_subject_id:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <%= text_field_tag :setting_subject_id, @setting_subject.id.to_s %>
+      </p>
+      <p>
+      </p>
+    </div>
+  </div>
+
+  <% if @link %>
+    <% #link-id %>
+    <div class="field" style="display:none;">
+      <div class="field-label">
+        <%= label_tag :link_id, "Link_id:" %>
+      </div>
+      <div class="field-content">
+        <p>
+          <%= text_field_tag :link_id, @link.id.to_s %>
+        </p>
+        <p>
+        </p>
+      </div>
+    </div>
+  <% end %>
+
+  <% #link-name %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :link_name, "链接名称:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <%= text_field_tag :link_name, @value["name"].to_s %>
+      </p>
+      <p>
+        <span class="help-inline">当您添加文字链接时，链接LOGO为您的链接名称。</span>
+      </p>
+    </div>
+  </div>
+
+  <% #link-href %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :link_href, "链接地址:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <%= text_field_tag :link_href, @value["href"].to_s %>
+      </p>
+      <p>
+      </p>
+    </div>
+  </div>
+
+  <% #link-sequence %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :link_sequence, "显示顺序:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <%= text_field_tag :link_sequence, @value["sequence"].to_s %>
+      </p>
+      <p>
+        <span class="help-inline">数字越小排在越前位。</span>
+      </p>
+    </div>
+  </div>
+
+  <% #link-logo 上传 %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :link_logo_file, "链接LOGO:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <%= file_field_tag :link_logo_file %>
+      </p>
+      <p>
+      </p>
+    </div>
+  </div>
+
+  <% #link-logo %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :link_logo, "或LOGO地址:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <%= text_field_tag :link_logo, @value["logo"].to_s %>
+      </p>
+      <p>
+       <span class="help-inline">在指定远程LOGO图片时，LOGO图片的URL网址必须为以http://或https://开头的正确URL格式！</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="submit">
+    <%= submit_tag "保存", :class => 'btn-primary' %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  var validator = $("#links_settings_form").validate({
+		rules: {
+			'link_name': {
+				required: true
+			},
+			'link_href': {
+				required: true
+			}
+		},
+		messages: {
+			'link_name': {
+				required: "请输入名称"
+			},
+			'link_href': {
+				required: "请输入链接地址"
+			}
+		},
+		// the errorPlacement has to take the table layout into account
+		errorPlacement: function(error, element) {
+			error.appendTo( element.parent() );
+		},
+		// set this class to error-labels to indicate valid fields
+		success: function(label) {
+			// set &nbsp; as text for IE
+			label.html("&nbsp;").addClass("checked");
+		}
+	});
+</script>

@@ -1,0 +1,28 @@
+<div class="link-settings">
+  <table class="table table-condensed" >
+    <thead>
+      <tr>
+        <th class="link-logo">参数名称</th>
+        <th class="link-logo">参数值</th>
+        <th class="link-logo">描述</th>
+        <th class="link-action">操作</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% codes = AdminSetting.find_all_by_type_name("code") %>
+    <% codes.each do |code| %>
+      <tr id="code-<%= code.id %>">
+        <td class="link-logo"><%= code.name %></td>
+        <td class="link-logo"><%= code.value %></td>
+        <td class="link-logo"><%= code.description %></td>
+        <td class="link-action">
+          <%= link_to "编辑", edit_admin_code_setting_path(:id => code.id, :setting_type_id => @setting_type.id, :setting_subject_id => @setting_subject.id), :class => 'btn btn-mini' %>
+          <%#= link_to "删除", "", :confirm => "你确定要删除该参数？", :remote => true %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <%#= link_to "添加新参数", new_admin_seo_setting_path, :class => 'btn btn-primary' %>
+</div>

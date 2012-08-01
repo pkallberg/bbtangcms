@@ -1,5 +1,65 @@
 BBTangCMS::Application.routes.draw do
 
+  # admin
+  namespace :admin do
+    # 基本设置
+    resources :base_settings, :include => [:index] do
+      collection do
+        #match 'index'
+        match 'save'
+        match 'add_report_reason'
+        match 'delete_report_reason'
+      end
+    end
+    #match "base_settings/index" => "base_settings#index"
+    #match "base_settings/save" => "base_settings#save"
+    #match "base_settings/add_report_reason" => "base_settings#add_report_reason"
+    #match "base_settings/delete_report_reason" => "base_settings#delete_report_reason"
+
+    # 友情链接
+    resources :links_settings, :include => [:index] do
+      collection do
+        match 'new_link'
+        match 'create_link'
+        match 'edit_link'
+        match 'update_link'
+        match 'delete_link'
+      end
+    end
+
+    #match "links_settings/index" => "links_settings#index"
+    #match "links_settings/new_link" => "links_settings#new_link"
+    #match "links_settings/create_link" => "links_settings#create_link"
+    #match "links_settings/edit_link" => "links_settings#edit_link"
+    #match "links_settings/update_link" => "links_settings#update_link"
+    #match "links_settings/delete_link" => "links_settings#delete_link"
+
+    # 邮件设置
+    resources :email_settings, :include => [:index] do
+      collection do
+        match 'save'
+        match 'send_test_email'
+      end
+    end
+    #match "email_settings/index" => "email_settings#index"
+    #match "email_settings/save" => "email_settings#save"
+    #match "email_settings/send_test_email" => "email_settings#send_test_email"
+
+    # SEO设置
+    resources :seo_settings
+
+    # 代码参数设置
+    resources :code_settings
+
+    # 访问IP设置
+    resources :ip_settings do
+      collection do
+        post :save
+      end
+    end
+
+  end
+
   resources :attachments
 
   namespace :auth do

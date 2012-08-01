@@ -1,0 +1,115 @@
+<%= form_tag "/admin/email_settings/save", :remote => true do %>
+
+  <% #smtp_email_host %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :smtp_email_host, "SMTP服务器地址:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <% setting = AdminSetting.find_by_name("smtp_email_host") %>
+        <%= text_field_tag :smtp_email_host, setting.value.to_s %>
+      </p>
+      <p>
+        <%= label_tag :smtp_email_host, "SMTP邮件服务器主机地址。", :class => "introduction" %>
+      </p>
+    </div>
+  </div>
+
+  <% #email_host %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :email_host, "邮件的服务器地址:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <% setting = AdminSetting.find_by_name("email_host") %>
+        <%= text_field_tag :email_host, setting.value.to_s %>
+      </p>
+      <p>
+        <%= label_tag :email_host, "邮件服务器主机地址。如果本机可以发送邮件则设置为localhost。", :class => "introduction" %>
+      </p>
+    </div>
+  </div>
+
+  <% #email_port %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :email_port, "服务器端口:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <% setting = AdminSetting.find_by_name("email_port") %>
+        <%= text_field_tag :email_port, setting.value.to_s %>
+      </p>
+      <p>
+      </p>
+    </div>
+  </div>
+
+  <% #email_account %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :email_account, "邮件发送账号:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <% setting = AdminSetting.find_by_name("email_account") %>
+        <%= text_field_tag :email_account, setting.value.to_s %>
+      </p>
+      <p>
+        <%= label_tag :email_account, "发送邮件所需要的认证账号，如果没有则为空。", :class => "introduction" %>
+      </p>
+    </div>
+  </div>
+
+  <% #email_password %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :email_password, "账号密码:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <% setting = AdminSetting.find_by_name("email_password") %>
+        <%= password_field_tag :email_password, setting.value.to_s %>
+      </p>
+      <p>
+      </p>
+    </div>
+  </div>
+
+  <% #email_reply_address %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :email_reply_address, "邮件回复地址:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <% setting = AdminSetting.find_by_name("email_reply_address") %>
+        <%= text_field_tag :email_reply_address, setting.value.to_s %>
+      </p>
+      <p>
+      </p>
+    </div>
+  </div>
+
+  <% #email_address %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :email_address, "发送测试邮件:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <%= text_field_tag :email_address %>
+        <input type="button" value="发送测试邮件" id="send-test-email" class="btn" />
+      </p>
+      <p>
+      </p>
+    </div>
+  </div>
+
+  <div class="submit">
+    <%= submit_tag "保存", :class => 'btn-primary' %>
+  </div>
+
+<% end %>

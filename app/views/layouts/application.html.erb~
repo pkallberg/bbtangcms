@@ -6,7 +6,7 @@
     <!--%= yield(:title)%-->
     <!--%= yield(:description)%--><!--%= yield(:keywords)%-->
     <%= render_page_title %>
-    <% debugger%>
+
     <%= raw("<meta name='keywords' content='#{@meta_keywords}' />") if  @meta_keywords.present? %>
     <%= raw("<meta name='description' content='#{@meta_description}' />") if  @meta_description.present? %>
     <!--%= javascript_include_tag :defaults %-->
@@ -39,10 +39,10 @@
               <div id ="flashes">
                 <%= render :partial => 'common/flashes' %>
               </div>
-              <%= yield %>
+              <%= content_for?(:content) ? yield(:content) : yield %>
             </div>
             <div class="span2">
-              <%= render :partial => 'common/sidebar' %>
+              <% content_for?(:sidebar) ? yield(:sidebar) : (render :partial => 'common/sidebar') %>
             </div><!--/span-->
             </div>
           </div>

@@ -1,0 +1,18 @@
+<% content_for :sidebar do %>
+  <% #not need%>
+  <style type="text/css">
+    #default_sidebar {display: none}
+  </style>
+  <%= render "admin/shared/setting_types" %>
+<% end %>
+<% content_for :content do %>
+  <div class="admin_content">
+    <%= render "admin/shared/top_nav_bar", :setting_type => @setting_type %>
+    <div class = "content well">
+      <%= content_for?(:admin_content) ? yield(:admin_content) : yield %>
+    </div>
+  </div>
+
+<% end %>
+
+<%= render :template => 'layouts/application' %>

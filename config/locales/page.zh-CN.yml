@@ -3,6 +3,7 @@ zh-CN:
     appname: "BBTangCMS"
     recommend: "推送"
     auth: "授权认证"
+    admin: "管理中心"
     menu:
       unauthorized_user: "未授权用户"
     #recommend:
@@ -34,5 +35,7 @@ zh-CN:
       archives: "归档"
       recommend: "推送"
       tags: "标签树"
+      auth: "授权认证"
+      admin: "管理中心"
     search_result:
       title: "搜索结果"

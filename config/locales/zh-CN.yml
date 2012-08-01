@@ -11,6 +11,7 @@
     homepage: "主页"
     recommend: "推送"
     auth: "授权认证"
+    admin: "管理中心"
     tag: "标签"
     first: "First"
     second: "Second"
@@ -44,6 +45,7 @@
     menu:
       recommend: "推送首页"
       auth: "授权认证首页"
+      admin: "管理中心首页"
       tags: "标签树"
     recent_action: "最近动作"
     available_content: "内容支持:"

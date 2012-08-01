@@ -19,6 +19,9 @@
             <li><%= link_to t('.index', :default => t("helpers.titles.index", :model => Profile.new.class.model_name.human)),
           profiles_path %></li>
           <% if current_user.present? and current_user.admin_group? %>
+            <li><%= link_to t('.admin'),admin_base_settings_path %></li>
+          <% end %>
+          <% if current_user.present? and current_user.admin_group? %>
             <li><%= link_to t('.auth'),auth_dashboard_path %></li>
           <% end %>
           </ul>

@@ -1,0 +1,109 @@
+<%= form_tag "/admin/base_settings/save", :remote => true do %>
+
+  <% #statistics %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :statistics, "开启站点概况统计:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <% setting = AdminSetting.find_by_name("statistics") %>
+        <%= radio_button_tag :statistics, "true", if setting.value.eql? "true" then p ":checked => true" end %>
+        <%= label_tag :statistics, "是" %>
+        <%= radio_button_tag :statistics, "false", if setting.value.eql? "false" then p ":checked => true" end %>
+        <%= label_tag :statistics, "否" %>
+        <span class="help-inline">建议开启，记录站点每日的登录人数、发表数、互动数等重点参数，可为站点运营发展提供重要数据依据。</span>
+      </p>
+    </div>
+  </div>
+
+  <% #site_close %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :site_close, "站点关闭访问:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <% setting = AdminSetting.find_by_name("site_close") %>
+        <%= radio_button_tag :site_close, "true", if setting.value.eql? "true" then p ":checked => true" end %>
+        <%= label_tag :site_close, "是" %>
+        <%= radio_button_tag :site_close, "false", if setting.value.eql? "false" then p ":checked => true" end %>
+        <%= label_tag :site_close, "否" %>
+      </p>
+    </div>
+  </div>
+
+  <% #site_close_info %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :site_close_info, "站点关闭说明:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <% setting = AdminSetting.find_by_name("site_close_info") %>
+        <%= text_area_tag :site_close_info, setting.value.to_s %>
+      </p>
+    </div>
+  </div>
+
+  <% #report_reason %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :report_reason, "举报可选理由:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <% settings = AdminSetting.find_all_by_name("report_reason") %>
+        <select name="report_reason" id="report-reason-list" multiple>
+          <%= options_from_collection_for_select(settings, "value", "value") %>
+        </select>
+        <br /><br />
+        <%= text_field_tag :add_report_reason, "", :id => "add-report-reason-txt" %>
+        <input type="button" value="添加" id="add-report-reason-btn" class="btn  btn-mini btn-primary"/>
+        <input type="button" value="删除选中项" id="delete-report-reason-btn" class="btn btn-mini btn-danger"/>
+      </p>
+      <p>
+        <span class="help-inline"> 预设举报可选理由，每行一个。</span>
+      </p>
+    </div>
+  </div>
+
+  <% #focus_group_size %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :focus_group_size, "关注的用户组个数:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <% setting = AdminSetting.find_by_name("focus_group_size") %>
+        <%= text_field_tag :focus_group_size, setting.value.to_s %>
+        <span class="help-inline">(默认为20) 设置每个用户最多拥有的关注用户组的个数。</span>
+      </p>
+      <p>
+        <span class="help-inline">设置每个用户最多拥有的关注用户组的个数。</span>
+      </p>
+    </div>
+  </div>
+
+  <% #email_notification_days %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :email_notification_days, "邮件通知更新天数:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <% setting = AdminSetting.find_by_name("email_notification_days") %>
+        <%= text_field_tag :email_notification_days, setting.value.to_s %>
+        <span class="help-inline">(默认为0)</span>
+      </p>
+      <p>
+        <span class="help-inline">单位：天。当用户多天没有登录站点的时候才会给其发送邮件通知；设置为0则不启用邮件通知功能；启用本功能将会轻微增加服务器负载。</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="submit">
+    <%= submit_tag "保存", :class => 'btn-primary' %>
+  </div>
+
+<% end %>

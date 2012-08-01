@@ -1,0 +1,117 @@
+<% if @code %>
+  <% url = admin_code_setting_path(@code) %>
+  <% method = "put" %>
+<% else %>
+  <% url = admin_code_settings_path %>
+  <% method = "post" %>
+<% end %>
+
+<%= form_tag url, :id => "code_settings_form", :multipart => true, :method => method do %>
+
+  <% #setting-type-id %>
+  <div class="field" style="display:none;">
+    <div class="field-label">
+      <%= label_tag :setting_type_id, "Setting_type_id:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <%= text_field_tag :setting_type_id, @setting_type.id.to_s %>
+      </p>
+      <p>
+      </p>
+    </div>
+  </div>
+
+  <% #setting-subject-id %>
+  <div class="field" style="display:none;">
+    <div class="field-label">
+      <%= label_tag :setting_subject_id, "Setting_subject_id:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <%= text_field_tag :setting_subject_id, @setting_subject.id.to_s %>
+      </p>
+      <p>
+      </p>
+    </div>
+  </div>
+
+  <% #code-name %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :code_name, "参数名称:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <%= text_field_tag :code_name, "#{p @code.name.to_s if @code}" %>
+      </p>
+      <p>
+        <span class="help-inline">参数名称，代码中会使用该名称调用。</span>
+      </p>
+    </div>
+  </div>
+
+  <% #code-value %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :code_value, "参数值:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <%= text_area_tag :code_value, "#{ p @code.value.to_s if @code }",:rows =>"5", :cols =>"80" %>
+      </p>
+      <p>
+        <span class="help-inline">参数值。</span>
+      </p>
+    </div>
+  </div>
+
+  <% #code-description %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :code_description, "描述:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <%= text_area_tag :code_description, "#{ p @code.description.to_s if @code }",:rows =>"5", :cols =>"80" %>
+      </p>
+      <p>
+        <span class="help-inline">描述。</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="submit">
+    <%= submit_tag "保存" %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  var validator = $("#code_settings_form").validate({
+		rules: {
+			'code_name': {
+				required: true
+			},
+			'code_value': {
+				required: true
+			}
+		},
+		messages: {
+			'code_name': {
+				required: "请输入参数名称"
+			},
+			'code_value': {
+				required: "请输入参数值"
+			}
+		},
+		// the errorPlacement has to take the table layout into account
+		errorPlacement: function(error, element) {
+			error.appendTo( element.parent() );
+		},
+		// set this class to error-labels to indicate valid fields
+		success: function(label) {
+			// set &nbsp; as text for IE
+			label.html("&nbsp;").addClass("checked");
+		}
+	});
+</script>

@@ -1,0 +1,39 @@
+<%= form_tag "/admin/ip_settings/save", :remote => true do %>
+
+  <% #ip_black_list %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :ip_black_list, "IP黑名单:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <% setting = AdminSetting.find_by_name("ip_black_list") %>
+        <%= text_area_tag :ip_black_list, setting.value.to_s, :rows =>"5", :cols =>"80" %>
+      </p>
+      <p>
+        <span class="help-inline">禁止后，指定的IP将无法访问站点。可用于禁止某个具体IP，如：192.0.0.1。可用于禁止某个IP网段，如：192.0.0。多个IP信息，请使用英文逗号进行分隔</span>
+      </p>
+    </div>
+  </div>
+
+  <% #ip_white_list %>
+  <div class="field">
+    <div class="field-label">
+      <%= label_tag :ip_white_list, "IP白名单:" %>
+    </div>
+    <div class="field-content">
+      <p>
+        <% setting = AdminSetting.find_by_name("ip_white_list") %>
+        <%= text_area_tag :ip_white_list, setting.value.to_s, :rows =>"5", :cols =>"80" %>
+      </p>
+      <p>
+        <span class="help-inline">格式同上。</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="submit">
+    <%= submit_tag "保存" %>
+  </div>
+
+<% end %>

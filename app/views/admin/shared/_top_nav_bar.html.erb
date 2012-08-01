@@ -1,0 +1,22 @@
+<!--div class="tabbable"--> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <% setting_type.setting_subjects.each do |subject| %>
+      <% if subject.controller_name.present? %>
+        <!--li class=""><%= link_to subject.name, "javascript:;", "data-toggle" =>  "tab"%></li-->
+        <li class="<%= 'active' if params[:controller].gsub(/\w+([\/]+)/,'').eql? subject.controller_name%>"><%= link_to subject.name, "/admin/#{subject.controller_name}/" %></li>
+      <% end %>
+    <% end %>
+  </ul>
+  <!--ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">Section 1</a></li>
+    <li><a href="#tab2" data-toggle="tab">Section 2</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <p>I'm in Section 1.</p>
+    </div>
+    <div class="tab-pane" id="tab2">
+      <p>Howdy, I'm in Section 2.</p>
+    </div>
+  </div-->
+<!--/div-->
