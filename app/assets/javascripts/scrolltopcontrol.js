@@ -73,4 +73,6 @@ var scrolltotop={
 	}
 }
 
+$(document).ready(function(){
 scrolltotop.init()
+});

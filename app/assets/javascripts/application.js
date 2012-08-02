@@ -11,16 +11,17 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 
-
 //= require jquery
+
 //= require jquery_ujs
 //= require jquery-ui
 //= require kindeditor
+//= require twitter/bootstrap
 
-//= require_self
 //= require_tree .
-//jQuery.noConflict();
 
+
+$(document).ready(function(){
 console.log("refreshing styles...");
 less.sheets.push(document.getElementById('application_css'));
 less.refresh(true);
@@ -51,6 +52,4 @@ less.autoRefresh = function(time)
         fnImport(path, imports);
     }
 };
-//jQuery(document).ready(function($){
-//    less.autoRefresh(time = 600000);
-//});
+});
