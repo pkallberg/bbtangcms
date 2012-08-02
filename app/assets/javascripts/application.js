@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 
+//= require twitter/bootstrap
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
@@ -19,7 +20,6 @@
 // require effects
 // require dragdrop
 // require controls
-//= require twitter/bootstrap
 //= require kindeditor
 //= require_tree .
 //jQuery.noConflict();

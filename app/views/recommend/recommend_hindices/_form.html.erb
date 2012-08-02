@@ -4,7 +4,7 @@
   <div class="form-inputs">
     <%= f.input :name %>
     <!--%= f.input :body, :as => :kindeditor, :input_html => { :rows =>"20", :cols =>"100" }  %-->
-    <%= f.input :body, :input_html => { :rows =>"20", :cols =>"100" }  %>
+    <%= f.input :body, as: :text, :input_html => { :rows =>"20", :cols =>"100" }  %>
     <%= f.input :position, :as => :radio_buttons, :collection => Recommend::RecommendHindex::POSITION.invert %>
     <%= f.input :color, :as => :radio_buttons, :collection => Recommend::RecommendHindex::COLOR.invert %>
     <% if @recommend_recommend_hindex.new_record? %>

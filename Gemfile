@@ -57,7 +57,7 @@ group :assets do
   gem "less-rails", "~> 2.2.3"
   gem "less-rails-bootstrap", "~> 2.0.13"
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'less-rails-bootswatch', "~> 0.2.5"
+  gem "less-rails-bootswatch", "~> 0.2.8"
   gem 'uglifier', '>= 1.0.3'
 end
 #麵包屑

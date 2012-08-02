@@ -324,7 +324,7 @@ DEPENDENCIES
   json
   less-rails (~> 2.2.3)
   less-rails-bootstrap (~> 2.0.13)
-  less-rails-bootswatch (~> 0.2.5)
+  less-rails-bootswatch (~> 0.2.8)
   linecache19 (= 0.5.13)
   mime-types (~> 1.19)
   mongoid (~> 3.0.2)

@@ -30,6 +30,7 @@
       <div class="content-fluid">
         <ul class="breadcrumb menu clearfix">
          <%= breadcrumbs.render(:format => :inline, :separator => '>>') %>
+<%= render "common/search_form" %>
         </ul>
 
         <div class="row-fluid">
@@ -42,7 +43,7 @@
               <%= content_for?(:content) ? yield(:content) : yield %>
             </div>
             <div class="span2">
-              <% content_for?(:sidebar) ? yield(:sidebar) : (render :partial => 'common/sidebar') %>
+              <%= content_for?(:sidebar) ? yield(:sidebar) : (render :partial => 'common/sidebar') %>
             </div><!--/span-->
             </div>
           </div>

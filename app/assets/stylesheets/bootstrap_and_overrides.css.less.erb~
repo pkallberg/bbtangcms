@@ -1,14 +1,18 @@
 //@import "twitter/bootstrap/bootstrap";
 @import "twitter/bootstrap";
-/*
-*= <%= "require 'bootswatch/#{Setting.today_theme}/bootswatch';" %>
-*= <%= "require 'bootswatch/#{Setting.today_theme}/variables';" %>
-*/
+
 <%= "@import 'bootswatch/#{Setting.today_theme}/bootswatch';" %>
 <%= "@import 'bootswatch/#{Setting.today_theme}/variables';" %>
 
-
-
+table {
+td {
+  max-width: 150px;
+  word-warp:break-word;
+  word-break:break-all;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+}
 
 .container-fluid {
     padding-left: auto;
@@ -46,6 +50,14 @@ form {
   }
 }
 
+.form-search {
+   width: auto;
+   height: auto;
+   #type {
+      width: auto;
+      }
+}
+
 #sortable .modal {
     //background-clip: padding-box;
     //background-color: #FFFFFF;
@@ -61,11 +73,12 @@ form {
     z-index: 1050;
 }
 
-table tbody tr td {
-    max-width:auto;
-}
 
 textarea {
       width: auto;
       height: auto;
+}
+
+.sidebar-nav-fixed {
+  position:fixed;
 }

@@ -1,6 +1,5 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
-jQuery(document).ready(function(){
   var editor = KindEditor.create(
     'textarea[id="knowledge_body"]',
     {
@@ -17,4 +16,3 @@ jQuery(document).ready(function(){
     body = document.getElementById('knowledge_body').value; // 原生API
     $("#knowledge_body").val(body);
   });
-});
