@@ -7,9 +7,10 @@
   <%= s.attribute :title %>
   <!--%= s.attribute :content %-->
   <%= s.attribute :body, :value => (raw @news.body) %>
+  <%= s.attribute :tag_list %>
+  <%= s.attribute :source_info %>
   <%= s.attribute :thanks_count %>
   <%= s.attribute :views_count %>
-  <%= s.attribute :source_info %>
   <%= s.attribute :created_by_id %>
   <%= s.attribute :created_user %>
   <%= s.attribute :created_at %>
