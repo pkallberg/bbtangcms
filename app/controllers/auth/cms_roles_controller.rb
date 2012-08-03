@@ -1,4 +1,4 @@
-class Auth::CmsRolesController < ApplicationController
+class Auth::CmsRolesController < Auth::AuthBaseController
   load_and_authorize_resource
   Model_class = CmsRole.new.class
   # GET /auth/cms_roles

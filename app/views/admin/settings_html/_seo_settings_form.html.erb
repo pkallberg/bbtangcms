@@ -73,7 +73,7 @@
     </div>
     <div class="field-content">
       <p>
-        <%= text_area_tag :seo_keywords, "#{ p @value["keywords"].to_s if @value }" %>
+        <%= text_area_tag :seo_keywords, "#{ p @value["keywords"].to_s if @value }", :rows =>"5", :cols =>"60" %>
       </p>
       <p>
         <span class="help-inline">设置网页关键字。</span>
@@ -88,7 +88,7 @@
     </div>
     <div class="field-content">
       <p>
-        <%= text_area_tag :seo_description, "#{ p @value["description"].to_s if @value }" %>
+        <%= text_area_tag :seo_description, "#{ p @value["description"].to_s if @value }", :rows =>"5", :cols =>"80" %>
       </p>
       <p>
         <span class="help-inline">设置网页描述。</span>

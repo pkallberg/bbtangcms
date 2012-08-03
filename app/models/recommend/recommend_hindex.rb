@@ -6,6 +6,7 @@ class Recommend::RecommendHindex
   field :body, type: String
   field :position, type: String
   field :color, type: String
+  field :deleted, type: Boolean
   field :created_at, type: DateTime
   field :updated_at, type: DateTime
 

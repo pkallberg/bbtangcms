@@ -4,9 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :authenticate_user!
   before_filter :add_initial_breadcrumbs
+    before_filter :add_model_breadcrumbs
   before_filter :create_profile
   before_filter :set_page_number
   before_filter :set_seo_meta
+
 
   attr_reader :current_action
 
@@ -65,6 +67,7 @@ class ApplicationController < ActionController::Base
   def add_initial_breadcrumbs
     breadcrumbs.add :homepage, root_path
   end
+
   def do_not_check_authorization?
     respond_to?(:devise_controller?) or
     skip_rails_kindeditor?# or
@@ -155,6 +158,20 @@ class ApplicationController < ActionController::Base
       #if self.instance_variable_defined? guessed_instance_variable_name
       #  self.instance_variable_get guessed_instance_variable_name
       #end
+    end
+  end
+
+
+  def add_model_breadcrumbs
+    if self.class.constants.include? :Model_class
+      model_class = self.class.const_get :Model_class
+      name = I18n.t('.index', :default => I18n.t("helpers.links.index", :model => model_class.model_name.human))
+      controller = params[:controller].gsub('/','_') if params[:controller].present?
+      if model_class.model_name.singularize.eql? model_class.model_name.pluralize
+        controller += "_index" if params[:controller].present?
+      end
+      route_name = "#{controller}_path"
+      breadcrumbs.add name, self.send(route_name) if self.respond_to? route_name
     end
   end
 

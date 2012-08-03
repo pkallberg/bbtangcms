@@ -1,4 +1,4 @@
-class Auth::AssignPermitsController < ApplicationController
+class Auth::AssignPermitsController < Auth::AuthBaseController
   authorize_resource :class => false
   # GET /auth/assign_permits
   # GET /auth/assign_permits.json

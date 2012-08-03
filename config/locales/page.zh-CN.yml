@@ -37,5 +37,6 @@ zh-CN:
       tags: "标签树"
       auth: "授权认证"
       admin: "管理中心"
+      tag_cloud: "标签云"
     search_result:
       title: "搜索结果"

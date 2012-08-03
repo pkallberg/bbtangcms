@@ -113,11 +113,11 @@ class Knowledge< ActiveRecord::Base
   end
 
   def updated_user
-     find_user self.updated_by if self.updated_by.present?
+    find_user self.updated_by if self.updated_by.present?
   end
 
   def created_user
-     find_user self.created_by if self.created_by.present?
+    find_user self.created_by if self.created_by.present?
   end
 
 

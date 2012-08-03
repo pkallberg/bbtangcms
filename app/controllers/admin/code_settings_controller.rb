@@ -1,5 +1,6 @@
 # coding: utf-8
 class Admin::CodeSettingsController < Admin::AdminBaseController
+  authorize_resource :class => false
   #layout "layouts/admin"
   respond_to :html, :js
 

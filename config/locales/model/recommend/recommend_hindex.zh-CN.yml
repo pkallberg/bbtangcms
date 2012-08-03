@@ -10,6 +10,7 @@ zh-CN:
         name: "名称"
         color: "颜色类别"
         body: "正文"
+        deleted: "软删除"
         created_at: "创建时间"
         updated_at: "更新时间"
         p1: "1"

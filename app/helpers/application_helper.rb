@@ -2,7 +2,7 @@
 module ApplicationHelper
 
   def render_page_title()
-    default_title = "#{breadcrumbs.items.collect{|item| item.first}.join('--')} | #{Setting.app_name}"
+    default_title = "#{breadcrumbs.items.collect{|item| item.first}.join('>>')} | #{Setting.app_name}"
     if @page_title.present?
       @page_title ="#{@page_title}@" + default_title
     else

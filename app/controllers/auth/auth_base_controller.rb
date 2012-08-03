@@ -17,6 +17,5 @@ class Auth::AuthBaseController < ApplicationController
     breadcrumbs.add :homepage, root_path
     #breadcrumbs.add :recommend, recommend_dashboard_path
     breadcrumbs.add :auth, auth_dashboard_path
-
   end
 end

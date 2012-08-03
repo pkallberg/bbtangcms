@@ -1,0 +1,25 @@
+<%= simple_form_for(@news) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <!--%= f.input :content %-->
+    <%= f.input :body, :as => :kindeditor %>
+    <!--%= f.input :thanks_count %-->
+    <!--%= f.input :views_count %-->
+    <%= f.input :tag_list,:hint => "请输入标签名，并以英文逗号(',')隔开...", :input_html => { :rows =>"5", :cols =>"20" } %>
+    <%= f.input :source_info %>
+    <% if @news.new_record? %>
+      <%= f.input :created_by_id, :as => :hidden, :input_html => { :value => (current_user.id if current_user.present?) } %>
+      <%= f.input :created_at, :as => :hidden, :input_html => { :value => Time.now } %>
+    <% else %>
+      <%= f.input :updated_by_id, :as => :hidden, :input_html => { :value => (current_user.id if current_user.present?) } %>
+      <%= f.input :updated_at, :as => :hidden, :input_html => { :value => Time.now} %>
+    <% end %>
+    <%= f.input :soft_deleted, :as => :boolean, :input_html => {:checked =>  @news.deleted_at? ? "checked" : ""} %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

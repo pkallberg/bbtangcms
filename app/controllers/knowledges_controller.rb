@@ -1,6 +1,8 @@
 class KnowledgesController < ApplicationController
   load_and_authorize_resource
+
   Model_class = Knowledge.new.class
+
 
   # GET /knowledges
   # GET /knowledges.json

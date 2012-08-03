@@ -1,4 +1,4 @@
-class Auth::UsersController < ApplicationController
+class Auth::UsersController < Auth::AuthBaseController
   load_and_authorize_resource
   Model_class = User.new.class
   # GET /auth/users

@@ -1,6 +1,7 @@
 permit:
   create_profile: create_profile
   create_knowledge: create_knowledge
+  create_news: create_news
   #create_category_base: create_category_base
   create_subject: create_subject
   create_attachment: create_attachment
@@ -21,6 +22,7 @@ permit:
   create_recommend_recommend_ptag: create_recommend_recommend_ptag
   update_profile: update_profile
   update_knowledge: update_knowledge
+  update_news: update_news
   #update_category_base: update_category_base
   update_subject: update_subject
   update_attachment: update_attachment
@@ -39,6 +41,7 @@ permit:
   update_recommend_recommend_ptag: update_recommend_recommend_ptag
   read_profile: read_profile
   read_knowledge: read_knowledge
+  read_news: read_news
   #read_category_base: read_category_base
   read_subject: read_subject
   read_attachment: read_attachment
@@ -57,6 +60,7 @@ permit:
   read_recommend_recommend_ptag: read_recommend_recommend_ptag
   destroy_profile: destroy_profile
   destroy_knowledge: destroy_knowledge
+  destroy_news: destroy_news
   #destroy_category_base: destroy_category_base
   destroy_subject: destroy_subject
   destroy_attachment: destroy_attachment

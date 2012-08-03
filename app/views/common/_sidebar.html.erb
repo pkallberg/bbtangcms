@@ -8,13 +8,15 @@
               archives_path(:model => Knowledge) %></li>
       <li><%= link_to t("helpers.links.archives", :model => Question.new.class.model_name.human),
               archives_path(:model => Question) %></li>
-      <li><%= link_to "tag cloud",
+      <li><%= link_to t(".tag_cloud"),
               hot_tags_path(:model => Knowledge) %></li>
     </ul>
     <ul class="nav nav-list">
       <li class="nav-header"><%= t("common.sidebar.model") %></li>
       <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Knowledge.new.class.model_name.human)),
               knowledges_path %></li>
+      <li><%= link_to t('.index', :default => t("helpers.links.index", :model => News.new.class.model_name.human)),
+              news_index_path %></li>
       <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Question.new.class.model_name.human)),
               questions_path %></li>
       <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Subject.new.class.model_name.human)),

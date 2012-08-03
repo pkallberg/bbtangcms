@@ -16,7 +16,7 @@
     <![endif]-->
 
   <%= stylesheet_link_tag "application", :media => "all", :id => "application_css"%>
-
+  <%= javascript_include_tag "application" %>
 
   <%= csrf_meta_tag %>
   <%= csrf_meta_tags %>
@@ -29,7 +29,7 @@
     <div class="container-fluid">
       <div class="content-fluid">
         <ul class="breadcrumb menu clearfix">
-         <%= breadcrumbs.render(:format => :inline, :separator => '>>') %>
+         <%= breadcrumbs.render(:format => :inline) %>
          <%= render "common/search_form" %>
         </ul>
 

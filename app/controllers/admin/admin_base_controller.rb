@@ -1,6 +1,7 @@
+# coding: utf-8
 class Admin::AdminBaseController < ApplicationController
   layout "layouts/admin"
-  after_filter :add_initial_breadcrumbs
+  before_filter :add_initial_breadcrumbs
 
   # 过滤文件名
   def sanitize_filename(filename)
@@ -29,5 +30,21 @@ class Admin::AdminBaseController < ApplicationController
     breadcrumbs.add :homepage, root_path
     #breadcrumbs.add :recommend, recommend_dashboard_path
     breadcrumbs.add :admin, admin_base_settings_path
+    add_setting_subject_breadcrumbs
+  end
+  def add_setting_subject_breadcrumbs
+
+    controller = params[:controller].gsub('/','_') if params[:controller].present?
+    route_name = "#{controller}_path"
+
+    subject_type = params[:controller].gsub(/\w+([\/]+)/,"")
+    subject = SettingSubject.find_by_controller_name("#{subject_type}")
+    subject_name = subject.present? ? subject.name : subject_type
+    breadcrumbs.add subject_name, self.send(route_name) if self.respond_to? route_name
+
+    request_path = request.fullpath
+    edit_action = "#{params[:action]}" if params[:action].present? and (params[:action].include? "edit")
+    edit_subject_name = edit_action.present? ? "#{params[:action]}_#{controller.singularize}_path" : nil
+    breadcrumbs.add "编辑", request_path if edit_subject_name.present? and (self.respond_to? edit_subject_name)
   end
 end

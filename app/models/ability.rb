@@ -17,6 +17,14 @@ class Ability
         # rules for non-admin controllers here
     end
 
+    case controller_namespace
+      when 'admin'
+        #can :manage, :all if self.limit_admin_group?
+        can :read, :all if @user.limit_admin_group?
+      else
+        # rules for non-admin controllers here
+    end
+
     @user.cms_roles.each { |role| send(role.name.downcase) if (role.present? and  self.respond_to? role.name.downcase) }
 
     @user.cms_roles.each do |cr|
@@ -41,6 +49,10 @@ class Ability
 
   def create_knowledge
     can :create, Knowledge
+  end
+
+  def create_news
+    can :create, News
   end
 
   def create_category_base
@@ -126,6 +138,10 @@ class Ability
     can :update, Knowledge
   end
 
+  def update_news
+    can :update, News
+  end
+
   def update_category_base
     can :update, CategoryBase
   end
@@ -206,6 +222,10 @@ class Ability
     can :read, Knowledge
   end
 
+  def read_news
+    can :read, News
+  end
+
   def read_category_base
     can :read, CategoryBase
   end
@@ -279,6 +299,10 @@ class Ability
 
   def destroy_knowledge
     can :destroy, Knowledge
+  end
+
+  def destroy_news
+    can :destroy, News
   end
 
   def destroy_category_base

@@ -1,8 +1,7 @@
 //@import "twitter/bootstrap/bootstrap";
 @import "twitter/bootstrap";
 
-<%= "@import 'bootswatch/#{Setting.today_theme}/bootswatch';" %>
-<%= "@import 'bootswatch/#{Setting.today_theme}/variables';" %>
+
 
 table {
 td {
@@ -77,8 +76,4 @@ form {
 textarea {
       width: auto;
       height: auto;
-}
-
-.sidebar-nav-fixed {
-  position:fixed;
 }

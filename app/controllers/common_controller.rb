@@ -11,9 +11,9 @@ class CommonController < ApplicationController
       #  @results = @model_class.where("#{params[:type].to_s} like '%#{query_word}%'")
       #end
       find_item(q_model = @model_class,q_type = params[:type].to_s, q_word = params[:q].to_s)
-    end
 
-    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => @model_class.model_name.human), :search
+      breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => @model_class.model_name.human), :search
+    end
 
     render :template => 'common/search_result.html.erb'
   end
