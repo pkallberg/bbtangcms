@@ -129,6 +129,9 @@ gem 'rails_autolink', '1.0.4'  #用于超链接中显示url， 直接点击跳�
 gem 'acts-as-taggable-on', '~> 2.3.1'
 gem "acts_as_follower", "~> 0.1.1"
 
+#PaperTrail lets you track changes to your models' data. It's good for auditing or versioning. You can see how a model looked at any stage in its lifecycle, revert it to any version, and even undelete it after it's been destroyed.
+gem 'paper_trail', '~> 2'
+
 # sphinx搜索
 gem 'thinking-sphinx','~> 2.0.7'
 

@@ -1,5 +1,6 @@
 # coding: utf-8
 class Comment < ActiveRecord::Base
+  has_paper_trail   # you can pass various options here
   include BaseModel  #for 敏感词验证
   before_validation :set_content  #填充content
   before_validation :check_spam_words #敏感次验证

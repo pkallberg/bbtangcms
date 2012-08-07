@@ -37,7 +37,7 @@
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="#">Profile</a></li>
+            <li><%= link_to t("layout.menu.work_dashboards"), work_dashboards_path %></li>
             <li class="divider"></li>
             <li><%= link_to t("common.logout"),destroy_user_session_path, :method => :delete %></li>
           </ul>

@@ -1,10 +1,3 @@
-                              news_index GET    /news(.:format)                                                                   news#index
-                                         POST   /news(.:format)                                                                   news#create
-                                new_news GET    /news/new(.:format)                                                               news#new
-                               edit_news GET    /news/:id/edit(.:format)                                                          news#edit
-                                    news GET    /news/:id(.:format)                                                               news#show
-                                         PUT    /news/:id(.:format)                                                               news#update
-                                         DELETE /news/:id(.:format)                                                               news#destroy
                 save_admin_base_settings        /admin/base_settings/save(.:format)                                               admin/base_settings#save {:include=>[:index]}
    add_report_reason_admin_base_settings        /admin/base_settings/add_report_reason(.:format)                                  admin/base_settings#add_report_reason {:include=>[:index]}
 delete_report_reason_admin_base_settings        /admin/base_settings/delete_report_reason(.:format)                               admin/base_settings#delete_report_reason {:include=>[:index]}
@@ -15,6 +8,22 @@ delete_report_reason_admin_base_settings        /admin/base_settings/delete_repo
                       admin_base_setting GET    /admin/base_settings/:id(.:format)                                                admin/base_settings#show {:include=>[:index]}
                                          PUT    /admin/base_settings/:id(.:format)                                                admin/base_settings#update {:include=>[:index]}
                                          DELETE /admin/base_settings/:id(.:format)                                                admin/base_settings#destroy {:include=>[:index]}
+               save_admin_email_settings        /admin/email_settings/save(.:format)                                              admin/email_settings#save {:include=>[:index]}
+    send_test_email_admin_email_settings        /admin/email_settings/send_test_email(.:format)                                   admin/email_settings#send_test_email {:include=>[:index]}
+                    admin_email_settings GET    /admin/email_settings(.:format)                                                   admin/email_settings#index {:include=>[:index]}
+                                         POST   /admin/email_settings(.:format)                                                   admin/email_settings#create {:include=>[:index]}
+                 new_admin_email_setting GET    /admin/email_settings/new(.:format)                                               admin/email_settings#new {:include=>[:index]}
+                edit_admin_email_setting GET    /admin/email_settings/:id/edit(.:format)                                          admin/email_settings#edit {:include=>[:index]}
+                     admin_email_setting GET    /admin/email_settings/:id(.:format)                                               admin/email_settings#show {:include=>[:index]}
+                                         PUT    /admin/email_settings/:id(.:format)                                               admin/email_settings#update {:include=>[:index]}
+                                         DELETE /admin/email_settings/:id(.:format)                                               admin/email_settings#destroy {:include=>[:index]}
+                     admin_code_settings GET    /admin/code_settings(.:format)                                                    admin/code_settings#index
+                                         POST   /admin/code_settings(.:format)                                                    admin/code_settings#create
+                  new_admin_code_setting GET    /admin/code_settings/new(.:format)                                                admin/code_settings#new
+                 edit_admin_code_setting GET    /admin/code_settings/:id/edit(.:format)                                           admin/code_settings#edit
+                      admin_code_setting GET    /admin/code_settings/:id(.:format)                                                admin/code_settings#show
+                                         PUT    /admin/code_settings/:id(.:format)                                                admin/code_settings#update
+                                         DELETE /admin/code_settings/:id(.:format)                                                admin/code_settings#destroy
            new_link_admin_links_settings        /admin/links_settings/new_link(.:format)                                          admin/links_settings#new_link {:include=>[:index]}
         create_link_admin_links_settings        /admin/links_settings/create_link(.:format)                                       admin/links_settings#create_link {:include=>[:index]}
           edit_link_admin_links_settings        /admin/links_settings/edit_link(.:format)                                         admin/links_settings#edit_link {:include=>[:index]}
@@ -27,15 +36,6 @@ delete_report_reason_admin_base_settings        /admin/base_settings/delete_repo
                      admin_links_setting GET    /admin/links_settings/:id(.:format)                                               admin/links_settings#show {:include=>[:index]}
                                          PUT    /admin/links_settings/:id(.:format)                                               admin/links_settings#update {:include=>[:index]}
                                          DELETE /admin/links_settings/:id(.:format)                                               admin/links_settings#destroy {:include=>[:index]}
-               save_admin_email_settings        /admin/email_settings/save(.:format)                                              admin/email_settings#save {:include=>[:index]}
-    send_test_email_admin_email_settings        /admin/email_settings/send_test_email(.:format)                                   admin/email_settings#send_test_email {:include=>[:index]}
-                    admin_email_settings GET    /admin/email_settings(.:format)                                                   admin/email_settings#index {:include=>[:index]}
-                                         POST   /admin/email_settings(.:format)                                                   admin/email_settings#create {:include=>[:index]}
-                 new_admin_email_setting GET    /admin/email_settings/new(.:format)                                               admin/email_settings#new {:include=>[:index]}
-                edit_admin_email_setting GET    /admin/email_settings/:id/edit(.:format)                                          admin/email_settings#edit {:include=>[:index]}
-                     admin_email_setting GET    /admin/email_settings/:id(.:format)                                               admin/email_settings#show {:include=>[:index]}
-                                         PUT    /admin/email_settings/:id(.:format)                                               admin/email_settings#update {:include=>[:index]}
-                                         DELETE /admin/email_settings/:id(.:format)                                               admin/email_settings#destroy {:include=>[:index]}
                       admin_seo_settings GET    /admin/seo_settings(.:format)                                                     admin/seo_settings#index
                                          POST   /admin/seo_settings(.:format)                                                     admin/seo_settings#create
                    new_admin_seo_setting GET    /admin/seo_settings/new(.:format)                                                 admin/seo_settings#new
@@ -43,13 +43,6 @@ delete_report_reason_admin_base_settings        /admin/base_settings/delete_repo
                        admin_seo_setting GET    /admin/seo_settings/:id(.:format)                                                 admin/seo_settings#show
                                          PUT    /admin/seo_settings/:id(.:format)                                                 admin/seo_settings#update
                                          DELETE /admin/seo_settings/:id(.:format)                                                 admin/seo_settings#destroy
-                     admin_code_settings GET    /admin/code_settings(.:format)                                                    admin/code_settings#index
-                                         POST   /admin/code_settings(.:format)                                                    admin/code_settings#create
-                  new_admin_code_setting GET    /admin/code_settings/new(.:format)                                                admin/code_settings#new
-                 edit_admin_code_setting GET    /admin/code_settings/:id/edit(.:format)                                           admin/code_settings#edit
-                      admin_code_setting GET    /admin/code_settings/:id(.:format)                                                admin/code_settings#show
-                                         PUT    /admin/code_settings/:id(.:format)                                                admin/code_settings#update
-                                         DELETE /admin/code_settings/:id(.:format)                                                admin/code_settings#destroy
                   save_admin_ip_settings POST   /admin/ip_settings/save(.:format)                                                 admin/ip_settings#save
                        admin_ip_settings GET    /admin/ip_settings(.:format)                                                      admin/ip_settings#index
                                          POST   /admin/ip_settings(.:format)                                                      admin/ip_settings#create
@@ -87,6 +80,13 @@ delete_report_reason_admin_base_settings        /admin/base_settings/delete_repo
                                          PUT    /auth/assign_permits/:id(.:format)                                                auth/assign_permits#update
                                          DELETE /auth/assign_permits/:id(.:format)                                                auth/assign_permits#destroy
                           auth_dashboard        /auth(.:format)                                                                   auth/dashboard#show
+                              news_index GET    /news(.:format)                                                                   news#index
+                                         POST   /news(.:format)                                                                   news#create
+                                new_news GET    /news/new(.:format)                                                               news#new
+                               edit_news GET    /news/:id/edit(.:format)                                                          news#edit
+                                    news GET    /news/:id(.:format)                                                               news#show
+                                         PUT    /news/:id(.:format)                                                               news#update
+                                         DELETE /news/:id(.:format)                                                               news#destroy
                        kindeditor_upload POST   /kindeditor/upload(.:format)                                                      kindeditor/assets#create
                   kindeditor_filemanager GET    /kindeditor/filemanager(.:format)                                                 kindeditor/assets#list
                        refresh_knowledge GET    /knowledges/:id/refresh(.:format)                                                 knowledges#refresh
@@ -102,6 +102,13 @@ delete_report_reason_admin_base_settings        /admin/base_settings/delete_repo
                                  profile GET    /profiles/:id(.:format)                                                           profiles#show
                                          PUT    /profiles/:id(.:format)                                                           profiles#update
                                          DELETE /profiles/:id(.:format)                                                           profiles#destroy
+                           page_requests GET    /page_requests(.:format)                                                          page_requests#index
+                                         POST   /page_requests(.:format)                                                          page_requests#create
+                        new_page_request GET    /page_requests/new(.:format)                                                      page_requests#new
+                       edit_page_request GET    /page_requests/:id/edit(.:format)                                                 page_requests#edit
+                            page_request GET    /page_requests/:id(.:format)                                                      page_requests#show
+                                         PUT    /page_requests/:id(.:format)                                                      page_requests#update
+                                         DELETE /page_requests/:id(.:format)                                                      page_requests#destroy
                     resetscore_questions GET    /questions/resetscore(.:format)                                                   questions#resetscore
               update_timelines_questions        /questions/update_timelines(.:format)                                             questions#update_timelines
              update_categories_questions        /questions/update_categories(.:format)                                            questions#update_categories
@@ -213,6 +220,7 @@ delete_report_reason_admin_base_settings        /admin/base_settings/delete_repo
                         new_tag_identity GET    /tag/identities/new(.:format)                                                     tag/identities#new
                             tag_identity GET    /tag/identities/:id(.:format)                                                     tag/identities#show
                            tag_dashboard        /tag(.:format)                                                                    tag/dashboard#show
+                          work_dashboard        /work(.:format)                                                                   work/dashboard#show
                         new_user_session GET    /users/sign_in(.:format)                                                          devise/sessions#new
                             user_session POST   /users/sign_in(.:format)                                                          devise/sessions#create
                     destroy_user_session DELETE /users/sign_out(.:format)                                                         devise/sessions#destroy

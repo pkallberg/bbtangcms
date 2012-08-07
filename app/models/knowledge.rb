@@ -1,6 +1,7 @@
 # coding: utf-8
 class Knowledge< ActiveRecord::Base
     DEFAULT_LIMIT = 15
+  has_paper_trail   # you can pass various options here
 
   include BaseModel  #for 敏感词验证
   acts_as_followable

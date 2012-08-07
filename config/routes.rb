@@ -88,6 +88,7 @@ BBTangCMS::Application.routes.draw do
 
   #resources :profiles, :only => [:index, :show, :edit, :destroy]
   resources :profiles, :except => [:new, :create]
+  resources :page_requests
 
   resources :questions do
     collection do
@@ -124,7 +125,9 @@ BBTangCMS::Application.routes.draw do
   end
 
 
-
+  namespace :work do
+    root :to => 'dashboards#show', :as => :dashboards
+  end
 
   devise_for :users
 

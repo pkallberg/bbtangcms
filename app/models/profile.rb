@@ -1,4 +1,5 @@
 class Profile < ActiveRecord::Base
+  has_paper_trail   # you can pass various options here
   #include Recommendation::Search
   #belongs_to :user
   belongs_to :user,

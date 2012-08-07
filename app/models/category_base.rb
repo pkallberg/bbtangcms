@@ -1,4 +1,5 @@
 class CategoryBase < ActiveRecord::Base
+  has_paper_trail   # you can pass various options here
   include BaseModel  #for 敏感词验证
   acts_as_nested_set
   attr_accessible :name, :parent_id, :description

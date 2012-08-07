@@ -1,4 +1,5 @@
 class Attachment < ActiveRecord::Base
+  has_paper_trail   # you can pass various options here
   before_validation :repear_save
   before_save :auto_add_description
 

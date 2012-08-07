@@ -1,6 +1,8 @@
 # coding: utf-8
 class Question < ActiveRecord::Base
   #acts_as_taggable
+  has_paper_trail   # you can pass various options here
+
   acts_as_taggable_on :tags, :timelines, :categories, :identities
   acts_as_followable
   #include Redis::Search

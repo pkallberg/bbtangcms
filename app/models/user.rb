@@ -1,6 +1,5 @@
 # encoding: utf-8
 class User < ActiveRecord::Base
-  establish_connection :auth
   # Include default devise modules. Others available are:
   has_many :assignments, :dependent => :destroy, :uniq => true
   has_many :cms_roles, :through => :assignments
@@ -135,5 +134,9 @@ class User < ActiveRecord::Base
     end
     return tmp
   end
+
+  def current_user
+    User.current = session[:user_id] ? User.find_by_id(session[:user_id]) : nil
+end
 
 end

@@ -1,6 +1,7 @@
 # coding: utf-8
 class Answer < ActiveRecord::Base
   belongs_to :question
+  has_paper_trail   # you can pass various options here
 
   validates :question_id, :presence => true
   validates :body, :presence => true#, :length => {:maximum => Askjane::MetaCache.get_config_data("answer_body_max").to_i}

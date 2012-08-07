@@ -1,4 +1,5 @@
 class Subject < ActiveRecord::Base
+  has_paper_trail   # you can pass various options here
 
   before_validation :repear_save
 
