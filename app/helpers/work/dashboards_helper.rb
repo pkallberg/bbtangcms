@@ -14,7 +14,11 @@ module Work::DashboardsHelper
        events = item_events(item_list= item_list)
        item_summary_list.append("On #{item_type.classify.constantize.model_name.human.pluralize}, "+events.collect{|e| "#{e[0]}(#{e[1]})"}.join(",")) if events.present?
     end
-    item_summary
+    if item_summary_list.present?
+      item_summary_list.join(";")+"."
+    else
+      "No thing logged, today!"
+    end
   end
 
   def item_events(item_list= [])
