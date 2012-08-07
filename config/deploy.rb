@@ -15,7 +15,7 @@ set :application, "bbtcms"
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 set :scm, :git
 set :scm_username, 'git'
-set :repository,  "git@bbtang.com:bbtang/bbtcms.git"
+#set :repository,  "git@bbtang.com:bbtang/bbtcms.git"
 # set :branch, "online"
 set :branch, "master"
 set :user, 'bbt'
