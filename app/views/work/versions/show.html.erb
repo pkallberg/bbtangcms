@@ -1,0 +1,19 @@
+<%- model_class = @work_version.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => t('helpers.titles.show', :model => model_class.model_name.human) %></h1>
+</div>
+
+
+<%= show_for @work_version do |s| %>
+  <%= s.attribute :id%>
+  <%= s.attribute :item_type, :value => raw(link_to "#{@work_version.item_type.classify.constantize.model_name.human.pluralize}",work_versions_path(version_params({:item_type =>@work_version.item_type})))%>
+  <%= s.attribute :item, :value => raw(link_to @work_version.item,work_versions_path(version_params({:item_id =>@work_version.item_id})))%>
+  <%= s.attribute :item_id%>
+  <%= s.attribute :event, :value => raw(link_to I18n.t("helpers.events.#{@work_version.event}"),work_versions_path(version_params({:event =>@work_version.event})))%>
+  <%= s.attribute :whodoit, :value => raw(link_to "#{find_user(@work_version.whodunnit)}",work_versions_path(version_params({:whodunnit =>@work_version.whodunnit})))%>
+  <%= s.attribute :whodunnit%>
+  <%= s.attribute :object_hash%>
+  <%= s.attribute :created_at%>
+<% end %>
+
+<%= link_to t('.back', :default => t("helpers.links.back", :model => model_class.model_name.human)), work_versions_path, :class => 'btn' %>

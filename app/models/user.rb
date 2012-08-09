@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
   #生成邀请link
   def invitations_link
-    Askjane::MetaCache.get_config_data("default_website_url") + "/users/invitations/accept?user_id=" + self.id.to_s
+    BBTangCMS::MetaCache.get_config_data("default_website_url") + "/users/invitations/accept?user_id=" + self.id.to_s
   end
 
   #通过用户email判断是否是我们的会员
@@ -46,6 +46,9 @@ class User < ActiveRecord::Base
   def has_cms_role?(cms_role_sym)
     cms_roles.any? { |r| r.name.underscore.to_sym == cms_role_sym }
   end
+  def admin_group
+    self.cms_roles.collect {|cms_role| cms_role if cms_role.admin? }.compact
+  end
 
   def admin_group?
     tmp = false
@@ -59,6 +62,10 @@ class User < ActiveRecord::Base
     tmp
   end
 
+  def limit_admin_group
+    self.cms_roles.collect {|cms_role| cms_role if cms_role.admin? and !cms_role.supper_admin? }.compact
+  end
+
   def limit_admin_group?
     tmp = false
     if self.cms_roles.present?
@@ -69,10 +76,6 @@ class User < ActiveRecord::Base
       end
     end
     tmp
-  end
-
-  def admin_group
-    self.cms_roles.collect {|cms_role| cms_role if cms_role.admin? }.compact
   end
 
   def owner_users(name = nil)
@@ -88,10 +91,12 @@ class User < ActiveRecord::Base
     owner_user.uniq
   end
 
-  def supper_admin
+  def supper_admin?
+    tmp = false
     self.cms_roles.each do |cms_role|
-      cms_role.to_s.include? "admin"
+      tmp = true if cms_role.to_s.eql? "admin"
     end
+    tmp
   end
 
   def admin_assign_permits(cms_role = nil)
@@ -137,6 +142,6 @@ class User < ActiveRecord::Base
 
   def current_user
     User.current = session[:user_id] ? User.find_by_id(session[:user_id]) : nil
-end
+  end
 
 end

@@ -48,7 +48,7 @@
         <td><%= question.created_user %></td>
         <td><%= question.views_count %></td>
         <!--td--><!--%= question.delta %--><!--/td-->
-        <td><%= time_tag question.last_answer_time, :format => :short %></td>
+        <td><%= time_tag question.last_answer_time, :format => :short if question.last_answer_time? %></td>
         <td><%= question.best_answer_id %></td>
         <td><%=time_tag question.created_at, :format => :short if question.created_at?  %></td>
         <td><%=time_tag question.updated_at, :format => :short if question.updated_at?   %></td>

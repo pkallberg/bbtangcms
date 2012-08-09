@@ -1,0 +1,24 @@
+<%= render "work/shared/top_nav_bar" %>
+<p>Hi, <%= current_user%> , <%= today_work_summary(item_type_list = @worked_list)%>
+</p>
+<div class = "cms_user_info box">
+<span class="label label-info">CMS User info</span>
+<%= show_for current_user do |u| %>
+  <%= u.attribute :username%>
+  <%= u.attribute :email%>
+  <%= u.attribute :supper_admin? %>
+  <% if current_user.limit_admin_group?%>
+    <%= u.attribute :limit_admin_group do |role|%>
+      <%= render "work/shared/user_work_log_list", user: current_user %>
+    <% end %>
+  <% else %>
+    <%= u.attribute :limit_admin_group? %>
+  <%end%>
+  <%= u.association :cms_roles, :to_sentence => true %>
+  <%= u.attribute :sign_in_count%>
+  <%= u.attribute :current_sign_in_at%>
+  <%= u.attribute :last_sign_in_at%>
+  <%= u.attribute :current_sign_in_ip %>
+  <%= u.attribute :current_sign_in_city, value: change_ip_to_city(ip=current_user.current_sign_in_ip)%>
+<% end %>
+</div>

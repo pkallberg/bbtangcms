@@ -237,6 +237,9 @@ class Question < ActiveRecord::Base
     end
   end
 
+  def to_s
+    self.title
+  end
   private
   def sort_tag_list(tag_list= [])
     tag_str = ''

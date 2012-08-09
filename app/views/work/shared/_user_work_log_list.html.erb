@@ -1,0 +1,35 @@
+<%- model_class = CuPermit.new.class -%>
+<%- admin_model_class = User.new.class -%>
+<% if user.limit_admin_group.present? %>
+  <% user.limit_admin_group.each do |admin| %>
+    <h2><%= admin.name %></h2>
+    <table class="table table-condensed">
+      <tr>
+        <th><%= admin_model_class.human_attribute_name(:id) %></th>
+        <th><%= admin_model_class.model_name.human %></th>
+        <th><%= admin_model_class.human_attribute_name(:cms_roles) %></th>
+        <!--th><%= admin_model_class.human_attribute_name(:permits) %></th-->
+        <th>today work log summary</th>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      </tr>
+      <% user.owner_users(admin.name.to_s).each do |owner_user| %>
+        <tr>
+        <td><%= link_to owner_user.id, auth_assign_permit_path(owner_user) %></td>
+          <td><%= owner_user %></td>
+          <td><%= owner_user.cms_roles.map(&:name) %></td>
+          <!--td><%= owner_user.permits.map(&:name)%></td-->
+          <td><%= today_work_summary(item_type_list = @worked_list,user = owner_user)%></td>
+          <td><%= link_to t("layout.menu.work_versions"), work_versions_path(version_params(hash={:whodunnit =>owner_user.id})), :class => 'btn btn-mini' %></td>
+          <!--td><%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)), auth_assign_permit_path(owner_user), :class => 'btn' %>
+              <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_auth_assign_permit_path(owner_user), :class => 'btn' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), auth_assign_permit_path(owner_user,:admin_group => admin.name ),
+              :method => 'delete',
+              :confirm => t('.confirm',
+              :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+              </td-->
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+<% end %>

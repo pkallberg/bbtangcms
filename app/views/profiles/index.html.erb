@@ -36,7 +36,7 @@
     <% @profiles.each do |profile| %>
       <tr>
         <td><%= link_to profile.id, profile_path(profile) %></td>
-        <td><%= profile.user %></td>
+        <td><%= profile.user.email %></td>
         <td><%= profile.real_name %></td>
         <td><%= profile.nickname %></td>
         <td><%= profile.level_id %></td>

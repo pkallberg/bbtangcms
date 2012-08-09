@@ -25,3 +25,7 @@ zh-CN:
       save_sorted: "保存排列"
       search: "搜索%{model}"
       resetscore: "重置%{model}评分"
+    events:
+      create: "创建"
+      update: "更新"
+      destroy: "删除"

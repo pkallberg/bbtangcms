@@ -65,7 +65,7 @@ gem "breadcrumbs", "~> 0.1.6"
 
 # 上传图片
 #Paperclip is intended as an easy file attachment library for Active Record.
-gem "paperclip", "~> 3.0"
+gem "paperclip", "~> 3.1.4"
 gem "gravatar_image_tag", "~> 1.1.2"
 
 gem 'jquery-rails', "~> 1.0.19"

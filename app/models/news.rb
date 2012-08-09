@@ -1,6 +1,7 @@
 # coding: utf-8
 class News < ActiveRecord::Base
   include BaseModel  #for 敏感词验证
+  has_paper_trail   # you can pass various options here
   acts_as_taggable_on :tags
   before_validation :repear_save
   before_save :update_tags_count
@@ -92,6 +93,10 @@ class News < ActiveRecord::Base
         end
       end
     end
+  end
+
+  def to_s
+    "#{self.title}" if self.title.present?
   end
 
   private

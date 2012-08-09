@@ -1,0 +1,18 @@
+zh-CN:
+  activerecord:
+    models:
+      version: "版本"
+    attributes:
+      version:
+        id: "ID"
+        description: "描述"
+        item_type: "项目类别"
+        item: "项目"
+        item_id: "项目id"
+        event: "事件"
+        whodunnit: "操作人id"
+        whodoit: "操作人"
+        object: "对象内容"
+        object_hash: "对象内容"
+        created_at: "创建时间"
+        updated_at: "更新时间"

@@ -61,4 +61,8 @@ class Subject < ActiveRecord::Base
     self.content = Sanitize.clean(self.body).strip
   end
 
+  def to_s
+    self.title
+  end
+
 end

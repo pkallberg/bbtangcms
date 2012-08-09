@@ -126,7 +126,8 @@ BBTangCMS::Application.routes.draw do
 
 
   namespace :work do
-    root :to => 'dashboards#show', :as => :dashboards
+    resources :versions, only: [:index, :show ]
+    root :to => 'dashboard#show', :as => :dashboard
   end
 
   devise_for :users

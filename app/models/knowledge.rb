@@ -195,6 +195,9 @@ class Knowledge< ActiveRecord::Base
     end
   end
 
+  def to_s
+    self.title
+  end
 
   def count_focus
     self.thanks_count.to_i

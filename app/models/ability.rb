@@ -406,8 +406,8 @@ class Ability
     #can [:index,:destroy,:show] , User
     #can :index, Product
     #can :show, Product
-
-    can :index, :dashboard
+    can :manage, :dashboard
+    can :read , Version
     can [:index,:item_list,:search_tag], :archive
     can :index, :hot_tags
     # bellow is defining for "Tag::DashboardController " any it work as follow line(cancan 1.6.7)

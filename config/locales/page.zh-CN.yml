@@ -6,7 +6,8 @@ zh-CN:
     admin: "管理中心"
     menu:
       unauthorized_user: "未授权用户"
-      work_dashboards: "事物中心"
+      work_dashboard: "事物中心"
+      work_versions: "工作日志"
     #recommend:
     #  dashboard:
     #    show: "推送首页"

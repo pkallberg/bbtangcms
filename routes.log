@@ -220,6 +220,8 @@ delete_report_reason_admin_base_settings        /admin/base_settings/delete_repo
                         new_tag_identity GET    /tag/identities/new(.:format)                                                     tag/identities#new
                             tag_identity GET    /tag/identities/:id(.:format)                                                     tag/identities#show
                            tag_dashboard        /tag(.:format)                                                                    tag/dashboard#show
+               logs_work_dashboard_index        /work/dashboard/logs(.:format)                                                    work/dashboard#logs
+                          work_dashboard GET    /work/dashboard/:id(.:format)                                                     work/dashboard#show
                           work_dashboard        /work(.:format)                                                                   work/dashboard#show
                         new_user_session GET    /users/sign_in(.:format)                                                          devise/sessions#new
                             user_session POST   /users/sign_in(.:format)                                                          devise/sessions#create

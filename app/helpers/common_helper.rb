@@ -1,3 +1,4 @@
+# coding: utf-8
 module CommonHelper
   def model_columns_collection(model_class = nil, whitelist = false,except =[] )
     if (model_class.method_defined? :columns) or (model_class.respond_to? :columns)
@@ -33,5 +34,20 @@ module CommonHelper
         return link_to tag, tag_identity_timelines_path(tag)
       end
     end
+  end
+
+  def find_user(id = nil, email = nil, username = nil)
+    u = (User.where id: id).first if id.present?
+    u = (User.where email: email).first if email.present?
+    u = (User.where username: username).first if username.present?
+    u
+  end
+
+  def change_ip_to_city(ip=nil)
+    is = IpSearch.new
+    ip ||= "116.228.214.170"
+    is.find_ip_location(ip)
+    #breakpoint
+    return is.country.first.gsub("市","")
   end
 end

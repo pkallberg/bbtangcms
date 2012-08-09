@@ -77,4 +77,8 @@ class Answer < ActiveRecord::Base
     end
   end
 
+  def to_s
+    "#{self.id}"
+  end
+
 end
