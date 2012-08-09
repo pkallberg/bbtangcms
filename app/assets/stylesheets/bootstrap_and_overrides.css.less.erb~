@@ -2,6 +2,8 @@
 @import "twitter/bootstrap";
 
 
+<%= "@import 'bootswatch/#{Setting.today_theme}/bootswatch';" %>
+<%= "@import 'bootswatch/#{Setting.today_theme}/variables';" %>
 
 table {
 td {
