@@ -17,7 +17,7 @@ module Work::DashboardHelper
        item_summary_list.append("On #{item_type.classify.constantize.model_name.human.pluralize} 总共 #{events.count} 事件, 其中 " + events.collect{|e| "#{e[1]}次" +I18n.t("helpers.events.#{e[0]}")}.join(",")) if events.present?
     end
     if item_summary_list.present?
-      raw(item_summary_list.join("; ") << " " << (link_to "我的工作日志",work_versions_path(version_params({:whodunnit =>current_user.id})))) << "."
+      raw(item_summary_list.join("; ") << " " << (link_to "#{user}的工作日志",work_versions_path(version_params({:whodunnit =>user.id})))) << "."
     else
       "No thing logged, today!"
     end
