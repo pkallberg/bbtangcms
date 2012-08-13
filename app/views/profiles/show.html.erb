@@ -5,7 +5,7 @@
 
 <%= show_for @profile do |s| %>
   <%= s.association :user do %>
-    <%= @profile.user.email %>
+    <%= @profile.user.email if @profile.user.present? %>
   <% end %>
   <%= s.attribute :real_name %>
   <%= s.attribute :nickname %>

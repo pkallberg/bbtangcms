@@ -140,7 +140,13 @@ BBTangCMS::Application.routes.draw do
   match "/archives/search_tag" => 'archives#search_tag', :as => :search_tag
   match '/archives/:model/item_list/:item_id/' => "archives#item_list", :as => :archive_item_list, :via => :get
 
-
+  # 404 catch all route
+  unless BBTangCMS::Application.config.consider_all_requests_local
+    match '/403', :to => 'errors#render_403'
+    match '/404', :to => 'errors#render_404'
+    match '/422', :to => 'errors#render_422'
+    match '/500', :to => 'errors#render_500'
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

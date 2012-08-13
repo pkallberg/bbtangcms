@@ -64,5 +64,10 @@ module BBTangCMS
     config.generators do |g|
       g.orm :active_record
     end
+    config.exceptions_app = self.routes
+    # 404 catch all route
+    #config.after_initialize do |app|
+    # app.routes.append{ match '*a', :to => 'application#render_404' } unless config.consider_all_requests_local
+    #end
   end
 end
