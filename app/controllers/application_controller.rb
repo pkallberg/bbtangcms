@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
   def create_profile
       #breakpoint
     if current_user
-      @profile=Profile.find_or_create_by_user_id(current_user.id)
+      @current_user_profile=Profile.find_or_create_by_user_id(current_user.id)
       #profile_session @profile
       #if is_create_profile?(params)
           #Profile.create(:user_id=>current_user.id)
