@@ -135,6 +135,9 @@ gem 'paper_trail', '~> 2'
 # sphinx搜索
 gem 'thinking-sphinx','~> 2.0.7'
 
+#Clean ruby syntax for writing and deploying cron jobs.
+gem "whenever", "~> 0.7.3"
+
 group :development, :test do
   #gem 'cucumber-rails'
   # database_cleaner is not required, but highly recommended

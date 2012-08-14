@@ -1,4 +1,5 @@
 require "bundler/capistrano"
+require "whenever/capistrano"
 
 # RVM bootstrap
 #$:.unshift(File .expand_path( "~/.rvm/lib" ))
@@ -52,6 +53,9 @@ namespace :deploy do
 
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+  end
+  task :update_crontab, :roles => :worker do
+    run "cd #{release_path}; whenever --set environment=#{rails_env} --update-crontab #{application}_#{rails_env}"
   end
 end
 namespace :rvm do

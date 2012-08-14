@@ -6,9 +6,14 @@ class Work::VersionsController < ApplicationController
   # GET /work/versions.json
   def index
     @work_versions =  Version.paginate(:page => params[:page]).order('id DESC')
-    @work_versions = Version.paginate(:page => params[:page],
+
+    if params[:version].present? and params[:version].has_key? "created_at"
+      @work_versions = Version.where(created_at: params[:version]["created_at"].to_time .. params[:version]["created_at"].to_time + 1.day).paginate(:page => params[:page])
+    else
+      @work_versions = Version.paginate(:page => params[:page],
                        :conditions => params[:version]
                     )  if params[:version].present?
+    end
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), work_versions_path
     respond_to do |format|

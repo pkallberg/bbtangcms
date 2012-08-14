@@ -9,7 +9,7 @@
     <table class="table table-condensed">
       <thead>
         <tr>
-          <% model_columns_collection(@model_class,whitelist = true,except = ["summary","body","content","thanks_count", "forwarding_count", "comments_count", "views_count","face"]).each do |column|%>
+          <% model_columns_collection(@model_class,whitelist = true,except = ["summary","body","content","thanks_count", "forwarding_count", "comments_count", "views_count","face","object"]).each do |column|%>
             <th><%= model_class.human_attribute_name(column[1])  if column.present? %></th>
           <% end %>
           <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -19,7 +19,7 @@
         <% if @results.present? %>
           <% @results.each do |result| %>
             <tr>
-            <% model_columns_collection(@model_class,whitelist = true,except = ["summary","body","content","thanks_count", "forwarding_count", "comments_count", "views_count"]).each do |column|%>
+            <% model_columns_collection(@model_class,whitelist = true,except = ["summary","body","content","thanks_count", "forwarding_count", "comments_count", "views_count","object"]).each do |column|%>
               <td><%= result.read_attribute(column[1])  if column.present? %></td>
             <% end %>
               <td>
