@@ -1,5 +1,5 @@
+#require "whenever/capistrano"
 require "bundler/capistrano"
-require "whenever/capistrano"
 
 # RVM bootstrap
 #$:.unshift(File .expand_path( "~/.rvm/lib" ))
