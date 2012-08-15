@@ -47,6 +47,8 @@ class Question < ActiveRecord::Base
   define_index do
     indexes title
     indexes content
+    indexes category_taggings.tag(:name), :as => :category_tags
+    indexes tag_taggings.tag(:name), :as => :tag_tags
     where "deleted is null"
     #声明使用实时索引
     set_property :delta => true
