@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120806113616) do
+ActiveRecord::Schema.define(:version => 20120815073844) do
 
   create_table "admin_settings", :force => true do |t|
     t.string   "name"
@@ -401,6 +401,23 @@ ActiveRecord::Schema.define(:version => 20120806113616) do
     t.datetime "updated_at"
   end
 
+  create_table "messages", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.integer  "subject_id"
+    t.string   "subject"
+    t.text     "content"
+    t.boolean  "opened",       :default => false
+    t.boolean  "deleted",      :default => false
+    t.boolean  "copies",       :default => false
+    t.string   "ancestry"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  add_index "messages", ["user_id", "subject_id", "ancestry"], :name => "messages_idx"
+
   create_table "model_objects", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -493,7 +510,7 @@ ActiveRecord::Schema.define(:version => 20120806113616) do
 
   create_table "profiles", :force => true do |t|
     t.integer  "user_id"
-    t.string   "label"
+    t.text     "label"
     t.string   "nickname"
     t.string   "real_name"
     t.boolean  "gender"

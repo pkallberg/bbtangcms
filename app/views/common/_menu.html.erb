@@ -37,6 +37,7 @@
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
+            <li><%= link_to "#{I18n.t('common.inbox')}(#{current_user.inbox(:opened => false).count})", messages_path(:inbox), :id => "inbox-link" %></li>
             <li><%= link_to t("layout.menu.work_dashboard"), work_dashboard_path %></li>
             <li class="divider"></li>
             <li><%= link_to t("common.logout"),destroy_user_session_path, :method => :delete %></li>

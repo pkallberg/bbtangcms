@@ -77,6 +77,8 @@
     uploading: "正在上传"
     published_at: "发表于"
     register: "注册"
+    inbox: "收件箱"
+    enter_inbox: "进入收件箱"
     login: "登录"
     login_as: "登录为"
     logining: "正在登录"

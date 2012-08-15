@@ -1,0 +1,14 @@
+<%- model_class = Message.new.class -%>
+
+<h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+
+<%= render "head" %>
+
+<div>
+    <div id="tabs_panel">
+	    <%= render :partial => "tabs_panel", :locals => { :model_class => model_class} %>
+    </div>
+    <div id="tabs-messages">
+		<%= render :partial => 'messages', :locals => { :model_class => model_class} %>
+    </div>
+</div>

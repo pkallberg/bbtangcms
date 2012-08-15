@@ -18,6 +18,9 @@ class CommonController < ApplicationController
     render :template => 'common/search_result.html.erb'
   end
 
+  def lastest_log
+  end
+
   private
   def find_item(q_model = nil,q_type = nil, q_word = nil)
     @results = []

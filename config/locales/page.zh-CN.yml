@@ -14,6 +14,17 @@ zh-CN:
     #auth:
     # dashboard:
     #   show: "授权认证首页"
+  messages:
+    tabs_panel:
+      inbox: "收件箱"
+      outbox: "发件箱"
+      trash: "回收站"
+    messages:
+      option: "选项"
+      apply_to_selected: "应用选中"
+      empty_inbox:  "清空收件箱"
+      empty_outbox: "清空发件箱"
+      empty_trash: "清空回收站"
   recommend:
     dashboard:
       show:

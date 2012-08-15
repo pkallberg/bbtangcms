@@ -2,9 +2,14 @@
 <!--% description "这个是页面描述" -%-->
 <!--% keywords "ror页面seo" -%-->
 
+<!--%= link_to "lastest_log",common_lastest_log_path, :remote => true %-->
+
 <div class="hero-unit">
   <h1>Yeah, It's BBTangCMS !</h1>
   <p>Welcome,  <%= current_user%> , <%= today_work_summary(item_type_list = Setting.version_mod.split(' '))%></p>
+  <% if new_messages(user = current_user)%>
+    <p><%= new_messages_notice(user = current_user)%>,<%= link_to "#{I18n.t('common.enter_inbox')}", messages_path(:inbox)%></p>
+  <% end %>
   <p>
     <%= link_to t("layout.menu.work_dashboard"), work_dashboard_path, class: "btn btn-primary btn-large" %>
   </p>

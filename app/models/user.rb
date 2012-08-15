@@ -1,5 +1,8 @@
 # encoding: utf-8
 class User < ActiveRecord::Base
+
+  has_many :messages
+  include HasMessages
   # Include default devise modules. Others available are:
   has_many :assignments, :dependent => :destroy, :uniq => true
   has_many :cms_roles, :through => :assignments

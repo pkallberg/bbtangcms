@@ -1,0 +1,29 @@
+<%- model_class = Message.new.class -%>
+
+<h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
+                                 :default => "New #{model_class.model_name.human}") %></h1>
+
+<%= render "head" %>
+
+<div>
+  <%= render :partial => "tabs_panel" %>
+    <div id="tabs-messages" style="padding-top:50px;">
+    <%= form_tag messages_path, :method => :post do %>
+      <p>
+          <%= label_tag :user_tokens, model_class.human_attribute_name(:recipient) %>
+          <%= text_field_tag :user_tokens %>
+      </p>
+      <p>
+          <%= label_tag :subject, model_class.human_attribute_name(:subject) %>
+        <%= text_field_tag :subject, nil, :size => 75 %>
+      </p>
+      <p>
+          <%= label_tag :content, model_class.human_attribute_name(:content) %>
+        <%= text_area_tag :content, nil, :rows => 20, :cols => 55 %>
+      </p>
+      <p>
+        <%= submit_tag "Send", :class => 'btn-primary', :disable_with => 'send...' %>
+      </p>
+    <% end %>
+    </div>
+</div>

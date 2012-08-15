@@ -22,6 +22,12 @@ module CommonHelper
     return model_columns_list
   end
 
+  def lastest_log(h = nil)
+    #h ||= 1
+    lastest_logs = Version.where(:created_at => 1.hour.ago .. Date.tomorrow)
+    lastest_logs.collect{|l| "#{time_tag l.created_at, :format => :short} #{l.whodoit}," + I18n.t("helpers.events.#{l.event}") + "#{l.item_type.classify.constantize.model_name.human.pluralize}" + "'#{l.item}'"}
+  end
+
   def get_tag_list_path(tag = nil )
     if tag.present?
       if tag.class == Category

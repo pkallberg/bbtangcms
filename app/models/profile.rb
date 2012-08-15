@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Profile < ActiveRecord::Base
   has_paper_trail   # you can pass various options here
   #include Recommendation::Search
@@ -154,13 +155,14 @@ class Profile < ActiveRecord::Base
   end
 
   #the display name which will be userd in pages
-  def display_name
+  def to_s
     if self.nickname?
-      self.nickname
+      "#{self.nickname}的#{self.class.model_name.human}"
     else
       #if no nickname, show account name
-      User.find_by_id(self.user_id).username
+      "#{User.find_by_id(self.user_id)}的#{self.class.model_name.human}"
     end
+
   end
 
   # add like tag for this user

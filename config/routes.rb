@@ -1,5 +1,16 @@
 BBTangCMS::Application.routes.draw do
 
+	 resources :messages, :only => [:new, :create] do
+	   collection do
+	     get 'token' => 'messages#token', :as => 'token'
+	     post 'empty/:messagebox' => 'messages#empty', :as => 'empty'
+	     put 'update' => 'messages#update'
+	     get ':messagebox/show/:id' => 'messages#show', :as => 'show', :constraints => { :messagebox => /inbox|outbox|trash/ }
+	     get '(/:messagebox)' => 'messages#index', :as => 'box', :constraints => { :messagebox => /inbox|outbox|trash/ }
+	   end
+	 end
+
+
 
 
   # admin
@@ -133,6 +144,7 @@ BBTangCMS::Application.routes.draw do
   devise_for :users
 
   match "common/search", :as => :common_search
+  match "common/lastest_log", :as => :common_lastest_log
   root :to => 'dashboard#index'
   match "/archives/hot_tags/" => "hot_tags#index", :as => :hot_tags, :via => :get
   match "/archives/:model/" => "archives#index", :as => :archives, :via => :get

@@ -6,6 +6,7 @@ zh-CN:
       new: "新建%{model}"
       edit: "编辑%{model}"
       recent: "近期%{model}"
+      read: "阅读%{model}"
       show: "显示%{model}"
       search: "%{model}搜索"
       search_tag: "%{model}标签搜索"
@@ -29,3 +30,8 @@ zh-CN:
       create: "创建"
       update: "更新"
       destroy: "删除"
+    options:
+      read: "已读"
+      unread: "未读"
+      delete: "删除"
+      undelete: "不删除"

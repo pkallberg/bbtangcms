@@ -1,0 +1,22 @@
+zh-CN:
+  activerecord:
+    models:
+      message: "消息"
+    attributes:
+      message:
+        id: "ID"
+        user_id: "用户ID"
+        user: "用户"
+        sender_id: "寄信人ID"
+        sender: "寄信人"
+        recipient_id: "寄信人ID"
+        recipient: "收信人"
+        subject_id: "主题ID"
+        subject: "主题"
+        content: "内容"
+        opened: "已阅读"
+        deleted: "已删除"
+        copies: "抄送"
+        ancestry: "ancestry"
+        created_at: "创建时间"
+        updated_at: "更新时间"

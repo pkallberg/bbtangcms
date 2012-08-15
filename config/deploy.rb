@@ -54,8 +54,9 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
+  desc "whenever update_crontab"
   task :update_crontab, :roles => :worker do
-    run "cd #{release_path}; whenever --set environment=#{rails_env} --update-crontab #{application}_#{rails_env}"
+    run "cd #{release_path}; whenever -i #{current_path}/config/schedule.rb --set environment=#{rails_env} --update-crontab #{application}_#{rails_env}"
   end
 end
 namespace :rvm do

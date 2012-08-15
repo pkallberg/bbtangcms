@@ -48,11 +48,19 @@ gem 'simple_form', :git => "git://github.com/plataformatec/simple_form.git"
 #Wrap your objects with a helper to easily show them
 gem "show_for", "~> 0.2.5"
 
+#This is just a simple messaging generators for Rails 3.x, enable user to sending messages across the app.
+gem "has_messages_generators", "~> 0.0.1"
+# for has_messages_generators
+gem "kaminari"
+gem "ancestry"
+
 #gem "twitter-bootstrap-rails", "~> 2.1.0"
 #gem "sass-twitter-bootstrap-rails", "~> 1.0.2"
 #This gem is meant to be used with bootstrap-sass.
 #gem "bootswatch-rails", "~> 0.0.11"
 group :assets do
+  gem 'sass-rails',   '~> 3.2.5'
+  gem "gritter", "~> 1.0.1"
   gem 'therubyracer'
   gem "less-rails", "~> 2.2.3"
   gem "less-rails-bootstrap", "~> 2.0.13"

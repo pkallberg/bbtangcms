@@ -1,0 +1,6 @@
+<% if lastest_log.present? %>
+  <!--%= remove_gritter %-->
+  <% lastest_log.each do |l|%>
+    <%= add_gritter l %>
+  <% end %>
+<% end %>

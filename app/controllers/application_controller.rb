@@ -70,7 +70,7 @@ class ApplicationController < ActionController::Base
 
   def do_not_check_authorization?
     respond_to?(:devise_controller?) or
-    skip_rails_kindeditor?# or
+    skip_rails_kindeditor? or skip_messages?
     #condition_two?
     #respond_to?(:devise_controller?)# or respond_to?(:dashboard_controller?)
     #debugger
@@ -80,6 +80,9 @@ class ApplicationController < ActionController::Base
     true if params[:controller] == "kindeditor/assets"
   end
 
+  def skip_messages?
+    true if params[:controller] == "messages"
+  end
   #def condition_two?
   # ...
   #end

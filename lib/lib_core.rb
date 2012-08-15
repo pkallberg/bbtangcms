@@ -2,6 +2,7 @@
 require 'askjane/meta_cache'  #缓存字典表使用方法函数
 require 'askjane/app_util'
 require 'askjane/redis'
+require 'has_messages'
 #require 'will_paginate/pagination_list_link_renderer' # 自定义分页，显示更多
 
 #require 'sanitize'  # 去除字符串中的html标签
