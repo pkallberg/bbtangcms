@@ -70,13 +70,15 @@ class Knowledge< ActiveRecord::Base
   scope :id_equals, lambda { |input_id| where("knowledgebase.id = ?", input_id)}
 
   define_index do
-   indexes title
-   indexes content
-   where "deleted_at is null"
-   #声明使用实时索引
-   set_property :delta => true
+    indexes title
+    indexes summary
+    indexes content
+    indexes category_taggings.tag(:name), :as => :category_tags
+    indexes tag_taggings.tag(:name), :as => :tag_tags
+    where "deleted_at is null"
+    #声明使用实时索引
+    set_property :delta => true
   end
-
   # find the knowledges whose tags include param
   def self.find_knowledges_with_tag(tag_id)
     #Knowledge.find_by_sql("SELECT * FROM knowledges WHERE concat(',',concat(tags,',')) LIKE '%,"<<tag_id<<",%' ORDER BY created_at DESC")
