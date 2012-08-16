@@ -10,6 +10,8 @@ module ProfilesHelper
       else
         return profile.face.url(size)
       end
+    else
+      image_path("profile/face/#{size}/missing.png")
     end
   end
   def get_hoter_city

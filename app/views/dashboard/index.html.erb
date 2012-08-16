@@ -13,7 +13,9 @@
   <p>
     <%= link_to t("layout.menu.work_dashboard"), work_dashboard_path, class: "btn btn-primary btn-large" %>
   </p>
+  <i class="pull-right"><%= "#{users_summary}, 最新加入 (#{newest_users.count}) 人" %></i>
 </div>
+
 <div class="item box">
 <%- knowledge_model_class = Knowledge.new.class -%>
 <h1><%=t '.title', :default => knowledge_model_class.model_name.human %></h1>
@@ -55,3 +57,24 @@
 <div class="item box">
   <%= render :template => 'recommend/dashboard/show'%>
 </div>
+<% if newest_users.present? %>
+  <div class = "newest_users box">
+    <span class="label label-important"><%= t(".newest_user") %></span>
+    <h1><%= t(".newest_user") %></h1>
+    <ul class="thumbnails">
+
+      <% newest_users.each do |u|%>
+        <li class='span2'>
+          <div class='thumbnail'>
+            <%= image_tag(get_face_url(u.profile,:size => :original ), :height => '120', :width => '160', :title => "#{u}")%>
+            <div class='caption'>
+              <h5><%= "#{u}" %></h5>
+                <span class='badge'><%= "#{u.class.human_attribute_name(:created_at)}" %></span>
+                <p><%= time_tag u.created_at, :format=>'%Y %B %d, %l:%M' %></p>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

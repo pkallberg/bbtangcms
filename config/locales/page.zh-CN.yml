@@ -14,6 +14,9 @@ zh-CN:
     #auth:
     # dashboard:
     #   show: "授权认证首页"
+  dashboard:
+    index:
+      newest_user: "最新加入会员"
   messages:
     tabs_panel:
       inbox: "收件箱"

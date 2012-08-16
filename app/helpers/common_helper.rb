@@ -24,7 +24,7 @@ module CommonHelper
 
   def lastest_log( count = "1", unit = "minute" )
     #h ||= 1
-    s_time = count.to_i.send("unit").send("ago") if count.to_i > 0
+    s_time = count.to_i.send(unit).send("ago") if count.to_i > 0
     s_time ||= 1.minute.ago
     lastest_logs = Version.where(:created_at => s_time .. Date.tomorrow)
     #count.to_i.send("hours").send("ago") if count.to_i > 0
