@@ -21,17 +21,17 @@
 .gritter-item-wrapper {
   position: relative;
   margin: 0 0 10px 0;
-  background: url(image_path("ie-spacer.gif")); }
+  background: url("ie-spacer.gif"); }
 
 .gritter-top {
-  background: url(image_path("gritter.png")) no-repeat left -30px;
+  background: url("gritter.png") no-repeat left -30px;
   height: 10px; }
 
 .hover .gritter-top {
   background-position: right -30px; }
 
 .gritter-bottom {
-  background: url(image_path("gritter.png")) no-repeat left bottom;
+  background: url("gritter.png") no-repeat left bottom;
   height: 8px;
   margin: 0; }
 
@@ -46,7 +46,7 @@
   font-family: verdana;
   filter: inherit; }
   .gritter-item.gritter-css2 {
-    background: url(image_path("gritter.png")) no-repeat left -40px; }
+    background: url("gritter.png") no-repeat left -40px; }
   .gritter-item.gritter-css3 {
     background: rgba(0, 0, 0, 0.8);
     -webkit-border-radius: 10px;
@@ -76,10 +76,10 @@
   filter: inherit; }
 
 .gritter-css2 .gritter-close {
-  background: url(image_path("gritter.png")) no-repeat left top; }
+  background: url("gritter.png") no-repeat left top; }
 
 .gritter-css3 .gritter-close {
-  background: url(image_path("gritter-close.png")) no-repeat; }
+  background: url("gritter-close.png") no-repeat; }
 
 .gritter-title {
   font-size: 14px;
