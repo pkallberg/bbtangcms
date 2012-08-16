@@ -59,7 +59,7 @@ gem "ancestry"
 #This gem is meant to be used with bootstrap-sass.
 #gem "bootswatch-rails", "~> 0.0.11"
 group :assets do
-  gem 'sass-rails',   '~> 3.2.5'
+  #gem 'sass-rails',   '~> 3.2.5'
   gem "gritter", "~> 1.0.1"
   gem 'therubyracer'
   gem "less-rails", "~> 2.2.3"
