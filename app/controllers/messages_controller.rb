@@ -1,6 +1,6 @@
 # coding: utf-8
 class MessagesController < ApplicationController
-  load_and_authorize_resource
+  #skip_authorization_check
 
   Model_class = Message.new.class
   def index

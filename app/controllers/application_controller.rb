@@ -69,8 +69,8 @@ class ApplicationController < ActionController::Base
   end
 
   def do_not_check_authorization?
-    respond_to?(:devise_controller?) or
-    skip_rails_kindeditor? or skip_messages?
+debugger
+    respond_to?(:devise_controller?) or skip_rails_kindeditor? or skip_messages?
     #condition_two?
     #respond_to?(:devise_controller?)# or respond_to?(:dashboard_controller?)
     #debugger
