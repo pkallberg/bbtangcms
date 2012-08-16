@@ -48,6 +48,8 @@ gem 'simple_form', :git => "git://github.com/plataformatec/simple_form.git"
 #Wrap your objects with a helper to easily show them
 gem "show_for", "~> 0.2.5"
 
+#This Ruby on Rails gem allows you to easily add Growl-like notifications to your application using a jQuery plugin called 'gritter'.
+gem "gritter", "~> 1.0.1"
 #This is just a simple messaging generators for Rails 3.x, enable user to sending messages across the app.
 gem "has_messages_generators", "~> 0.0.1"
 # for has_messages_generators
@@ -60,7 +62,6 @@ gem "ancestry"
 #gem "bootswatch-rails", "~> 0.0.11"
 group :assets do
   #gem 'sass-rails',   '~> 3.2.5'
-  gem "gritter", "~> 1.0.1"
   gem 'therubyracer'
   gem "less-rails", "~> 2.2.3"
   gem "less-rails-bootstrap", "~> 2.0.13"
