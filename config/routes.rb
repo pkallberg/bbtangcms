@@ -1,17 +1,5 @@
 BBTangCMS::Application.routes.draw do
 
-	 resources :messages, :only => [:new, :create] do
-	   collection do
-	     get 'token' => 'messages#token', :as => 'token'
-	     post 'empty/:messagebox' => 'messages#empty', :as => 'empty'
-	     put 'update' => 'messages#update'
-	     get ':messagebox/show/:id' => 'messages#show', :as => 'show', :constraints => { :messagebox => /inbox|outbox|trash/ }
-	     get '(/:messagebox)' => 'messages#index', :as => 'box', :constraints => { :messagebox => /inbox|outbox|trash/ }
-	   end
-	 end
-
-
-
 
   # admin
   namespace :admin do
@@ -81,6 +69,17 @@ BBTangCMS::Application.routes.draw do
     resources :assign_permits
     root :to => 'dashboard#show', :as => :dashboard
   end
+
+  resources :messages, :only => [:new, :create] do
+    collection do
+      get 'token' => 'messages#token', :as => 'token'
+      post 'empty/:messagebox' => 'messages#empty', :as => 'empty'
+      put 'update' => 'messages#update'
+      get ':messagebox/show/:id' => 'messages#show', :as => 'show', :constraints => { :messagebox => /inbox|outbox|trash/ }
+      get '(/:messagebox)' => 'messages#index', :as => 'box', :constraints => { :messagebox => /inbox|outbox|trash/ }
+    end
+  end
+
 
   resources :news
 

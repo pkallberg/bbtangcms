@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
     end
   end
 
-	def show
+  def show
     unless params[:messagebox].blank?
       message = current_user.send(params[:messagebox]).find(params[:id])
 
@@ -32,14 +32,14 @@ class MessagesController < ApplicationController
       read_unread_messages(true, *@messages)
       breadcrumbs.add I18n.t("helpers.titles.read", :model => Model_class.model_name.human), new_news_path
     end
-	end
+  end
 
-	def new
+  def new
     @message = Message.new
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), new_news_path
-	end
+  end
 
-	def create
+  def create
     unless params[:user_tokens].blank? or params[:subject].blank? or params[:content].blank?
       #recipients = User.find(params[:message][:user].split(",").collect { |id| id.to_i })
       recipients = find_user(word = params[:user_tokens])
@@ -54,9 +54,9 @@ class MessagesController < ApplicationController
       flash.now[:alert] = "Invalid input for sending message."
       render "new"
     end
-	end
+  end
 
-	def update
+  def update
     unless params[:messages].nil?
       message = current_user.send(params[:messagebox]).find(params[:messages])
 
@@ -74,22 +74,22 @@ class MessagesController < ApplicationController
       end
     end
     redirect_to box_messages_url(params[:messagebox])
-	end
+  end
 
-	def empty
+  def empty
    unless params[:messagebox].nil?
       current_user.empty_messages(params[:messagebox].to_sym => true)
       redirect_to box_messages_url(params[:messagebox]), :notice => "Successfully delete all messages."
    end
-	end
+  end
 
-	def token
+  def token
     query = "%" + params[:q] + "%"
     recipients = User.select("id,email").where("email like ?", query)
     respond_to do |format|
       format.json { render :json => recipients.map { |u| { "id" => u.id, "name" => u.email} } }
     end
-	end
+  end
 
 private
 
@@ -105,7 +105,7 @@ private
     end
   end
 
-	def delete_messages(isDelete, *messages)
+  def delete_messages(isDelete, *messages)
     messages.each do |msg|
       if isDelete
         msg.delete
@@ -113,16 +113,25 @@ private
         msg.undelete
       end
     end
-	end
+  end
 
-	def find_user(word = "")
-	  word = word.split(/，|,|;|；|\ +|\||\r\n/)
-	  users = word.collect { |id| User.find id.to_i if User.exists? id.to_i }.compact.uniq
+  def find_user(word = "")
+    word = word.split(/，|,|;|；|\ +|\||\r\n/)
+    cms_roles = CmsRole.all
+    users = []
+    #users = word.collect { |id| User.find id.to_i if User.exists? id.to_i }.compact.uniq
 
-	  unless users.present?
-	    users = word.collect { |email| User.find_by_email email if User.exists? email: email }.compact.uniq
-	  end
-	  users
-	end
+    word.each do |w|
+      #users.concat CmsRole.find_by_name(2).users if cms_roles.map(&:name).include? w
+      cms_roles.collect {|c| users.concat c.users if c.name.eql? w}
+      users.append User.find w.to_i if User.exists? w.to_i
+      users.append User.find_by_email w if User.exists? email: w
+      users.append User.find_by_username w if User.exists? username: w
+    end
+    return users.compact.uniq
+  end
+
+  def cms_role_users
+  end
 
 end
