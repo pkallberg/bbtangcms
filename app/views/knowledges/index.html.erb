@@ -34,8 +34,8 @@
   <tbody>
     <% @knowledges.each do |knowledge| %>
       <tr>
-        <td><%= link_to knowledge.id, knowledge_path(knowledge) %></td>
-        <td><%= link_to knowledge.title, "http://bbtang.com/knowledges/#{knowledge.to_param}", html_options = {} %></td>
+        <td><%= link_to knowledge.id, knowledge_path(knowledge), :title => object_summary(obj = knowledge), :rel => "tooltip" %></td>
+        <td><%= link_to knowledge.title, "http://bbtang.com/knowledges/#{knowledge.to_param}",  :title => "#{object_summary(obj = knowledge)} on bbtang.com", :rel => "tooltip" %></td>
         <td><%= knowledge.summary %></td>
         <!--td><%= knowledge.content %></td-->
         <!--td><%= knowledge.body %></td-->
@@ -57,10 +57,19 @@
         <td><%=l knowledge.created_at %></td>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)),
-                      knowledge_path(knowledge), :class => 'btn btn-mini' %>
+                      knowledge_path(knowledge),
+                      :class => 'btn btn-mini',
+                      :title => "#{t("helpers.links.edit", :model => model_class.model_name.human)} #{knowledge}",
+                      "data-content" => object_summary(obj = knowledge, column = "summary"),
+                       :rel => "popover" %>
           <% if can? :update, knowledge %>
             <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)),
-                      edit_knowledge_path(knowledge), :class => 'btn btn-mini' %>
+                      edit_knowledge_path(knowledge),
+                      :class => 'btn btn-mini',
+                      :title => "#{t("helpers.links.edit", :model => model_class.model_name.human)} #{knowledge}",
+                      "data-content" => object_summary(obj = knowledge, column = "summary"),
+                       :rel => "popover"
+                       %>
           <% end %>
           <% if can? :destroy, knowledge %>
             <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)),

@@ -3,7 +3,6 @@
 <!--% keywords "ror页面seo" -%-->
 
 <!--%= link_to "lastest_log",common_lastest_log_path, :remote => true %-->
-
 <div class="hero-unit">
   <h1>Yeah, It's BBTangCMS !</h1>
   <p>Welcome,  <%= current_user%> , <%= today_work_summary(item_type_list = Setting.version_mod.split(' '))%></p>
@@ -11,7 +10,7 @@
     <p><%= new_messages_notice(user = current_user)%>,<%= link_to "#{I18n.t('common.enter_inbox')}", messages_path(:inbox)%></p>
   <% end %>
   <p>
-    <%= link_to t("layout.menu.work_dashboard"), work_dashboard_path, class: "btn btn-primary btn-large" %>
+    <%= link_to t("layout.menu.work_dashboard"), work_dashboard_path, class: "btn btn-primary btn-large", :rel => "popover" %>
   </p>
   <i class="pull-right"><%= "#{users_summary}, 最新加入 (#{newest_users.count}) 人" %></i>
 </div>
@@ -30,24 +29,35 @@
 
 <% @knowledges.each do |knowledge| %>
   <tr>
-    <td><%= link_to knowledge.id, knowledge_path(knowledge) %></td>
+    <td><%= link_to knowledge.id, knowledge_path(knowledge), :title => object_summary(obj = knowledge), :rel => "tooltip" %></td>
     <td><%= knowledge.title %></td>
     <td><%= knowledge.created_name %></td>
     <td>
           <% if can? :read, knowledge %>
           <%= link_to t('.show', :default => t("helpers.links.show", :model => knowledge_model_class.model_name.human)),
-                      knowledge_path(knowledge), :class => 'btn btn-mini' %>
+                      knowledge_path(knowledge),
+                      :class => 'btn btn-mini',
+                      :title => "#{t("helpers.links.show", :model => knowledge_model_class.model_name.human)} #{knowledge}",
+                      "data-content" => object_summary(obj = knowledge, column = "summary"),
+                       :rel => "popover"%>
           <% end %>
           <% if can? :update, knowledge %>
             <%= link_to t('.edit', :default => t("helpers.links.edit", :model => knowledge_model_class.model_name.human)),
-                      edit_knowledge_path(knowledge), :class => 'btn btn-mini' %>
+                      edit_knowledge_path(knowledge),
+                      :class => 'btn btn-mini',
+                      :title => "#{t("helpers.links.edit", :model => knowledge_model_class.model_name.human)} #{knowledge}",
+                      "data-content" => object_summary(obj = knowledge, column = "summary"),
+                       :rel => "popover"
+                        %>
           <% end %>
           <% if can? :destroy, knowledge %>
             <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => knowledge_model_class.model_name.human)),
                       knowledge_path(knowledge),
                       :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-                      :class => 'btn btn-mini btn-danger' %>
+                      :class => 'btn btn-mini btn-danger'
+
+                       %>
           <% end %>
                       </td>
   </tr>

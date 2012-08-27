@@ -30,7 +30,7 @@
   <tbody>
     <% @news.each do |news| %>
       <tr>
-        <td><%= link_to news.id, news_path(news) %></td>
+        <td><%= link_to news.id, news_path(news), :title => object_summary(obj = news), :rel => "tooltip" %></td>
         <td><%= news.title %></td>
         <!--td><%= news.content %></td-->
         <!--td><%= news.body %></td-->
@@ -43,10 +43,21 @@
         <td><%= news.created_at %></td>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)),
-                      news_path(news), :class => 'btn btn-mini' %>
+                      news_path(news),
+                      :class => 'btn btn-mini',
+                      :title => "#{t("helpers.links.show", :model => model_class.model_name.human)} #{news}",
+                      "data-content" => object_summary(obj = news, column = "content"),
+                       :rel => "popover"
+                       %>
           <% if can? :update, news %>
             <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)),
-                      edit_news_path(news), :class => 'btn btn-mini' %>
+                      edit_news_path(news),
+                      :class => 'btn btn-mini',
+                      :title => "#{t("helpers.links.editupdatemodel => model_class.model_name.human)} #{news}",
+                      "data-content" => object_summary(obj = news, column = "content"),
+                       :rel => "popover"
+
+                       %>
           <% end %>
           <% if can? :destroy, news %>
             <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)),

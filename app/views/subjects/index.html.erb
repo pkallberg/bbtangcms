@@ -31,7 +31,7 @@
   <tbody>
     <% @subjects.each do |subject| %>
       <tr>
-        <td><%= link_to subject.id, subject_path(subject) %></td>
+        <td><%= link_to subject.id, subject_path(subject), :title => object_summary(obj = subject), :rel => "tooltip" %></td>
         <td><%= subject.title %></td>
         <td><%= subject.title2 %></td>
         <!--td><%= subject.summary %></td-->
@@ -48,10 +48,20 @@
         <td><%= time_tag subject.deleted_at, :format => :short if subject.deleted_at? %></td>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)),
-                      subject_path(subject), :class => 'btn btn-mini' %>
+                      subject_path(subject),
+                      :class => 'btn btn-mini',
+                      :title => "#{t("helpers.links.show", :model => model_class.model_name.human)} #{subject}",
+                      "data-content" => object_summary(obj = subject, column = "content"),
+                       :rel => "popover"
+                       %>
           <% if can? :update, subject %>
             <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)),
-                      edit_subject_path(subject), :class => 'btn btn-mini' %>
+                      edit_subject_path(subject),
+                      :class => 'btn btn-mini',
+                      :title => "#{t("helpers.links.edit", :model => model_class.model_name.human)} #{subject}",
+                      "data-content" => object_summary(obj = subject, column = "content"),
+                       :rel => "popover"
+                       %>
           <% end %>
           <% if can? :destroy, subject %>
             <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)),
