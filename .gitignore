@@ -20,7 +20,6 @@
 .sass-cache
 capybara-*.html
 .rspec
-development.sphinx.conf
 /.bundle
 /vendor/bundle
 /log/*
