@@ -53,6 +53,25 @@ module CommonHelper
     u
   end
 
+  def object_summary(obj = nil, column = "", length = 50)
+    summary_fields = [:title ,:summary, :label, :body].collect{|c| c.to_s}
+    if obj.present?
+      obj_class = obj.class
+      if obj_class.respond_to? :columns_hash
+        str_columns = obj_class.columns_hash.collect{|key,value| key if [:text, :string].include? value.type }.compact
+        summary_fields = str_columns & summary_fields
+      end
+    end
+    unless column.present?
+      column = summary_fields.first
+    end
+    if column.present? and obj.send(column).present?
+      truncate(obj.send(column), :length => length)
+    else
+      "#{obj}"
+    end
+  end
+
   def change_ip_to_city(ip=nil)
     is = IpSearch.new
     ip ||= "116.228.214.170"

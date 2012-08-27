@@ -35,7 +35,7 @@
   <tbody>
     <% @profiles.each do |profile| %>
       <tr>
-        <td><%= link_to profile.id, profile_path(profile) %></td>
+        <td><%= link_to profile.id, profile_path(profile), :title => object_summary(obj = profile), :rel => "tooltip" %></td>
         <td><%= profile.user.email if profile.user.present? %></td>
         <td><%= profile.real_name %></td>
         <td><%= profile.nickname %></td>
@@ -59,10 +59,20 @@
         <!--td><%= profile.weibo %></td-->
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)),
-                      profile_path(profile), :class => 'btn btn-mini' %>
+                      profile_path(profile),
+                      :class => 'btn btn-mini',
+                      :title => "#{t("helpers.links.show", :model => model_class.model_name.human)} #{profile}",
+                      "data-content" => object_summary(obj = profile),
+                       :rel => "popover"
+                       %>
           <% if can? :update, profile %>
             <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)),
-                      edit_profile_path(profile), :class => 'btn btn-mini' %>
+                      edit_profile_path(profile),
+                      :class => 'btn btn-mini',
+                      :title => "#{t("helpers.links.edit", :model => model_class.model_name.human)} #{profile}",
+                      "data-content" => object_summary(obj = profile),
+                       :rel => "popover"
+                       %>
           <% end %>
           <% if can? :destroy, profile %>
             <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)),

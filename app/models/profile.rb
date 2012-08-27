@@ -162,7 +162,6 @@ class Profile < ActiveRecord::Base
       #if no nickname, show account name
       "#{User.find_by_id(self.user_id)}的#{self.class.model_name.human}"
     end
-
   end
 
   # add like tag for this user
