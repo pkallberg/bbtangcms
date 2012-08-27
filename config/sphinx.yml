@@ -1,15 +1,30 @@
 development:
   bin_path: /usr/local/coreseek/bin
+  searchd_binary_name: searchd
+  indexer_binary_name: indexer
   charset_type: zh_cn.utf-8
   charset_dictpath: /usr/local/mmseg3/etc
   config_file: config/development.sphinx.conf
-  searchd_file_path: config/../../common/sphinx
-  pid_file: config/../../common/sphinx/searchd.development.pid
+  searchd_file_path: /opt/bbtang/common/sphinx
+  pid_file: /opt/bbtang/common/sphinx/searchd.development.pid
   
 production:
   bin_path: /usr/local/coreseek/bin
+  searchd_binary_name: searchd
+  indexer_binary_name: indexer
   charset_type: zh_cn.utf-8
   charset_dictpath: /usr/local/mmseg3/etc
-  config_file: config/development.sphinx.conf
-  searchd_file_path: config/../../common/sphinx
-  pid_file: config/../../common/sphinx/searchd.production.pid
+  config_file: config/production.sphinx.conf
+  searchd_file_path: /opt/bbtang/common/sphinx
+  pid_file: /opt/bbtang/common/sphinx/searchd.production.pid
+
+test:
+  bin_path: /usr/local/coreseek/bin
+  searchd_binary_name: searchd
+  indexer_binary_name: indexer
+  charset_type: zh_cn.utf-8
+  charset_dictpath: /usr/local/mmseg3/etc
+  config_file: config/test.sphinx.conf
+  searchd_file_path: /opt/bbtang/common/sphinx
+  pid_file: /opt/bbtang/common/sphinx/searchd.test.pid
+ 
