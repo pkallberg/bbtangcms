@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120815073844) do
+ActiveRecord::Schema.define(:version => 20120824062553) do
 
   create_table "admin_settings", :force => true do |t|
     t.string   "name"
@@ -283,23 +283,18 @@ ActiveRecord::Schema.define(:version => 20120815073844) do
   create_table "groups", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.text     "body"
-    t.integer  "position"
-    t.string   "thumbnail_path"
     t.boolean  "state"
-    t.boolean  "is_basic"
     t.integer  "users_count"
     t.integer  "topics_count"
-    t.text     "tags"
-    t.text     "focus_user_by"
     t.datetime "deleted_at"
     t.integer  "created_by"
     t.integer  "updated_by"
     t.integer  "deleted_by"
-    t.integer  "group_category_id"
-    t.boolean  "delta",             :default => true, :null => false
+    t.boolean  "delta",        :default => true, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "announcement"
+    t.boolean  "private"
   end
 
   create_table "kindeditor_assets", :force => true do |t|
@@ -384,7 +379,18 @@ ActiveRecord::Schema.define(:version => 20120815073844) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "deleted",             :default => false
+    t.boolean  "copies",              :default => false
+    t.boolean  "opened",              :default => false
+    t.integer  "user_id"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.string   "ancestry"
+    t.integer  "subject_id"
+    t.string   "subject"
   end
+
+  add_index "message_boxes", ["user_id", "subject_id", "ancestry"], :name => "message_boxes_idx"
 
   create_table "message_templates", :force => true do |t|
     t.string   "name"
@@ -487,6 +493,7 @@ ActiveRecord::Schema.define(:version => 20120815073844) do
     t.string   "photo_file_size"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "thanks_count"
   end
 
   create_table "pictures", :force => true do |t|
@@ -590,46 +597,6 @@ ActiveRecord::Schema.define(:version => 20120815073844) do
     t.integer  "cnt_true"
     t.integer  "cnt_false"
     t.boolean  "deleted"
-  end
-
-  create_table "r_objects", :force => true do |t|
-    t.integer  "object_id"
-    t.integer  "object_category"
-    t.integer  "recommend_id"
-    t.integer  "recommend_category"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "r_tag_objects", :force => true do |t|
-    t.integer  "tag_id"
-    t.integer  "object_id"
-    t.integer  "object_category"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "r_user_knowledges", :force => true do |t|
-    t.integer  "profile_id"
-    t.integer  "knowledge_id"
-    t.integer  "category"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "r_users", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "follow_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "r_users_objects", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "object_id"
-    t.integer  "object_category"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "roles", :force => true do |t|
@@ -840,18 +807,16 @@ ActiveRecord::Schema.define(:version => 20120815073844) do
     t.text     "body"
     t.integer  "views_count"
     t.integer  "comments_count"
-    t.integer  "hit_count"
-    t.integer  "sticky_count"
-    t.text     "like_by"
     t.integer  "created_by"
-    t.text     "tags"
-    t.boolean  "delta",           :default => true,  :null => false
-    t.integer  "highlight",       :default => 0
-    t.boolean  "is_announcement", :default => false
-    t.boolean  "is_top",          :default => false
+    t.boolean  "delta",          :default => true,  :null => false
+    t.integer  "highlight",      :default => 0
+    t.boolean  "is_top",         :default => false
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "deleted_by"
+    t.string   "category"
+    t.integer  "position"
   end
 
   create_table "user_data_statistics", :force => true do |t|
@@ -900,6 +865,7 @@ ActiveRecord::Schema.define(:version => 20120815073844) do
     t.string   "uid"
     t.string   "username"
     t.string   "authentication_token"
+    t.string   "unconfirmed_email"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
