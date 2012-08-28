@@ -20,6 +20,18 @@
 //= require twitter/bootstrap
 
 //= require_tree .
+$(window).load(function() {
+    show();
+});
+
+
+function show() {
+    $('#loading').remove();
+    $('#container').fadeIn();
+};
+
+
+
 
 
 $(document).ready(function(){

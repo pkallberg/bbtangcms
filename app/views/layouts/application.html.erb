@@ -36,15 +36,18 @@
         <div class="row-fluid">
           <div class="span12">
             <div class="row-fluid">
-            <div class="span10">
-              <div id ="flashes">
-                <%= render :partial => 'common/flashes' %>
+              <div class="span10" id="loading">
+                <%= image_tag ['process.gif','process1.gif'].sort_by{rand}[0] %>
               </div>
-              <%= content_for?(:content) ? yield(:content) : yield %>
-            </div>
-            <div class="span2">
-              <%= content_for?(:sidebar) ? yield(:sidebar) : (render :partial => 'common/sidebar') %>
-            </div><!--/span-->
+              <div class="span10" id="container">
+                <div id ="flashes">
+                  <%= render :partial => 'common/flashes' %>
+                </div>
+                <%= content_for?(:content) ? yield(:content) : yield %>
+              </div>
+              <div class="span2">
+                <%= content_for?(:sidebar) ? yield(:sidebar) : (render :partial => 'common/sidebar') %>
+              </div><!--/span-->
             </div>
           </div>
         </div><!--/row-->

@@ -1,9 +1,19 @@
 //@import "twitter/bootstrap/bootstrap";
 @import "twitter/bootstrap";
 
-
 <%= "@import 'bootswatch/#{Setting.today_theme}/bootswatch';" %>
 <%= "@import 'bootswatch/#{Setting.today_theme}/variables';" %>
+
+
+#loading {
+    //background: url('/assets/generatorphp-thumb.gif');
+    //background: url('/assets/process.gif');
+      text-align:center;
+}
+
+#container {
+    display: none;
+}
 
 table {
 td {
