@@ -1,4 +1,4 @@
-class Work::VersionsController < ApplicationController
+class Work::VersionsController < Work::WorkBaseController
   authorize_resource
 
   Model_class = Version.new.class

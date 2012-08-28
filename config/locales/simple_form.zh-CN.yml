@@ -14,8 +14,15 @@ zh-CN:
       default_message: "请审查以下问题："
     hints:
       defaults:
-        name: "请选择填写名称字段"
         search_tags: "请输入标签名并以','等隔开"
+      recommend_recommend_subject:
+          name: "请选择填写名称字段"
+      recommend_recommend_tag:
+          name: "请选择填写名称字段"
+      recommend_recommend_user:
+          name: "请选择填写名称字段"
+      recommend_recommend_quiz:
+          name: "请选择填写名称字段"
     # Labels and hints examples
     # labels:
     #   defaults:

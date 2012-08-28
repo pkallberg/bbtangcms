@@ -129,6 +129,10 @@ class Ability
   def create_recommend_recommend_ptag
     can :create, Recommend::RecommendPtag
   end
+
+  def create_work_contact
+    can :create, Contact
+  end
 ##################update ##########################
   def update_profile
     can :update, Profile
@@ -210,8 +214,13 @@ class Ability
   def update_recommend_recommend_hindex
     can :update, Recommend::RecommendHindex
   end
+
   def update_recommend_recommend_ptag
     can :update, Recommend::RecommendPtag
+  end
+
+  def update_work_contact
+    can :update, Contact
   end
 ##################read ##########################
   def read_profile
@@ -292,6 +301,10 @@ class Ability
   def read_recommend_recommend_ptag
     can :read, Recommend::RecommendPtag
   end
+
+  def read_work_contact
+    can :read, Contact
+  end
 ##################destroy ##########################
   def destroy_profile
     can :destroy, Profile
@@ -371,6 +384,10 @@ class Ability
   def destroy_recommend_recommend_ptag
     can :destroy, Recommend::RecommendPtag
   end
+
+  def destroy_work_contact
+    can :destroy, Contact
+  end
   ##############other permit
 
   def resetscore_question
@@ -414,6 +431,7 @@ class Ability
     #and also shuld same with auth/dashboard but I filter, with another method
     can :show, :dashboard
     can :search, :common
+    can :lastest_log, :common
   end
 
   #def initialize(user)

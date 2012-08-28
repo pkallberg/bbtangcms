@@ -1,0 +1,23 @@
+zh-CN:
+  mongoid:
+    models:
+      contact: "联系我们"
+    attributes:
+      contact:
+        _id: "ID"
+        _type: "字段类型"
+        contact_us: "联系我们"
+        email: "邮箱"
+        message: "内容"
+        name: "大名"
+        subject: "主题"
+        submit: "提交"
+  contact_us:
+    contact_mailer:
+      contact_email:
+        sent_by_contact_form: "由 BBtang.com 发送。 %{email}"
+        sent_by_name: "Sent by %{name} from %{email}"
+        subject: "Contact Us message from %{email}"
+    notices:
+      error: "请正确输入邮箱与信息。"
+      success: "你的意见已成功提交  ..."

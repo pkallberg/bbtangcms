@@ -1,0 +1,268 @@
+                save_admin_base_settings        /admin/base_settings/save(.:format)                                               admin/base_settings#save {:include=>[:index]}
+   add_report_reason_admin_base_settings        /admin/base_settings/add_report_reason(.:format)                                  admin/base_settings#add_report_reason {:include=>[:index]}
+delete_report_reason_admin_base_settings        /admin/base_settings/delete_report_reason(.:format)                               admin/base_settings#delete_report_reason {:include=>[:index]}
+                     admin_base_settings GET    /admin/base_settings(.:format)                                                    admin/base_settings#index {:include=>[:index]}
+                                         POST   /admin/base_settings(.:format)                                                    admin/base_settings#create {:include=>[:index]}
+                  new_admin_base_setting GET    /admin/base_settings/new(.:format)                                                admin/base_settings#new {:include=>[:index]}
+                 edit_admin_base_setting GET    /admin/base_settings/:id/edit(.:format)                                           admin/base_settings#edit {:include=>[:index]}
+                      admin_base_setting GET    /admin/base_settings/:id(.:format)                                                admin/base_settings#show {:include=>[:index]}
+                                         PUT    /admin/base_settings/:id(.:format)                                                admin/base_settings#update {:include=>[:index]}
+                                         DELETE /admin/base_settings/:id(.:format)                                                admin/base_settings#destroy {:include=>[:index]}
+               save_admin_email_settings        /admin/email_settings/save(.:format)                                              admin/email_settings#save {:include=>[:index]}
+    send_test_email_admin_email_settings        /admin/email_settings/send_test_email(.:format)                                   admin/email_settings#send_test_email {:include=>[:index]}
+                    admin_email_settings GET    /admin/email_settings(.:format)                                                   admin/email_settings#index {:include=>[:index]}
+                                         POST   /admin/email_settings(.:format)                                                   admin/email_settings#create {:include=>[:index]}
+                 new_admin_email_setting GET    /admin/email_settings/new(.:format)                                               admin/email_settings#new {:include=>[:index]}
+                edit_admin_email_setting GET    /admin/email_settings/:id/edit(.:format)                                          admin/email_settings#edit {:include=>[:index]}
+                     admin_email_setting GET    /admin/email_settings/:id(.:format)                                               admin/email_settings#show {:include=>[:index]}
+                                         PUT    /admin/email_settings/:id(.:format)                                               admin/email_settings#update {:include=>[:index]}
+                                         DELETE /admin/email_settings/:id(.:format)                                               admin/email_settings#destroy {:include=>[:index]}
+                     admin_code_settings GET    /admin/code_settings(.:format)                                                    admin/code_settings#index
+                                         POST   /admin/code_settings(.:format)                                                    admin/code_settings#create
+                  new_admin_code_setting GET    /admin/code_settings/new(.:format)                                                admin/code_settings#new
+                 edit_admin_code_setting GET    /admin/code_settings/:id/edit(.:format)                                           admin/code_settings#edit
+                      admin_code_setting GET    /admin/code_settings/:id(.:format)                                                admin/code_settings#show
+                                         PUT    /admin/code_settings/:id(.:format)                                                admin/code_settings#update
+                                         DELETE /admin/code_settings/:id(.:format)                                                admin/code_settings#destroy
+           new_link_admin_links_settings        /admin/links_settings/new_link(.:format)                                          admin/links_settings#new_link {:include=>[:index]}
+        create_link_admin_links_settings        /admin/links_settings/create_link(.:format)                                       admin/links_settings#create_link {:include=>[:index]}
+          edit_link_admin_links_settings        /admin/links_settings/edit_link(.:format)                                         admin/links_settings#edit_link {:include=>[:index]}
+        update_link_admin_links_settings        /admin/links_settings/update_link(.:format)                                       admin/links_settings#update_link {:include=>[:index]}
+        delete_link_admin_links_settings        /admin/links_settings/delete_link(.:format)                                       admin/links_settings#delete_link {:include=>[:index]}
+                    admin_links_settings GET    /admin/links_settings(.:format)                                                   admin/links_settings#index {:include=>[:index]}
+                                         POST   /admin/links_settings(.:format)                                                   admin/links_settings#create {:include=>[:index]}
+                 new_admin_links_setting GET    /admin/links_settings/new(.:format)                                               admin/links_settings#new {:include=>[:index]}
+                edit_admin_links_setting GET    /admin/links_settings/:id/edit(.:format)                                          admin/links_settings#edit {:include=>[:index]}
+                     admin_links_setting GET    /admin/links_settings/:id(.:format)                                               admin/links_settings#show {:include=>[:index]}
+                                         PUT    /admin/links_settings/:id(.:format)                                               admin/links_settings#update {:include=>[:index]}
+                                         DELETE /admin/links_settings/:id(.:format)                                               admin/links_settings#destroy {:include=>[:index]}
+                      admin_seo_settings GET    /admin/seo_settings(.:format)                                                     admin/seo_settings#index
+                                         POST   /admin/seo_settings(.:format)                                                     admin/seo_settings#create
+                   new_admin_seo_setting GET    /admin/seo_settings/new(.:format)                                                 admin/seo_settings#new
+                  edit_admin_seo_setting GET    /admin/seo_settings/:id/edit(.:format)                                            admin/seo_settings#edit
+                       admin_seo_setting GET    /admin/seo_settings/:id(.:format)                                                 admin/seo_settings#show
+                                         PUT    /admin/seo_settings/:id(.:format)                                                 admin/seo_settings#update
+                                         DELETE /admin/seo_settings/:id(.:format)                                                 admin/seo_settings#destroy
+                  save_admin_ip_settings POST   /admin/ip_settings/save(.:format)                                                 admin/ip_settings#save
+                       admin_ip_settings GET    /admin/ip_settings(.:format)                                                      admin/ip_settings#index
+                                         POST   /admin/ip_settings(.:format)                                                      admin/ip_settings#create
+                    new_admin_ip_setting GET    /admin/ip_settings/new(.:format)                                                  admin/ip_settings#new
+                   edit_admin_ip_setting GET    /admin/ip_settings/:id/edit(.:format)                                             admin/ip_settings#edit
+                        admin_ip_setting GET    /admin/ip_settings/:id(.:format)                                                  admin/ip_settings#show
+                                         PUT    /admin/ip_settings/:id(.:format)                                                  admin/ip_settings#update
+                                         DELETE /admin/ip_settings/:id(.:format)                                                  admin/ip_settings#destroy
+                             attachments GET    /attachments(.:format)                                                            attachments#index
+                                         POST   /attachments(.:format)                                                            attachments#create
+                          new_attachment GET    /attachments/new(.:format)                                                        attachments#new
+                         edit_attachment GET    /attachments/:id/edit(.:format)                                                   attachments#edit
+                              attachment GET    /attachments/:id(.:format)                                                        attachments#show
+                                         PUT    /attachments/:id(.:format)                                                        attachments#update
+                                         DELETE /attachments/:id(.:format)                                                        attachments#destroy
+                              auth_users GET    /auth/users(.:format)                                                             auth/users#index
+                                         POST   /auth/users(.:format)                                                             auth/users#create
+                           new_auth_user GET    /auth/users/new(.:format)                                                         auth/users#new
+                          edit_auth_user GET    /auth/users/:id/edit(.:format)                                                    auth/users#edit
+                               auth_user GET    /auth/users/:id(.:format)                                                         auth/users#show
+                                         PUT    /auth/users/:id(.:format)                                                         auth/users#update
+                                         DELETE /auth/users/:id(.:format)                                                         auth/users#destroy
+                          auth_cms_roles GET    /auth/cms_roles(.:format)                                                         auth/cms_roles#index
+                                         POST   /auth/cms_roles(.:format)                                                         auth/cms_roles#create
+                       new_auth_cms_role GET    /auth/cms_roles/new(.:format)                                                     auth/cms_roles#new
+                      edit_auth_cms_role GET    /auth/cms_roles/:id/edit(.:format)                                                auth/cms_roles#edit
+                           auth_cms_role GET    /auth/cms_roles/:id(.:format)                                                     auth/cms_roles#show
+                                         PUT    /auth/cms_roles/:id(.:format)                                                     auth/cms_roles#update
+                                         DELETE /auth/cms_roles/:id(.:format)                                                     auth/cms_roles#destroy
+                     auth_assign_permits GET    /auth/assign_permits(.:format)                                                    auth/assign_permits#index
+                                         POST   /auth/assign_permits(.:format)                                                    auth/assign_permits#create
+                  new_auth_assign_permit GET    /auth/assign_permits/new(.:format)                                                auth/assign_permits#new
+                 edit_auth_assign_permit GET    /auth/assign_permits/:id/edit(.:format)                                           auth/assign_permits#edit
+                      auth_assign_permit GET    /auth/assign_permits/:id(.:format)                                                auth/assign_permits#show
+                                         PUT    /auth/assign_permits/:id(.:format)                                                auth/assign_permits#update
+                                         DELETE /auth/assign_permits/:id(.:format)                                                auth/assign_permits#destroy
+                          auth_dashboard        /auth(.:format)                                                                   auth/dashboard#show
+                          token_messages GET    /messages/token(.:format)                                                         messages#token
+                          empty_messages POST   /messages/empty/:messagebox(.:format)                                             messages#empty
+                                messages PUT    /messages(.:format)                                                               messages#update
+                           show_messages GET    /messages/:messagebox/show/:id(.:format)                                          messages#show {:messagebox=>/inbox|outbox|trash/}
+                            box_messages GET    /messages(/:messagebox)(.:format)                                                 messages#index {:messagebox=>/inbox|outbox|trash/}
+                                         POST   /messages(.:format)                                                               messages#create
+                             new_message GET    /messages/new(.:format)                                                           messages#new
+                              news_index GET    /news(.:format)                                                                   news#index
+                                         POST   /news(.:format)                                                                   news#create
+                                new_news GET    /news/new(.:format)                                                               news#new
+                               edit_news GET    /news/:id/edit(.:format)                                                          news#edit
+                                    news GET    /news/:id(.:format)                                                               news#show
+                                         PUT    /news/:id(.:format)                                                               news#update
+                                         DELETE /news/:id(.:format)                                                               news#destroy
+                       kindeditor_upload POST   /kindeditor/upload(.:format)                                                      kindeditor/assets#create
+                  kindeditor_filemanager GET    /kindeditor/filemanager(.:format)                                                 kindeditor/assets#list
+                       refresh_knowledge GET    /knowledges/:id/refresh(.:format)                                                 knowledges#refresh
+                              knowledges GET    /knowledges(.:format)                                                             knowledges#index
+                                         POST   /knowledges(.:format)                                                             knowledges#create
+                           new_knowledge GET    /knowledges/new(.:format)                                                         knowledges#new
+                          edit_knowledge GET    /knowledges/:id/edit(.:format)                                                    knowledges#edit
+                               knowledge GET    /knowledges/:id(.:format)                                                         knowledges#show
+                                         PUT    /knowledges/:id(.:format)                                                         knowledges#update
+                                         DELETE /knowledges/:id(.:format)                                                         knowledges#destroy
+                                profiles GET    /profiles(.:format)                                                               profiles#index
+                            edit_profile GET    /profiles/:id/edit(.:format)                                                      profiles#edit
+                                 profile GET    /profiles/:id(.:format)                                                           profiles#show
+                                         PUT    /profiles/:id(.:format)                                                           profiles#update
+                                         DELETE /profiles/:id(.:format)                                                           profiles#destroy
+                           page_requests GET    /page_requests(.:format)                                                          page_requests#index
+                                         POST   /page_requests(.:format)                                                          page_requests#create
+                        new_page_request GET    /page_requests/new(.:format)                                                      page_requests#new
+                       edit_page_request GET    /page_requests/:id/edit(.:format)                                                 page_requests#edit
+                            page_request GET    /page_requests/:id(.:format)                                                      page_requests#show
+                                         PUT    /page_requests/:id(.:format)                                                      page_requests#update
+                                         DELETE /page_requests/:id(.:format)                                                      page_requests#destroy
+                    resetscore_questions GET    /questions/resetscore(.:format)                                                   questions#resetscore
+              update_timelines_questions        /questions/update_timelines(.:format)                                             questions#update_timelines
+             update_categories_questions        /questions/update_categories(.:format)                                            questions#update_categories
+                        question_answers GET    /questions/:question_id/answers(.:format)                                         answers#index
+                                         POST   /questions/:question_id/answers(.:format)                                         answers#create
+                     new_question_answer GET    /questions/:question_id/answers/new(.:format)                                     answers#new
+                    edit_question_answer GET    /questions/:question_id/answers/:id/edit(.:format)                                answers#edit
+                         question_answer GET    /questions/:question_id/answers/:id(.:format)                                     answers#show
+                                         PUT    /questions/:question_id/answers/:id(.:format)                                     answers#update
+                                         DELETE /questions/:question_id/answers/:id(.:format)                                     answers#destroy
+                               questions GET    /questions(.:format)                                                              questions#index
+                                         POST   /questions(.:format)                                                              questions#create
+                            new_question GET    /questions/new(.:format)                                                          questions#new
+                           edit_question GET    /questions/:id/edit(.:format)                                                     questions#edit
+                                question GET    /questions/:id(.:format)                                                          questions#show
+                                         PUT    /questions/:id(.:format)                                                          questions#update
+                                         DELETE /questions/:id(.:format)                                                          questions#destroy
+            recommend_recommend_products GET    /recommend/recommend_products(.:format)                                           recommend/recommend_products#index
+                                         POST   /recommend/recommend_products(.:format)                                           recommend/recommend_products#create
+         new_recommend_recommend_product GET    /recommend/recommend_products/new(.:format)                                       recommend/recommend_products#new
+        edit_recommend_recommend_product GET    /recommend/recommend_products/:id/edit(.:format)                                  recommend/recommend_products#edit
+             recommend_recommend_product GET    /recommend/recommend_products/:id(.:format)                                       recommend/recommend_products#show
+                                         PUT    /recommend/recommend_products/:id(.:format)                                       recommend/recommend_products#update
+                                         DELETE /recommend/recommend_products/:id(.:format)                                       recommend/recommend_products#destroy
+           recommend_recommend_questions GET    /recommend/recommend_questions(.:format)                                          recommend/recommend_questions#index
+                                         POST   /recommend/recommend_questions(.:format)                                          recommend/recommend_questions#create
+        new_recommend_recommend_question GET    /recommend/recommend_questions/new(.:format)                                      recommend/recommend_questions#new
+       edit_recommend_recommend_question GET    /recommend/recommend_questions/:id/edit(.:format)                                 recommend/recommend_questions#edit
+            recommend_recommend_question GET    /recommend/recommend_questions/:id(.:format)                                      recommend/recommend_questions#show
+                                         PUT    /recommend/recommend_questions/:id(.:format)                                      recommend/recommend_questions#update
+                                         DELETE /recommend/recommend_questions/:id(.:format)                                      recommend/recommend_questions#destroy
+               recommend_recommend_users GET    /recommend/recommend_users(.:format)                                              recommend/recommend_users#index
+                                         POST   /recommend/recommend_users(.:format)                                              recommend/recommend_users#create
+            new_recommend_recommend_user GET    /recommend/recommend_users/new(.:format)                                          recommend/recommend_users#new
+           edit_recommend_recommend_user GET    /recommend/recommend_users/:id/edit(.:format)                                     recommend/recommend_users#edit
+                recommend_recommend_user GET    /recommend/recommend_users/:id(.:format)                                          recommend/recommend_users#show
+                                         PUT    /recommend/recommend_users/:id(.:format)                                          recommend/recommend_users#update
+                                         DELETE /recommend/recommend_users/:id(.:format)                                          recommend/recommend_users#destroy
+              recommend_recommend_events GET    /recommend/recommend_events(.:format)                                             recommend/recommend_events#index
+                                         POST   /recommend/recommend_events(.:format)                                             recommend/recommend_events#create
+           new_recommend_recommend_event GET    /recommend/recommend_events/new(.:format)                                         recommend/recommend_events#new
+          edit_recommend_recommend_event GET    /recommend/recommend_events/:id/edit(.:format)                                    recommend/recommend_events#edit
+               recommend_recommend_event GET    /recommend/recommend_events/:id(.:format)                                         recommend/recommend_events#show
+                                         PUT    /recommend/recommend_events/:id(.:format)                                         recommend/recommend_events#update
+                                         DELETE /recommend/recommend_events/:id(.:format)                                         recommend/recommend_events#destroy
+              recommend_recommend_mtools GET    /recommend/recommend_mtools(.:format)                                             recommend/recommend_mtools#index
+                                         POST   /recommend/recommend_mtools(.:format)                                             recommend/recommend_mtools#create
+           new_recommend_recommend_mtool GET    /recommend/recommend_mtools/new(.:format)                                         recommend/recommend_mtools#new
+          edit_recommend_recommend_mtool GET    /recommend/recommend_mtools/:id/edit(.:format)                                    recommend/recommend_mtools#edit
+               recommend_recommend_mtool GET    /recommend/recommend_mtools/:id(.:format)                                         recommend/recommend_mtools#show
+                                         PUT    /recommend/recommend_mtools/:id(.:format)                                         recommend/recommend_mtools#update
+                                         DELETE /recommend/recommend_mtools/:id(.:format)                                         recommend/recommend_mtools#destroy
+            recommend_recommend_subjects GET    /recommend/recommend_subjects(.:format)                                           recommend/recommend_subjects#index
+                                         POST   /recommend/recommend_subjects(.:format)                                           recommend/recommend_subjects#create
+         new_recommend_recommend_subject GET    /recommend/recommend_subjects/new(.:format)                                       recommend/recommend_subjects#new
+        edit_recommend_recommend_subject GET    /recommend/recommend_subjects/:id/edit(.:format)                                  recommend/recommend_subjects#edit
+             recommend_recommend_subject GET    /recommend/recommend_subjects/:id(.:format)                                       recommend/recommend_subjects#show
+                                         PUT    /recommend/recommend_subjects/:id(.:format)                                       recommend/recommend_subjects#update
+                                         DELETE /recommend/recommend_subjects/:id(.:format)                                       recommend/recommend_subjects#destroy
+             recommend_recommend_quizzes GET    /recommend/recommend_quizzes(.:format)                                            recommend/recommend_quizzes#index
+                                         POST   /recommend/recommend_quizzes(.:format)                                            recommend/recommend_quizzes#create
+            new_recommend_recommend_quiz GET    /recommend/recommend_quizzes/new(.:format)                                        recommend/recommend_quizzes#new
+           edit_recommend_recommend_quiz GET    /recommend/recommend_quizzes/:id/edit(.:format)                                   recommend/recommend_quizzes#edit
+                recommend_recommend_quiz GET    /recommend/recommend_quizzes/:id(.:format)                                        recommend/recommend_quizzes#show
+                                         PUT    /recommend/recommend_quizzes/:id(.:format)                                        recommend/recommend_quizzes#update
+                                         DELETE /recommend/recommend_quizzes/:id(.:format)                                        recommend/recommend_quizzes#destroy
+                recommend_recommend_tags GET    /recommend/recommend_tags(.:format)                                               recommend/recommend_tags#index
+                                         POST   /recommend/recommend_tags(.:format)                                               recommend/recommend_tags#create
+             new_recommend_recommend_tag GET    /recommend/recommend_tags/new(.:format)                                           recommend/recommend_tags#new
+            edit_recommend_recommend_tag GET    /recommend/recommend_tags/:id/edit(.:format)                                      recommend/recommend_tags#edit
+                 recommend_recommend_tag GET    /recommend/recommend_tags/:id(.:format)                                           recommend/recommend_tags#show
+                                         PUT    /recommend/recommend_tags/:id(.:format)                                           recommend/recommend_tags#update
+                                         DELETE /recommend/recommend_tags/:id(.:format)                                           recommend/recommend_tags#destroy
+               recommend_recommend_ptags GET    /recommend/recommend_ptags(.:format)                                              recommend/recommend_ptags#index
+                                         POST   /recommend/recommend_ptags(.:format)                                              recommend/recommend_ptags#create
+            new_recommend_recommend_ptag GET    /recommend/recommend_ptags/new(.:format)                                          recommend/recommend_ptags#new
+           edit_recommend_recommend_ptag GET    /recommend/recommend_ptags/:id/edit(.:format)                                     recommend/recommend_ptags#edit
+                recommend_recommend_ptag GET    /recommend/recommend_ptags/:id(.:format)                                          recommend/recommend_ptags#show
+                                         PUT    /recommend/recommend_ptags/:id(.:format)                                          recommend/recommend_ptags#update
+                                         DELETE /recommend/recommend_ptags/:id(.:format)                                          recommend/recommend_ptags#destroy
+            recommend_recommend_hindices GET    /recommend/recommend_hindices(.:format)                                           recommend/recommend_hindices#index
+                                         POST   /recommend/recommend_hindices(.:format)                                           recommend/recommend_hindices#create
+          new_recommend_recommend_hindex GET    /recommend/recommend_hindices/new(.:format)                                       recommend/recommend_hindices#new
+         edit_recommend_recommend_hindex GET    /recommend/recommend_hindices/:id/edit(.:format)                                  recommend/recommend_hindices#edit
+              recommend_recommend_hindex GET    /recommend/recommend_hindices/:id(.:format)                                       recommend/recommend_hindices#show
+                                         PUT    /recommend/recommend_hindices/:id(.:format)                                       recommend/recommend_hindices#update
+                                         DELETE /recommend/recommend_hindices/:id(.:format)                                       recommend/recommend_hindices#destroy
+                     recommend_dashboard        /recommend(.:format)                                                              recommend/dashboard#show
+                                subjects GET    /subjects(.:format)                                                               subjects#index
+                                         POST   /subjects(.:format)                                                               subjects#create
+                             new_subject GET    /subjects/new(.:format)                                                           subjects#new
+                            edit_subject GET    /subjects/:id/edit(.:format)                                                      subjects#edit
+                                 subject GET    /subjects/:id(.:format)                                                           subjects#show
+                                         PUT    /subjects/:id(.:format)                                                           subjects#update
+                                         DELETE /subjects/:id(.:format)                                                           subjects#destroy
+        tag_identity_timeline_categories GET    /tag/identities/:identity_id/timelines/:timeline_id/categories(.:format)          tag/categories#index
+                                         POST   /tag/identities/:identity_id/timelines/:timeline_id/categories(.:format)          tag/categories#create
+      new_tag_identity_timeline_category GET    /tag/identities/:identity_id/timelines/:timeline_id/categories/new(.:format)      tag/categories#new
+     edit_tag_identity_timeline_category GET    /tag/identities/:identity_id/timelines/:timeline_id/categories/:id/edit(.:format) tag/categories#edit
+          tag_identity_timeline_category GET    /tag/identities/:identity_id/timelines/:timeline_id/categories/:id(.:format)      tag/categories#show
+                                         PUT    /tag/identities/:identity_id/timelines/:timeline_id/categories/:id(.:format)      tag/categories#update
+                                         DELETE /tag/identities/:identity_id/timelines/:timeline_id/categories/:id(.:format)      tag/categories#destroy
+                  tag_identity_timelines GET    /tag/identities/:identity_id/timelines(.:format)                                  tag/timelines#index
+                                         POST   /tag/identities/:identity_id/timelines(.:format)                                  tag/timelines#create
+               new_tag_identity_timeline GET    /tag/identities/:identity_id/timelines/new(.:format)                              tag/timelines#new
+                   tag_identity_timeline GET    /tag/identities/:identity_id/timelines/:id(.:format)                              tag/timelines#show
+                          tag_identities GET    /tag/identities(.:format)                                                         tag/identities#index
+                                         POST   /tag/identities(.:format)                                                         tag/identities#create
+                        new_tag_identity GET    /tag/identities/new(.:format)                                                     tag/identities#new
+                            tag_identity GET    /tag/identities/:id(.:format)                                                     tag/identities#show
+                           tag_dashboard        /tag(.:format)                                                                    tag/dashboard#show
+                           work_versions GET    /work/versions(.:format)                                                          work/versions#index
+                            work_version GET    /work/versions/:id(.:format)                                                      work/versions#show
+                           work_contacts GET    /work/contacts(.:format)                                                          work/contacts#index
+                                         POST   /work/contacts(.:format)                                                          work/contacts#create
+                        new_work_contact GET    /work/contacts/new(.:format)                                                      work/contacts#new
+                       edit_work_contact GET    /work/contacts/:id/edit(.:format)                                                 work/contacts#edit
+                            work_contact GET    /work/contacts/:id(.:format)                                                      work/contacts#show
+                                         PUT    /work/contacts/:id(.:format)                                                      work/contacts#update
+                                         DELETE /work/contacts/:id(.:format)                                                      work/contacts#destroy
+                          work_dashboard        /work(.:format)                                                                   work/dashboard#show
+                        new_user_session GET    /users/sign_in(.:format)                                                          devise/sessions#new
+                            user_session POST   /users/sign_in(.:format)                                                          devise/sessions#create
+                    destroy_user_session DELETE /users/sign_out(.:format)                                                         devise/sessions#destroy
+                           user_password POST   /users/password(.:format)                                                         devise/passwords#create
+                       new_user_password GET    /users/password/new(.:format)                                                     devise/passwords#new
+                      edit_user_password GET    /users/password/edit(.:format)                                                    devise/passwords#edit
+                                         PUT    /users/password(.:format)                                                         devise/passwords#update
+                cancel_user_registration GET    /users/cancel(.:format)                                                           devise/registrations#cancel
+                       user_registration POST   /users(.:format)                                                                  devise/registrations#create
+                   new_user_registration GET    /users/sign_up(.:format)                                                          devise/registrations#new
+                  edit_user_registration GET    /users/edit(.:format)                                                             devise/registrations#edit
+                                         PUT    /users(.:format)                                                                  devise/registrations#update
+                                         DELETE /users(.:format)                                                                  devise/registrations#destroy
+                       user_confirmation POST   /users/confirmation(.:format)                                                     devise/confirmations#create
+                   new_user_confirmation GET    /users/confirmation/new(.:format)                                                 devise/confirmations#new
+                                         GET    /users/confirmation(.:format)                                                     devise/confirmations#show
+                             user_unlock POST   /users/unlock(.:format)                                                           devise/unlocks#create
+                         new_user_unlock GET    /users/unlock/new(.:format)                                                       devise/unlocks#new
+                                         GET    /users/unlock(.:format)                                                           devise/unlocks#show
+                           common_search        /common/search(.:format)                                                          common#search
+                      common_lastest_log        /common/lastest_log(.:format)                                                     common#lastest_log
+                                    root        /                                                                                 dashboard#index
+                                hot_tags GET    /archives/hot_tags(.:format)                                                      hot_tags#index
+                                archives GET    /archives/:model(.:format)                                                        archives#index
+                       archives_savesort        /archives/savesort(.:format)                                                      archives#savesort
+                              search_tag        /archives/search_tag(.:format)                                                    archives#search_tag
+                       archive_item_list GET    /archives/:model/item_list/:item_id(.:format)                                     archives#item_list
+                                         POST   /kindeditor/upload(.:format)                                                      kindeditor/assets#create
+                                         GET    /kindeditor/filemanager(.:format)                                                 kindeditor/assets#list

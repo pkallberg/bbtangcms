@@ -137,6 +137,7 @@ BBTangCMS::Application.routes.draw do
 
   namespace :work do
     resources :versions, only: [:index, :show ]
+    resources :contacts
     root :to => 'dashboard#show', :as => :dashboard
   end
 

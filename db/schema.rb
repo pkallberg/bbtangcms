@@ -283,18 +283,23 @@ ActiveRecord::Schema.define(:version => 20120824062553) do
   create_table "groups", :force => true do |t|
     t.string   "name"
     t.text     "description"
+    t.text     "body"
+    t.integer  "position"
+    t.string   "thumbnail_path"
     t.boolean  "state"
+    t.boolean  "is_basic"
     t.integer  "users_count"
     t.integer  "topics_count"
+    t.text     "tags"
+    t.text     "focus_user_by"
     t.datetime "deleted_at"
     t.integer  "created_by"
     t.integer  "updated_by"
     t.integer  "deleted_by"
-    t.boolean  "delta",        :default => true, :null => false
+    t.integer  "group_category_id"
+    t.boolean  "delta",             :default => true, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "announcement"
-    t.boolean  "private"
   end
 
   create_table "kindeditor_assets", :force => true do |t|
@@ -599,6 +604,46 @@ ActiveRecord::Schema.define(:version => 20120824062553) do
     t.boolean  "deleted"
   end
 
+  create_table "r_objects", :force => true do |t|
+    t.integer  "object_id"
+    t.integer  "object_category"
+    t.integer  "recommend_id"
+    t.integer  "recommend_category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "r_tag_objects", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "object_id"
+    t.integer  "object_category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "r_user_knowledges", :force => true do |t|
+    t.integer  "profile_id"
+    t.integer  "knowledge_id"
+    t.integer  "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "r_users", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "follow_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "r_users_objects", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "object_id"
+    t.integer  "object_category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -807,16 +852,18 @@ ActiveRecord::Schema.define(:version => 20120824062553) do
     t.text     "body"
     t.integer  "views_count"
     t.integer  "comments_count"
+    t.integer  "hit_count"
+    t.integer  "sticky_count"
+    t.text     "like_by"
     t.integer  "created_by"
-    t.boolean  "delta",          :default => true,  :null => false
-    t.integer  "highlight",      :default => 0
-    t.boolean  "is_top",         :default => false
+    t.text     "tags"
+    t.boolean  "delta",           :default => true,  :null => false
+    t.integer  "highlight",       :default => 0
+    t.boolean  "is_announcement", :default => false
+    t.boolean  "is_top",          :default => false
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "deleted_by"
-    t.string   "category"
-    t.integer  "position"
   end
 
   create_table "user_data_statistics", :force => true do |t|

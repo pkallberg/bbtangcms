@@ -59,11 +59,13 @@ module CommonHelper
       obj_class = obj.class
       if obj_class.respond_to? :columns_hash
         str_columns = obj_class.columns_hash.collect{|key,value| key if [:text, :string].include? value.type }.compact
+
         summary_fields = str_columns & summary_fields
       end
     end
     unless column.present?
-      column = summary_fields.first
+      #column = summary_fields.first
+      column = summary_fields.collect{|f| f if obj.respond_to? f.to_sym}.compact.first
     end
     if column.present? and obj.send(column).present?
       truncate(obj.send(column), :length => length)

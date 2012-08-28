@@ -8,6 +8,7 @@ zh-CN:
       unauthorized_user: "未授权用户"
       work_dashboard: "事务中心"
       work_versions: "工作日志"
+      work_contacts: "联系我们"
     #recommend:
     #  dashboard:
     #    show: "推送首页"

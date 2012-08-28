@@ -16,6 +16,6 @@ class Work::WorkBaseController < ApplicationController
   def add_initial_breadcrumbs
     breadcrumbs.add :homepage, root_path
     #breadcrumbs.add :recommend, recommend_dashboard_path
-    breadcrumbs.add :work, auth_dashboard_path
+    breadcrumbs.add :work, work_dashboard_path
   end
 end

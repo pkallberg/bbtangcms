@@ -1,0 +1,17 @@
+<%= simple_form_for([:work,@work_contact]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :email, :as => :email %>
+    <%= f.input :name %>
+    <%= f.input :subject %>
+    <!--%= f.input :message, :as => :kindeditor %-->
+    <%= f.input :message, as: :text %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                work_contacts_path, :class => 'btn' %>
+  </div>
+<% end %>

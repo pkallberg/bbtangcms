@@ -20,6 +20,7 @@ permit:
   create_recommend_recommend_user: create_recommend_recommend_user
   create_recommend_recommend_hindex: create_recommend_recommend_hindex
   create_recommend_recommend_ptag: create_recommend_recommend_ptag
+  create_work_contact: create_work_contact
   update_profile: update_profile
   update_knowledge: update_knowledge
   update_news: update_news
@@ -39,6 +40,7 @@ permit:
   update_recommend_recommend_user: update_recommend_recommend_user
   update_recommend_recommend_hindex: update_recommend_recommend_hindex
   update_recommend_recommend_ptag: update_recommend_recommend_ptag
+  update_work_contact: update_work_contact
   read_profile: read_profile
   read_knowledge: read_knowledge
   read_news: read_news
@@ -58,6 +60,7 @@ permit:
   read_recommend_recommend_user: read_recommend_recommend_user
   read_recommend_recommend_hindex: read_recommend_recommend_hindex
   read_recommend_recommend_ptag: read_recommend_recommend_ptag
+  read_work_contact: read_work_contact
   destroy_profile: destroy_profile
   destroy_knowledge: destroy_knowledge
   destroy_news: destroy_news
@@ -77,4 +80,5 @@ permit:
   destroy_recommend_recommend_user: destroy_recommend_recommend_user
   destroy_recommend_recommend_hindex: destroy_recommend_recommend_hindex
   destroy_recommend_recommend_ptag: destroy_recommend_recommend_ptag
+  destroy_work_contact: destroy_work_contact
   resetscore_question: resetscore_question

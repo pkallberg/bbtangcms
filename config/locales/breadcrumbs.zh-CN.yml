@@ -1,0 +1,12 @@
+# encoding: utf-8
+"zh-CN":
+  breadcrumbs:
+    homepage: "主页"
+    recommend: "推送"
+    auth: "授权认证"
+    admin: "管理中心"
+    work: "事务中心"
+    tag: "标签"
+    first: "First"
+    second: "Second"
+    third: "Third"

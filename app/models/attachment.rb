@@ -55,7 +55,9 @@ class Attachment < ActiveRecord::Base
   #end
 
 
-
+  def to_s
+    self.attachment_file_name
+  end
 
 
   def if_soft_deleted(soft_deleted =nil, user = nil)
