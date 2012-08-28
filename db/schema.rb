@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120824062553) do
+ActiveRecord::Schema.define(:version => 20120815073844) do
 
   create_table "admin_settings", :force => true do |t|
     t.string   "name"
@@ -384,18 +384,7 @@ ActiveRecord::Schema.define(:version => 20120824062553) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "deleted",             :default => false
-    t.boolean  "copies",              :default => false
-    t.boolean  "opened",              :default => false
-    t.integer  "user_id"
-    t.integer  "sender_id"
-    t.integer  "recipient_id"
-    t.string   "ancestry"
-    t.integer  "subject_id"
-    t.string   "subject"
   end
-
-  add_index "message_boxes", ["user_id", "subject_id", "ancestry"], :name => "message_boxes_idx"
 
   create_table "message_templates", :force => true do |t|
     t.string   "name"
@@ -498,7 +487,6 @@ ActiveRecord::Schema.define(:version => 20120824062553) do
     t.string   "photo_file_size"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "thanks_count"
   end
 
   create_table "pictures", :force => true do |t|
@@ -522,7 +510,7 @@ ActiveRecord::Schema.define(:version => 20120824062553) do
 
   create_table "profiles", :force => true do |t|
     t.integer  "user_id"
-    t.text     "label"
+    t.string   "label"
     t.string   "nickname"
     t.string   "real_name"
     t.boolean  "gender"
@@ -912,7 +900,6 @@ ActiveRecord::Schema.define(:version => 20120824062553) do
     t.string   "uid"
     t.string   "username"
     t.string   "authentication_token"
-    t.string   "unconfirmed_email"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
