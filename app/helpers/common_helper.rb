@@ -22,14 +22,45 @@ module CommonHelper
     return model_columns_list
   end
 
-  def lastest_log( count = "1", unit = "minute" )
+  def version_log( t_count = "1", unit = "minute" )
     #h ||= 1
-    s_time = count.to_i.send(unit).send("ago") if count.to_i > 0
+    s_time = t_count.to_i.send(unit).send("ago") if t_count.to_i > 0
     s_time ||= 1.minute.ago
     lastest_logs = Version.where(:created_at => s_time .. Date.tomorrow)
     #count.to_i.send("hours").send("ago") if count.to_i > 0
 
     lastest_logs.collect{|l| "#{time_tag l.created_at, :format => :short} #{l.whodoit}," + I18n.t("helpers.events.#{l.event}") + "#{l.item_type.classify.constantize.model_name.human.pluralize}" + "'#{l.item}'"}
+  end
+
+  def newest_obj(mod = "",conditions = [], t_count = "1", unit = "minute")
+    #User.where("id != ?", exclude_ids)
+    if mod.present?
+      mod = mod.classify.constantize if mod.class == String
+      s_time = t_count.to_i.send(unit).send("ago") if t_count.to_i > 0
+      s_time ||= 1.minute.ago
+      mod_list = mod.where(conditions)
+      mod_list.where(:created_at => s_time .. Date.tomorrow) if mod_list.present?
+    end
+  end
+
+  def obj_tips(obj_list=[])
+    if obj_list.present?
+      #[Knowledge,Question].collect{|m| m.send(:last).send(:created_user)}
+
+      obj_list.collect{|obj| "#{time_tag obj.created_at, :format => :short} #{obj.send(:created_user)}," + I18n.t("helpers.events.create") + "#{obj.class.model_name.human.pluralize}" + "'#{obj}'"}
+    else
+      puts "no obj get ..."
+    end
+  end
+
+  def lastest_logs
+    logs = version_log.present? ? version_log : []
+    # User.where(" id IN (?) ",User.internal_user_ids).count
+    ids = User.internal_user_ids
+    questions = newest_obj(mod="Question",conditions= [" created_by NOT IN (?) ",ids])
+    question_logs = obj_tips(questions) if questions.present?
+    logs.concat(question_logs) if question_logs.present?
+    logs
   end
 
   def get_tag_list_path(tag = nil )

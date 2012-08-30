@@ -147,4 +147,23 @@ class User < ActiveRecord::Base
     User.current = session[:user_id] ? User.find_by_id(session[:user_id]) : nil
   end
 
+  def is_internal_user?
+    internal_user = InternalUser.new
+    internal_user.all_internal_email.include? self.email ? true : false
+  end
+
+  class << self
+    def internal_users
+      internal_user = InternalUser.new
+      emails = internal_user.all_internal_email
+      emails.collect{|em| User.find_by_email em}.compact.uniq
+    end
+    def internal_user_ids
+      internal_users.map(&:id)
+    end
+    def internal_user_emails
+      internal_user = InternalUser.new
+      emails = internal_user.all_internal_email
+    end
+  end
 end
