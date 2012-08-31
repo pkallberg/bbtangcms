@@ -5,7 +5,7 @@
 </div>
 
 <div class = "versions box">
-<table class = "table table-condensed"">
+<table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
@@ -19,8 +19,9 @@
     </tr>
   </thead>
   <tbody>
+    <%- indicates = true %>
     <% @work_versions.each do |work_version| %>
-      <tr>
+      <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
         <td><%= work_version.id %></td>
         <td><%= link_to work_version.item,work_versions_path(version_params({:item_id =>work_version.item_id})) %></td>
         <!--td><%= work_version.item_id %></td-->

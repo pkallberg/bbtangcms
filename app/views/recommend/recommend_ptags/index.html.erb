@@ -2,7 +2,7 @@
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 
 <div class = "recommend_recommend_ptag box">
-  <table class="table table-condensed">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th><%= model_class.human_attribute_name(:name) %></th>
@@ -13,8 +13,9 @@
       </tr>
     </thead>
     <tbody>
+      <%- indicates = true %>
       <% @recommend_recommend_ptags.each do |recommend_recommend_ptag| %>
-        <tr>
+        <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
           <td><%= recommend_recommend_ptag.name %></td>
           <!--td><%= recommend_recommend_ptag.body %></td-->
           <td><%= recommend_recommend_ptag.created_at %></td>

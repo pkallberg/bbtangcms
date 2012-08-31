@@ -10,7 +10,7 @@
       <%- model_class = @model_class unless @model_class.nil? -%>
       <% unless model_class.nil?%>
         <div class = "items box">
-          <table class="table table-condensed">
+          <table class="table table-striped">
             <thead>
               <tr>
                 <% model_columns_collection(@model_class, whitelist = true,except = ["summary","body","content","thanks_count", "forwarding_count", "comments_count", "views_count"]).each do |column|%>
@@ -20,9 +20,10 @@
               </tr>
             </thead>
             <tbody>
+              <%- indicates = true %>
               <% if item_list.present? %>
                 <% item_list.each do |item| %>
-                  <tr>
+                  <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
                   <% model_columns_collection(@model_class, whitelist = true,except = ["summary","body","content","thanks_count", "forwarding_count", "comments_count", "views_count"]).each do |column|%>
                     <td><%= item.read_attribute(column[1]) if column.present?  %></td>
                   <% end %>

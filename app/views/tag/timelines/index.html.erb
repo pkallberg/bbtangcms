@@ -5,7 +5,7 @@
 </div>
 
 <div class = "timelines box">
-<table class="table table-condensed">
+<table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
@@ -18,8 +18,9 @@
     </tr>
   </thead>
   <tbody>
+<%- indicates = true %>
 <% @tag_timelines.each do |tag_timeline| %>
-  <tr>
+  <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
     <td><%= link_to tag_timeline.id, tag_identity_timeline_path(@identity,tag_timeline) %></td>
     <td><%= tag_timeline.name %></td>
     <td><%= link_to  @identity, tag_identity_path(@identity) if (tag_timeline.parent_id.present? and @identity.present?) %></td>

@@ -4,7 +4,7 @@
 <% if @admin_user.admin_group.present? %>
   <% @admin_user.admin_group.each do |admin| %>
     <h2><%= admin.name %></h2>
-    <table class="table table-condensed">
+    <table class="table table-striped">
       <tr>
         <th><%= admin_model_class.human_attribute_name(:id) %></th>
         <th><%= admin_model_class.model_name.human %></th>
@@ -12,8 +12,9 @@
         <th><%= admin_model_class.human_attribute_name(:permits) %></th>
         <th><%=t '.actions', :default => t("helpers.actions") %></th>
       </tr>
+      <%- indicates = true %>
       <% @admin_user.owner_users(admin.name.to_s).each do |owner_user| %>
-        <tr>
+        <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
         <td><%= link_to owner_user.id, auth_assign_permit_path(owner_user) %></td>
           <td><%= owner_user %></td>
           <td><%= owner_user.cms_roles.map(&:name) %></td>

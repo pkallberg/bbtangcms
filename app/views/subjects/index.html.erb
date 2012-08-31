@@ -2,11 +2,24 @@
 <%- model_class = Subject.new.class -%>
 <div class="page-header">
   <h1><%=t '.index', :default => model_class.model_name.human.pluralize %></h1>
+
+  <div class="mod_action btn-group">
+    <button class="btn btn-primary"><%=t('.operate', :default => t("helpers.links.operate", :model => model_class.model_name.human)) %></button>
+    <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li>
+        <% if can? :create, Subject %>
+          <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)),
+                    new_subject_path %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
 </div>
 
 
 <div class = "subjects box">
-<table class="table table-condensed">
+<table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
@@ -29,8 +42,9 @@
   </thead>
 
   <tbody>
+    <%- indicates = true %>
     <% @subjects.each do |subject| %>
-      <tr>
+      <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
         <td><%= link_to subject.id, subject_path(subject), :title => object_summary(obj = subject), :rel => "tooltip" %></td>
         <td><%= subject.title %></td>
         <td><%= subject.title2 %></td>

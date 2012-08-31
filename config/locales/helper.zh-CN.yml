@@ -14,7 +14,8 @@ zh-CN:
 
     actions: "动作"
     links:
-      index: "%{model}"
+      operate: "操作%{model}"
+      index: "%{model}首页"
       archives: "%{model}树"
       show: "显示%{model}"
       new: "新建%{model}"

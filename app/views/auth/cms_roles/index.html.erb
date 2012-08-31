@@ -3,7 +3,7 @@
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
 <div class = "cms_roles box">
-<table class="table table-condensed">
+<table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
@@ -14,8 +14,9 @@
     </tr>
   </thead>
   <tbody>
+    <%- indicates = true %>
     <% @auth_cms_roles.each do |auth_cms_role| %>
-      <tr>
+      <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
         <td><%= link_to auth_cms_role.id, auth_cms_role_path(auth_cms_role) %></td>
         <td><%= auth_cms_role.name %></td>
         <td><%= auth_cms_role.cms_role_permits.collect {|permit| permit.permit}.compact.map(&:name) %></td>

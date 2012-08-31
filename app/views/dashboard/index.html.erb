@@ -18,7 +18,7 @@
 <%- knowledge_model_class = Knowledge.new.class -%>
 <h1><%=t '.title', :default => knowledge_model_class.model_name.human %></h1>
 
-<table class="table striped">
+<table class="table table-striped">
   <tr>
     <th><%= knowledge_model_class.human_attribute_name(:id) %></th>
     <th><%= knowledge_model_class.human_attribute_name(:title) %></th>
@@ -26,8 +26,9 @@
     <th><%=t '.actions', :default => t("helpers.actions") %></th>
   </tr>
 
+<%- indicates = true %>
 <% @knowledges.each do |knowledge| %>
-  <tr>
+  <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
     <td><%= link_to knowledge.id, knowledge_path(knowledge), :title => object_summary(obj = knowledge), :rel => "tooltip" %></td>
     <td><%= knowledge.title %></td>
     <td><%= knowledge.created_name %></td>

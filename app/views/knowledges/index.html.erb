@@ -2,9 +2,22 @@
 <%- model_class = Knowledge.new.class -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+
+  <div class="mod_action btn-group">
+    <button class="btn btn-primary"><%=t('.operate', :default => t("helpers.links.operate", :model => model_class.model_name.human)) %></button>
+    <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li>
+        <% if can? :create, Knowledge %>
+          <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)),
+                    new_knowledge_path %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
 </div>
 <div class = "knowledges box">
-<table class="table table-condensed">
+<table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
@@ -32,8 +45,9 @@
     </tr>
   </thead>
   <tbody>
+    <%- indicates = true %>
     <% @knowledges.each do |knowledge| %>
-      <tr>
+      <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
         <td><%= link_to knowledge.id, knowledge_path(knowledge), :title => object_summary(obj = knowledge), :rel => "tooltip" %></td>
         <td><%= link_to knowledge.title, "http://bbtang.com/knowledges/#{knowledge.to_param}",  :title => "#{object_summary(obj = knowledge)} on bbtang.com", :rel => "tooltip" %></td>
         <td><%= knowledge.summary %></td>
@@ -84,10 +98,4 @@
   </tbody>
 </table>
 <%= will_paginate @knowledges %>
-
-<% if can? :create, Knowledge %>
-  <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)),
-            new_knowledge_path,
-            :class => 'btn btn-primary' %>
-<% end %>
 </div>

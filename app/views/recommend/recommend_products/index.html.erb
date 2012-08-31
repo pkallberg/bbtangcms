@@ -2,7 +2,7 @@
 
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 <div class = "recommend_recommend_product box">
-  <table class="table table-condensed">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th><%= model_class.human_attribute_name(:position) %></th>
@@ -19,8 +19,9 @@
       </tr>
     </thead>
     <tbody>
+      <%- indicates = true %>
       <% @recommend_recommend_products.each do |recommend_recommend_product| %>
-        <tr>
+        <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
           <td><%= recommend_recommend_product.post_name %></td>
           <td><%= recommend_recommend_product.order %></td>
           <td><%=image_tag recommend_recommend_product.image, :size => "128x128" %></td>

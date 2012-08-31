@@ -4,7 +4,7 @@
 </div>
 
 <div class = "users box">
-<table class="table table-condensed">
+<table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
@@ -14,8 +14,9 @@
     </tr>
   </thead>
   <tbody>
+    <%- indicates = true %>
     <% @auth_users.each do |auth_user| %>
-      <tr>
+      <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
         <td><%= link_to auth_user.id, auth_user_path(auth_user) %></td>
         <td><%= auth_user.username %></td>
         <td><%= auth_user.email %></td>

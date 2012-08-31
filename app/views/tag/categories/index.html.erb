@@ -5,7 +5,7 @@
 </div>
 
 <div class = "categories box">
-<table class="table table-condensed">
+<table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
@@ -19,8 +19,9 @@
   </thead>
 
   <tbody>
+    <%- indicates = true %>
     <% @tag_categories.each do |tag_category| %>
-      <tr>
+      <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
         <td><%= link_to tag_category.id, tag_identity_timeline_category_path(@identity,@timeline,tag_category) %></td>
         <td><%= tag_category.name %></td>
         <td><%= link_to  @timeline, tag_identity_timeline_path(@identity,@timeline) if (tag_category.parent_id.present? and @identity.present? and @timeline.present?) %></td>

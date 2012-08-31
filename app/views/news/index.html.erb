@@ -2,10 +2,23 @@
 <%- model_class = News.new.class -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+
+  <div class="mod_action btn-group">
+    <button class="btn btn-primary"><%=t('.operate', :default => t("helpers.links.operate", :model => model_class.model_name.human)) %></button>
+    <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li>
+        <% if can? :create, News %>
+          <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)),
+                    new_news_path %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
 </div>
 
 <div class = "news box">
-<table class="table table-condensed">
+<table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
@@ -28,8 +41,9 @@
     </tr>
   </thead>
   <tbody>
+    <%- indicates = true %>
     <% @news.each do |news| %>
-      <tr>
+      <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
         <td><%= link_to news.id, news_path(news), :title => object_summary(obj = news), :rel => "tooltip" %></td>
         <td><%= news.title %></td>
         <!--td><%= news.content %></td-->
@@ -61,7 +75,7 @@
           <% end %>
           <% if can? :destroy, news %>
             <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)),
-                      news_index_path(news),
+                      news_path(news),
                       :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
                       :class => 'btn btn-mini btn-danger' %>

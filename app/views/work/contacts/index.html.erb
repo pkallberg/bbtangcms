@@ -5,7 +5,7 @@
 </div>
 
 <div class = "contacts box">
-<table class="table table-condensed">
+<table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
@@ -19,8 +19,9 @@
   </thead>
 
   <tbody>
+    <%- indicates = true %>
     <% @work_contacts.each do |work_contact| %>
-      <tr>
+      <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
         <td><%= link_to work_contact.id, work_contact_path(work_contact), :title => object_summary(obj = work_contact), :rel => "tooltip" %></td>
         <td><%= work_contact.email %></td>
         <td><%= work_contact.subject %></td>

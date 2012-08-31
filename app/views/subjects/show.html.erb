@@ -1,6 +1,40 @@
 <%- model_class = @subject.class -%>
 <div class="page-header">
   <h1><%=t '.title', :default => t('helpers.titles.show', :model => model_class.model_name.human) %></h1>
+
+  <div class="mod_action btn-group">
+    <button class="btn btn-primary"><%=t('.operate', :default => t("helpers.links.operate", :model => model_class.model_name.human)) %></button>
+    <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li>
+        <% if can? :create, Subject %>
+          <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)),
+                    new_subject_path %>
+        <% end %>
+      </li>
+      <li>
+        <% if can? :read, @subject %>
+          <%= link_to t('.back', :default => t("helpers.links.back", :model => model_class.model_name.human)),
+                    subjects_path  %>
+        <% end %>
+      </li>
+      <li>
+        <% if can? :update, @subject %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)),
+                    edit_subject_path(@subject) %>
+        <% end %>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <% if can? :destroy, @subject %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)),
+                    subject_path(@subject),
+                    :method => 'delete',
+                    :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
 </div>
 
 

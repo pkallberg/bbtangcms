@@ -5,7 +5,7 @@
 </div>
 
 <div class = "identities box">
-<table class="table table-condensed">
+<table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
@@ -19,8 +19,9 @@
   </thead>
 
   <tbody>
+<%- indicates = true %>
 <% @tag_identities.each do |tag_identity| %>
-  <tr>
+  <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
     <td><%= link_to tag_identity.id, tag_identity_path(tag_identity) %></td>
     <td><%= tag_identity.name %></td>
     <td><%= link_to tag_identity.parent_id if tag_identity.parent_id.present? %></td>
