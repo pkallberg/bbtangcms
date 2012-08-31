@@ -37,7 +37,7 @@
           <div class="span12">
             <div class="row-fluid">
               <div class="span10" id="loading">
-                <%= image_tag ['process.gif','generatorphp-thumb.gif'].sort_by{rand}[0] %>
+              <div id="page_loading_process">
               </div>
               <div class="span10" id="container">
                 <div id ="flashes">
