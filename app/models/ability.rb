@@ -69,7 +69,7 @@ class Ability
 
   def create_question
     can :create, Question
-    can [:update_timelines, :update_categories] , :questions
+    can [:update_timelines, :update_categories] , Question
   end
 
 
@@ -160,7 +160,7 @@ class Ability
 
   def update_question
     can :update, Question
-    can [:update_timelines, :update_categories] , :questions
+    can [:update_timelines, :update_categories] , Question
   end
 
   def update_question_answer
