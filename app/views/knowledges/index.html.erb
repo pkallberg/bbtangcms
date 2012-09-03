@@ -98,4 +98,10 @@
   </tbody>
 </table>
 <%= will_paginate @knowledges %>
+
+<% if can? :create, News %>
+  <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)),
+            new_news_path,
+            :class => 'btn btn-primary' %>
+<% end %>
 </div>

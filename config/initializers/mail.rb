@@ -6,6 +6,3 @@ ActionMailer::Base.smtp_settings = {
     :password             => '52bbtang',
     :authentication       => 'login'
   }
-
-
-
