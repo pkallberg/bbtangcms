@@ -1,6 +1,18 @@
 #require "whenever/capistrano"
 require "bundler/capistrano"
 
+def run_remote_rake(rake_cmd)
+  rake_args = ENV['RAKE_ARGS'].to_s.split(',')
+  cmd = "cd #{fetch(:latest_release)} && #{fetch(:rake, "rake")} RAILS_ENV=#{fetch(:rails_env, "production")} #{rake_cmd}"
+  cmd += "['#{rake_args.join("','")}']" unless rake_args.empty?
+  run cmd
+  set :rakefile, nil if exists?(:rakefile)
+end
+
+
+#set :workers, { "archive" => 1, "mailing" => 3, "search_index, cache_warming" => 1 }
+set :workers, { "mailing" => 3, "search_index, cache_warming" => 1 }
+
 # RVM bootstrap
 #$:.unshift(File .expand_path( "~/.rvm/lib" ))
 set :rvm_ruby_string ,  'ruby-1.9.3-p194@askjane' #这个值是你要用rvm的gemset。名字要和系统里有的要一样。
@@ -37,6 +49,9 @@ set :keep_releases, 15
 
 after 'deploy:update_code', 'deploy:migrate'
 
+
+#after "deploy:symlink", "restart_workers"
+after "deploy:symlink", "deploy:update_crontab"
 after "deploy", "rvm:trust_rvmrc"
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
@@ -57,6 +72,28 @@ namespace :deploy do
   desc "whenever update_crontab"
   task :update_crontab, :roles => :worker do
     run "cd #{release_path}; whenever -i #{current_path}/config/schedule.rb --set environment=#{rails_env} --update-crontab #{application}_#{rails_env}"
+  end
+
+  desc "start Resque Workers"
+  task :start_workers, :roles => :db do
+    #run_remote_rake "resque:restart_workers"
+    run_remote_rake "COUNT=5 PIDFILE=./resque.pid BACKGROUND=yes QUEUE=* RAILS_ENV=production environment resque:work"
+  end
+  desc "stop Resque Workers"
+  task :stop_workers, :roles => :db do
+    #run_remote_rake "resque:restart_workers"
+    run_remote_rake "RAILS_ENV=production resque:stop_workers"
+  end
+  desc "Restart Resque Workers"
+  task :restart_workers, :roles => :db do
+    #run_remote_rake "resque:restart_workers"
+    run_remote_rake "RAILS_ENV=production resque:stop_workers"
+    run_remote_rake "COUNT=5 PIDFILE=./resque.pid BACKGROUND=yes QUEUE=* RAILS_ENV=production environment resque:work"
+  end
+
+  desc "Write Crontab"
+  task :update_crontab, :roles => :app do
+    run "cd #{deploy_to}/current && whenever --update-crontab #{application}"
   end
 end
 namespace :rvm do

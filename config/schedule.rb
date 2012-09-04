@@ -34,3 +34,7 @@ end
 every '0 0 27-31 * *' do
   command "echo 'you can use raw cron syntax too'"
 end
+
+every 1.day, :at => '3:00 am' do
+  rake "RAILS_ENV=production assets:precompile"
+end
