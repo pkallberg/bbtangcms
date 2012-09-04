@@ -71,7 +71,7 @@ namespace :deploy do
   end
   desc "whenever update_crontab"
   task :update_crontab, :roles => :worker do
-    run "cd #{release_path}; whenever -i #{current_path}/config/schedule.rb --set environment=#{rails_env} --update-crontab #{application}_#{rails_env}"
+    run "cd #{current_path}; whenever -i #{current_path}/config/schedule.rb --set environment=#{rails_env} --update-crontab #{application}_#{rails_env}"
   end
 
   desc "start Resque Workers"
