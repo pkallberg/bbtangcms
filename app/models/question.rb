@@ -16,7 +16,7 @@ class Question < ActiveRecord::Base
     attr_accessible :title, :body, :created_by, :created_at,
                   :updated_at, :is_anonymous, :soft_deleted,
                   :score, :identity_list, :timeline_list,
-                  :category_list, :tag_list
+                  :category_list, :tag_list, :knowledge_id
 
 
   self_model_name  #引入self_model_name
