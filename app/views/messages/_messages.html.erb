@@ -24,7 +24,7 @@
       flag = convTree.where(:copies => false).empty?
       display_names = convTree.collect do |c|
         unless flag
-          c.copies ? "me" : c.from.email
+          c.copies ? "me" : "#{c.from}"
         else
           c.to.email
         end
@@ -38,13 +38,13 @@
       style << "alt" if ((x += 1) % 2 == 0)
 
       title = convTree.last.created_at.strftime("%a, %b %d, %Y at %I:%M %p")
-      created_at = convTree.last.created_at.strftime( ((convTree.last.created_at < 1.days.ago) ? "%b %d, %Y" : "%I:%M %p"))
+      #created_at = convTree.last.created_at.strftime( ((convTree.last.created_at < 1.days.ago) ? "%b %d, %Y" : "%I:%M %p"))
     -%>
     <tr class="<%= style -%>">
       <td><%= check_box_tag "[messages][]", message.id %></td>
         <td><%= display_names %></td>
         <td><%= link_to message.subject, show_messages_path(@messagebox, message.id) %></td>
-        <td title='<%= title %>'><%= created_at %></td>
+        <td title='<%= title %>'><%= timeago_tag(convTree.last.created_at) %></td>
     </tr>
     <%- end -%>
 <!-- END MESSAGES -->

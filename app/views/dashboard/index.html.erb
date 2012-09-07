@@ -2,6 +2,10 @@
 <!--% description "这个是页面描述" -%-->
 <!--% keywords "ror页面seo" -%-->
 <!--%= link_to "lastest_log",common_lastest_log_path, :remote => true %-->
+<%# from_time = Time.now%>
+<%#= distance_of_time_in_words_to_now(from_time - 3.seconds,  include_seconds = true)%>
+<%#= time_ago_in_words(from_time - 3.seconds,  include_seconds = true)%>
+<%# timeago_tag Time.zone.now, :nojs => true, :limit => 10.days.ago%>
 <div class="hero-unit">
   <h1>Yeah, It's BBTangCMS !</h1>
   <p>Welcome,  <%= current_user%> , <%= today_work_summary(item_type_list = Setting.version_mod.split(' '))%></p>

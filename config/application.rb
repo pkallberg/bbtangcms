@@ -39,7 +39,8 @@ module BBTangCMS
     config.i18n.default_locale = "zh-CN"
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
-
+    Rails::Timeago.locales = [:en, :de, "zh-CN", "zh-TW"]
+    Rails::Timeago.default_options :limit => proc { 1.years.ago }, :nojs => true, :format => :long
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 

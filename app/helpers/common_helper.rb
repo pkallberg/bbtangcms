@@ -29,7 +29,7 @@ module CommonHelper
     lastest_logs = Version.where(:created_at => s_time .. Date.tomorrow)
     #count.to_i.send("hours").send("ago") if count.to_i > 0
 
-    lastest_logs.collect{|l| "#{time_tag l.created_at, :format => :short} #{l.whodoit}," + I18n.t("helpers.events.#{l.event}") + "#{l.item_type.classify.constantize.model_name.human.pluralize}" + "'#{l.item}'"}
+    lastest_logs.collect{|l| "#{distance_of_time_in_words_to_now(l.created_at,  include_seconds = true)} #{l.whodoit}," + I18n.t("helpers.events.#{l.event}") + "#{l.item_type.classify.constantize.model_name.human.pluralize}" + "'#{l.item}'"}
   end
 
   def newest_obj(mod = "",conditions = [], t_count = "1", unit = "minute")
@@ -47,7 +47,7 @@ module CommonHelper
     if obj_list.present?
       #[Knowledge,Question].collect{|m| m.send(:last).send(:created_user)}
 
-      obj_list.collect{|obj| "#{time_tag obj.created_at, :format => :short} #{obj.send(:created_user)}," + I18n.t("helpers.events.create") + "#{obj.class.model_name.human.pluralize}" + "'#{obj}'"}
+      obj_list.collect{|obj| "#{timeago_tag_content(obj.created_at)} #{obj.send(:created_user)}," + I18n.t("helpers.events.create") + "#{obj.class.model_name.human.pluralize}" + "'#{obj}'"}
     else
       puts "no obj get ..."
     end

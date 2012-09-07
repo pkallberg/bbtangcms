@@ -54,7 +54,7 @@
         <td><%= news.thanks_count %></td>
         <td><%= news.views_count %></td>
         <td><%= news.deleted_user %></td>
-        <td><%= news.created_at %></td>
+        <td><%= timeago_tag(news.created_at, :format => :short) if news.created_at?%></td>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)),
                       news_path(news),
@@ -67,7 +67,7 @@
             <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)),
                       edit_news_path(news),
                       :class => 'btn btn-mini',
-                      :title => "#{t("helpers.links.update", :model => model_class.model_name.human)} #{news}",
+                      :title => "#{t("helpers.links.edit", :model => model_class.model_name.human)} #{news}",
                       "data-content" => object_summary(obj = news, column = "content"),
                        :rel => "popover"
 

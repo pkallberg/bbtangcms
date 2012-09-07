@@ -17,7 +17,7 @@
 
   <%= stylesheet_link_tag "application", :media => "all", :id => "application_css"%>
   <%= javascript_include_tag "application" %>
-
+    <%= timeago_script_tag %>
   <%= csrf_meta_tag %>
   <%= csrf_meta_tags %>
 
@@ -37,7 +37,7 @@
           <div class="span12">
             <div class="row-fluid">
               <div class="span10" id="loading">
-              <div id="page_loading_process">
+                <div id="page_loading_process"></div>
               </div>
               <div class="span10" id="container">
                 <div id ="flashes">

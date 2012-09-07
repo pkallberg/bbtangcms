@@ -18,7 +18,9 @@ class Profile < ActiveRecord::Base
 
   define_index do
    indexes nickname
+   indexes label
    indexes real_name
+   indexes user.email
    #声明使用实时索引
    set_property :delta => true
   end
@@ -35,7 +37,7 @@ class Profile < ActiveRecord::Base
   validates :nickname, :real_name, :length => {
     #:minimum => BBTangCMS::MetaCache.get_config_data("profile_name_min").to_i,
     :minimum => BBTangCMS::MetaCache.get_config_data("profile_name_min").to_i,
-    :maximum => BBTangCMS::MetaCache.get_config_data("profile_name_max").to_i}
+    :maximum => BBTangCMS::MetaCache.get_config_data("profile_name_max").to_i}, :allow_nil=>true
   validates :label, :profession, :length => {:maximum => BBTangCMS::MetaCache.get_config_data("profile_label_max").to_i}
 
   #fixed bug, 当使用delegate_attributes的时候， 会需要loaded_[model]的方法

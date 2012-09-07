@@ -68,12 +68,12 @@
         <td><%= knowledge.views_count %></td>
         <td><%= knowledge.source_info %></td>
         <!--td><%= knowledge.auto_tags %></td-->
-        <td><%=l knowledge.created_at %></td>
+        <td><%#l knowledge.created_at %><%= timeago_tag(knowledge.created_at, :format => :short) if knowledge.created_at?%></td>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)),
                       knowledge_path(knowledge),
                       :class => 'btn btn-mini',
-                      :title => "#{t("helpers.links.edit", :model => model_class.model_name.human)} #{knowledge}",
+                      :title => "#{t("helpers.links.show", :model => model_class.model_name.human)} #{knowledge}",
                       "data-content" => object_summary(obj = knowledge, column = "summary"),
                        :rel => "popover" %>
           <% if can? :update, knowledge %>
