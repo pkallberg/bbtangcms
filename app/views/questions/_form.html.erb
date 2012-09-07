@@ -45,7 +45,7 @@
     <!--%= f.input :experts_count %-->
     <!--%= f.input :designated_answerer %-->
     <!--%= f.input :auto_tags %-->
-    <!--%= f.input :knowledge_id %-->
+    <%= f.input :knowledge_id %>
     <%= f.input :is_anonymous %>
     <%= f.input :soft_deleted, :as => :boolean, :input_html => {:checked =>  @question.deleted_at? ? "checked" : ""} %>
     <!--%= f.input :deleted %-->
