@@ -69,20 +69,7 @@ class Knowledge< ActiveRecord::Base
   scope :not_deleted,  where("knowledgebase.deleted_at is NULL")
   scope :id_equals, lambda { |input_id| where("knowledgebase.id = ?", input_id)}
 
-  define_index do
-    indexes title
-    indexes summary
-    indexes content
-    #indexes identity_taggings.tag(:name), as: :identity_tags
-    #indexes timeline_taggings.tag(:name), as: :timeline_tags
-    indexes category_taggings.tag(:name), :as => :category_tags
-    indexes tag_taggings.tag(:name), :as => :tag_tags
-    has identity_taggings.tag(:id), as: :identity_tags
-    has timeline_taggings.tag(:id), as: :timeline_tags
-    where "deleted_at is null"
-    #声明使用实时索引
-    set_property :delta => true
-  end
+  include SphinxIndexable::Knowledge
 
   # find the knowledges whose tags include param
   def self.find_knowledges_with_tag(tag_id)

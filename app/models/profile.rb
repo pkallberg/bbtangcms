@@ -16,14 +16,7 @@ class Profile < ActiveRecord::Base
   #attr_accessible :oauth_face_image_url # for getter and setters
   before_save :update_tags_count
 
-  define_index do
-   indexes nickname
-   indexes label
-   indexes real_name
-   indexes user.email
-   #声明使用实时索引
-   set_property :delta => true
-  end
+  include SphinxIndexable::Profile
 
   # 关联user_data_statistic， 直接使用字段, except service attributes like created_at, updated_at, etc.
   # delegate_attributes :to => :user_data_statistic
