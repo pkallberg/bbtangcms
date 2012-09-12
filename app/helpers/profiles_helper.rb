@@ -2,9 +2,9 @@
 module ProfilesHelper
   def get_face_url(profile= nil, options = {})
     #breakpoint
-    if profile
-      local_face = options[:local_face] || false
-      size = options[:size] || "s120"
+    local_face = options[:local_face] || false
+    size = options[:size].to_s || "s120"
+    if profile.present?
       if not(local_face) and profile.oauth_face_image_url and not (profile.face?)
         return profile.oauth_face_image_url
       else
