@@ -2,6 +2,7 @@
 class ProfilesController < ApplicationController
   load_and_authorize_resource
   Model_class = Profile.new.class
+
   # GET /profiles
   # GET /profiles.json
   def index
@@ -31,6 +32,7 @@ class ProfilesController < ApplicationController
     ip = request.env["REMOTE_ADDR"] if not request.env["REMOTE_ADDR"]=='127.0.0.1'
     @contry = change_ip_to_city(ip)
     @profile = Profile.new
+    set_instace_var
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,6 +45,8 @@ class ProfilesController < ApplicationController
     ip = request.env["REMOTE_ADDR"] if not request.env["REMOTE_ADDR"] == '127.0.0.1'
     @contry = change_ip_to_city(ip)
     @profile = Profile.find(params[:id])
+    set_instace_var
+
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), edit_profile_path(@profile)
   end
 
@@ -91,6 +95,11 @@ class ProfilesController < ApplicationController
   end
 
   protected
+  def set_instace_var
+    if self.instance_variable_defined? "@profile"
+      (3 - @profile.babies.length).times { @profile.babies.new }
+    end
+  end
   def change_ip_to_city (ip=nil)
     is = IpSearch.new
     ip ||= "116.228.214.170"

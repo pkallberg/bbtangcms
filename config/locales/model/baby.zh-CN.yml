@@ -1,0 +1,20 @@
+zh-CN:
+  activerecord:
+    models:
+      baby: "宝贝"
+    errors:
+      models:
+        baby:
+          attributes:
+            name:
+              too_short: "昵称太短！"
+              too_long: "昵称太长！"
+    attributes:
+      baby:
+        name: "姓名"
+        gender_label: "性别"
+        gender:
+          gender_0: "保密"
+          gender_1: "王子"
+          gender_2: "公主"
+        birthday: "宝贝生日"

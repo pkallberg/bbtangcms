@@ -9,11 +9,12 @@
     <div class="modal-body">
       <%- model_class = @model_class unless @model_class.nil? -%>
       <% unless model_class.nil?%>
+      <% @except = ["summary","body","content","thanks_count", "forwarding_count", "comments_count", "views_count","object","label","resume","babies_attributes","focus_tags_on"]%>
         <div class = "items box">
           <table class="table table-striped">
             <thead>
               <tr>
-                <% model_columns_collection(@model_class, whitelist = true,except = ["summary","body","content","thanks_count", "forwarding_count", "comments_count", "views_count"]).each do |column|%>
+                <% model_columns_collection(@model_class, whitelist = true,except = @except).each do |column|%>
                   <th><%= model_class.human_attribute_name(column[1]) if column.present?  %></th>
                 <% end %>
                 <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -24,7 +25,7 @@
               <% if item_list.present? %>
                 <% item_list.each do |item| %>
                   <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
-                  <% model_columns_collection(@model_class, whitelist = true,except = ["summary","body","content","thanks_count", "forwarding_count", "comments_count", "views_count"]).each do |column|%>
+                  <% model_columns_collection(@model_class, whitelist = true,except = @except).each do |column|%>
                     <td><%= item.read_attribute(column[1]) if column.present?  %></td>
                   <% end %>
                     <td>

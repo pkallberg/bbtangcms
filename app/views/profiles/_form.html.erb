@@ -28,18 +28,28 @@
     </div>
     <div class="profile box">
       <span class="label label-info">family</span>
-      <%= f.input :child_birthday , :start_year => Time.now.year - 20%>
-      <%= f.input :baby_gender do %>
-          <%= f.collection_radio_buttons :baby_gender,[[true, I18n.t("activerecord.attributes.profile.baby_gender_1")] ,[false, I18n.t("activerecord.attributes.profile.baby_gender_0")]], :first, :last %>
+      <%# f.input :child_birthday , :start_year => Time.now.year - 20%>
+      <%# f.input :baby_gender do %>
+          <%# f.collection_radio_buttons :baby_gender,[[true, I18n.t("activerecord.attributes.profile.baby_gender_1")] ,[false, I18n.t("activerecord.attributes.profile.baby_gender_0")]], :first, :last %>
+      <%# end %>
+      <span class="label label-info">babies</span>
+      <%=  f.simple_fields_for :babies do |baby|%>
+        <%= baby.input :name %>
+        <%= baby.input :gender, :as => :radio_buttons,  :collection => Baby::Gender.invert , :label => false, :hint => false %>
+        <%= baby.input :birthday, :include_blank => true%>
       <% end %>
       <%= f.input :profession %>
-      <%= f.input :expert_field %>
+      <%= f.input :expert_field, :input_html => { :rows =>"5", :cols =>"100" } %>
     </div>
+    <% if @profile.is_expert?%>
+      <%= f.input :expert_category_list,:hint => "请输入标签名，并以英文逗号(',')隔开...", :input_html => { :rows =>"5", :cols =>"20" } %>
+      <%= f.input :resume, :as => :kindeditor %>
+    <% end %>
     <div class="profile box">
       <span class="label label-info">focus_on</span>
-      <%= f.input :hobby %>
-      <%= f.input :focus_tags_on %>
-      <%= f.input :label %>
+      <%= f.input :hobby, :input_html => { :rows =>"5", :cols =>"100" } %>
+      <%= f.input :focus_tags_on, :input_html => { :rows =>"5", :cols =>"100" } %>
+      <%= f.input :label, :input_html => { :rows =>"5", :cols =>"100" } %>
       <%= f.input :weibo, :as => :url %>
     </div>
   </div>

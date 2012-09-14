@@ -51,8 +51,8 @@ after 'deploy:update_code', 'deploy:migrate'
 
 
 #after "deploy:symlink", "restart_workers"
-after "deploy:symlink", "deploy:update_crontab"
-after "deploy", "rvm:trust_rvmrc"
+after "deploy:symlink"
+after "deploy", "rvm:trust_rvmrc", "deploy:update_crontab"
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
 

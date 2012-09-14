@@ -45,4 +45,5 @@ end
 
 every 1.day, :at => '3:00 am' do
   rake "RAILS_ENV=production assets:precompile"
+  command "touch #{Rails.root}/tmp/restart.txt"
 end

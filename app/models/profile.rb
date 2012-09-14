@@ -8,13 +8,17 @@ class Profile < ActiveRecord::Base
     :foreign_key   => 'user_id'
   belongs_to :level
   #has_many :tasks
+  has_many :babies
+  accepts_nested_attributes_for :babies, :allow_destroy => true, :reject_if => :all_blank
   belongs_to :user_data_statistic
   acts_as_taggable_on :tags
+  acts_as_taggable_on :expert_categories
   #has_many :r_user_knowledges
   #has_many :knowledges,:through => :r_user_knowledges
 
   #attr_accessible :oauth_face_image_url # for getter and setters
   before_save :update_tags_count
+  before_save :delete_empty_baby
 
   include SphinxIndexable::Profile
 
@@ -27,7 +31,7 @@ class Profile < ActiveRecord::Base
   # 关联level， 直接使用level name
   # delegate_attributes :name, :to => :level
 
-  validates :nickname, :real_name, :length => {
+  validates :nickname, :length => {
     #:minimum => BBTangCMS::MetaCache.get_config_data("profile_name_min").to_i,
     :minimum => BBTangCMS::MetaCache.get_config_data("profile_name_min").to_i,
     :maximum => BBTangCMS::MetaCache.get_config_data("profile_name_max").to_i}, :allow_nil=>true
@@ -50,7 +54,8 @@ class Profile < ActiveRecord::Base
                   :notify_on_comments,:oauth_face_image_url,
                   :baby_gender,:real_name, :level_id, :birthday, :degree,
                   :phone, :profession, :expert_field, :hobby, :focus_tags_on,
-                  :label, :weibo, :updated_by, :created_at
+                  :label, :weibo, :updated_by, :created_at, :babies_attributes,
+                  :resume, :expert_category_list
 
 
   has_attached_file :face,:default_url => "/assets/face/:style/missing.png",
@@ -454,6 +459,15 @@ class Profile < ActiveRecord::Base
     focus_users = self.focus_user_by_to_array #- att_friends
     result = Profile.all(:conditions => ["user_id in (?)", focus_users]) unless focus_users.empty?
     result
+  end
+
+
+  def delete_empty_baby
+    self.babies.collect{|b| b.delete if [:name,:birthday,:gender].collect{|c| b.send(c)}.compact.empty?}
+  end
+
+  def is_experts?
+    true if self.level_id.present? and self.level_id.eql? 3
   end
 
   # 通过nickname查找朋友

@@ -49,9 +49,14 @@
   <%= s.attribute :degree %>
   <%= s.attribute :city %>
   <%= s.attribute :phone %>
-  <%= s.attribute :child_birthday %>
-  <%= s.attribute :baby_gender do %>
-    <%= content_tag :span, t("activerecord.attributes.profile.baby_gender_#{@profile.gender? ? 1 : 0}") %>
+  <%= s.association :babies, :collection_tag => :ol do |b| %>
+     <li>name: <%= b.name %>
+         gender: <%= b.gender %>
+         birthday: <%= time_tag b.birthday, :format => :short %></li>
+  <% end %>
+  <% if @profile.is_expert?%>
+    <%= s.attribute :expert_category_list %>
+    <%= s.attribute :resume, :value => (raw @profile.resume) %>
   <% end %>
   <%= s.attribute :profession %>
   <%= s.attribute :expert_field %>
