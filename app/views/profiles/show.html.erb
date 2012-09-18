@@ -52,7 +52,7 @@
   <%= s.association :babies, :collection_tag => :ol do |b| %>
      <li>name: <%= b.name %>
          gender: <%= b.gender %>
-         birthday: <%= time_tag b.birthday, :format => :short %></li>
+         birthday: <%= time_tag(b.birthday, :format => :short) if b.birthday.present? %></li>
   <% end %>
   <% if @profile.is_expert?%>
     <%= s.attribute :expert_category_list %>
