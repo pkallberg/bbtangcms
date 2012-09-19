@@ -95,6 +95,11 @@ namespace :deploy do
   task :update_crontab, :roles => :app do
     run "cd #{deploy_to}/current && whenever --update-crontab #{application}"
   end
+
+  desc "reload the database with seed data"
+  task :seed do
+    run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=#{rails_env}"
+  end
 end
 namespace :rvm do
   task :trust_rvmrc do
