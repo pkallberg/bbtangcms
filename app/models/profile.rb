@@ -241,6 +241,14 @@ class Profile < ActiveRecord::Base
     @focus_user_by.join(',')
   end
 
+  def expert_categories_collection
+    if self.expert_categories.present?
+      self.expert_categories.map(&:name).concat(Recommend::ExpertCategory.all.entries.map(&:name)).uniq
+    else
+      Recommend::ExpertCategory.all.map(&:name).uniq
+    end
+  end
+
   #返回删除了会员id的focus_user_on字段
   def focus_user_on_after_removed(user_id)
     @focus_user_on = Profile.find_by_id(self.id).focus_user_on_to_array

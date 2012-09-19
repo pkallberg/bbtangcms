@@ -1,3 +1,4 @@
+# encoding: utf-8
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -49,5 +50,11 @@ user2.cms_roles << admin
 if BBTangCMS::Config.permits.has_key? :permit
   BBTangCMS::Config.permits[:permit].each do |kv|
     Permit.find_or_create_by_name(kv[0]) if kv.present?
+  end
+end
+recomment_expert_categories = %w(妇产 儿科 营养喂哺 亲子早教 才艺兴趣 美容纤体 职业规划 心理咨询 生活居家)
+if recomment_expert_categories.present?
+  recomment_expert_categories.each do |expert_category|
+    Recommend::ExpertCategory.create(name: expert_category) unless Recommend::ExpertCategory.where(:name => expert_category).entries.present?
   end
 end

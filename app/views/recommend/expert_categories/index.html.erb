@@ -1,0 +1,41 @@
+<%- model_class = Recommend::ExpertCategory.new.class -%>
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+
+<div class = "recommend_expert_categories box">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= model_class.human_attribute_name(:name) %></th>
+        <th><%= model_class.human_attribute_name(:sort_index) %></th>
+        <th><%= model_class.human_attribute_name(:created_at) %></th>
+        <th><%= model_class.human_attribute_name(:updated_at) %></th>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- indicates = true %>
+      <% @recommend_expert_categories.each do |recommend_expert_category| %>
+        <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
+          <td><%= recommend_expert_category.name %></td>
+          <td><%= recommend_expert_category.sort_index %></td>
+          <td><%= time_tag(recommend_expert_category.created_at, :format => :short) if recommend_expert_category.created_at?%></td>
+          <td><%= timeago_tag(recommend_expert_category.updated_at, :format => :short) if recommend_expert_category.updated_at?%></td>
+          <td>
+            <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)), recommend_expert_category, :class => 'btn btn-mini' %>
+            <% if can? :update, recommend_expert_category %>
+              <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_recommend_expert_category_path(recommend_expert_category), :class => 'btn btn-mini' %>
+            <% end %>
+            <% if can? :destroy, recommend_expert_category %>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), recommend_expert_category, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br />
+  <% if can? :create, Recommend::ExpertCategory %>
+    <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)), new_recommend_expert_category_path %>
+  <% end %>
+</div>

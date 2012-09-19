@@ -12,6 +12,7 @@ permit:
   create_tag_identities_timelines_category: create_tag_identities_timelines_category
   #create_recommend_recommend_event: create_recommend_recommend_event
   #create_recommend_recommend_mtool: create_recommend_recommend_mtool
+  create_recommend_expert_category: create_recommend_expert_category
   create_recommend_recommend_product: create_recommend_recommend_product
   create_recommend_recommend_question: create_recommend_recommend_question
   create_recommend_recommend_quiz: create_recommend_recommend_quiz
@@ -32,6 +33,7 @@ permit:
   #update_tag_identity: update_tag_identity
   #update_tag_identities_timeline: update_tag_identities_timeline
   update_tag_identities_timelines_category: create_tag_identities_timelines_category
+  update_recommend_expert_category: update_recommend_expert_category
   update_recommend_recommend_product: update_recommend_recommend_product
   update_recommend_recommend_question: update_recommend_recommend_question
   update_recommend_recommend_quiz: update_recommend_recommend_quiz
@@ -52,6 +54,7 @@ permit:
   read_tag_identity: read_tag_identity
   read_tag_identities_timeline: read_tag_identities_timeline
   read_tag_identities_timelines_category: read_tag_identities_timelines_category
+  read_recommend_expert_category: read_recommend_expert_category
   read_recommend_recommend_product: read_recommend_recommend_product
   read_recommend_recommend_question: read_recommend_recommend_question
   read_recommend_recommend_quiz: read_recommend_recommend_quiz
@@ -72,6 +75,7 @@ permit:
   #destroy_tag_identity: destroy_tag_identity
   #destroy_tag_identities_timeline: destroy_tag_identities_timeline
   destroy_tag_identities_timelines_category: destroy_tag_identities_timelines_category
+  destroy_recommend_expert_category: destroy_recommend_expert_category
   destroy_recommend_recommend_product: destroy_recommend_recommend_product
   destroy_recommend_recommend_question: destroy_recommend_recommend_question
   destroy_recommend_recommend_quiz: destroy_recommend_recommend_quiz

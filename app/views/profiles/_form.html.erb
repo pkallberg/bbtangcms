@@ -42,7 +42,8 @@
       <%= f.input :expert_field, :input_html => { :rows =>"5", :cols =>"100" } %>
     </div>
     <% if @profile.is_expert?%>
-      <%= f.input :expert_category_list,:hint => "请输入标签名，并以英文逗号(',')隔开...", :input_html => { :rows =>"5", :cols =>"20" } %>
+      <%# f.input :expert_category_list,:hint => "请输入标签名，并以英文逗号(',')隔开...", :input_html => { :rows =>"5", :cols =>"20" } %>
+      <%= f.input :expert_category_list,  :as => :check_boxes, :collection => @profile.expert_categories_collection , :checked => @profile.expert_categories.map(&:name) %>
       <%= f.input :resume, :as => :kindeditor %>
     <% end %>
     <div class="profile box">

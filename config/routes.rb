@@ -110,16 +110,17 @@ BBTangCMS::Application.routes.draw do
   end
 
   namespace :recommend do
-    resources :recommend_products
-    resources :recommend_questions
-    resources :recommend_users
     resources :recommend_events
-    resources :recommend_mtools
-    resources :recommend_subjects
-    resources :recommend_quizzes
-    resources :recommend_tags
-    resources :recommend_ptags
+    resources :expert_categories
     resources :recommend_hindices
+    resources :recommend_mtools
+    resources :recommend_quizzes
+    resources :recommend_products
+    resources :recommend_ptags
+    resources :recommend_questions
+    resources :recommend_subjects
+    resources :recommend_tags
+    resources :recommend_users
     root :to => 'dashboard#show', :as => :dashboard
   end
 

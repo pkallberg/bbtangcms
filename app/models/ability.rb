@@ -130,6 +130,10 @@ class Ability
     can :create, Recommend::RecommendPtag
   end
 
+  def create_recommend_expert_category
+    can :create, Recommend::ExpertCategory
+  end
+
   def create_work_contact
     can :create, Contact
   end
@@ -219,6 +223,10 @@ class Ability
     can :update, Recommend::RecommendPtag
   end
 
+  def update_recommend_expert_category
+    can :update, Recommend::ExpertCategory
+  end
+
   def update_work_contact
     can :update, Contact
   end
@@ -305,6 +313,10 @@ class Ability
   def read_work_contact
     can :read, Contact
   end
+
+  def read_recommend_expert_category
+    can :read, Recommend::ExpertCategory
+  end
 ##################destroy ##########################
   def destroy_profile
     can :destroy, Profile
@@ -383,6 +395,10 @@ class Ability
   end
   def destroy_recommend_recommend_ptag
     can :destroy, Recommend::RecommendPtag
+  end
+
+  def destroy_recommend_expert_category
+    can :destroy, Recommend::ExpertCategory
   end
 
   def destroy_work_contact
