@@ -134,6 +134,14 @@ class Ability
     can :create, Recommend::ExpertCategory
   end
 
+  def create_recommend_recommend_other
+    can :create, Recommend::RecommendOther
+  end
+
+  def create_recommend_other_column
+    can :create, Recommend::OtherColumn
+  end
+
   def create_work_contact
     can :create, Contact
   end
@@ -227,6 +235,15 @@ class Ability
     can :update, Recommend::ExpertCategory
   end
 
+
+  def update_recommend_recommend_other
+    can :update, Recommend::RecommendOther
+  end
+
+  def update_recommend_other_column
+    can :update, Recommend::OtherColumn
+  end
+
   def update_work_contact
     can :update, Contact
   end
@@ -317,6 +334,14 @@ class Ability
   def read_recommend_expert_category
     can :read, Recommend::ExpertCategory
   end
+
+  def read_recommend_recommend_other
+    can :read, Recommend::RecommendOther
+  end
+
+  def read_recommend_other_column
+    can :read, Recommend::OtherColumn
+  end
 ##################destroy ##########################
   def destroy_profile
     can :destroy, Profile
@@ -399,6 +424,14 @@ class Ability
 
   def destroy_recommend_expert_category
     can :destroy, Recommend::ExpertCategory
+  end
+
+  def destroy_recommend_recommend_other
+    can :destroy, Recommend::RecommendOther
+  end
+
+  def destroy_recommend_other_column
+    can :destroy, Recommend::OtherColumn
   end
 
   def destroy_work_contact

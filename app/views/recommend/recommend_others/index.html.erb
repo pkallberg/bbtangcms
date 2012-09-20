@@ -1,0 +1,41 @@
+<%- model_class = Recommend::RecommendOther.new.class -%>
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+
+<div class = "recommend_recommend_others box">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= model_class.human_attribute_name(:recommend_other_type) %></th>
+        <th><%= model_class.human_attribute_name(:field) %></th>
+        <th><%= model_class.human_attribute_name(:created_at) %></th>
+        <th><%= model_class.human_attribute_name(:updated_at) %></th>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- indicates = true %>
+        <% @recommend_recommend_others.each do |recommend_recommend_other| %>
+          <tr>
+            <td><%= recommend_recommend_other.recommend_other_type %></td>
+            <td><%= recommend_recommend_other.dynamic_attribute_names %></td>
+          <td><%= time_tag(recommend_recommend_other.created_at, :format => :short) if recommend_recommend_other.created_at?%></td>
+          <td><%= timeago_tag(recommend_recommend_other.updated_at, :format => :short) if recommend_recommend_other.updated_at?%></td>
+          <td>
+            <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)), recommend_recommend_other, :class => 'btn btn-mini' %>
+            <% if can? :update, recommend_recommend_other %>
+              <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_recommend_recommend_other_path(recommend_recommend_other), :class => 'btn btn-mini' %>
+            <% end %>
+            <% if can? :destroy, recommend_recommend_other %>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), recommend_recommend_other, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br />
+  <% if can? :create, Recommend::RecommendOther %>
+    <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)), new_recommend_recommend_other_path %>
+  <% end %>
+</div>

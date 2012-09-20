@@ -1,0 +1,2 @@
+module Recommend::OtherColumnsHelper
+end

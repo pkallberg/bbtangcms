@@ -1,4 +1,6 @@
 <%- model_class = Recommend::ExpertCategory.new.class -%>
+  <h1><%=t '.title', :default => t('helpers.titles.show', :model => model_class.model_name.human,
+                                 :default => "Show #{model_class.model_name.human}") %></h1>
 <%= show_for @expert_category do |s| %>
   <%= s.attribute :name %>
   <%= s.attribute :sort_index %>

@@ -1,0 +1,22 @@
+<%= simple_form_for(@recommend_recommend_other, :html => {id: "recommend_recommend_other"}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :_id, as: :hidden %>
+    <%= f.input :recommend_other_type, as: :select, collection: Recommend::OtherColumn.all.map(&:recommend_type) %>
+    <%# f.input :created_at %>
+    <%# f.input :updated_at %>
+    <% dynamic_feilds = @recommend_recommend_other.dynamic_attribute_names %>
+    <% if dynamic_feilds.present? %>
+      <% dynamic_feilds.each do |dynamic_feild|%>
+        <%= f.input dynamic_feild, :label => "#{@recommend_recommend_other.dynamic_attribute_human(dynamic_feild)}"  %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary', :disable_with => 'loading...' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                recommend_recommend_others_path, :class => 'btn' %>
+  </div>
+<% end %>

@@ -1,6 +1,7 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 $(document).ready(function(){
+  if ($("#knowledge_body").length > 0){
   var editor = KindEditor.create(
     'textarea[id="knowledge_body"]',
     {
@@ -10,6 +11,7 @@ $(document).ready(function(){
       fileManagerJson: '/kindeditor/filemanager'
     }
     );
+  }
 $(function($) {
   $("input").click(function(){
     editor.sync('knowledge_body');

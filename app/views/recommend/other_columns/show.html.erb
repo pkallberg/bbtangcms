@@ -1,0 +1,28 @@
+<%- model_class = Recommend::OtherColumn.new.class -%>
+  <h1><%=t '.title', :default => t('helpers.titles.show', :model => model_class.model_name.human,
+                                 :default => "Show #{model_class.model_name.human}") %></h1>
+
+
+<%= show_for @recommend_other_column do |s| %>
+  <%= s.attribute :recommend_type %>
+  <%= s.attribute :human_names %>
+  <%= s.attribute :column_names %>
+  <%= s.attribute :created_at %>
+  <%= s.attribute :updated_at %>
+<% end %>
+
+
+
+<% if can? :update, @recommend_other_column %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_recommend_other_column_path(@recommend_other_column), :class => 'btn' %> |
+<% end %>
+<% if can? :read, @recommend_other_column %>
+  <%= link_to t('.back', :default => t("helpers.links.back", :model => model_class.model_name.human)), recommend_other_columns_path, :class => 'btn' %> |
+<% end %>
+<% if can? :destroy, @recommend_other_column %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), recommend_other_column_path(@recommend_other_column),
+              :method => 'delete',
+              :confirm => t('.confirm',
+              :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+<% end %>

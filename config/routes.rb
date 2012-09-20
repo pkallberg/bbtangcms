@@ -110,10 +110,16 @@ BBTangCMS::Application.routes.draw do
   end
 
   namespace :recommend do
-    resources :recommend_events
     resources :expert_categories
+    resources :other_columns
+    resources :recommend_events
     resources :recommend_hindices
     resources :recommend_mtools
+    resources :recommend_others do
+      collection do
+        match 'update_field'
+      end
+    end
     resources :recommend_quizzes
     resources :recommend_products
     resources :recommend_ptags

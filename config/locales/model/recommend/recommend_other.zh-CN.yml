@@ -1,0 +1,13 @@
+zh-CN:
+  mongoid:
+    models:
+      recommend/recommend_other: "其他推送"
+    attributes:
+      recommend/recommend_other:
+        _id: "ID"
+        _type: "字段类型"
+        #position: "栏位"
+        recommend_other_type: "其他推送类型"
+        dynamic_fields: "动态字段"
+        created_at: "创建时间"
+        updated_at: "更新时间"

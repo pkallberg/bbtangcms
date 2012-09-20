@@ -1,0 +1,29 @@
+<%- model_class = Recommend::RecommendOther.new.class -%>
+  <h1><%=t '.title', :default => t('helpers.titles.show', :model => model_class.model_name.human,
+                                 :default => "Show #{model_class.model_name.human}") %></h1>
+<%= show_for @recommend_recommend_other do |s| %>
+  <%= s.attribute :recommend_other_type %>
+    <% dynamic_feilds = @recommend_recommend_other.dynamic_attribute_names %>
+    <% if dynamic_feilds.present? %>
+      <% dynamic_feilds.each do |dynamic_feild|%>
+        <%= s.label @recommend_recommend_other.dynamic_attribute_human(dynamic_feild) %>
+        <%= s.value dynamic_feild%>
+      <% end %>
+    <% end %>
+  <%= s.attribute :created_at %>
+  <%= s.attribute :updated_at %>
+<% end %>
+
+<% if can? :update, @recommend_recommend_other %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_recommend_recommend_other_path(@recommend_recommend_other), :class => 'btn' %> |
+<% end %>
+<% if can? :read, @recommend_recommend_other %>
+  <%= link_to t('.back', :default => t("helpers.links.back", :model => model_class.model_name.human)), recommend_recommend_others_path, :class => 'btn' %> |
+<% end %>
+<% if can? :destroy, @recommend_recommend_other %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), recommend_recommend_other_path(@recommend_recommend_other),
+              :method => 'delete',
+              :confirm => t('.confirm',
+              :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+<% end %>
