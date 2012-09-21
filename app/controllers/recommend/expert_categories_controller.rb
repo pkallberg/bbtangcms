@@ -1,4 +1,4 @@
-class Recommend::ExpertCategoriesController < ApplicationController
+class Recommend::ExpertCategoriesController < Recommend::RecommendBaseController
   load_and_authorize_resource  :class =>"Recommend::ExpertCategory"
   Model_class = Recommend::ExpertCategory.new.class
   # GET /recommend/expert_categories

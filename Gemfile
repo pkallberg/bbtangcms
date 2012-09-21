@@ -57,6 +57,8 @@ gem "has_messages_generators", "~> 0.0.1"
 gem "kaminari"
 gem "ancestry"
 
+#http://github.com/mattetti/googlecharts/
+gem "googlecharts", "~> 1.6.8"
 #gem "twitter-bootstrap-rails", "~> 2.1.0"
 #gem "sass-twitter-bootstrap-rails", "~> 1.0.2"
 #This gem is meant to be used with bootstrap-sass.
@@ -79,6 +81,8 @@ gem "paperclip", "~> 3.1.4"
 gem "gravatar_image_tag", "~> 1.1.2"
 
 gem 'jquery-rails', "~> 1.0.19"
+
+gem 'bootstrap-datepicker-rails'
 #gem "prototype-rails", "~> 3.2.1"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

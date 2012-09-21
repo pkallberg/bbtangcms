@@ -8,6 +8,7 @@ zh-CN:
       unauthorized_user: "未授权用户"
       work_dashboard: "事务中心"
       work_versions: "工作日志"
+      work_user_statistics: "用户统计"
       work_contacts: "联系我们"
     #recommend:
     #  dashboard:
@@ -15,6 +16,13 @@ zh-CN:
     #auth:
     # dashboard:
     #   show: "授权认证首页"
+  work:
+    user_statistics:
+      index:
+        title: "用户统计"
+        filter: "检索"
+      filter:
+        title: "用户检索"
   dashboard:
     index:
       newest_user: "最新加入会员"

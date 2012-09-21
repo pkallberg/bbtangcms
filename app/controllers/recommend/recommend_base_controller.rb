@@ -15,6 +15,6 @@ class Recommend::RecommendBaseController < ApplicationController
   private
   def add_initial_breadcrumbs
     breadcrumbs.add :homepage, root_path
-    breadcrumbs.add :recommend_index, recommend_dashboard_path
+    breadcrumbs.add :recommend, recommend_dashboard_path
   end
 end

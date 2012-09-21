@@ -1,0 +1,30 @@
+<%= render "work/shared/top_nav_bar" %>
+<%- model_class = @mod.classify.constantize -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<% if @units.present?%>
+  <ul class="nav nav-tabs">
+    <% @units.each do |u| %>
+      <li class="<%= 'active' if (params[:controller].eql? "work/user_statistics" and params[:action].eql? "index" and @unit.eql? u) %>"><%= link_to "#{u}", work_user_statistics_path(:group_by => u) %></li>
+    <% end %>
+    <li class=<%= 'active' if (params[:controller].eql? "work/user_statistics" and params[:action].eql? "filter") %>><%= link_to I18n.t("work.user_statistics.filter.title"), filter_work_user_statistics_path %></li>
+  </ul>
+<% end %>
+
+<div class = "user_statistics_filter box">
+<%= form_tag(filter_work_user_statistics_path, :method => :put) do |f| %>
+  <%= text_field_tag 's_time', nil, value: (@s_time.to_date.to_s if @s_time.present?),  :placeholder => 'Enter search s_time...', :class => "user_statistics_filter" %> --->
+  <%= text_field_tag 'e_time', nil, value: (@e_time.to_date.to_s if @e_time.present?),  :placeholder => 'Enter search e_time...', :class => "user_statistics_filter" %>
+  <%= submit_tag 'search', class: "btn btn-primary" %>
+<% end %>
+
+<% if @s_time.present? and @e_time.present? %>
+  <%= obj_range("User",@s_time,@e_time).collect{|u| "#{u}"}.join(" ,")%>
+  <br/>
+  all in total: <%= obj_range("User",@s_time,@e_time).count%>
+<% else %>
+  no result pick
+<% end %>
+
+</div>

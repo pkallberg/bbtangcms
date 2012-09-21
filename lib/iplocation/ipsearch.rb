@@ -1,4 +1,4 @@
-require 'iconv'
+#require 'iconv'
 
 class IpSearch
         #initialize(file='qqwry.dat')
@@ -113,22 +113,24 @@ class IpSearch
 
 	#取得国家，UTF8编码
 	def country
-		Iconv.iconv('UTF-8//IGNORE','GB2312//IGNORE',@location[:country])
+		#Iconv.iconv('UTF-8//IGNORE','GB2312//IGNORE',@location[:country])
+    @location[:country].force_encoding('gbk').encode('utf-8')
 	end
 
 	#取得地区，UTF8编码
 	def area
-		Iconv.iconv('UTF-8//IGNORE','GB2312//IGNORE',@location[:area])
+		#Iconv.iconv('UTF-8//IGNORE','GB2312//IGNORE',@location[:area])
+    @location[:area].force_encoding('gbk').encode('utf-8')
 	end
 
 	#取得国家，GB2312编码
 	def country_gb
-		@location[:country]
+		@location[:country].force_encoding('utf-8').encode('gbk-2312')
 	end
 
 	#取得地区，GB2312编码
 	def area_gb
-		@location[:area]
+		@location[:country].force_encoding('utf-8').encode('gbk-2312')
 	end
 end
 

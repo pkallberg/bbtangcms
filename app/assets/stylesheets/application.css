@@ -9,6 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *gritter.css.scss not work with *.css.less
  * require gritter
+ *= require bootstrap-datepicker
  *= require_self
  *= require_tree .
 */

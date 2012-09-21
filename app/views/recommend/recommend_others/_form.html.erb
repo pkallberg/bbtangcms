@@ -9,7 +9,7 @@
     <% dynamic_feilds = @recommend_recommend_other.dynamic_attribute_names %>
     <% if dynamic_feilds.present? %>
       <% dynamic_feilds.each do |dynamic_feild|%>
-        <%= f.input dynamic_feild, :label => "#{@recommend_recommend_other.dynamic_attribute_human(dynamic_feild)}"  %>
+        <%= f.input dynamic_feild, :as => :text, :label => "#{@recommend_recommend_other.dynamic_attribute_human(dynamic_feild)}", :input_html => { :rows =>"5", :cols =>"80" }  %>
       <% end %>
     <% end %>
   </div>

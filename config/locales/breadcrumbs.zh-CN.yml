@@ -2,7 +2,7 @@
 "zh-CN":
   breadcrumbs:
     homepage: "主页"
-    recommend_index: "推送"
+    recommend: "推送"
     auth: "授权认证"
     admin: "管理中心"
     work: "事务中心"

@@ -1,4 +1,4 @@
-class Recommend::RecommendOthersController < ApplicationController
+class Recommend::RecommendOthersController < Recommend::RecommendBaseController
   load_and_authorize_resource  :class =>"Recommend::RecommendOther", :except => :update_field
   Model_class = Recommend::RecommendOther.new.class
   # GET /recommend/recommend_others

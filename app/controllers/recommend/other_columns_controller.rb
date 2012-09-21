@@ -1,4 +1,4 @@
-class Recommend::OtherColumnsController < ApplicationController
+class Recommend::OtherColumnsController < Recommend::RecommendBaseController
   load_and_authorize_resource  :class =>"Recommend::OtherColumn"
   Model_class = Recommend::OtherColumn.new.class
   # GET /recommend/other_columns

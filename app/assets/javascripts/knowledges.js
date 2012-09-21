@@ -12,12 +12,14 @@ $(document).ready(function(){
     }
     );
   }
-$(function($) {
+
   $("input").click(function(){
-    editor.sync('knowledge_body');
-    // 同步数据后可以直接取得textarea的value
-    body = document.getElementById('knowledge_body').value; // 原生API
-    $("#knowledge_body").val(body);
+    if ($("#knowledge_body").length > 0){
+      editor.sync('knowledge_body');
+      // 同步数据后可以直接取得textarea的value
+      body = document.getElementById('knowledge_body').value; // 原生API
+      $("#knowledge_body").val(body);
+    }
   });
-});
+
 });

@@ -1,0 +1,26 @@
+<%= render "work/shared/top_nav_bar" %>
+<%- model_class = @mod.classify.constantize -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<% if @units.present?%>
+  <ul class="nav nav-tabs">
+    <% @units.each do |u| %>
+      <li class="<%= 'active' if (params[:controller].eql? "work/user_statistics" and params[:action].eql? "index" and @unit.eql? u) %>"><%= link_to "#{u}", work_user_statistics_path(:group_by => u) %></li>
+    <% end %>
+    <li class=<%= 'active' if (params[:controller].eql? "work/user_statistics" and params[:action].eql? "filter") %>><%= link_to I18n.t("work.user_statistics.filter.title"), filter_work_user_statistics_path %></li>
+  </ul>
+<% end %>
+
+<div class = "user_statistics box">
+<%# raw obj_group_by_time_summary(mod="User",unit = @unit, format= "default").join("<br>")%>
+<% unit1 = (@unit.eql? 'week') ? "cweek" : @unit%>
+
+<%= image_tag  Gchart.sparkline( :data => obj_group_by_time_count(mod="User",unit = @unit).collect{|u| u.last},
+            :title => "#{t('.title')} group_by #{@unit}",
+            :axis_with_labels => 'x,r',
+            :axis_labels => [obj_group_by_time_count(mod="User",unit = @unit).collect{|u| u.first.to_date.send(unit1)},obj_group_by_time_count(mod="User",unit = @unit).collect{|u| u.last}],
+            :bg => {:color => '76A4FB', :type => 'User'},
+            :size => '600x500')
+            %>
+</div>

@@ -43,6 +43,43 @@ module CommonHelper
     end
   end
 
+  def obj_range(mod="",s_time = nil,e_time = nil)
+    if mod.present? and s_time.present?
+      mod = mod.classify.constantize if mod.class == String
+      e_time ||= Date.tomorrow
+      mod.where(:created_at => s_time .. e_time)
+    else
+      []
+    end
+  end
+
+  def obj_range_count(mod="",s_time = nil,e_time = nil)
+    obj_range(mod,s_time,e_time).count
+  end
+
+  #mod = "user" , unit inside %w(day month year week)
+  def obj_group_by_time(mod = "",unit= nil)
+    unit ||= "day"
+    can_units = %w(day month year week)
+    if mod.present? and mod.classify.class_exists? and (can_units.include? unit)
+      mod = mod.classify.constantize if mod.class == String
+      mod.all.group_by{|u| u.created_at.send("beginning_of_#{unit}")}
+    else
+      []
+    end
+  end
+
+  def obj_group_by_time_count(mod="",unit= "day")
+    obj_group_by_time(mod,unit).collect{|u| [u.first,u[1].count]}
+  end
+
+  def obj_group_by_time_summary(mod = "",unit = "day", format = "short" )
+    objs = obj_group_by_time_count(mod,unit)
+    if objs.present?
+      objs.collect{|u| [time_tag(u[0].to_date,:format=> format.to_sym),u[1]] }
+    end
+  end
+
   def obj_tips(obj_list=[])
     if obj_list.present?
       #[Knowledge,Question].collect{|m| m.send(:last).send(:created_user)}
