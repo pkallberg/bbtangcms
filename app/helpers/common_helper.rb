@@ -122,7 +122,7 @@ module CommonHelper
   end
 
   def object_summary(obj = nil, column = "", length = 50)
-    summary_fields = [:title ,:summary, :label, :body].collect{|c| c.to_s}
+    summary_fields = [:title ,:summary, :label, :content, :body].collect{|c| c.to_s}
     if obj.present?
       obj_class = obj.class
       if obj_class.respond_to? :columns_hash
@@ -147,6 +147,6 @@ module CommonHelper
     ip ||= "116.228.214.170"
     is.find_ip_location(ip)
     #breakpoint
-    return is.country.first.gsub("市","")
+    return is.country.gsub("市","")
   end
 end

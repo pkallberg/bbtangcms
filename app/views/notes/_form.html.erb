@@ -1,0 +1,18 @@
+<%= simple_form_for(@note) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title, as: :string %>
+    <%# f.input :content %>
+    <%= f.input :body, :as => :kindeditor %>
+    <%= f.input :tag_list,:hint => "请输入标签名，并以英文逗号(',')隔开..." %>
+    <%# f.input :created_at %>
+    <%# f.input :updated_at %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary', :disable_with => 'loading...' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                notes_path, :class => 'btn' %>
+  </div>
+<% end %>

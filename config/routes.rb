@@ -1,6 +1,5 @@
 BBTangCMS::Application.routes.draw do
 
-
   # admin
   namespace :admin do
     # 基本设置
@@ -80,8 +79,8 @@ BBTangCMS::Application.routes.draw do
     end
   end
 
-
   resources :news
+  resources :notes, :except => [:new, :create]
 
   namespace :kindeditor do
     #post "/upload" => "assets#create"

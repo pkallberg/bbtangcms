@@ -19,18 +19,18 @@
     <% end %>
 
     <% unless @categories.empty? %>
-      <%= f.input :category_list,  :as => :check_boxes, :collection => @categories.uniq{|x| x.name},:checked => (@categories_choose.map(&:id)  if @categories_choose.compact.present?), :input_html => { :rows =>"5", :cols =>"20" } %>
+      <%= f.input :category_list,  :as => :check_boxes, :collection => @categories.uniq{|x| x.name},:checked => (@categories_choose.map(&:id)  if @categories_choose.compact.present?) %>
     <% end %>
     <!--%= link_to "refresh", :action => "refresh", :remote => true %-->
     <%= f.button :submit, 'refresh', :class => "btn btn-info", :remote => true, :disable_with => 'loading...' %>
   </div>
   <div class="knowledge-footer box">
   <span class="label label-info">footer</span>
-    <%= f.input :tag_list,:hint => "请输入标签名，并以英文逗号(',')隔开...", :input_html => { :rows =>"5", :cols =>"20" } %>
+    <%= f.input :tag_list,:hint => "请输入标签名，并以英文逗号(',')隔开..." %>
     <%= f.input :created_name %>
     <%= f.input :source_info %>
     <%= f.input :soft_deleted, :as => :boolean, :input_html => {:checked =>  @knowledge.deleted_at? ? "checked" : ""} %>
-    <!--%= f.input :auto_tags, :input_html => { :rows =>"5", :cols =>"20" } %-->
+    <!--%= f.input :auto_tags-->
     <% if @knowledge.new_record? %>
       <%= f.input :created_by, :as => :hidden, :input_html => { :value => current_user.id} %>
     <% else %>

@@ -12,6 +12,8 @@
           knowledges_path %></li>
             <li><%= link_to t('.index', :default => t("helpers.titles.index", :model => News.new.class.model_name.human)),
           news_index_path %></li>
+            <li><%= link_to t('.index', :default => t("helpers.titles.index", :model => Note.new.class.model_name.human)),
+          notes_path %></li>
             <li><%= link_to t('.index', :default => t("helpers.titles.index", :model => Question.new.class.model_name.human)),
           questions_path %></li>
             <li><%= link_to t('.index', :default => t("helpers.titles.index", :model => Subject.new.class.model_name.human)),

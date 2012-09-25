@@ -81,6 +81,14 @@ class User < ActiveRecord::Base
     tmp
   end
 
+  def notes
+    Note.where(profile_id: self.id)
+  end
+
+  def questions
+    Question.where(created_by: self.id)
+  end
+
   def owner_users(name = nil)
     owner_user = []
     if self.admin_group? and name.present?

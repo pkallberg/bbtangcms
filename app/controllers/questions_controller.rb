@@ -1,14 +1,19 @@
+require 'will_paginate/array'
 class QuestionsController < ApplicationController
   load_and_authorize_resource
   Model_class = Question.new.class
+  before_filter :load_parent
 
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.paginate(:page => params[:page]).order('score DESC')
-
-
+    if @user.present?
+      @questions = Question.where(created_by: @user.id).paginate(:page => params[:page]).order('id DESC')
+      breadcrumbs.add "#{@user}'s "+I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), questions_path(user_id: @user.id)
+    else
+      @questions = Question.paginate(:page => params[:page]).order('score DESC')
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), questions_path
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -194,4 +199,10 @@ class QuestionsController < ApplicationController
     #  page.replace_html 'category_list', :partial => 'categories', :object => categories
     #end
   end
+
+  private
+
+    def load_parent
+      @user = User.find(params[:user_id]) if params[:user_id].present?
+    end
 end

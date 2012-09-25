@@ -20,7 +20,7 @@ class Work::UserStatisticsController < Work::WorkBaseController
     @e_time = params[:e_time].to_date
     end
     @e_time ||= Date.today
-    @s_time ||= 1.day.ago
+    @s_time ||= 1.day.ago.to_date
   end
 
   # GET /work/user_statistics/1

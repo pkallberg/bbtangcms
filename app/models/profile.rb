@@ -85,6 +85,20 @@ class Profile < ActiveRecord::Base
     #breakpoint
     !((self.face.content_type =~ /^image\/*/).nil?)
   end
+
+  def get_face_url(options = {})
+    #breakpoint
+    if self.present? && self.reload
+      local_face = options[:local_face] || false
+      size = options[:size] || "s120"
+      if not(local_face) and self.oauth_face_image_url and not (self.face?)
+        return self.oauth_face_image_url
+      else
+        return self.face.url(size)
+      end
+    end
+  end
+
   # 0: <20, 1: 20< <=25 , 2: 25< <=30, 3: 30< <=35, 4: 35< <=40, 5: 40<
   A20     = 0
   A20_25  = 1
@@ -481,7 +495,7 @@ class Profile < ActiveRecord::Base
   # 通过nickname查找朋友
   def self.find_friends_via_nickname(search_text)
     result = []
-    result = ThinkingSphinx::Search.search("@nickname "<<search_text<<" | @real_name "<<search_text, :class => [Profile],:match_mode  => :extended)
+    result = ThinkingSphinx::Search.search("@nickname " << search_text << " | @real_name " << search_text, :class => [Profile], :match_mode  => :extended)
 
   end
 

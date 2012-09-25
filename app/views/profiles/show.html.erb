@@ -67,6 +67,8 @@
   <%= s.attribute :pregnancy_timeline, :value => @profile.pregnancytimeline %>
   <%= s.attribute :label %>
   <%= s.attribute :weibo %>
+  <%= s.attribute :notes,:value => raw(link_to "#{@profile.user}'s "+model_class.human_attribute_name(:notes), notes_path(user_id: @profile.user_id)) %>
+  <%= s.attribute :questions,:value => raw(link_to "#{@profile.user}'s "+model_class.human_attribute_name(:questions), questions_path(user_id: @profile.user_id)) %>
 <% end %>
 
 <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_profile_path(@profile), :class => 'btn' %> |
