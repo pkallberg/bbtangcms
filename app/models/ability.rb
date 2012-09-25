@@ -134,6 +134,10 @@ class Ability
     can :create, Recommend::ExpertCategory
   end
 
+  def create_recommend_vip_category
+    can :create, Recommend::VipCategory
+  end
+
   def create_recommend_recommend_other
     can :create, Recommend::RecommendOther
   end
@@ -173,6 +177,10 @@ class Ability
   def update_question
     can :update, Question
     can [:update_timelines, :update_categories] , Question
+  end
+
+  def update_note
+    can :update, Note
   end
 
   def update_question_answer
@@ -235,6 +243,9 @@ class Ability
     can :update, Recommend::ExpertCategory
   end
 
+  def update_recommend_vip_category
+    can :update, Recommend::VipCategory
+  end
 
   def update_recommend_recommend_other
     can :update, Recommend::RecommendOther
@@ -274,6 +285,10 @@ class Ability
 
   def read_question
     can :read, Question
+  end
+
+  def read_note
+    can :read, Note
   end
 
   def read_question_answer
@@ -335,6 +350,10 @@ class Ability
     can :read, Recommend::ExpertCategory
   end
 
+  def read_recommend_vip_category
+    can :read, Recommend::VipCategory
+  end
+
   def read_recommend_recommend_other
     can :read, Recommend::RecommendOther
   end
@@ -369,6 +388,10 @@ class Ability
 
   def destroy_question
     can :destroy, Question
+  end
+
+  def destroy_note
+    can :destroy, Note
   end
 
   def destroy_question_answer
@@ -424,6 +447,10 @@ class Ability
 
   def destroy_recommend_expert_category
     can :destroy, Recommend::ExpertCategory
+  end
+
+  def destroy_recommend_vip_category
+    can :destroy, Recommend::VipCategory
   end
 
   def destroy_recommend_recommend_other

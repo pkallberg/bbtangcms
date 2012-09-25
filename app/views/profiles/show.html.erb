@@ -58,6 +58,9 @@
     <%= s.attribute :expert_category_list %>
     <%= s.attribute :resume, :value => (raw @profile.resume) %>
   <% end %>
+  <% if @profile.is_vip?%>
+    <%= s.attribute :vip_category_list %>
+  <% end %>
   <%= s.attribute :profession %>
   <%= s.attribute :expert_field %>
   <%= s.attribute :hobby %>

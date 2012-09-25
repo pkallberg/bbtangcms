@@ -54,6 +54,8 @@
               recommend_recommend_ptags_path %></li>
       <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::ExpertCategory.new.class.model_name.human)),
               recommend_expert_categories_path %></li>
+      <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::VipCategory.new.class.model_name.human)),
+              recommend_vip_categories_path %></li>
       <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendOther.new.class.model_name.human)),
               recommend_recommend_others_path %></li>
     </ul>

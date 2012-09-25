@@ -46,6 +46,10 @@
       <%= f.input :expert_category_list,  :as => :check_boxes, :collection => @profile.expert_categories_collection , :checked => @profile.expert_categories.map(&:name) %>
       <%= f.input :resume, :as => :kindeditor %>
     <% end %>
+    <% if @profile.is_vip?%>
+      <%# f.input :expert_category_list,:hint => "请输入标签名，并以英文逗号(',')隔开...", :input_html => { :rows =>"5", :cols =>"20" } %>
+      <%= f.input :vip_category_list,  :as => :check_boxes, :collection => @profile.vip_categories_collection , :checked => @profile.vip_categories.map(&:name) %>
+    <% end %>
     <div class="profile box">
       <span class="label label-info">focus_on</span>
       <%= f.input :hobby, :input_html => { :rows =>"5", :cols =>"100" } %>

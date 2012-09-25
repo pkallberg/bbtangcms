@@ -1,0 +1,13 @@
+zh-CN:
+  mongoid:
+    models:
+      recommend/vip_category: "达人分类推送"
+    attributes:
+      recommend/vip_category:
+        _id: "ID"
+        _type: "字段类型"
+        #position: "栏位"
+        name: "名称"
+        sort_index: "排列序号"
+        created_at: "创建时间"
+        updated_at: "更新时间"

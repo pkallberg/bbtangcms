@@ -126,6 +126,7 @@ BBTangCMS::Application.routes.draw do
     resources :recommend_subjects
     resources :recommend_tags
     resources :recommend_users
+    resources :vip_categories
     root :to => 'dashboard#show', :as => :dashboard
   end
 

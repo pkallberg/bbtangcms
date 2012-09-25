@@ -12,7 +12,7 @@ class Profile < ActiveRecord::Base
   accepts_nested_attributes_for :babies, :allow_destroy => true, :reject_if => :all_blank
   belongs_to :user_data_statistic
   acts_as_taggable_on :tags
-  acts_as_taggable_on :expert_categories
+  acts_as_taggable_on :expert_categories, :vip_categories
   #has_many :r_user_knowledges
   #has_many :knowledges,:through => :r_user_knowledges
 
@@ -55,7 +55,7 @@ class Profile < ActiveRecord::Base
                   :baby_gender,:real_name, :level_id, :birthday, :degree,
                   :phone, :profession, :expert_field, :hobby, :focus_tags_on,
                   :label, :weibo, :updated_by, :created_at, :babies_attributes,
-                  :resume, :expert_category_list
+                  :resume, :expert_category_list, :vip_category_list
 
 
   has_attached_file :face,:default_url => "/assets/face/:style/missing.png",
@@ -263,6 +263,14 @@ class Profile < ActiveRecord::Base
     end
   end
 
+  def vip_categories_collection
+    if self.vip_categories.present?
+      self.vip_categories.map(&:name).concat(Recommend::VipCategory.all.entries.map(&:name)).uniq
+    else
+      Recommend::VipCategory.all.map(&:name).uniq
+    end
+  end
+
   #返回删除了会员id的focus_user_on字段
   def focus_user_on_after_removed(user_id)
     @focus_user_on = Profile.find_by_id(self.id).focus_user_on_to_array
@@ -318,30 +326,6 @@ class Profile < ActiveRecord::Base
   # 该用户最近更新的相册
   def latest_album
     Album.where(:created_by => self.user_id, :private=>false, :deleted_at => nil).order("updated_at DESC").first
-  end
-
-  # 推送新朋友
-  def user_new_friends
-    # TODO: need to use recommendation
-    Profile.all
-  end
-
-  # 推送专家
-  def user_recommendation_talents(limit=nil)
-    # TODO: need to use recommendation
-    Talent.talents.limit(limit||=BBTangCMS::MetaCache.get_config_data("user_home_list_pre_block").to_i)
-  end
-
-  # 推送达人
-  def user_recommendation_experts(limit=nil)
-    # TODO: need to use recommendation
-    Expert.experts.limit(limit||=BBTangCMS::MetaCache.get_config_data("user_home_list_pre_block").to_i)
-  end
-
-  # 推送groups category
-  def user_recommendation_for_group_categories(limit=nil)
-    # TODO: need to use recommendation
-    GroupCategory.limit(limit||=BBTangCMS::MetaCache.get_config_data("user_home_list_pre_block").to_i)
   end
 
 
@@ -490,6 +474,10 @@ class Profile < ActiveRecord::Base
 
   def is_experts?
     true if self.level_id.present? and self.level_id.eql? 3
+  end
+
+  def is_vip?
+    true if self.level_id.present? and self.level_id.eql? 2
   end
 
   # 通过nickname查找朋友

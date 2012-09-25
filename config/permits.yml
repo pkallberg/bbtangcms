@@ -15,6 +15,7 @@ permit:
   create_recommend_recommend_other: create_recommend_recommend_other
   create_recommend_other_column: create_recommend_other_column
   create_recommend_expert_category: create_recommend_expert_category
+  create_recommend_vip_category: create_recommend_vip_category
   create_recommend_recommend_product: create_recommend_recommend_product
   create_recommend_recommend_question: create_recommend_recommend_question
   create_recommend_recommend_quiz: create_recommend_recommend_quiz
@@ -31,11 +32,13 @@ permit:
   update_subject: update_subject
   update_attachment: update_attachment
   update_question: update_question
+  update_note: update_note
   update_question_answer: update_question_answer
   #update_tag_identity: update_tag_identity
   #update_tag_identities_timeline: update_tag_identities_timeline
   update_tag_identities_timelines_category: create_tag_identities_timelines_category
   update_recommend_expert_category: update_recommend_expert_category
+  update_recommend_vip_category: update_recommend_vip_category
   update_recommend_recommend_other: update_recommend_recommend_other
   update_recommend_other_column: update_recommend_other_column
   update_recommend_recommend_product: update_recommend_recommend_product
@@ -54,11 +57,13 @@ permit:
   read_subject: read_subject
   read_attachment: read_attachment
   read_question: read_question
+  read_note: read_note
   read_question_answer: read_question_answer
   read_tag_identity: read_tag_identity
   read_tag_identities_timeline: read_tag_identities_timeline
   read_tag_identities_timelines_category: read_tag_identities_timelines_category
   read_recommend_expert_category: read_recommend_expert_category
+  read_recommend_vip_category: read_recommend_vip_category
   read_recommend_recommend_other: read_recommend_recommend_other
   read_recommend_other_column: read_recommend_other_column
   read_recommend_recommend_product: read_recommend_recommend_product
@@ -77,11 +82,13 @@ permit:
   destroy_subject: destroy_subject
   destroy_attachment: destroy_attachment
   destroy_question: destroy_question
+  destroy_note: destroy_note
   destroy_question_answer: destroy_question_answer
   #destroy_tag_identity: destroy_tag_identity
   #destroy_tag_identities_timeline: destroy_tag_identities_timeline
   destroy_tag_identities_timelines_category: destroy_tag_identities_timelines_category
   destroy_recommend_expert_category: destroy_recommend_expert_category
+  destroy_recommend_vip_category: destroy_recommend_vip_category
   destroy_recommend_recommend_other: destroy_recommend_recommend_other
   destroy_recommend_other_column: destroy_recommend_other_column
   destroy_recommend_recommend_product: destroy_recommend_recommend_product

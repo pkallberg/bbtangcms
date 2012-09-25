@@ -1,0 +1,2 @@
+module Recommend::VipCategoriesHelper
+end
