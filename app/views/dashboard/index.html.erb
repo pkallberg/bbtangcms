@@ -13,7 +13,7 @@
     <p><%= new_messages_notice(user = current_user)%>,<%= link_to "#{I18n.t('common.enter_inbox')}", messages_path(:inbox)%></p>
   <% end %>
   <p>
-    <%= link_to t("layout.menu.work_dashboard"), work_dashboard_path, class: "btn btn-primary btn-large", :rel => "popover" %>
+    <%= link_to t("common.menu.work_dashboard"), work_dashboard_path, class: "btn btn-primary btn-large", :rel => "popover" %>
   </p>
   <i class="pull-right"><%= "#{users_summary}, 最新加入 (#{newest_users.count}) 人" %></i>
 </div>
