@@ -7,7 +7,11 @@ class KnowledgesController < ApplicationController
   # GET /knowledges
   # GET /knowledges.json
   def index
-    @knowledges = Knowledge.paginate(:page => params[:page]).order('id DESC')
+    if params[:conditions].present?
+      @knowledges = Knowledge.where(params[:conditions]).paginate(:page => params[:page]).order('id DESC')
+    else
+      @knowledges = Knowledge.paginate(:page => params[:page]).order('id DESC')
+    end
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), knowledges_path
     respond_to do |format|
       format.html # index.html.erb

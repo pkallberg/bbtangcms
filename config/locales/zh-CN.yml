@@ -33,11 +33,6 @@
     edit_account_path: "个人资料设置"
     likes: "我的收藏"
   common:
-    menu:
-      recommend: "推送首页"
-      auth: "授权认证首页"
-      admin: "管理中心首页"
-      tags: "标签树"
     recent_action: "最近动作"
     available_content: "内容支持:"
     zh-cn: "中文"

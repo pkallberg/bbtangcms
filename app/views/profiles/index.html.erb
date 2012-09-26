@@ -11,7 +11,7 @@
       <th><%= model_class.human_attribute_name(:user) %></th>
       <th><%= model_class.human_attribute_name(:face) %></th>
       <th><%= model_class.human_attribute_name(:nickname) %></th>
-      <th><%= model_class.human_attribute_name(:level) %></th>
+      <th><%= obj_filter_drop_down_li(obj = "Profile", col="level_id",path=profiles_path)%></th>
       <th><%= model_class.human_attribute_name(:gender) %></th>
       <th><%= model_class.human_attribute_name(:notes) %></th>
       <!--th><%= model_class.human_attribute_name(:face) %></th-->
@@ -27,6 +27,7 @@
       <!--th><%= model_class.human_attribute_name(:focus_tags_on) %></th-->
       <!--th><%= model_class.human_attribute_name(:pregnancy_status) %></th-->
       <th><%= model_class.human_attribute_name(:agerange) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <!--th><%= model_class.human_attribute_name(:pregnancy_timeline) %></th-->
       <!--th><%= model_class.human_attribute_name(:label) %></th-->
       <!--th><%= model_class.human_attribute_name(:weibo) %></th-->
@@ -57,6 +58,7 @@
         <!--td><%= profile.focus_tags_on %></td-->
         <!--td><%= profile.pregnancystatus %></td-->
         <td><%= profile.age_range %></td>
+        <td><%= timeago_tag(profile.updated_at, :format => :short) if profile.updated_at?%></td>
         <!--td><%= profile.pregnancytimeline %></td-->
         <!--td><%= profile.label %></td-->
         <!--td><%= profile.weibo %></td-->

@@ -28,7 +28,7 @@
       <!--th><%= model_class.human_attribute_name(:tags) %></th-->
       <!--th><%= model_class.human_attribute_name(:timeline_ids) %></th-->
       <!--th><%= model_class.human_attribute_name(:knowledgebase_category_id) %></th-->
-      <th><%= model_class.human_attribute_name(:created_user) %></th>
+      <th><%= obj_filter_drop_down_li(obj = "Knowledge", col="created_by",path=knowledges_path)%></th>
       <!--th><%= model_class.human_attribute_name(:created_name) %></th-->
       <th><%= model_class.human_attribute_name(:updated_user) %></th>
       <!--th><%= model_class.human_attribute_name(:deleted_at) %></th-->
@@ -38,7 +38,7 @@
       <th><%= model_class.human_attribute_name(:forwarding_count) %></th>
       <th><%= model_class.human_attribute_name(:comments_count) %></th>
       <th><%= model_class.human_attribute_name(:views_count) %></th>
-      <th><%= model_class.human_attribute_name(:source_info) %></th>
+      <th><%= obj_filter_drop_down_li(obj = "Knowledge", col="source_info",path=knowledges_path)%></th>
       <!--th><%= model_class.human_attribute_name(:auto_tags) %></th-->
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>

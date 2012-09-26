@@ -149,4 +149,33 @@ module CommonHelper
     #breakpoint
     return is.country.gsub("市","")
   end
+  def obj_conditions_params(obj = "Version", hash={}, hash_name = "conditions")
+    obj = obj.classify.constantize
+    hash.delete_if {|key, value| !(obj.column_names.include? key.to_s) }
+    {hash_name => hash}.to_param
+  end
+
+  def obj_params(obj = "Version", hash={})
+    obj = obj.classify.constantize
+    hash.delete_if {|key, value| !(obj.column_names.include? key.to_s) }
+    hash.to_param
+  end
+
+  def obj_filter_drop_down_li(obj = "Version", col = '',count = 20 ,path = nil)
+    obj_class = obj.classify.constantize
+    if obj_class.column_names.include? col.to_s
+      head = "<ul class='nav nav-pills'><li class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown' href='#menu1'>#{obj_class.human_attribute_name(col.gsub("_id",'').to_sym)}<b class='caret'></b></a><ul class='dropdown-menu'>"
+      list = obj_class.select(col.to_sym).uniq.delete_if{|item| item.send(col).nil?}.collect{|item| ["#{item.send((col.gsub("_id",'')))}",item.send(col)]}
+      if col.end_with? "_by"
+        #list = obj.find(:all, :order => "id desc").collect{|v| ["#{(v.send(col.gsub("_id",'').to_sym))}",v.send(col.to_sym)]}
+        #list = obj.select([col.to_sym,:id]).collect{|item| ["#{item.reload.send(col.gsub("_id",''))}",item.send(col)]}.uniq
+        list = obj_class.select(col.to_sym).uniq.delete_if{|item| item.send(col).nil?}.collect{|item| ["#{item.send(col.gsub("_by",'_user'))}",item.send(col)]}.uniq
+      end
+      path ||= self.send("#{obj.pluralize.downcase}_path")
+
+      content = list[ 0 .. (count.to_i - 1)].collect{|l| raw "<li>#{link_to l[0],(path +"/?" + obj_conditions_params(obj = obj,{col.to_sym =>l[1]})) }</li>"}.join
+      foot = "</ul></li>"
+      return raw "#{head + content + foot}"
+    end
+  end
 end

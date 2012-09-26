@@ -1,0 +1,23 @@
+<%= render "quiz_center/shared/top_nav_bar" %>
+<%- model_class = QuizCollection.new.class -%>
+<%= show_for @quiz_center_quiz_collection do |s| %>
+  <%= s.attribute :coll_name %>
+  <%= s.attribute :quiz_ids %>
+  <%= s.attribute :quizzes, value:  raw(link_to "#{@quiz_center_quiz_collection.quizzes.count}",quiz_center_quizzes_path(quiz_collection_id: @quiz_center_quiz_collection.id))%>
+  <%= s.attribute :created_at %>
+  <%= s.attribute :updated_at %>
+<% end %>
+
+<% if can? :update, @quiz_center_quiz_collection %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_quiz_center_quiz_collection_path(@quiz_center_quiz_collection), :class => 'btn' %> |
+<% end %>
+<% if can? :read, @quiz_center_quiz_collection %>
+  <%= link_to t('.back', :default => t("helpers.links.back", :model => model_class.model_name.human)), quiz_center_quiz_collections_path, :class => 'btn' %> |
+<% end %>
+<% if can? :destroy, @quiz_center_quiz_collection %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), quiz_center_quiz_collection_path(@quiz_center_quiz_collection),
+              :method => 'delete',
+              :confirm => t('.confirm',
+              :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+<% end %>

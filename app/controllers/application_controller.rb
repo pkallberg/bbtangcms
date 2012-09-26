@@ -99,6 +99,7 @@ class ApplicationController < ActionController::Base
   def set_page_number
 
     #if (['update','show','edit','create','destroy'].include? session[:old_action])# and !(session[:old_action].eql? params[:action])
+
     model_class = params[:controller].classify.constantize if params[:controller].classify.class_exists?
     model_class = params[:controller].gsub(/\w+([\/]+)/,"").classify.constantize if params[:controller].gsub(/\w+([\/]+)/,"").classify.class_exists?
 

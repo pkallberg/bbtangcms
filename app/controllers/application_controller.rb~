@@ -69,7 +69,6 @@ class ApplicationController < ActionController::Base
   end
 
   def do_not_check_authorization?
-debugger
     respond_to?(:devise_controller?) or skip_rails_kindeditor? or skip_messages?
     #condition_two?
     #respond_to?(:devise_controller?)# or respond_to?(:dashboard_controller?)
@@ -100,6 +99,7 @@ debugger
   def set_page_number
 
     #if (['update','show','edit','create','destroy'].include? session[:old_action])# and !(session[:old_action].eql? params[:action])
+    debugger
     model_class = params[:controller].classify.constantize if params[:controller].classify.class_exists?
     model_class = params[:controller].gsub(/\w+([\/]+)/,"").classify.constantize if params[:controller].gsub(/\w+([\/]+)/,"").classify.class_exists?
 

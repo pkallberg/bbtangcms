@@ -27,7 +27,7 @@ class Recommend::ExpertCategory
   validates_uniqueness_of :sort_index,:allow_nil => true,:allow_blank => true
   validates :sort_index, numericality: { :only_integer => true, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 5 },:allow_nil => true,:allow_blank => true
   #validates :sort_index, uniqueness: true
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, :presence => true
 
 
   field :name, type: String

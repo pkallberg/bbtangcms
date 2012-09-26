@@ -1,0 +1,46 @@
+<%= render "quiz_center/shared/top_nav_bar" %>
+
+<%- model_class = QuizCollection.new.class -%>
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+
+
+<div class = "quiz_collections box">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= model_class.human_attribute_name(:coll_name) %></th>
+        <th><%= model_class.human_attribute_name(:quiz_ids) %></th>
+        <th><%= model_class.human_attribute_name(:quizzes) %></th>
+        <th><%= model_class.human_attribute_name(:created_at) %></th>
+        <th><%= model_class.human_attribute_name(:updated_at) %></th>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- indicates = true %>
+      <% @quiz_center_quiz_collections.each do |quiz_center_quiz_collection| %>
+        <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
+          <td><%= quiz_center_quiz_collection.coll_name %></td>
+          <td><%= quiz_center_quiz_collection.quiz_ids.join(",") %></td>
+          <td><%= link_to "#{quiz_center_quiz_collection.quizzes.count}",quiz_center_quizzes_path(quiz_collection_id: quiz_center_quiz_collection.id) %></td>
+          <td><%= time_tag(quiz_center_quiz_collection.created_at, :format => :short) if quiz_center_quiz_collection.created_at?%></td>
+          <td><%= timeago_tag(quiz_center_quiz_collection.updated_at, :format => :short) if quiz_center_quiz_collection.updated_at?%></td>
+          <td>
+            <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)), [:quiz_center,quiz_center_quiz_collection], :class => 'btn btn-mini' %>
+            <% if can? :update, quiz_center_quiz_collection %>
+              <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_quiz_center_quiz_collection_path(quiz_center_quiz_collection), :class => 'btn btn-mini' %>
+            <% end %>
+            <% if can? :destroy, quiz_center_quiz_collection %>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), [:quiz_center,quiz_center_quiz_collection], confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br />
+  <% if can? :create, QuizCollection %>
+    <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)), new_quiz_center_quiz_collection_path %>
+  <% end %>
+</div>

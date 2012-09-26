@@ -3,12 +3,14 @@ class Recommend::OtherColumn
   include Mongoid::Document
   #include Mongoid::Timestamps::Created
   include Mongoid::Timestamps
+  before_validation :set_array
+
 
   field :recommend_type, type: String
   #field :other_column_hash, type: Array#[human_name , colmun_name]
   field :human_names, type: Array #[human_name1 , human_name2, human_name3]
   field :column_names, type: Array #[colmun_name1 , colmun_name2, colmun_name3]
-  before_validation :set_array
+
 
   validates_uniqueness_of :recommend_type
 

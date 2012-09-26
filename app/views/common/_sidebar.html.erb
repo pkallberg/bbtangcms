@@ -15,6 +15,7 @@
       <li class="nav-header"><%= t("common.sidebar.model") %></li>
       <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Knowledge.new.class.model_name.human)),
               knowledges_path %></li>
+      <li><%= link_to t('.quiz_center'),quiz_center_dashboard_path %></li>
       <li><%= link_to t('.index', :default => t("helpers.links.index", :model => News.new.class.model_name.human)),
               news_index_path %></li>
       <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Note.new.class.model_name.human)),

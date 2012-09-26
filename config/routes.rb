@@ -108,6 +108,12 @@ BBTangCMS::Application.routes.draw do
     resources :answers
   end
 
+  namespace :quiz_center do
+    resources :quizzes
+    resources :quiz_collections
+    root :to => 'quiz_collections#index', :as => :dashboard
+  end
+
   namespace :recommend do
     resources :expert_categories
     resources :other_columns

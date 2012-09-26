@@ -1,0 +1,8 @@
+<ul class="nav nav-tabs">
+  <!--li class="<%= 'active' if (params[:action].eql? "show" and params[:controller].eql? "work/dashboard")%>"><%= link_to t("layout.menu.work_dashboard"), work_dashboard_path %></li-->
+  <!--li class="<%= 'active' if (params[:action].eql? "index" and params[:controller].eql? "work/versions") %>"><%= link_to t("layout.menu.work_versions"), work_versions_path %></li-->
+  <li class= <%= 'active' if (params[:controller].eql? "quiz_center/quiz_collections") %> > <%= link_to t('.index', :default => t("helpers.links.index", :model => QuizCollection.new.class.model_name.human)),
+              quiz_center_quiz_collections_path %></li>
+  <li class=<%= 'active' if (params[:controller].eql? "quiz_center/quizzes") %> ><%= link_to t('.index', :default => t("helpers.links.index", :model => Quiz.new.class.model_name.human)),
+              quiz_center_quizzes_path %></li>
+</ul>

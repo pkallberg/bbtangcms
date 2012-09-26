@@ -1,0 +1,2 @@
+module QuizCenter::QuizCollectionsHelper
+end

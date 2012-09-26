@@ -4,4 +4,9 @@ $(function($) {
       format: 'yyyy-mm-dd'
   }
   )
+  $('input#quiz_end_date').datepicker(
+    {
+      format: 'yyyy-mm-dd'
+  }
+  )
 });

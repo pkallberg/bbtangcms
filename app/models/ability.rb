@@ -146,6 +146,14 @@ class Ability
     can :create, Recommend::OtherColumn
   end
 
+  def create_quiz_center_quiz
+    can :create, Quiz
+  end
+
+  def create_quiz_center_quiz_collection
+    can :create, QuizCollection
+  end
+
   def create_work_contact
     can :create, Contact
   end
@@ -255,6 +263,14 @@ class Ability
     can :update, Recommend::OtherColumn
   end
 
+  def update_quiz_center_quiz
+    can :update, Quiz
+  end
+
+  def update_quiz_center_quiz_collection
+    can :update, QuizCollection
+  end
+
   def update_work_contact
     can :update, Contact
   end
@@ -361,6 +377,14 @@ class Ability
   def read_recommend_other_column
     can :read, Recommend::OtherColumn
   end
+
+  def read_quiz_center_quiz
+    can :read, Quiz
+  end
+
+  def read_quiz_center_quiz_collection
+    can :read, QuizCollection
+  end
 ##################destroy ##########################
   def destroy_profile
     can :destroy, Profile
@@ -459,6 +483,14 @@ class Ability
 
   def destroy_recommend_other_column
     can :destroy, Recommend::OtherColumn
+  end
+
+  def destroy_quiz_center_quiz
+    can :destroy, Quiz
+  end
+
+  def destroy_quiz_center_quiz_collection
+    can :destroy, QuizCollection
   end
 
   def destroy_work_contact

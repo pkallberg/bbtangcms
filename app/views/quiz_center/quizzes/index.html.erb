@@ -1,0 +1,50 @@
+<%= render "quiz_center/shared/top_nav_bar" %>
+
+<%- model_class = Quiz.new.class -%>
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+
+
+<div class = "quizzes box">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= model_class.human_attribute_name(:id) %></th>
+        <th><%= model_class.human_attribute_name(:title) %></th>
+        <th><%= model_class.human_attribute_name(:answer) %></th>
+        <th><%= model_class.human_attribute_name(:end_date) %></th>
+        <th><%= model_class.human_attribute_name(:created_at) %></th>
+        <th><%= model_class.human_attribute_name(:updated_at) %></th>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- indicates = true %>
+      <% @quiz_center_quizzes.each do |quiz_center_quiz| %>
+        <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
+          <td><%= quiz_center_quiz.id %></td>
+          <td><%= quiz_center_quiz.title %></td>
+          <td><%= quiz_center_quiz.answer %></td>
+          <td><%= timeago_tag(quiz_center_quiz.end_date, :format => :short) if quiz_center_quiz.end_date?%></td>
+          <td><%= time_tag(quiz_center_quiz.created_at, :format => :short) if quiz_center_quiz.created_at?%></td>
+          <td><%= timeago_tag(quiz_center_quiz.updated_at, :format => :short) if quiz_center_quiz.updated_at?%></td>
+          <td>
+            <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)), [:quiz_center,quiz_center_quiz], :class => 'btn btn-mini' %>
+            <% if can? :update, quiz_center_quiz %>
+              <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_quiz_center_quiz_path(quiz_center_quiz), :class => 'btn btn-mini' %>
+            <% end %>
+            <% if can? :destroy, quiz_center_quiz %>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), [:quiz_center,quiz_center_quiz], confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% unless @quiz_collection%>
+  <%= will_paginate @quiz_center_quizzes %>
+<% end %>
+  <br />
+  <% if can? :create, Quiz %>
+    <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)), new_quiz_center_quiz_path %>
+  <% end %>
+</div>

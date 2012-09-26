@@ -1,0 +1,14 @@
+zh-CN:
+  mongoid:
+    models:
+      quiz_collection: "考期"
+    attributes:
+      quiz_collection:
+        _id: "ID"
+        _type: "字段类型"
+        #position: "栏位"
+        coll_name: "考期名称"
+        quizzes: "考题集合"
+        quiz_ids: "考题Ids"
+        created_at: "创建时间"
+        updated_at: "更新时间"

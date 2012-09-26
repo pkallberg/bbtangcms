@@ -4,7 +4,7 @@ class AttachmentsController < ApplicationController
   # GET /attachments
   # GET /attachments.json
   def index
-    @attachments = Attachment.paginate(:page => params[:page])
+    @attachments = Attachment.paginate(:page => params[:page]).order('id DESC')
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), attachments_path
 
