@@ -45,7 +45,7 @@ class Admin::EmailSettingsController < Admin::AdminBaseController
 
     mail = UserMail.send_test_email(email)
     begin
-      mail.deliver
+      mail.deliver!
     rescue
       # 还原邮件设置
       change_email_settings

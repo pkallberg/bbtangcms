@@ -19,7 +19,7 @@ namespace 'bbtangcms' do
     task :new_question_notify => :environment do
       questions = newest_obj(mod = "Question", t_count = "10", unit = "minutes").compact.uniq
       questions.each do |question|
-        UserMail.send_new_question_notify(email = "305912847@qq.com", question_id = question.id ).deliver if question.present?
+        UserMail.send_new_question_notify(email = "305912847@qq.com", question_id = question.id ).deliver! if question.present?
       end
     end
   end
