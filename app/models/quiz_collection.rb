@@ -20,6 +20,14 @@ class QuizCollection
     end
   end
 
+  def quiz_ids
+    if self.ids.present?
+      return self.ids
+    else
+      super
+    end
+  end
+
   def to_s
     "#{self.coll_name}" if self.coll_name.present?
   end
