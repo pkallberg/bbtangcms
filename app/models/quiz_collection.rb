@@ -21,7 +21,7 @@ class QuizCollection
   end
 
   def quiz_ids
-    if self.ids.present?
+    if self.respond_to? :ids and self.ids.present?
       return self.ids
     else
       super
@@ -38,7 +38,7 @@ class QuizCollection
 
   def convert_array(str=nil)
     if str.present?
-     str = str.to_s.split(/，|,|;|；|\ +|\||\r\n/).collect {|t| t if t.present?}.uniq.compact
+     str = str.to_s.split(/，|,|;|；|\ +|\||\r\n/).collect {|t| t.to_i if t.present?}.uniq.compact
     else
       []
     end
