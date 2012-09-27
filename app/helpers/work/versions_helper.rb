@@ -9,15 +9,15 @@ module Work::VersionsHelper
     if obj.column_names.include? col.to_s
       head = "<ul class='nav nav-pills'><li class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown' href='#menu1'>#{obj.human_attribute_name(col.to_sym)}<b class='caret'></b></a><ul class='dropdown-menu'>"
       #list = obj.find(:all, :order => "id desc").collect{|v| ["#{v.send(col.to_sym)}",v.send(col.to_sym)]}
-      list = obj.select(col.to_sym).collect{|item| ["#{item.send(col)}",item.send(col)]}.uniq
+      list = obj.select(col.to_sym).uniq.delete_if{|item| item.send(col).nil?}.collect{|item| ["#{item.send(col)}",item.send(col)]}.uniq
       #list = obj.find(:all, :order => "id desc", :limit => count).collect{|v| ["#{v.send(col.to_sym).to_date}",v.send(col.to_sym).to_date]}.uniq
       if col.eql? "created_at"
         #list = obj.find(:all, :order => "id desc").collect{|v| ["#{v.send(col.to_sym).to_date}",v.send(col.to_sym).to_date]}
-        list = obj.select(col.to_sym).collect{|item| ["#{item.send(col).to_date}",item.send(col).to_date]}.uniq
+        list = obj.select(col.to_sym).uniq.delete_if{|item| item.send(col).nil?}.collect{|item| ["#{item.send(col).to_date}",item.send(col).to_date]}.uniq
       end
       if col.eql? "whodunnit"
         #list = obj.find(:all, :order => "id desc").collect{|v| ["#{find_user(v.send(col.to_sym))}",v.send(col.to_sym)]}
-        list = obj.select(col.to_sym).collect{|item| ["#{find_user(item.send(col))}",item.send(col)]}.uniq
+        list = obj.select(col.to_sym).uniq.delete_if{|item| item.send(col).nil?}.collect{|item| ["#{find_user(item.send(col))}",item.send(col)]}.uniq
       end
       if col.eql? "item_id"
         #list = obj.find(:all, :order => "id desc").collect{|v| ["#{(v.send(col.gsub("_id",'').to_sym))}",v.send(col.to_sym)]}
