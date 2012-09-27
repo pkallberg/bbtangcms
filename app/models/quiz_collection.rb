@@ -10,7 +10,7 @@ class QuizCollection
 
   validates_uniqueness_of :coll_name, :presence => true
   #validates_presence_of :quiz_ids
-  validates :quiz_ids, :presence => true,
+  validates :quiz_ids, :presence => true
 
   def quizzes
     if self.quiz_ids.present?
