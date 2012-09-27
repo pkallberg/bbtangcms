@@ -1,7 +1,9 @@
 # coding: utf-8
 class UserMail < AsyncMailer
 
-  #default :from => BBTangCMS::MetaCache.get_config_data("email_account")
+  default :from => BBTangCMS::MetaCache.get_config_data("email_account")
+  #default :from => BBTangCMS::MetaCache.get_config_data("email_account"),
+  #       :return_path => BBTangCMS::MetaCache.get_config_data("email_reply_address")
 
   def send_reuse(email,token)
 
