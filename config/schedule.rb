@@ -39,6 +39,12 @@ every 1.day do
   #command "echo 'today whenever running ..'"
   runner "puts '#{Date.today} whenever running ...'"
 end
+
+every 10.minutes do
+  #command "echo 'today whenever running ..'"
+   rake "bbtangcms:notify:new_question_notify"
+end
+
 every '0 0 27-31 * *' do
   command "echo 'you can use raw cron syntax too'"
 end

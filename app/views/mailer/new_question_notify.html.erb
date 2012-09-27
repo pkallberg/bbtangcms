@@ -1,0 +1,6 @@
+<p><%= @email %> 您好：</p>
+===============================================
+<p>
+  <%= link_to "#{@question}", question_url(@question) %>, <%= time_tag(@question.created_at, :format => :short) if @question.created_at.present?%> from <%= "#{@question.created_user}"%>
+</p>
+note: <span>这只是一封系统自动发出的邮件，请不要直接回复。</span>

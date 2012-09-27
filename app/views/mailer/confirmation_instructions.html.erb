@@ -1,0 +1,5 @@
+<p>欢迎您： <%= @resource.email %>!</p>
+
+<p>您可以点击一下链接激活您的帐号:</p>
+
+<p><%= link_to '激活帐号', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>

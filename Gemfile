@@ -149,6 +149,8 @@ gem 'paper_trail', '~> 2'
 # sphinx搜索
 gem 'thinking-sphinx','~> 2.0.7'
 
+gem "resque", "~> 1.20.0"
+gem "resque_mailer", "~> 2.1.0"
 #Clean ruby syntax for writing and deploying cron jobs.
 gem "whenever", "~> 0.7.3"
 

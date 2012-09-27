@@ -1,5 +1,6 @@
 # coding: utf-8
 class UserMail < ActionMailer::Base
+  include Resque::Mailer
 
   default :from => BBTangCMS::MetaCache.get_config_data("email_account")
 
@@ -50,6 +51,18 @@ class UserMail < ActionMailer::Base
          :subject => "邀请回答问题",
          :template_path => 'mailer',
          :template_name => 'question_invite')
+  end
+
+  # 分享问题
+  #email = "305912847@qq.com"
+  def send_new_question_notify(email = "305912847@qq.com", question_id  = Question.last.id)
+    @question = Question.find_by_id question_id
+    @email = email
+
+    mail(:to => @email,
+         :subject => "hi #{@email}, 新问题提示 #{@question.title}！",
+         :template_path => 'mailer',
+         :template_name => 'new_question_notify')
   end
 
   # 测试邮件
