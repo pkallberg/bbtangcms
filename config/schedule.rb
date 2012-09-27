@@ -30,11 +30,15 @@ job_type :rake,    "cd :path && RAILS_ENV=:environment bundle exec rake :task --
 job_type :runner,  "cd :path && script/rails runner -e :environment ':task' :output"
 job_type :script,  "cd :path && RAILS_ENV=:environment bundle exec script/:task :output"
 =end
+#whenever -i  config/schedule.rb -s environment=development --update-crontab bbtangcms
+
 set :output, "#{Whenever.path}/log/whenever.log"
-#set :output, File.join(Whenever.path, "log", "cron.log")
+#set :output, File.join(Whenever.path, "log", "whenever.log")
+
 every 3.weeks do
   rake "bbtangcms:page_request:clean_older"
 end
+
 every 1.day do
   #command "echo 'today whenever running ..'"
   runner "puts '#{Date.today} whenever running ...'"
@@ -50,6 +54,6 @@ every '0 0 27-31 * *' do
 end
 
 every 1.day, :at => '3:00 am' do
-  rake "RAILS_ENV=production assets:precompile"
+  rake "assets:precompile"
   command "touch #{Whenever.path}/tmp/restart.txt"
 end

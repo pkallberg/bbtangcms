@@ -1,4 +1,4 @@
-s is an RVM Project .rvmrc file, used to automatically load the ruby
+# This is an RVM Project .rvmrc file, used to automatically load the ruby
 # development environment upon cd'ing into the directory
 
 # First we specify our desired <ruby>[@<gemset>], the @gemset name is optional.
