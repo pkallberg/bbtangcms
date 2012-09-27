@@ -1,8 +1,7 @@
 # coding: utf-8
-class UserMail < ActionMailer::Base
-  include Resque::Mailer
+class UserMail < AsyncMailer
 
-  default :from => BBTangCMS::MetaCache.get_config_data("email_account")
+  #default :from => BBTangCMS::MetaCache.get_config_data("email_account")
 
   def send_reuse(email,token)
 
