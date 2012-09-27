@@ -31,7 +31,7 @@ job_type :runner,  "cd :path && script/rails runner -e :environment ':task' :out
 job_type :script,  "cd :path && RAILS_ENV=:environment bundle exec script/:task :output"
 =end
 set :output, "#{Whenever.path}/log/whenever.log"
-#set :output, File.expand_path('../log/whenever.log', __FILE__)
+#set :output, File.join(Whenever.path, "log", "cron.log")
 every 3.weeks do
   rake "bbtangcms:page_request:clean_older"
 end
@@ -51,5 +51,5 @@ end
 
 every 1.day, :at => '3:00 am' do
   rake "RAILS_ENV=production assets:precompile"
-  command "touch #{Rails.root}/tmp/restart.txt"
+  command "touch #{Whenever.path}/tmp/restart.txt"
 end

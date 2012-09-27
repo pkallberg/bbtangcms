@@ -69,10 +69,7 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
-  desc "whenever update_crontab"
-  task :update_crontab, :roles => :worker do
-    run "cd #{current_path}; whenever -i #{current_path}/config/schedule.rb --set environment=#{rails_env} --update-crontab #{application}_#{rails_env}"
-  end
+
 
   desc "start Resque Workers"
   task :start_workers, :roles => :db do
@@ -91,9 +88,10 @@ namespace :deploy do
     run_remote_rake "COUNT=5 PIDFILE=./resque.pid BACKGROUND=yes QUEUE=* RAILS_ENV=production environment resque:work"
   end
 
+
   desc "Write Crontab"
   task :update_crontab, :roles => :app do
-    run "cd #{deploy_to}/current && whenever --update-crontab #{application}"
+    run "cd #{current_path}/ && whenever -i #{current_path}/config/schedule.rb --set environment=#{rails_env} --update-crontab #{application}"
   end
 
   desc "reload the database with seed data"
