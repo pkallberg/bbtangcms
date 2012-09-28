@@ -74,7 +74,7 @@ namespace :deploy do
   desc "start Resque Workers"
   task :start_workers, :roles => :db do
     #run_remote_rake "resque:restart_workers"
-    run_remote_rake "COUNT=5 PIDFILE=./resque.pid BACKGROUND=yes QUEUE=#{application} RAILS_ENV=production resque:work"
+    run_remote_rake "COUNT=5 PIDFILE=./resque.pid BACKGROUND=yes QUEUE=#{application} RAILS_ENV=production environment resque:work"
   end
   desc "stop Resque Workers"
   task :stop_workers, :roles => :db do
@@ -85,7 +85,7 @@ namespace :deploy do
   task :restart_workers, :roles => :db do
     #run_remote_rake "resque:restart_workers"
     run_remote_rake "RAILS_ENV=production resque:stop_workers"
-    run_remote_rake "COUNT=5 PIDFILE=./resque.pid BACKGROUND=yes QUEUE=#{application} RAILS_ENV=production resque:work"
+    run_remote_rake "COUNT=5 PIDFILE=./resque.pid BACKGROUND=yes QUEUE=#{application} RAILS_ENV=production environment resque:work"
   end
 
 
