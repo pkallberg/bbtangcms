@@ -1,3 +1,80 @@
+jhjguxin <864248765@qq.com>	2012-09-28
+
+    is ? COUNT=5 PIDFILE=./resque.pid BACKGROUND=yes QUEUE=#{application} RAILS_ENV=production environment resque:work must be
+
+jhjguxin <864248765@qq.com>	2012-09-28
+
+    try to isolate the resque from askjane and bbtangcms
+
+bbt_server <as181920@hotmail.com>	2012-09-27
+
+    use deliver! instead deliver to send message
+
+bbt_server <as181920@hotmail.com>	2012-09-27
+
+    fix error on user_mail by set default :from option
+
+jhjguxin <864248765@qq.com>	2012-09-27
+
+    try to fix undefined method 'perform' for UserMail:Class
+
+jhjguxin <864248765@qq.com>	2012-09-27
+
+    try to fix duplicate send new_question_notify
+
+jhjguxin <864248765@qq.com>	2012-09-27
+
+    whenever work now
+
+jhjguxin <864248765@qq.com>	2012-09-27
+
+    try to make whenever work
+
+jhjguxin <864248765@qq.com>	2012-09-27
+
+    add new_question_notify mailer and relation resque
+
+jhjguxin <864248765@qq.com>	2012-09-27
+
+    fix some error on quiz_collection if quiz_ids is nil
+
+jhjguxin <864248765@qq.com>	2012-09-27
+
+    fix some error on quiz_collection if quiz_ids is nil
+
+jhjguxin <864248765@qq.com>	2012-09-27
+
+    share the value from quiz_collection.quiz_ids to quiz_collection.ids
+
+jhjguxin <864248765@qq.com>	2012-09-27
+
+    fix some error on quiz_collection if quiz_ids is nil
+
+jhjguxin <864248765@qq.com>	2012-09-27
+
+    some change on version_filter_drop_down_li
+
+Merge: 45b6cd5 301cefc
+jhjguxin <864248765@qq.com>	2012-09-27
+
+    Merge branch 'master' of bbtang.com:bbtang/bbtcms
+
+bbt_server <as181920@hotmail.com>	2012-09-26
+
+    fix the 'padding' attr on '.navbar .nav > li > a'
+
+bbt_server <as181920@hotmail.com>	2012-09-26
+
+    fix the 'padding' attr on '.navbar .nav > li > a'
+
+jhjguxin <864248765@qq.com>	2012-09-26
+
+    rebuilder changelog
+
+jhjguxin <864248765@qq.com>	2012-09-26
+
+    rebuilder changelog
+
 jhjguxin <864248765@qq.com>	2012-09-26
 
     add quiz_center mod

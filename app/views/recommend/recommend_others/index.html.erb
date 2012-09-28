@@ -6,6 +6,7 @@
     <thead>
       <tr>
         <th><%= model_class.human_attribute_name(:recommend_other_type) %></th>
+        <th><%= model_class.human_attribute_name(:description) %></th>
         <th><%= model_class.human_attribute_name(:field) %></th>
         <th><%= model_class.human_attribute_name(:created_at) %></th>
         <th><%= model_class.human_attribute_name(:updated_at) %></th>
@@ -17,6 +18,7 @@
         <% @recommend_recommend_others.each do |recommend_recommend_other| %>
           <tr>
             <td><%= recommend_recommend_other.recommend_other_type %></td>
+            <td><%= truncate recommend_recommend_other.description, length: 60 %></td>
             <td><%= recommend_recommend_other.dynamic_attribute_names %></td>
           <td><%= time_tag(recommend_recommend_other.created_at, :format => :short) if recommend_recommend_other.created_at?%></td>
           <td><%= timeago_tag(recommend_recommend_other.updated_at, :format => :short) if recommend_recommend_other.updated_at?%></td>

@@ -3,13 +3,14 @@
                                  :default => "Show #{model_class.model_name.human}") %></h1>
 <%= show_for @recommend_recommend_other do |s| %>
   <%= s.attribute :recommend_other_type %>
-    <% dynamic_feilds = @recommend_recommend_other.dynamic_attribute_names %>
-    <% if dynamic_feilds.present? %>
-      <% dynamic_feilds.each do |dynamic_feild|%>
-        <%= s.label @recommend_recommend_other.dynamic_attribute_human(dynamic_feild) %>
-        <%= s.value dynamic_feild%>
-      <% end %>
+  <%= s.attribute :description %>
+  <% dynamic_feilds = @recommend_recommend_other.dynamic_attribute_names %>
+  <% if dynamic_feilds.present? %>
+    <% dynamic_feilds.each do |dynamic_feild|%>
+      <%= s.label @recommend_recommend_other.dynamic_attribute_human(dynamic_feild) %>
+      <%= s.value dynamic_feild%>
     <% end %>
+  <% end %>
   <%= s.attribute :created_at %>
   <%= s.attribute :updated_at %>
 <% end %>

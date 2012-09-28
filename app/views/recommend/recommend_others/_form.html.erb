@@ -4,6 +4,7 @@
   <div class="form-inputs">
     <%= f.input :_id, as: :hidden %>
     <%= f.input :recommend_other_type, as: :select, collection: Recommend::OtherColumn.all.map(&:recommend_type) %>
+    <%= f.input :description, as: :text, :input_html => { :rows =>"5", :cols =>"80" } %>
     <%# f.input :created_at %>
     <%# f.input :updated_at %>
     <% dynamic_feilds = @recommend_recommend_other.dynamic_attribute_names %>

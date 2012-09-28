@@ -7,6 +7,7 @@ class Recommend::RecommendOther
   before_validation :auto_update_feild
 
   field :recommend_other_type, type: String
+  field :description, type: String
   #dynamic_fields Recommend::OtherColumn.where(:recommend_type => "index_foucus").entries
 
   def dynamic_attributes
