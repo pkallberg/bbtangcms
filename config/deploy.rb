@@ -3,7 +3,7 @@ require "bundler/capistrano"
 
 def run_remote_rake(rake_cmd)
   rake_args = ENV['RAKE_ARGS'].to_s.split(',')
-  cmd = "cd #{fetch(:latest_release)} && #{fetch(:rake, "rake")} RAILS_ENV=#{fetch(:rails_env, "production")} #{rake_cmd}"
+  cmd = "cd #{deploy_to}/current && #{fetch(:rake, "rake")} RAILS_ENV=#{fetch(:rails_env, "production")} #{rake_cmd}"
   cmd += "['#{rake_args.join("','")}']" unless rake_args.empty?
   run cmd
   set :rakefile, nil if exists?(:rakefile)
@@ -74,7 +74,7 @@ namespace :deploy do
   desc "start Resque Workers"
   task :start_workers, :roles => :db do
     #run_remote_rake "resque:restart_workers"
-    run_remote_rake "COUNT=5 PIDFILE=./resque.pid BACKGROUND=yes QUEUE=* RAILS_ENV=production resque:work"
+    run_remote_rake "COUNT=5 PIDFILE=./resque.pid BACKGROUND=yes QUEUE=#{application} RAILS_ENV=production resque:work"
   end
   desc "stop Resque Workers"
   task :stop_workers, :roles => :db do
@@ -85,7 +85,7 @@ namespace :deploy do
   task :restart_workers, :roles => :db do
     #run_remote_rake "resque:restart_workers"
     run_remote_rake "RAILS_ENV=production resque:stop_workers"
-    run_remote_rake "COUNT=5 PIDFILE=./resque.pid BACKGROUND=yes QUEUE=* RAILS_ENV=production resque:work"
+    run_remote_rake "COUNT=5 PIDFILE=./resque.pid BACKGROUND=yes QUEUE=#{application} RAILS_ENV=production resque:work"
   end
 
 

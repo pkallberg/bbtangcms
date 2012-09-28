@@ -22,9 +22,12 @@ namespace :resque do
   desc "kill all workers (using -QUIT), god will take care of them"
   task :stop_workers => :environment do
     pids = Array.new
-
+    #application = Rails.application.class.parent_name.downcase
+    application = "bbtcms" #base on deploy.rb :application
     Resque.workers.each do |worker|
-      pids << worker.to_s.split(/:/).second
+      if worker.to_s.end_with?.end_with? application
+        pids << worker.to_s.split(/:/).second
+      end
     end
 
     if pids.size > 0
