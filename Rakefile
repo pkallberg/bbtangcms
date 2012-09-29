@@ -25,7 +25,7 @@ namespace :resque do
     #application = Rails.application.class.parent_name.downcase
     application = "bbtcms" #base on deploy.rb :application
     Resque.workers.each do |worker|
-      if worker.to_s.end_with?.end_with? application
+      if worker.to_s.end_with? application
         pids << worker.to_s.split(/:/).second
       end
     end
