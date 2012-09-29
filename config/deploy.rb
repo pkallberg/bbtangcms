@@ -52,7 +52,7 @@ after 'deploy:update_code', 'deploy:migrate'
 
 #after "deploy:symlink", "restart_workers"
 #after "deploy:symlink"
-after "deploy:symlink", "restart_workers", "rvm:trust_rvmrc", "deploy:update_crontab"
+after "deploy:symlink", "deploy:restart_workers","deploy:restart_crontab", "rvm:trust_rvmrc"
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
 
@@ -88,6 +88,13 @@ namespace :deploy do
     run_remote_rake "COUNT=5 PIDFILE=./resque.pid BACKGROUND=yes QUEUE=#{application} RAILS_ENV=production environment resque:work"
   end
 
+  desc "restart Crontab"
+  task :restart_crontab, :roles => :app do
+    #stop whenever schedule
+    run "cd #{current_path}/ && whenever -c #{application}"
+    #update_crontab
+    run "cd #{current_path}/ && whenever -i #{current_path}/config/schedule.rb --set environment=#{rails_env} --update-crontab #{application}"
+  end
 
   desc "Write Crontab"
   task :update_crontab, :roles => :app do
