@@ -1,11 +1,14 @@
 class Auth::AssignPermitsController < Auth::AuthBaseController
   authorize_resource :class => false
+  Model_class = CuPermit.new.class
   # GET /auth/assign_permits
   # GET /auth/assign_permits.json
   def index
     #@auth_assign_permits = Auth::AssignPermit.all
     if current_user.admin_group?
       @admin_user = current_user
+
+      breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), auth_assign_permits_path
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @admin_user }
@@ -20,6 +23,7 @@ class Auth::AssignPermitsController < Auth::AuthBaseController
     @owner_user = User.find(params[:id])
     if params["admin_group"]
       if current_user.owner_users(params["admin_group"]).include? @owner_user
+        breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), auth_assign_permit_path(@owner_user)
       end
     end
 
@@ -46,6 +50,7 @@ class Auth::AssignPermitsController < Auth::AuthBaseController
     if current_user.admin_group?
       @admin_user = current_user
       @owner_user = User.find(params[:id])
+      breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), edit_auth_assign_permit_path(@owner_user)
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @admin_user }

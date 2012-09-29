@@ -1,5 +1,8 @@
 # coding: utf-8
 module DashboardHelper
+  def focus_recommendation_slide
+    Recommend::RecommendOther.where(:recommend_other_type => "focus_recommendation").entries
+  end
   def users_group_by_level
     #users_group_level =Level.all.collect{|level| Profile.where(level_id: level.id).delete_if{|profile| profile.user.nil?}}
     #user_with_nil_level = Profile.where(level_id: nil).delete_if{|profile| profile.nil?}

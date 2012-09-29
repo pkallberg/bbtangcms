@@ -58,7 +58,7 @@
         <!--td><%= profile.focus_tags_on %></td-->
         <!--td><%= profile.pregnancystatus %></td-->
         <td><%= profile.age_range %></td>
-        <td><%= timeago_tag(profile.updated_at, :format => :short) if profile.updated_at?%></td>
+        <td><%= timeago_tag(profile.created_at, :format => :short) if profile.created_at?%></td>
         <!--td><%= profile.pregnancytimeline %></td-->
         <!--td><%= profile.label %></td-->
         <!--td><%= profile.weibo %></td-->

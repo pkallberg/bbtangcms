@@ -6,6 +6,24 @@
 <%#= distance_of_time_in_words_to_now(from_time - 3.seconds,  include_seconds = true)%>
 <%#= time_ago_in_words(from_time - 3.seconds,  include_seconds = true)%>
 <%# timeago_tag Time.zone.now, :nojs => true, :limit => 10.days.ago%>
+<% if focus_recommendation_slide.present? %>
+  <div id="myCarousel" class="carousel slide hero-unit">
+    <div class="carousel-inner">
+      <% focus_recommendation =focus_recommendation_slide[0]%>
+      <% focus_recommendation_slide.each do |r|%>
+        <div class="item <%= 'acitve' if r.eql? focus_recommendation%>" alt ="">
+          <%= image_tag r.image_url, :width => "1150"%>
+          <div class="carousel-caption">
+            <h4>First Thumbnail label</h4>
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+  </div>
+<% end %>
 <div class="hero-unit">
   <h1>Yeah, It's BBTangCMS !</h1>
   <p>Welcome,  <%= current_user%> , <%= today_work_summary(item_type_list = Setting.version_mod.split(' '))%></p>
@@ -76,15 +94,14 @@
     <span class="label label-important"><%= t(".newest_user") %></span>
     <h1><%= t(".newest_user") %></h1>
     <ul class="thumbnails">
-
       <% newest_users.each do |u|%>
         <li class='span2'>
           <div class='thumbnail'>
-            <%= image_tag(get_face_url(u.profile,:size => :original ), :height => '120', :width => '160', :title => "#{u}")%>
+            <%= image_tag(get_face_url(u.profile,:size => :original ), :height => '120', :width => '160', :title => "#{u}", :class => "img-rounded")%>
             <div class='caption'>
               <h5><%= "#{u}" %></h5>
                 <span class='badge'><%= "#{u.class.human_attribute_name(:created_at)}" %></span>
-                <p><%= time_tag u.created_at, :format=>'%Y %B %d, %l:%M' %></p>
+                <p><%= time_tag u.created_at, :format=>:short %></p>
             </div>
           </div>
         </li>
