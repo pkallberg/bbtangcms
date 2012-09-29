@@ -48,9 +48,7 @@ set :deploy_to, "/home/#{user}/bbtang/#{application}"
 set :keep_releases, 15
 
 after 'deploy:update_code', 'deploy:migrate'
-after "deploy:symlink", "deploy:restart_workers","deploy:restart_crontab", "rvm:trust_rvmrc"
-after "deploy:symlink", "restart_workers"
-#after "deploy:symlink"
+after "deploy:symlink", "deploy:restart_workers","deploy:restart_crontab", "rvm:trust_rvmrc", "restart_workers"
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
