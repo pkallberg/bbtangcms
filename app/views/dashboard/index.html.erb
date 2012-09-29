@@ -15,7 +15,7 @@
   <p>
     <%= link_to t("common.menu.work_dashboard"), work_dashboard_path, class: "btn btn-primary btn-large", :rel => "popover" %>
   </p>
-  <i class="pull-right"><%= "#{users_summary}, 最新加入 (#{newest_users.count}) 人" %></i>
+  <i class="pull-right"><%= "#{users_summary}, #{newest_users_summary}" %></i>
 </div>
 
 <div class="item box">

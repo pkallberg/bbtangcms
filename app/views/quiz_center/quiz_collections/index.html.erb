@@ -10,6 +10,7 @@
       <tr>
         <th><%= model_class.human_attribute_name(:coll_name) %></th>
         <th><%= model_class.human_attribute_name(:quiz_ids) %></th>
+        <th><%= model_class.human_attribute_name(:keywords) %></th>
         <th><%= model_class.human_attribute_name(:quizzes) %></th>
         <th><%= model_class.human_attribute_name(:created_at) %></th>
         <th><%= model_class.human_attribute_name(:updated_at) %></th>
@@ -22,6 +23,7 @@
         <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
           <td><%= quiz_center_quiz_collection.coll_name %></td>
           <td><%= quiz_center_quiz_collection.quiz_ids.join(",") if quiz_center_quiz_collection.quiz_ids.present? %></td>
+          <td><%= truncate quiz_center_quiz_collection.keywords %></td>
           <td><%= link_to "#{quiz_center_quiz_collection.quizzes.count}",quiz_center_quizzes_path(quiz_collection_id: quiz_center_quiz_collection.id) %></td>
           <td><%= time_tag(quiz_center_quiz_collection.created_at, :format => :short) if quiz_center_quiz_collection.created_at?%></td>
           <td><%= timeago_tag(quiz_center_quiz_collection.updated_at, :format => :short) if quiz_center_quiz_collection.updated_at?%></td>

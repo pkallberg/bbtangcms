@@ -3,6 +3,7 @@
 <%= show_for @quiz_center_quiz_collection do |s| %>
   <%= s.attribute :coll_name %>
   <%= s.attribute :quiz_ids %>
+  <%= s.attribute :keywords %>
   <%= s.attribute :quizzes, value:  raw(link_to "#{@quiz_center_quiz_collection.quizzes.count}",quiz_center_quizzes_path(quiz_collection_id: @quiz_center_quiz_collection.id))%>
   <%= s.attribute :created_at %>
   <%= s.attribute :updated_at %>

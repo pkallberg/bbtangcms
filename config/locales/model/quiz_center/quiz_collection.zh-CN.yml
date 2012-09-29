@@ -8,6 +8,7 @@ zh-CN:
         _type: "字段类型"
         #position: "栏位"
         coll_name: "考期名称"
+        keywords: "关键描述"
         quizzes: "考题集合"
         quiz_ids: "考题Ids"
         created_at: "创建时间"

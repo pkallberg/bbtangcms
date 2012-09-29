@@ -194,12 +194,12 @@ class KnowledgesController < ApplicationController
         #format.html { redirect_to @knowledge, notice: 'Knowledge was successfully created.' }
         #format.json { render json: @knowledge, status: :created, location: @knowledge }
         #because update the file field not use render js
-        render :new
+        render :create
       else
         flash[:notice] = 'Knowledge updated failure.'
         respond_to do |format|
           format.html { render action: "new" }
-          format.js { render action: "new" }
+          #format.js { render action: "new" }
           format.json { render json: @knowledge.errors, status: :unprocessable_entity }
         end
         end
@@ -298,7 +298,7 @@ class KnowledgesController < ApplicationController
           flash[:notice] = 'Knowledge was successfully updated.'
           #render js: %[window.location.pathname='#{knowledge_path(@knowledge)}']
           #because update the file field not use render js
-          render :edit
+          render :update
         else
           flash[:notice] = 'Knowledge updated failure.'
           respond_to do |format|

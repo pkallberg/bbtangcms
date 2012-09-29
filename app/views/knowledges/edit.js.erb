@@ -12,6 +12,3 @@ $("#flashes").replaceWith("<%= j render 'common/flashes'%>");
     }
     );
 */
-<% unless @knowledge.errors.present? %>
-  window.location.pathname="<%= knowledge_path(@knowledge) %>"
-<% end %>

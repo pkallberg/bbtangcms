@@ -48,7 +48,7 @@ zh-CN:
   common:
     menu:
       appname: "BBTangCMS"
-      recommend: "推送"
+      recommend: "推送首页"
       auth: "授权认证"
       admin: "管理中心"
       tags: "标签树"

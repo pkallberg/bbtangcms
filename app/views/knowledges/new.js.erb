@@ -2,7 +2,7 @@ $("#new_knowledge").html("<%= escape_javascript(render(:partial => 'knowledges/f
 
 $("#flashes").replaceWith("<%= j render 'common/flashes'%>");
 
-var editor = KindEditor.create(
+/*var editor = KindEditor.create(
     'textarea[id="knowledge_body"]',
     {
       width : '850px',
@@ -11,6 +11,4 @@ var editor = KindEditor.create(
       fileManagerJson: '/kindeditor/filemanager'
     }
     );
-<% unless @knowledge.errors.present? %>
-  window.location.pathname="<%= knowledge_path(@knowledge) %>"
-<% end %>
+*/

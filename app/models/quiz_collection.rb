@@ -5,12 +5,13 @@ class QuizCollection
   before_validation :set_array
 
   field :coll_name, type: String
+  field :keywords, type: String
   field :quiz_ids, type: Array
 
-
-  validates_uniqueness_of :coll_name, :presence => true
+  validates :quiz_ids, :coll_name , :keywords, :presence => true
+  validates_uniqueness_of :coll_name
   #validates_presence_of :quiz_ids
-  validates :quiz_ids, :presence => true
+
 
   def quizzes
     if self.quiz_ids.present?

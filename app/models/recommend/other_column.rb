@@ -11,7 +11,7 @@ class Recommend::OtherColumn
   field :human_names, type: Array #[human_name1 , human_name2, human_name3]
   field :column_names, type: Array #[colmun_name1 , colmun_name2, colmun_name3]
 
-
+  validates :recommend_type, :column_names, :presence => true
   validates_uniqueness_of :recommend_type
 
 
