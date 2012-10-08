@@ -54,7 +54,7 @@ function load_spin() {
 }
 
 jQuery(document).ready(function($){
-load_spin()
+  load_spin()
 });
 
 

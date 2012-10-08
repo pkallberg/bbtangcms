@@ -7,12 +7,12 @@
 <%#= time_ago_in_words(from_time - 3.seconds,  include_seconds = true)%>
 <%# timeago_tag Time.zone.now, :nojs => true, :limit => 10.days.ago%>
 <% if focus_recommendation_slide.present? %>
-  <div id="myCarousel" class="carousel slide hero-unit">
+  <div id="focus_recommendation_carousel" class="carousel slide hero-unit">
     <div class="carousel-inner">
       <% focus_recommendation =focus_recommendation_slide[0]%>
       <% focus_recommendation_slide.each do |r|%>
         <div class="item <%= 'acitve' if r.eql? focus_recommendation%>" alt ="">
-          <%= image_tag r.image_url, :width => "1150"%>
+          <%= image_tag r.image_url%>
           <div class="carousel-caption">
             <h4>First Thumbnail label</h4>
             <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
@@ -20,8 +20,8 @@
         </div>
       <% end %>
     </div>
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+    <a class="left carousel-control" href="#focus_recommendation_carousel" data-slide="prev">‹</a>
+    <a class="right carousel-control" href="#focus_recommendation_carousel" data-slide="next">›</a>
   </div>
 <% end %>
 <div class="hero-unit">

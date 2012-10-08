@@ -7,6 +7,7 @@ jQuery(document).ready(function($){
 
 $(document).ready(function(){
   window.setInterval('GetData()', 60000);
+    $('.carousel').carousel()
 });
 
 function GetData(){

@@ -9,11 +9,17 @@
   .icons_go_top{width:16px;height:16px;background:url(<%= image_path "icons.png" %>) 0px 0px no-repeat}
 }
 
+#focus_recommendation_carousel .item > img {
+  width:1150px;
+  margin: 15px 0;
+  padding: 39px 19px 14px;
+}
+
 body {
     padding-top: 100px;
     position: relative;
     margin: 0;
-    background:#eee image-url('bg.png') bottom left repeat;
+    //background:#eee image-url('bg.png') bottom left repeat;
 }
 
 .navbar .nav > li > a {
@@ -26,14 +32,6 @@ margin-top: -20px;
 margin-right: 10px;
 }
 
-.carousel .item {
-position: relative;
-  width:800px;
--webkit-transition: 0.6s ease-in-out left;
--moz-transition: 0.6s ease-in-out left;
--o-transition: 0.6s ease-in-out left;
-transition: 0.6s ease-in-out left;
-}
 
 #loading {
     //background: url('/assets/generatorphp-thumb.gif');
