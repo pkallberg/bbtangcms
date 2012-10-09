@@ -1,7 +1,10 @@
 # coding: utf-8
 module DashboardHelper
-  def focus_recommendation_slide
-    Recommend::RecommendOther.where(:recommend_other_type => "focus_recommendation").entries
+  def focus_recommendation_slide(params = {})
+    position = params.delete(:position) if params[:position].present?
+    position ||= "root_focus"
+    focus_recommendations = Recommend::RecommendOther.where(:recommend_other_type => "focus_recommendation").entries
+    focus_recommendations.collect{|focus_recommendation| focus_recommendation if focus_recommendation["position"].include? position}.compact
   end
   def users_group_by_level
     #users_group_level =Level.all.collect{|level| Profile.where(level_id: level.id).delete_if{|profile| profile.user.nil?}}

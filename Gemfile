@@ -45,6 +45,8 @@ gem "galetahub-simple_captcha", "~> 0.1.3", :require => "simple_captcha"
 
 # 表单 last commit: 2011-12-03
 gem 'simple_form', :git => "git://github.com/plataformatec/simple_form.git"
+#Include gmail like auto-save on your forms
+gem "sisyphus-rails", "~> 0.0.4"
 #DynamicForm provides helpers to display the error messages of your models in your view templates.
 #Wrap your objects with a helper to easily show them
 gem "show_for", "~> 0.2.5"

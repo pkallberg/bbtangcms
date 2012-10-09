@@ -20,6 +20,12 @@
 //= require kindeditor
 //= require twitter/bootstrap
 
+/*A gem to add gmail like form saving through sisyphus.js*/
+//= require sisyphus
+//To support IE6/7 users include jStorage as well
+//= require jstorage
+//= require sisyphus
+
 //= require_tree .
 $(window).load(function() {
     show();

@@ -20,6 +20,17 @@ class String
 
   def class_exists?(class_name = nil)
     class_name = self if class_name.nil?
-    eval("#{class_name}.is_a?(Class)") if eval("defined?(#{class_name})") == "constant"
+    #defined? Knowledge => nil
+    # "Knowledge".constantize
+    # Knowledge(id: integer, title: string, summary: text, content: text, body: text, timeline_ids: text, knowledgebase_category_id: integer, created_by: integer, created_name: string, updated_by: integer, deleted_at: datetime, deleted_by: integer, delta: boolean, created_at: datetime, updated_at: datetime, thanks_count: integer, forwarding_count: integer, comments_count: integer, views_count: integer, source_info: string, auto_tags: text, face_file_name: string, face_content_type: string, face_file_size: string)
+    #defined? Knowledge  => "constant"
+    #eval("#{class_name}.is_a?(Class)") if eval("defined?(#{class_name})") == "constant"
+    begin
+      class_obj = class_name.constantize
+    rescue
+      # failure handling goes here
+      return false
+    end
+    class_obj.is_a?(Class)
   end
 end

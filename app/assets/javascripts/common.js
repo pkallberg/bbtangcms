@@ -42,6 +42,13 @@ $(document).ready(function() {
   return $links.tooltip();
 });
 
+//
+$(document).ready(function() {
+  $('form div.form-actions a.btn').live("click",function() {
+    $.sisyphus().manuallyReleaseData()
+  });
+});
+
 // popover
 
 $(document).ready(function() {
