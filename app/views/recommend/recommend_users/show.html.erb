@@ -11,10 +11,10 @@
 <% if can? :update, @recommend_recommend_user %>
 <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_recommend_recommend_user_path(@recommend_recommend_user), :class => 'btn' %> |
 <% end %>
-<% if can? :read, recommend_recommend_user %>
+<% if can? :read, @recommend_recommend_user %>
 <%= link_to t('.back', :default => t("helpers.links.back", :model => model_class.model_name.human)), recommend_recommend_users_path, :class => 'btn' %> |
 <% end %>
-<% if can? :destroy, recommend_recommend_user %>
+<% if can? :destroy, @recommend_recommend_user %>
 <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), recommend_recommend_user_path(@recommend_recommend_user),
               :method => 'delete',
               :confirm => t('.confirm',
