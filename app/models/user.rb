@@ -1,5 +1,9 @@
 # encoding: utf-8
 class User < ActiveRecord::Base
+  scope :level, ->(level_id) {joins(:profile).where('profiles.level_id = ?', level_id)}
+  scope :daren, joins(:profile).where('profiles.level_id = ?', 2)
+  scope :expert, joins(:profile).where('profiles.level_id = ?', 3)
+
 
   has_many :messages
   include HasMessages

@@ -1,5 +1,11 @@
 # encoding: utf-8
 class Profile < ActiveRecord::Base
+  #alias_attribute :pregnancy_status, :pregnancy_timeline
+  scope :level, ->(level_id) { where(:level_id => level_id) }
+  scope :daren, -> { where(:level_id => 2) }
+  scope :expert, -> { where(:level_id => 3) }
+
+
   has_paper_trail   # you can pass various options here
   #include Recommendation::Search
   #belongs_to :user

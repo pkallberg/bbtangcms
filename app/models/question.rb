@@ -23,7 +23,7 @@ class Question < ActiveRecord::Base
   self_model_id    #引入self_model_id
 
   has_many :answers
-  validates :title, :presence => true
+  #validates :title, :presence => true
   #validates :title, :length => {:maximum => Askjane::MetaCache.get_config_data("question_title_max").to_i}
   validates :created_by, :presence => true
   #validates :body, :length => {:maximum => Askjane::MetaCache.get_config_data("question_body_max").to_i}
