@@ -69,9 +69,9 @@ group :assets do
   #gem 'sass-rails',   '~> 3.2.5'
   gem 'therubyracer'
   gem "less-rails", "~> 2.2.3"
-  gem "less-rails-bootstrap", "~> 2.0.13"
+  gem "less-rails-bootstrap", "~> 2.1.1"
   gem 'coffee-rails', '~> 3.2.1'
-  gem "less-rails-bootswatch", "~> 0.2.11"
+  gem "less-rails-bootswatch", "~> 0.3.4"
   gem 'uglifier', '>= 1.0.3'
 end
 #麵包屑

@@ -1,8 +1,10 @@
 //@import "twitter/bootstrap/bootstrap";
 @import "twitter/bootstrap";
 
-<%= "@import 'bootswatch/#{Setting.today_theme}/bootswatch';" %>
-<%= "@import 'bootswatch/#{Setting.today_theme}/variables';" %>
+<%# "@import 'bootswatch/#{Setting.today_theme}/bootswatch';" %>
+<%# "@import 'bootswatch/#{Setting.today_theme}/variables';" %>
+<%= "@import 'bootswatch/united/bootswatch';" %>
+<%= "@import 'bootswatch/united/variables';" %>
 
 #topcontrol {
   .icons { position:absolute; top:3px; right:0; }
@@ -11,8 +13,6 @@
 
 #focus_recommendation_carousel .item > img {
   width:1150px;
-  margin: 15px 0;
-  padding: 39px 19px 14px;
 }
 
 body {

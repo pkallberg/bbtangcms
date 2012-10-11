@@ -231,9 +231,10 @@ class Question < ActiveRecord::Base
     end
   end
 
-  def to_s
-    self.title
+  def to_s(length=20)
+    self.title.present? ? self.title : self.content.truncate(30,:omission => '... (more info)')
   end
+
   private
   def sort_tag_list(tag_list= [])
     tag_str = ''

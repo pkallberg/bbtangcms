@@ -1,8 +1,8 @@
 //@import "twitter/bootstrap/bootstrap";
 @import "twitter/bootstrap";
 
-<%= "@import 'bootswatch/#{Setting.today_theme}/bootswatch';" %>
-<%= "@import 'bootswatch/#{Setting.today_theme}/variables';" %>
+<%= "@import 'bootswatch/#{Setting.today_theme}/bootswatch';" unless Setting.today_theme.eql? "default" %>
+<%= "@import 'bootswatch/#{Setting.today_theme}/variables';"%>
 
 #topcontrol {
   .icons { position:absolute; top:3px; right:0; }
