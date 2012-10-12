@@ -1,5 +1,14 @@
 # coding: utf-8
 module DashboardHelper
+  def user_welcome(params={})
+    user = params.delete(:user)
+    user ||= current_user
+    if user.present?
+      #raw I18n.t("helpers.dashboard.user_welcome", cms_roles: user.cms_roles.uniq.compact.collect{|c| "#{c}"}.join(","), user: "#{user}", current_sign_in_at: "#{timeago_tag user.current_sign_in_at}", current_sign_in_city: "#{user.current_sign_in_city}")
+      raw I18n.t("helpers.dashboard.user_welcome", cms_roles: "", user: "#{user}", last_sign_in_at: "#{timeago_tag user.last_sign_in_at}", last_sign_in_city: "#{user.last_sign_in_city}", current_sign_in_city: "#{user.current_sign_in_city}")
+    end
+  end
+
   def focus_recommendation_slide(params = {})
     position = params.delete(:position) if params[:position].present?
     position ||= "root_focus"

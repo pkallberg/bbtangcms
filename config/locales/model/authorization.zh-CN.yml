@@ -1,0 +1,15 @@
+zh-CN:
+  activerecord:
+    models:
+      authorization: "授权"
+    attributes:
+      authorization:
+        id: "ID"
+        provider: "提供者"
+        uid: "UID"
+        user_id: "用户ID"
+        user: "用户"
+        access_token: "访问令牌"
+        access_token_secret: "访问令牌密钥"
+        updated_at: "更新时间"
+        created_at: "创建时间"

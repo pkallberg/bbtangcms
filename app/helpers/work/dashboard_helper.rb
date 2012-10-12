@@ -20,7 +20,7 @@ module Work::DashboardHelper
     if item_summary_list.present?
       raw(item_summary_list.join("; ") << " " << (link_to "#{user}的工作日志",work_versions_path(version_params({:whodunnit =>user.id})))) << "."
     else
-      "No thing logged, today!"
+      "你今天还没有,工作日志!"
     end
   end
 

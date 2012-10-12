@@ -1,3 +1,13 @@
-  <p>Now time <%=time_tag Time.now, :format => :short %>,Today's Theme: <%= Setting.today_theme%>.</p>
-  <p>&copy;BBTangCMS 棒棒糖社区   2008-<%= Time.now.year %> 上海山缘网络科技有限公司 bbtang版权所有，并保留所有权利</p>
-  <p> ICP备案证书号 沪ICP备07013538号-3</p>
+<p>现在时间 <%=time_tag Time.now, :format => :short %>,今日主题: <%= Setting.today_theme%>.</p>
+<p>
+  <span>
+    <%= link_to t('layout.about'), site_about_path, title: t('layout.about'), rel: "tooltip" %> |
+    <%= link_to t('layout.team'), site_team_path, title: t('layout.team'), rel: "tooltip" %> |
+    <%= link_to t('layout.changelog'), site_changelog_path, title: t('layout.changelog'), rel: "tooltip" %> |
+    <%= link_to t('layout.license'), site_license_path, title: t('layout.license'), rel: "tooltip" %> |
+    <%= link_to t('layout.policies'), site_policies_path, title: t('layout.policies'), rel: "tooltip" %> |
+    <%= link_to t('layout.support'), site_support_path, title: t('layout.support'), rel: "tooltip" %> |
+  </span>
+</p>
+<p>&copy;BBTangCMS 棒棒糖社区   2008-<%= Time.now.year %> 上海山缘网络科技有限公司 bbtang版权所有，并保留所有权利</p>
+<p> ICP备案证书号 沪ICP备07013538号-3</p>

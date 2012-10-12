@@ -12,10 +12,13 @@
     <li><%= cms_role.name if cms_role %></li>
   <% end %>
   <%= s.attribute :sign_in_count%>
+  <%= s.association :authorizations %>
   <%= s.attribute :current_sign_in_at%>
+  <%= s.attribute :current_sign_in_ip%>
+  <%= s.attribute :current_sign_in_city%>
   <%= s.attribute :last_sign_in_at%>
-  <%= s.attribute :current_sign_in_ip %>
-  <%= s.attribute :current_sign_in_city, value: change_ip_to_city(ip=@auth_user.current_sign_in_ip)%>
+  <%= s.attribute :last_sign_in_ip %>
+  <%= s.attribute :last_sign_in_city%>
 <% end %>
 
 
