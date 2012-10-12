@@ -23,7 +23,7 @@ class IpSearch
 	def read_offset(position)
 		@file.seek position
 		chars = @file.read(3).unpack('C3')
-		(chars[2]<<16) + (chars[1]<<8) + chars[0]
+		(chars[2] << 16 ) + (chars[1] << 8) + chars[0]
 	end
 
 	#读取记录中的4字节作为一个long值
@@ -114,23 +114,23 @@ class IpSearch
 	#取得国家，UTF8编码
 	def country
 		#Iconv.iconv('UTF-8//IGNORE','GB2312//IGNORE',@location[:country])
-    @location[:country].force_encoding('gbk').encode('utf-8')
+    @location[:country].force_encoding('gbk').encode("utf-8", :undef => :replace, :replace => "?", :invalid => :replace)
 	end
 
 	#取得地区，UTF8编码
 	def area
 		#Iconv.iconv('UTF-8//IGNORE','GB2312//IGNORE',@location[:area])
-    @location[:area].force_encoding('gbk').encode('utf-8')
+    @location[:area].force_encoding('gbk').encode("utf-8", :undef => :replace, :replace => "?", :invalid => :replace)
 	end
 
 	#取得国家，GB2312编码
 	def country_gb
-		@location[:country].force_encoding('utf-8').encode('gbk-2312')
+		@location[:country].force_encoding('utf-8').encode('gbk-2312', :undef => :replace, :replace => "?", :invalid => :replace)
 	end
 
 	#取得地区，GB2312编码
 	def area_gb
-		@location[:country].force_encoding('utf-8').encode('gbk-2312')
+		@location[:country].force_encoding('utf-8').encode('gbk-2312', :undef => :replace, :replace => "?", :invalid => :replace)
 	end
 end
 

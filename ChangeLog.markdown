@@ -765,3 +765,69 @@
 * Author: Francis Jiang <864248765@qq.com>	2012-10-11
 
     fix bug on recommend_recommend_user
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-12
+
+    do something with 'authorizations' model, set some I18n show
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-12
+
+    Revert "add site controller,do something with 'authorizations' model, set some I18n show"
+    
+    This reverts commit ef9b35774ea20b9258f3007121f352ccae033f77.
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-12
+
+    Revert "Revert "add site controller,do something with 'authorizations' model, set some I18n show""
+    
+    This reverts commit df15dbecb422a5489435cd958fc4932d2d9f7174.
+    
+deleted:    ChangeLog           
+new file:   ChangeLog.markdown           
+modified:   Gemfile           
+modified:   Gemfile.lock           
+new file:   LICENSE           
+new file:   Link to ChangeLog.markdown           
+new file:   app/assets/javascripts/site.js.coffee           
+new file:   app/assets/stylesheets/site.css.less           
+modified:   app/controllers/questions_controller.rb           
+new file:   app/controllers/site_controller.rb           
+modified:   app/helpers/dashboard_helper.rb           
+modified:   app/helpers/messages_helper.rb           
+new file:   app/helpers/site_helper.rb           
+modified:   app/helpers/work/dashboard_helper.rb           
+new file:   app/models/authorization.rb           
+modified:   app/models/quiz.rb           
+modified:   app/models/user.rb           
+modified:   app/views/auth/users/index.html.erb           
+modified:   app/views/auth/users/show.html.erb           
+modified:   app/views/common/_footer.html.erb           
+modified:   app/views/dashboard/index.html.erb           
+modified:   app/views/quiz_center/quizzes/_form.html.erb           
+modified:   app/views/quiz_center/quizzes/index.html.erb           
+modified:   app/views/quiz_center/quizzes/show.html.erb           
+new file:   app/views/site/about.html.erb           
+new file:   app/views/site/changelog.html.erb           
+new file:   app/views/site/license.html.erb           
+new file:   app/views/site/policies.html.erb           
+new file:   app/views/site/support.html.erb           
+new file:   app/views/site/team.html.erb           
+modified:   app/views/work/dashboard/show.html.erb           
+modified:   app/views/work/shared/_user_work_log_list.html.erb           
+modified:   config/locales/breadcrumbs.zh-CN.yml           
+modified:   config/locales/helper.zh-CN.yml           
+new file:   config/locales/model/authorization.zh-CN.yml           
+modified:   config/locales/model/quiz_center/quiz.zh-CN.yml           
+modified:   config/locales/model/user.zh-CN.yml           
+modified:   config/locales/page.zh-CN.yml           
+modified:   config/routes.rb           
+modified:   routes.log           
+modified:   script/change_log_builder.sh           
+new file:   spec/controllers/site_controller_spec.rb           
+new file:   spec/helpers/site_helper_spec.rb           
+new file:   spec/views/site/about.html.erb_spec.rb           
+new file:   spec/views/site/changelog.html.erb_spec.rb           
+new file:   spec/views/site/license.html.erb_spec.rb           
+new file:   spec/views/site/policies.html.erb_spec.rb           
+new file:   spec/views/site/support.html.erb_spec.rb           
+new file:   spec/views/site/team.html.erb_spec.rb           
