@@ -17,8 +17,10 @@
   <%= u.association :cms_roles, :to_sentence => true %>
   <%= u.attribute :sign_in_count%>
   <%= u.attribute :current_sign_in_at, :value => timeago_tag(current_user.current_sign_in_at)%>
-  <%= u.attribute :last_sign_in_at, :value => timeago_tag(current_user.last_sign_in_at)%>
   <%= u.attribute :current_sign_in_ip %>
-  <%= u.attribute :current_sign_in_city, value: change_ip_to_city(ip=current_user.current_sign_in_ip)%>
+  <%= u.attribute :current_sign_in_city, value: current_user.current_sign_in_city%>
+  <%= u.attribute :last_sign_in_at, :value => timeago_tag(current_user.last_sign_in_at)%>
+  <%= u.attribute :last_sign_in_ip, value: current_user.last_sign_in_ip%>
+  <%= u.attribute :last_sign_in_city, value: current_user.last_sign_in_city%>
 <% end %>
 </div>

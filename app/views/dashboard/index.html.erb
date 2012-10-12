@@ -26,7 +26,7 @@
 <% end %>
 <div class="hero-unit">
   <h1>Yeah, It's BBTangCMS !</h1>
-  <p>Welcome,  <%= current_user%> , <%= today_work_summary(item_type_list = Setting.version_mod.split(' '))%></p>
+  <p><%= user_welcome user: current_user%> , <%= today_work_summary(item_type_list = Setting.version_mod.split(' '))%></p>
   <% if new_messages(user = current_user)%>
     <p><%= new_messages_notice(user = current_user)%>,<%= link_to "#{I18n.t('common.enter_inbox')}", messages_path(:inbox)%></p>
   <% end %>

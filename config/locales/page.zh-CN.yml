@@ -7,6 +7,25 @@ zh-CN:
     #auth:
     # dashboard:
     #   show: "授权认证首页"
+    about: "关于我们"
+    changelog: "更新日志"
+    license: "许可协议"
+    policies: "免责声明"
+    team: "团队"
+    support: "帮助"
+  site:
+    about:
+      title: title
+    changelog:
+      title: title
+    license:
+      title: title
+    policies:
+      title: title
+    team:
+      title: title
+    support:
+      title: title
   work:
     user_statistics:
       index:

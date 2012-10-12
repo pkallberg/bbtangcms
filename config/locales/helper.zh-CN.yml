@@ -36,3 +36,5 @@ zh-CN:
       unread: "未读"
       delete: "删除"
       undelete: "不删除"
+    dashboard:
+      user_welcome: "欢迎用户%{cms_roles},%{user},你最近于%{last_sign_in_at}在%{last_sign_in_city}登录,本次登录地点%{current_sign_in_city}"
