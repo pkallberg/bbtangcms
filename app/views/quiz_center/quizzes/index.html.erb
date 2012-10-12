@@ -11,7 +11,6 @@
         <th><%= model_class.human_attribute_name(:id) %></th>
         <th><%= model_class.human_attribute_name(:title) %></th>
         <th><%= model_class.human_attribute_name(:answer) %></th>
-        <th><%= model_class.human_attribute_name(:knowledge) %></th>
         <th><%= model_class.human_attribute_name(:end_date) %></th>
         <th><%= model_class.human_attribute_name(:created_at) %></th>
         <th><%= model_class.human_attribute_name(:updated_at) %></th>
@@ -25,7 +24,6 @@
           <td><%= quiz_center_quiz.id %></td>
           <td><%= quiz_center_quiz.title %></td>
           <td><%= quiz_center_quiz.answer %></td>
-          <td><%= link_to "#{quiz_center_quiz.knowledge}", quiz_center_quiz.knowledge %></td>
           <td><%= timeago_tag(quiz_center_quiz.end_date, :format => :short) if quiz_center_quiz.end_date?%></td>
           <td><%= time_tag(quiz_center_quiz.created_at, :format => :short) if quiz_center_quiz.created_at?%></td>
           <td><%= timeago_tag(quiz_center_quiz.updated_at, :format => :short) if quiz_center_quiz.updated_at?%></td>

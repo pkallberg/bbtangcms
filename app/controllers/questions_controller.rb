@@ -11,7 +11,7 @@ class QuestionsController < ApplicationController
       @questions = Question.where(created_by: @user.id).paginate(:page => params[:page]).order('created_at desc')
       breadcrumbs.add "#{@user}'s "+I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), questions_path(user_id: @user.id)
     else
-      @questions = Question.paginate(:page => params[:page]).order('created_at desc')
+      @questions = Question.paginate(:page => params[:page]).order('score DESC')
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), questions_path
     end
 

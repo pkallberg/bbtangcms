@@ -138,13 +138,6 @@ BBTangCMS::Application.routes.draw do
 
   resources :subjects
 
-  get "site/about"
-  get "site/changelog"
-  get "site/license"
-  get "site/policies"
-  get "site/team"
-  get "site/support"
-
   namespace :tag do
     resources :identities , :only => [:index, :show, :new, :create] do
       resources :timelines, :only => [:index, :show, :new, :create] do
@@ -184,7 +177,6 @@ BBTangCMS::Application.routes.draw do
     match '/422', :to => 'errors#render_422'
     match '/500', :to => 'errors#render_500'
   end
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

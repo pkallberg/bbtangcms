@@ -3,12 +3,8 @@ class User < ActiveRecord::Base
   scope :level, ->(level_id) {joins(:profile).where('profiles.level_id = ?', level_id)}
   scope :daren, joins(:profile).where('profiles.level_id = ?', 2)
   scope :expert, joins(:profile).where('profiles.level_id = ?', 3)
-  #param = {provider: "sina", uid: "1572620462"}
-  #User.authorization(provider: "sina", uid: "1572620462")
-  scope :authorization, ->(param) {joins(:authorizations).readonly(false).where(['authorizations.provider = ? and authorizations.uid = ?', param[:provider],param[:uid]])}
 
 
-  has_many :authorizations, :dependent => :destroy
   has_many :messages
   include HasMessages
   # Include default devise modules. Others available are:
@@ -166,22 +162,6 @@ class User < ActiveRecord::Base
   def is_internal_user?
     internal_user = InternalUser.new
     internal_user.all_internal_email.include? self.email ? true : false
-  end
-
-  def current_sign_in_city
-    change_ip_to_city(current_sign_in_ip) if current_sign_in_ip.present?
-  end
-
-  def last_sign_in_city
-    change_ip_to_city(last_sign_in_ip) if last_sign_in_ip.present?
-  end
-
-  def change_ip_to_city(ip=nil)
-    is = IpSearch.new
-    ip ||= "116.228.214.170"
-    is.find_ip_location(ip)
-    #breakpoint
-    return is.country.gsub("市","")
   end
 
   class << self

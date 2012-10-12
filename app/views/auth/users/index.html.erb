@@ -8,11 +8,8 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <!--th><%= model_class.human_attribute_name(:username) %></th-->
+      <th><%= model_class.human_attribute_name(:username) %></th>
       <th><%= model_class.human_attribute_name(:email) %></th>
-      <th><%= model_class.human_attribute_name(:last_sign_in_city) %></th>
-      <th><%= model_class.human_attribute_name(:sign_in_count) %></th>
-      <th><%= model_class.human_attribute_name(:authorizations) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -21,11 +18,8 @@
     <% @auth_users.each do |auth_user| %>
       <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
         <td><%= link_to auth_user.id, auth_user_path(auth_user) %></td>
-        <!--td><%= auth_user.username %></td-->
+        <td><%= auth_user.username %></td>
         <td><%= auth_user.email %></td>
-        <td><%= auth_user.last_sign_in_city %></td>
-        <td><%= auth_user.sign_in_count %></td>
-        <td><%= auth_user.authorizations.collect{|a| "#{a}"}.join(",") %></td>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)),
                       auth_user_path(auth_user), :class => 'btn btn-mini' %>

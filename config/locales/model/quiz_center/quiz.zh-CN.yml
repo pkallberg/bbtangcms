@@ -8,8 +8,6 @@ zh-CN:
         _type: "字段类型"
         title: "名称"
         answer: "答案"
-        knowledge_id: "知识ID"
-        knowledge: "知识"
         end_date: "截止日期"
         created_at: "创建时间"
         updated_at: "更新时间"

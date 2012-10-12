@@ -1,1 +1,0 @@
-/home/jhjguxin/BBTang/bbtangcms/ChangeLog.markdown

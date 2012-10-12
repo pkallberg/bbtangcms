@@ -11,10 +11,3 @@
     first: "First"
     second: "Second"
     third: "Third"
-    site:
-      about: "关于我们"
-      changelog: "更新日志"
-      license: "许可协议"
-      policies: "免责声明"
-      team: "团队"
-      support: "帮助"

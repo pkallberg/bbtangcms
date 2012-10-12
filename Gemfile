@@ -4,12 +4,8 @@ source 'http://ruby.taobao.org/'
 gem 'rails', '3.2.2'
 gem "rails-i18n", "~> 0.6.5"
 gem "rails-timeago", "~> 1.4.2"
-
-#This gem allows you to write static Rails views and partials using the Markdown syntax. No more editing prose in HTML!
-gem 'markdown-rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 
 group :production, :development, :test do
   gem 'mysql2'

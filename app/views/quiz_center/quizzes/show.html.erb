@@ -3,7 +3,6 @@
 <%= show_for @quiz_center_quiz do |s| %>
   <%= s.attribute :title %>
   <%= s.attribute :answer %>
-  <%= s.attribute :knowledge, value: link_to("#{@quiz_center_quiz.knowledge}", @quiz_center_quiz.knowledge) %>
   <%= s.attribute :end_date %>
   <%= s.attribute :created_at %>
   <%= s.attribute :updated_at %>

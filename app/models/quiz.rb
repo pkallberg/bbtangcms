@@ -12,4 +12,5 @@ class Quiz < ActiveRecord::Base
   def wrong_percent
     100 - right_percent
   end
+
 end

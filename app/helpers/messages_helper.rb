@@ -1,4 +1,3 @@
-# encoding: utf-8
 module MessagesHelper
   def new_messages(user = nil)
     user ||= current_user
@@ -12,7 +11,7 @@ module MessagesHelper
   def new_messages_notice(user = nil)
     messages = new_messages(user = user)
     if messages.present?
-      "你有来自于" << messages.map(&:from).collect{|u| "#{u}"}.compact.uniq.join(",") << "的#{messages.count}条消息"
+      "#{messages.count} new message from " + messages.map(&:from).collect{|u| "#{u}"}.compact.uniq.join(",")
     end
   end
 end
