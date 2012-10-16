@@ -147,6 +147,7 @@ class User < ActiveRecord::Base
     end
   end
 
+
   def is_cms_user?
     tmp = false
     if self.cms_roles.present?
@@ -181,7 +182,8 @@ class User < ActiveRecord::Base
     ip ||= "116.228.214.170"
     is.find_ip_location(ip)
     #breakpoint
-    return is.country.gsub("市","")
+    #return is.country.gsub("市","")
+    is.country.split("省").last.gsub("市","")
   end
 
   class << self

@@ -8,6 +8,7 @@ class UserMail < AsyncMailer
 
   end
 
+
   # 发送邀请邮件
   def send_invitation(list, url)
     return false if list.empty?
@@ -53,7 +54,7 @@ class UserMail < AsyncMailer
          :template_name => 'question_invite')
   end
 
-  # 分享问题
+  # 新问题提示
   #email = "305912847@qq.com"
   def send_new_question_notify(email = "305912847@qq.com", question_id  = Question.last.id)
     @question = Question.find_by_id question_id
@@ -64,6 +65,84 @@ class UserMail < AsyncMailer
          :template_path => 'mailer',
          :template_name => 'new_question_notify')
   end
+
+  # 每周精选
+  def weekly_notify(user = User.last)
+    @user = User.find user if User.exists? user
+
+    if @user.present?
+      @email = @user.email
+
+      mail(:to => @email,
+           :subject => "你好 #{@user}, 每周精选！",
+           :template_path => 'mailer',
+           :template_name => 'weekly_notify')
+    end
+  end
+
+  # 每月精选
+  def monthly_notify(user = User.last)
+    @user = User.find user if User.exists? user
+
+    if @user.present?
+      @email = @user.email
+
+      mail(:to => @email,
+           :subject => "你好 #{@user}, 每月精选！",
+           :template_path => 'mailer',
+           :template_name => 'monthly_notify')
+    end
+  end
+
+  # 节日
+  def festival_notify(user = User.last,festival = nil)
+    @user = User.find user if User.exists? user
+    @festival ||= "节日快乐"
+
+    if @user.present?
+      @email = @user.email
+
+      mail(:to => @email,
+           :subject => "你好 #{@user}, #{@festival}！",
+           :template_path => 'mailer',
+           :template_name => 'festival_notify')
+    end
+
+  end
+
+  # user 生日
+  def user_birthday_notify(profile = nil,pre_days = 0)
+    @profile = Profile.find profile if Profile.exists? profile
+    if @profile.present? and @profile.user.present?
+      @user = @profile.user
+      @email = @profile.user.email
+      @pre_days = pre_days.present? ? pre_days : 0
+      @pre_days_tips = (@pre_days > 0) ? "#{pre_days}天之后" : "今天"
+
+      mail(:to => @email,
+           :subject => "你好#{@user},#{@pre_days_tips}是你的#{@profile.age}岁生日,祝你生日快乐！",
+           :template_path => 'mailer',
+           :template_name => 'user_birthday_notify')
+    end
+  end
+
+  # baby 生日
+  def baby_birthday_notify(baby = nil,pre_days = 0)
+    @baby = Baby.find baby if Baby.exists? baby
+    @profile = @baby.profile
+    if @baby.present? and @profile.present? and @profile.user.present?
+      @user = @profile.user
+      @email = @profile.user.email
+      @pre_days = pre_days.present? ? pre_days : 0
+      @pre_days_tips = (@pre_days > 0) ? "#{pre_days}天之后" : "今天"
+      debugger
+      mail(:to => @email,
+           :subject => "你好 #{@user}, #{@pre_days_tips} 是你的孩子#{@baby},#{@baby.age} 岁生日,生日快乐！",
+           :template_path => 'mailer',
+           :template_name => 'baby_birthday_notify')
+    end
+  end
+
 
   # 测试邮件
   def send_test_email(email)

@@ -35,3 +35,6 @@ zh-CN:
         auto_tags: "自动标签"
         created_at: "创建时间"
         face: "封面"
+        identities: "对象标签"
+        categories: "分类标签"
+        timelines: "时间标签"

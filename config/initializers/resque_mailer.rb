@@ -1,7 +1,9 @@
 #load_resque.rb
-require 'resque'
+#require 'resque'
 
 #ActionMailer::Base.delivery_method = :sendmail
+#Resque::Mailer.default_queue_name = "#{Rails.application.class.parent_name.downcase}"
+Resque::Mailer.default_queue_name = 'bbtcms'
 
 class AsyncMailer < ActionMailer::Base
   include Resque::Mailer

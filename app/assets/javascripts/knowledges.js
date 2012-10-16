@@ -5,6 +5,7 @@ $(document).ready(function(){
   var editor = KindEditor.create(
     'textarea[id="knowledge_body"]',
     {
+      allowFileManager: false,
       width : '850px',
       height: '500px',
       uploadJson: '/kindeditor/upload',

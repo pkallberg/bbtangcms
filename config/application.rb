@@ -70,5 +70,10 @@ module BBTangCMS
     #config.after_initialize do |app|
     # app.routes.append{ match '*a', :to => 'application#render_404' } unless config.consider_all_requests_local
     #end
+    ##For all mailers in Rails 3 (setting "application" helper):
+    #config.to_prepare do
+    #  ActionMailer::Base.helper "application"
+    #end
+
   end
 end

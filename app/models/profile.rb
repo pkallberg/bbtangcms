@@ -498,6 +498,24 @@ class Profile < ActiveRecord::Base
     self.level_id == 3 ? true : false
   end
 
+  def age
+    return nil unless self.birthday?
+    today = Date.today
+    age = today.year - birthday.year
+    age -= 1 if today.month < birthday.month || (today.month == birthday.month && today.mday < birthday.mday)
+    age
+  end
+
+  def birthday_arrive_in?(days = 0)
+    pre_birthday = Date.today + days.to_i
+    return nil unless self.birthday?
+    (pre_birthday.strftime('%m%d') == birthday.strftime('%m%d')) and self.age > 0
+  end
+
+  def birthday_today?
+    birthday_arrive_in? and self.age > 0
+  end
+
   def update_tags_count
     tags_list = [:tags, :timelines, :categories, :identities]
     tags_list.each do |tag|

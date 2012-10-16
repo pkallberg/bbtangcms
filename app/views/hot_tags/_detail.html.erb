@@ -6,53 +6,24 @@
         <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
       </div-->
 
-      <%- identity_model_class = Identity.new.class -%>
-      <%- timeline_model_class = Timeline.new.class -%>
-      <%- category_model_class = Category.new.class -%>
+
       <div class="tabbable box"> <!-- Only required for left/right tabs -->
         <ul class="nav nav-tabs">
-          <% if @identities.present? %>
-          <li class="active"><%= link_to identity_model_class.model_name.human.pluralize,"#identities", "data-toggle" => "tab"%></li>
-          <% end %>
-          <% if @timelines.present? %>
-          <li><%= link_to timeline_model_class.model_name.human.pluralize,"#timelines", "data-toggle" => "tab"%></li>
-          <% end %>
-          <% if @categories.present? %>
-          <li><%= link_to category_model_class.model_name.human.pluralize,"#categories", "data-toggle" => "tab"%></li>
-          <% end %>
-          <% if @tags.present? %>
-          <li><%= link_to '自定义标签s',"#tags", "data-toggle" => "tab"%></li>
+          <% @tags_hash.each do |k,_|%>
+          <li <%= "class='active'" if k.eql? @tags_hash.keys.first %>>
+            <%= link_to model_class.human_attribute_name(k),"##{k}", "data-toggle" => "tab"%></li>
           <% end %>
         </ul>
         <div class="tab-content">
-          <div class="tab-pane active" id="identities">
-          <% if @identities.present? %>
-            <% tag_cloud(@identities, %w(css1 css2 css3 css4 css5)) do |tag, css_class| %>
-              <%= link_to "#{tag.name}(#{tag.count})", "#", :class => css_class, :title => tag.count %>
-            <% end %>
+          <% @tags_hash.each do |k,v|%>
+            <div class="tab-pane <%= 'active' if k.eql? @tags_hash.keys.first %>" id='<%= k.to_s%>'>
+              <% if v.present? %>
+                <% tag_cloud(v, %w(css1 css2 css3 css4 css5)) do |tag, css_class| %>
+                <%= link_to "#{tag.name}(#{tag.count})", "#", :class => css_class, :title => tag.count %>
+                <% end %>
+              <% end %>
+            </div>
           <% end %>
-          </div>
-          <div class="tab-pane" id="timelines">
-          <% if @timelines.present? %>
-            <% tag_cloud(@timelines, %w(css1 css2 css3 css4 css5)) do |tag, css_class| %>
-              <%= link_to "#{tag.name}(#{tag.count})", "#", :class => css_class, :title => tag.count %>
-            <% end %>
-          <% end %>
-          </div>
-          <div class="tab-pane" id="categories">
-          <% if @categories.present? %>
-            <% tag_cloud(@categories, %w(css1 css2 css3 css4 css5)) do |tag, css_class| %>
-              <%= link_to "#{tag.name}(#{tag.count})", "#", :class => css_class, :title => tag.count %>
-            <% end %>
-          <% end %>
-          </div>
-          <div class="tab-pane" id="tags">
-          <% if @tags.present? %>
-            <% tag_cloud(@tags, %w(css1 css2 css3 css4 css5)) do |tag, css_class| %>
-              <%= link_to "#{tag.name}(#{tag.count})", "#", :class => css_class, :title => tag.count %>
-            <% end %>
-          <% end %>
-          </div>
         </div>
       </div>
     </div>

@@ -40,3 +40,6 @@ zh-CN:
         deleted_by: "删除用户ID"
         deleted_user: "删除用户"
         delta: "delta"
+        identities: "对象标签"
+        categories: "分类标签"
+        timelines: "时间标签"

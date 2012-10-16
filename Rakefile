@@ -45,4 +45,5 @@ end
 #COUNT=5 PIDFILE=./resque.pid BACKGROUND=yes QUEUE=* RAILS_ENV=production rake environment resque:work
 #VVERBOSE=true COUNT=5  PIDFILE=./resque.pid QUEUE=* RAILS_ENV=production rake environment resque:work
 #COUNT=5 PIDFILE=./resque.pid QUEUE=* RAILS_ENV=development rake environment resque:work
+#COUNT=5 PIDFILE=./resque.pid BACKGROUND=yes QUEUE=bbtangcms  RAILS_ENV=development rake environment resque:work
 #rake RAILS_ENV=production resque:stop_workers
