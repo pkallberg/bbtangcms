@@ -6,6 +6,8 @@ require 'has_messages'
 require 'find_city'
 require 'internal_user'
 require "sphinx/indexer"
+#load user model from mmbk
+require "user/mmbk_user"
 #require 'will_paginate/pagination_list_link_renderer' # 自定义分页，显示更多
 
 #require 'sanitize'  # 去除字符串中的html标签

@@ -53,7 +53,7 @@
     <% @questions.each do |question| %>
       <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
         <td><%= link_to question.id, question_path(question), :title => object_summary(obj = question), :rel => "tooltip" %></td>
-        <td><%= question.title %></td>
+        <td><%= "#{question}" %></td>
         <td><%= link_to question.answers_count, question_answers_path(question), :title => "#{object_summary(obj = question)}的相关回答", :rel => "tooltip"   %></td>
         <td><%= question.score %></td>
         <!--td><%= question.content %></td-->

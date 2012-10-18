@@ -69,7 +69,7 @@ class Knowledge< ActiveRecord::Base
   scope :not_deleted,  where("knowledgebase.deleted_at is NULL")
   scope :id_equals, lambda { |input_id| where("knowledgebase.id = ?", input_id)}
 
-  include SphinxIndexable::Knowledge
+  #include SphinxIndexable::Knowledge
 
   # find the knowledges whose tags include param
   def self.find_knowledges_with_tag(tag_id)

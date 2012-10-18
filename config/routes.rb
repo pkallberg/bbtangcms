@@ -117,6 +117,7 @@ BBTangCMS::Application.routes.draw do
   namespace :recommend do
     resources :expert_categories
     resources :other_columns
+    resources :recommend_apps
     resources :recommend_events
     resources :recommend_hindices
     resources :recommend_mtools

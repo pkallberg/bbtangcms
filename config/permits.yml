@@ -12,6 +12,7 @@ permit:
   create_tag_identities_timelines_category: create_tag_identities_timelines_category
   #create_recommend_recommend_event: create_recommend_recommend_event
   #create_recommend_recommend_mtool: create_recommend_recommend_mtool
+  create_recommend_recommend_app: create_recommend_recommend_app
   create_recommend_recommend_other: create_recommend_recommend_other
   create_recommend_other_column: create_recommend_other_column
   create_recommend_expert_category: create_recommend_expert_category
@@ -41,6 +42,7 @@ permit:
   update_tag_identities_timelines_category: create_tag_identities_timelines_category
   update_recommend_expert_category: update_recommend_expert_category
   update_recommend_vip_category: update_recommend_vip_category
+  update_recommend_recommend_app: update_recommend_recommend_app
   update_recommend_recommend_other: update_recommend_recommend_other
   update_recommend_other_column: update_recommend_other_column
   update_recommend_recommend_product: update_recommend_recommend_product
@@ -68,6 +70,7 @@ permit:
   read_tag_identities_timelines_category: read_tag_identities_timelines_category
   read_recommend_expert_category: read_recommend_expert_category
   read_recommend_vip_category: read_recommend_vip_category
+  read_recommend_recommend_app: read_recommend_recommend_app
   read_recommend_recommend_other: read_recommend_recommend_other
   read_recommend_other_column: read_recommend_other_column
   read_recommend_recommend_product: read_recommend_recommend_product
@@ -95,6 +98,7 @@ permit:
   destroy_tag_identities_timelines_category: destroy_tag_identities_timelines_category
   destroy_recommend_expert_category: destroy_recommend_expert_category
   destroy_recommend_vip_category: destroy_recommend_vip_category
+  destroy_recommend_recommend_app: destroy_recommend_recommend_app
   destroy_recommend_recommend_other: destroy_recommend_recommend_other
   destroy_recommend_other_column: destroy_recommend_other_column
   destroy_recommend_recommend_product: destroy_recommend_recommend_product

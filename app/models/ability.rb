@@ -91,6 +91,10 @@ class Ability
     can :create, Category#, :identity => Identity.new, :timeline => Timeline.new
   end
 
+  def create_recommend_recommend_app
+    can :create, Recommend::RecommendApp
+  end
+
   def create_recommend_recommend_event
     can :create, Recommend::RecommendEvent
   end
@@ -205,6 +209,10 @@ class Ability
 
   def update_tag_identities_timelines_category
     can :update, Category#, :identity => Identity.new, :timeline => Timeline.new
+  end
+
+  def update_recommend_recommend_app
+    can :update, Recommend::RecommendApp
   end
 
   def update_recommend_recommend_event
@@ -323,6 +331,10 @@ class Ability
     can :read, Category#, :identity => Identity.new, :timeline => Timeline.new
   end
 
+  def read_recommend_recommend_app
+    can :read, Recommend::RecommendApp
+  end
+
   def read_recommend_recommend_mtool
     can :read, Recommend::RecommendMtool
   end
@@ -432,6 +444,10 @@ class Ability
 
   def destroy_tag_identities_timelines_category
     can :destroy, Category#, :identity => Identity.new, :timeline => Timeline.new
+  end
+
+  def destroy_recommend_recommend_app
+    can :destroy, Recommend::RecommendApp
   end
 
   def destroy_recommend_recommend_mtool

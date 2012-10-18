@@ -1,0 +1,30 @@
+zh-CN:
+  mongoid:
+    models:
+      recommend/recommend_app: "App推送"
+    attributes:
+      recommend/recommend_app:
+        _id: "ID"
+        _type: "字段类型"
+        position: "栏位"
+        name: "名称"
+        body: "正文"
+        deleted: "软删除"
+        created_at: "创建时间"
+        updated_at: "更新时间"
+        p1: "1"
+        p2: "2"
+        p3: "3"
+        p4: "4"
+        p5: "5"
+        p6: "6"
+        p7: "7"
+        p8: "8"
+        p9: "9"
+        p10: "10"
+        p11: "11"
+        p12: "12"
+        c1: "粉色"
+        c2: "橙色"
+        c3: "枚红"
+        c4: "蓝色"

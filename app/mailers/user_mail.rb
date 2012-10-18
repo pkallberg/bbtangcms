@@ -135,7 +135,7 @@ class UserMail < AsyncMailer
       @email = @profile.user.email
       @pre_days = pre_days.present? ? pre_days : 0
       @pre_days_tips = (@pre_days > 0) ? "#{pre_days}天之后" : "今天"
-      debugger
+
       mail(:to => @email,
            :subject => "你好 #{@user}, #{@pre_days_tips} 是你的孩子#{@baby},#{@baby.age} 岁生日,生日快乐！",
            :template_path => 'mailer',

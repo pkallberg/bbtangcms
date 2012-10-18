@@ -61,22 +61,22 @@ end
 #every '0 3 27-31 * *' do
 every '0 3 1 * *' do
   runner "puts '#{DateTime.now} begin to send monthly_notify ...'"
-  rake "bbtangcms:notify:monthly_notify"
+  #rake "bbtangcms:notify:monthly_notify"
 end
 
 every '10 2 ? * MON' do
   runner "puts '#{DateTime.now} begin to send weekly_notify ...'"
-  rake "bbtangcms:notify:weekly_notify"
+  #rake "bbtangcms:notify:weekly_notify"
 end
 
 every 1.day, :at => '1:00 am' do
   runner "puts '#{DateTime.now} begin to send user_birthday_notify ...'"
-  rake "bbtangcms:notify:user_birthday_notify"
+  #rake "bbtangcms:notify:user_birthday_notify"
 end
 
 every 1.day, :at => '1:30 am' do
   runner "puts '#{DateTime.now} begin to send baby_birthday_notify ...'"
-  rake "bbtangcms:notify:baby_birthday_notify"
+  #rake "bbtangcms:notify:baby_birthday_notify"
 end
 
 every 1.day, :at => '0:30 am' do

@@ -44,7 +44,7 @@ class Recommend::RecommendHindicesController < Recommend::RecommendBaseControlle
   def edit
     @recommend_recommend_hindex = Recommend::RecommendHindex.find(params[:id])
 
-    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), edit_recommend_recommend_hindex_path(@recommend_recommend_event)
+    breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), edit_recommend_recommend_hindex_path(@recommend_recommend_app)
   end
 
   # POST /recommend/recommend_hindices

@@ -102,3 +102,13 @@ bbtcms_test:
   host: localhost
   username: bbtang
   password: bbtang
+
+ecshop:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: ecshop
+  pool: 55
+  host: localhost
+  username: yangming
+  password: SKtMYSNESMGeArcM

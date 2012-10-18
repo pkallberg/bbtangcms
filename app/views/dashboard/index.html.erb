@@ -89,7 +89,7 @@
 <div class="item box">
   <%= render :template => 'recommend/dashboard/show'%>
 </div>
-<% if newest_users.present? %>
+<% if newest_users[0..100].present? %>
   <div class = "newest_users box">
     <span class="label label-important"><%= t(".newest_user") %></span>
     <h1><%= t(".newest_user") %></h1>

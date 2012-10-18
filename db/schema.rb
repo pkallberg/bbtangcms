@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120907084113) do
+ActiveRecord::Schema.define(:version => 20121016090235) do
 
   create_table "admin_settings", :force => true do |t|
     t.string   "name"
@@ -275,6 +275,14 @@ ActiveRecord::Schema.define(:version => 20120907084113) do
 
   add_index "follows", ["followable_id", "followable_type"], :name => "fk_followables"
   add_index "follows", ["follower_id", "follower_type"], :name => "fk_follows"
+
+  create_table "goods", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.string   "avatar_url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "group_categories", :force => true do |t|
     t.string   "name"

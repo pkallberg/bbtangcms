@@ -26,7 +26,7 @@ class Profile < ActiveRecord::Base
   before_save :update_tags_count
   before_save :delete_empty_baby
 
-  include SphinxIndexable::Profile
+  #include SphinxIndexable::Profile
 
   # 关联user_data_statistic， 直接使用字段, except service attributes like created_at, updated_at, etc.
   # delegate_attributes :to => :user_data_statistic

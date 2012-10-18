@@ -44,7 +44,7 @@ class Question < ActiveRecord::Base
     User.find(self.created_by) if (self.created_by.present?) and (User.exists? self.created_by)
   end
 
-  include SphinxIndexable::Question
+  #include SphinxIndexable::Question
 
   def if_soft_deleted(soft_deleted =nil, user = nil)
     if soft_deleted.present? and user.present?
@@ -232,7 +232,7 @@ class Question < ActiveRecord::Base
   end
 
   def to_s(length=20)
-    self.title.present? ? self.title : self.content.truncate(30,:omission => '... (more info)')
+    self.title.present? ? self.title : self.content.truncate(30,:omission => '... (more info)',length: length)
   end
 
   private

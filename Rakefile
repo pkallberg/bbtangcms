@@ -42,8 +42,9 @@ end
 ####run below command
 #Let's start a worker to run file_serve jobs:
 #$ cd app_root
-#COUNT=5 PIDFILE=./resque.pid BACKGROUND=yes QUEUE=* RAILS_ENV=production rake environment resque:work
-#VVERBOSE=true COUNT=5  PIDFILE=./resque.pid QUEUE=* RAILS_ENV=production rake environment resque:work
-#COUNT=5 PIDFILE=./resque.pid QUEUE=* RAILS_ENV=development rake environment resque:work
-#COUNT=5 PIDFILE=./resque.pid BACKGROUND=yes QUEUE=bbtangcms  RAILS_ENV=development rake environment resque:work
+#COUNT=5 PIDFILE=./resque.pid BACKGROUND=yes QUEUE=bbtcms RAILS_ENV=production rake environment resque:work
+#VVERBOSE=true COUNT=5  PIDFILE=./resque.pid QUEUE=bbtcms RAILS_ENV=production rake environment resque:work
+#VVERBOSE=true COUNT=5  PIDFILE=./resque.pid QUEUE=bbtcms RAILS_ENV=development rake environment resque:work
+#COUNT=5 PIDFILE=./resque.pid QUEUE=bbtcms RAILS_ENV=development rake environment resque:work
+#COUNT=5 PIDFILE=./resque.pid BACKGROUND=yes QUEUE=bbtcms  RAILS_ENV=development rake environment resque:work
 #rake RAILS_ENV=production resque:stop_workers

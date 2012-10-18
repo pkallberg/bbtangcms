@@ -24,6 +24,8 @@
               recommend_vip_categories_path %></li>
       <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::OtherColumn.new.class.model_name.human)),
               recommend_other_columns_path %></li>
+      <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendApp.new.class.model_name.human)),
+              recommend_recommend_apps_path %></li>
       <li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendOther.new.class.model_name.human)),
               recommend_recommend_others_path %></li>
     <!--li><%= link_to t('.index', :default => t("helpers.links.index", :model => Recommend::RecommendEvent.new.class.model_name.human)),
