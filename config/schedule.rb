@@ -1,3 +1,4 @@
+# encoding: utf-8
 # Use this file to easily define all of your cron jobs.
 #
 # It's helpful, but not entirely necessary to understand cron before proceeding.
@@ -29,6 +30,25 @@ job_type :command, ":task :output"
 job_type :rake,    "cd :path && RAILS_ENV=:environment bundle exec rake :task --silent :output"
 job_type :runner,  "cd :path && script/rails runner -e :environment ':task' :output"
 job_type :script,  "cd :path && RAILS_ENV=:environment bundle exec script/:task :output"
+这里有crontab文件条目的一些例子：
+30 21 * * * /usr/local/apache/bin/apachectl restart
+上面的例子表示每晚的21:30重启apache。
+45 4 1,10,22 * * /usr/local/apache/bin/apachectl restart
+上面的例子表示每月1、10、22日的4 : 45重启apache。
+10 1 * * 6,0 /usr/local/apache/bin/apachectl restart
+上面的例子表示每周六、周日的1 : 10重启apache。
+0,30 18-23 * * * /usr/local/apache/bin/apachectl restart
+上面的例子表示在每天18 : 00至23 : 00之间每隔30分钟重启apache。
+0 23 * * 6 /usr/local/apache/bin/apachectl restart
+上面的例子表示每星期六的11 : 00 pm重启apache。
+0 */1 * * * /usr/local/apache/bin/apachectl restart
+每一小时重启apache
+* 23-7/1 * * * /usr/local/apache/bin/apachectl restart
+晚上11点到早上7点之间，每隔一小时重启apache
+0 11 4 * mon-wed /usr/local/apache/bin/apachectl restart
+每月的4号与每周一到周三的11点重启apache
+0 4 1 jan * /usr/local/apache/bin/apachectl restart
+一月一号的4点重启apache
 =end
 #whenever -i  config/schedule.rb -s environment=development --update-crontab bbtangcms
 
@@ -58,13 +78,12 @@ every 1.day, :at => '2:00 am' do
   rake "bbtangcms:notify:user_birthday_notify"
 end
 
-#every '0 3 27-31 * *' do
 every '0 3 1 * *' do
   runner "puts '#{DateTime.now} begin to send monthly_notify ...'"
   #rake "bbtangcms:notify:monthly_notify"
 end
 
-every '10 2 ? * MON' do
+every '10 2 * * MON' do
   runner "puts '#{DateTime.now} begin to send weekly_notify ...'"
   #rake "bbtangcms:notify:weekly_notify"
 end
