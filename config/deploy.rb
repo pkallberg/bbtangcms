@@ -99,8 +99,8 @@ namespace :deploy do
   task :seed do
     run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=#{rails_env}"
   end
-  desc "reload the database with seed data"
-  task :seed do
+  desc "export user in mmbkoo to bbtang"
+  task :export_mmbk_user do
     run "cd #{current_path}; bundle exec rake bbtangcms:user:export_mmbk_user RAILS_ENV=#{rails_env}"
   end
 end

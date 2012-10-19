@@ -853,3 +853,11 @@ new file:   spec/views/site/team.html.erb_spec.rb
 * Author: Francis Jiang <864248765@qq.com>	2012-10-18
 
     try to make recommend mail queues, export user in mmbkoo to bbtang, add recommend/recommend_app mod
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-19
+
+    fix some bug, add template for 'welcome_mmbkoo_user'
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-19
+
+    fix crontab error
