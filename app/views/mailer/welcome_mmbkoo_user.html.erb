@@ -1,7 +1,98 @@
-<p><%= @email %> 您好：</p>
-===============================================
-<p>
-  <%= "#{@email}"%>
-  <%= "#{@user}"%>
-</p>
-note: <span>这只是一封系统自动发出的邮件，请不要直接回复。</span>
+<body style="margin:0;padding:0;color:#020000;font-size:12px;">
+<table width="690" cellspacing="0" cellpadding="0" border="0" align="center">
+	<tbody>
+		<tr>
+			<td valign="top"><p style="margin:0;height:84px;"><img src="http://www.bbtang.com/uploads/rails_kindeditor/image/201210/1ccf195546df.jpg" width="690" height="84" alt=""/></p></td>
+		</tr>
+		<tr>
+			<td valign="top"><table width="100%" cellspacing="0" cellpadding="0" border="0" style="border:1px solid #e598ea;background-color:#fff;">
+					<tbody>
+						<tr height="15"></tr>
+						<tr>
+							<td width="30">&nbsp;</td>
+							<td><p style="margin:0;line-height:26px;font-size:14px;">亲：</p>
+								<p style="margin:0;text-indent:2em;line-height:26px;font-size:14px;">您好！</p>
+								<p style="margin:0;text-indent:2em;line-height:26px;font-size:14px;">我是妈妈宝酷创始人，也是经常与大家聊育儿妙方的那位妈咪Jane。衷心希望妈妈宝酷为大家提供优质产品和服务。如您遇到任何养育问题，也欢迎来我的新浪围脖<a target="_blank" href="http://weibo.com/askjane" style="color:#0065b3;">@妈咪Jane育儿妙方</a>提问，交流。</p></td>
+							<td width="30"></td>
+						</tr>
+						<tr height="20"></tr>
+						<tr>
+							<td width="30">&nbsp;</td>
+							<td><p style="margin:0;text-indent:2em;line-height:26px;font-size:14px;">育儿问题天天有。为了让新手父母更快、更准确地找到可信赖的答案，我创办了一个全新服务概念的<a target="_blank" href="http://www.bbtang.com" style="color:#0065b3;">棒棒糖亲子问答社区</a>。只要您提问就会有答案，平台会为您推送多纬度解决方案：</p>
+								<p style="margin:0;text-indent:2em;line-height:26px;font-size:12px;font-weight:700;">纬度一：专家达人的回答，让您育儿路上有向导</p>
+								<p style="margin:0;text-indent:2em;line-height:26px;font-size:12px;font-weight:700;">纬度二：自学的知识文章，让您明白为什么</p>
+								<p style="margin:0;text-indent:2em;line-height:26px;font-size:12px;font-weight:700;">纬度三：网友的经验分享，让您互助，互动，互粉</p></td>
+							<td width="30">&nbsp;</td>
+						</tr>
+						<tr height="20"></tr>
+						<tr>
+							<td width="30">&nbsp;</td>
+							<td><p style="margin:0;text-indent:2em;line-height:26px;font-size:14px;">亲，我诚邀您来棒棒糖。出于安全考虑，您可以通过如下链接设置密码：</p>
+								<p style="margin:0;text-indent:2em;line-height:20px;">
+								  <%= link_to edit_password_url(@user, :reset_password_token => @user.reset_password_token, :host => "www.bbtang.com"), edit_password_url(@user, :reset_password_token => @user.reset_password_token, :host => "www.bbtang.com"), :style =>"color:#0065b3;", :target =>"_blank" %>
+								</p>
+								<p style="margin:0;text-indent:2em;line-height:26px;font-size:14px;">以后，您可以用此邮箱地址和您设置的密码登陆棒棒糖。</p></td>
+							<td width="30">&nbsp;</td>
+						</tr>
+						<tr height="20"></tr>
+						<tr>
+							<td width="30">&nbsp;</td>
+							<td><p style="margin:0;text-indent:2em;line-height:26px;font-size:14px;">再次感谢！</p>
+								<p style="margin:0;padding-right:26px;line-height:20px;text-align:right;font-size:14px;">妈咪Jane<br/>
+									2012-10-17</p></td>
+							<td width="30">&nbsp;</td>
+						</tr>
+						<tr height="20"></tr>
+						<tr>
+							<td width="30">&nbsp;</td>
+							<td><table width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#ececec">
+									<thead>
+										<tr>
+											<th colspan="13" align="left" style="padding-left:15px;line-height:40px;color:#8a1a7e;font-size:16px;font-weight:700;">育儿想知道，去问棒棒糖：</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr height="6">
+											<td colspan="13"></td>
+										</tr>
+										<tr>
+											<td width="15"></td>
+											<td width="80" align="center"><a style="text-decoration:none;color:#000;font-size:14px;" target="_blank" href="http://bbtang.com/people/1823"><img style="padding-bottom:5px;border:0;" src="http://www.bbtang.com/uploads/paperclip/profiles/faces/144/s120/%E5%BC%A0%E6%80%9D%E8%8E%B1%E6%95%99%E6%8E%88%E4%B8%8E%E9%93%AD%E9%93%AD-2.jpg?1348207873" width="80" height="80" alt=""/><br/>
+												张思莱医师<br/>
+												<span style="color:#646464;font-size:12px;">[儿科]</span></a></td>
+											<td width="15"></td>
+											<td width="80" align="center"><a style="text-decoration:none;color:#000;font-size:14px;" target="_blank" href="http://bbtang.com/people/15"><img style="padding-bottom:5px;border:0;" src="http://www.bbtang.com/uploads/paperclip/profiles/faces/10/s120/JANE%E7%85%A7%E7%89%87.jpg?1340007084" width="80" height="80" alt=""/><br/>
+												妈咪Jane<br/>
+												<span style="color:#646464;font-size:12px;">[亲子]</span></a></td>
+											<td width="15"></td>
+											<td width="80" align="center"><a style="text-decoration:none;color:#000;font-size:14px;" target="_blank" href="http://bbtang.com/people/1895"><img style="padding-bottom:5px;border:0;" src="http://www.bbtang.com/uploads/paperclip/profiles/faces/216/s120/1.jpg?1348645163" width="80" height="80" alt=""/><br/>
+												虾咪妈咪<br/>
+												<span style="color:#646464;font-size:12px;">[新生儿护理]</span></a></td>
+											<td width="15"></td>
+											<td width="80" align="center"><a style="text-decoration:none;color:#000;font-size:14px;" target="_blank" href="http://bbtang.com/people/1912"><img style="padding-bottom:5px;border:0;" src="http://www.bbtang.com/uploads/paperclip/profiles/faces/234/s120/Dr_Chen's_Photo%E5%89%AF%E6%9C%AC.jpg?1348910223" width="80" height="80" alt=""/><br/>
+												陈磊医师<br/>
+												<span style="color:#646464;font-size:12px;">[妇产]</span></a></td>
+											<td width="15"></td>
+											<td width="80" align="center"><a style="text-decoration:none;color:#000;font-size:14px;" target="_blank" href="http://bbtang.com/people/1830"><img style="padding-bottom:5px;border:0;" src="http://www.bbtang.com/uploads/paperclip/profiles/faces/151/s120/IMG_5330.jpg?1348198377" width="80" height="80" alt=""/><br/>
+												严嘉成医师<br/>
+												<span style="color:#646464;font-size:12px;">[口腔]</span></a></td>
+											<td width="15"></td>
+											<td width="80" align="center"><a style="text-decoration:none;color:#000;font-size:14px;" target="_blank" href="http://bbtang.com/people/1757"><img style="padding-bottom:5px;border:0;" src="http://www.bbtang.com/uploads/paperclip/profiles/faces/78/s120/%E4%BD%95%E5%A5%87%E5%8C%BB%E7%94%9F-2.jpg?1349752428" width="80" height="80" alt=""/><br/>
+												何奇医师<br/>
+												<span style="color:#646464;font-size:12px;">[乳腺]</span></a></td>
+											<td width="15"></td>
+										</tr>
+										<tr height="20">
+											<td colspan="13"></td>
+										</tr>
+									</tbody>
+								</table></td>
+							<td width="30">&nbsp;</td>
+						</tr>
+						<tr height="30"></tr>
+					</tbody>
+				</table></td>
+		</tr>
+	</tbody>
+</table>
+</body>

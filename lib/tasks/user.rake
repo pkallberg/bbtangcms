@@ -66,13 +66,13 @@ def get_profile_date(params = {})
           #birthday = Time.at(mmbk_user.send(coll_name))
           profile.reverse_merge!(coll_name => mmbk_user.send(coll_name)) if mmbk_user.send(coll_name).present?
         when :City
-          profile.reverse_merge!(:city => mmbk_user.send(coll_name).gsub("f",""))
+          profile.reverse_merge!(:city => mmbk_user.send(coll_name).strip.gsub("f",""))
         when :sex
           profile.reverse_merge!(:gender => mmbk_user.send(coll_name))
         when :mobile_phone
           profile.reverse_merge!(:phone => mmbk_user.send(coll_name))
         else
-          profile.reverse_merge!(coll_name => mmbk_user.send(coll_name))
+          profile.reverse_merge!(coll_name => mmbk_user.send(coll_name).strip)
         end
       end
     end
@@ -83,13 +83,14 @@ end
 def export_user(params = {})
   mmbk_user = params.delete(:mmbk_user)
   if mmbk_user.present? and mmbk_user.class.to_s.eql? "MMBKUser"
-    if !(User.find_by_email(mmbk_user.email).present?)
+    if not User.exists?(email: mmbk_user.email.strip)
       logger.info "create user #{mmbk_user.email}"
       password = Devise.friendly_token[0,10]
       user = User.new(:email => mmbk_user.email , :password => password)
-      user.password = password
-      #generate_reset_password_token(user)
+      #user.password = password
+      generate_reset_password_token(user)
       user.skip_confirmation!
+      
       ActiveRecord::Base.transaction do
         user.save
         user.reset_authentication_token!
@@ -100,10 +101,11 @@ def export_user(params = {})
         profile = Profile.new(profile_date)
         profile.save
       end
+      
       if user.valid? and user.profile.present?
         if Rails.env.production?
           logger.info "send mail about 'welcome_mmbkoo_user' to #{user.email} ..."
-          mail = MMBKUserMail.welcome_mmbkoo_user(user: user)
+          mail = MMBKUserMail.welcome_mmbkoo_user(user.id)
           mail.deliver
         end
       end
@@ -115,7 +117,7 @@ end
 
 #rake bbtangcms:notify:export_mmbk_user
 namespace 'bbtangcms' do
-  namespace 'notify' do
+  namespace 'user' do
     desc "export user in mmbkoo to bbtang"
     task :export_mmbk_user => :environment do
       logger.info "begin to export user in mmbkoo to bbtang ..."
@@ -123,3 +125,19 @@ namespace 'bbtangcms' do
     end
   end
 end
+=begin
+def generate_reset_password_token(user)
+  if user.present?
+    user.reset_password_token = user.class.reset_password_token
+    user.reset_password_sent_at = Time.now.utc
+    user.reset_password_token
+  end
+end
+emails = %w(123412341234@qq.com zuozhufirst@163.com zhubin_web@hotmail.com as181920@hotmail.com missandshine@126.com sunny@bbtang.com 864248765@qq.com)
+users=emails.collect{|email| User.find_by_email email if User.exists? email: email}.compact
+users.collect{|u| generate_reset_password_token(u);u.save}
+users.each do |u|
+  email = MMBKUserMail.welcome_mmbkoo_user(u.id)
+  email.deliver
+end
+=end

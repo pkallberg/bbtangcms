@@ -831,3 +831,25 @@ new file:   spec/views/site/license.html.erb_spec.rb
 new file:   spec/views/site/policies.html.erb_spec.rb           
 new file:   spec/views/site/support.html.erb_spec.rb           
 new file:   spec/views/site/team.html.erb_spec.rb           
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-12
+
+    fix encode error,update changelog
+
+* Author: bbt_server <as181920@hotmail.com>	2012-10-12
+
+    fix popover not work on bootstarp v2.1.0
+
+> Merge: ea484da 3c80abc
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-16
+
+    Merge branch 'master' of bbtang.com:bbtang/bbtcms
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-16
+
+    fix resque not work on bbtangcms
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-18
+
+    try to make recommend mail queues, export user in mmbkoo to bbtang, add recommend/recommend_app mod

@@ -19,10 +19,10 @@ class MMBKUserMail < AsyncMailer
     @@smtp_settings = ActionMailer::Base.smtp_settings.merge CustomSetting
   end
 
+  # MMBKUserMail.welcome_mmbkoo_user(user: 1435).deliver
+  def welcome_mmbkoo_user(user = nil)
 
-  def welcome_mmbkoo_user(param = {})
-
-    @user = User.find param.delete(:user) if param.delete(:user).present? and User.exists? param.delete(:user)
+    @user = User.find user if user.present? and User.exists? user
     #@password = password
     if @user.present?
 =begin
