@@ -176,6 +176,17 @@ class User < ActiveRecord::Base
   def last_sign_in_city
     change_ip_to_city(last_sign_in_ip) if last_sign_in_ip.present?
   end
+  
+  def create_oauth_user(param= {})
+    if param[:provider].present? and param[:uid].present?
+      ActiveRecord::Base.transaction do
+        self.skip_confirmation! if not self.confirmed?
+        self.save
+        authorization = self.authorizations.new(provider: param[:provider], uid: param[:uid])
+        authorization.save
+      end
+    end
+  end
 
   def change_ip_to_city(ip=nil)
     is = IpSearch.new

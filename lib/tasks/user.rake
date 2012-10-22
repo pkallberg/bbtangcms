@@ -16,8 +16,13 @@ def export_mmbk_user
     #MMBKUser.where("email is not NULL")
     #MMBKUser.select([:email, :sex, :birthday, :msn, :qq, :mobile_phone, :City])
     count = rand(2000..3000)
+    last_mmbkuser = MMBKUser.find Authorization.last.uid.to_i if MMBKUser.exists? Authorization.last.uid.to_i
     logger.info "today plan to export #{count} user ..."
-    today_mmbk_users = MMBKUser.limit(count).where("email is not NULL and email != ''")
+    if last_mmbkuser.present?
+      today_mmbk_users = MMBKUser.limit(count).where("email is not NULL and email != '' and user_id > #{last_mmbkuser.id}")
+    else
+      today_mmbk_users = MMBKUser.limit(count).where("email is not NULL and email != ''")
+    end
 
 =begin
     #can not work with limit option,also same as 'find_each'
@@ -92,7 +97,8 @@ def export_user(params = {})
       user.skip_confirmation!
       
       ActiveRecord::Base.transaction do
-        user.save
+        #user.save
+        user.create_oauth_user({provider: "mmbkoo", uid: mmbk_user.id}) if User.authorization(provider: "mmbkoo", uid: "#{mmbk_user.id}").empty?
         user.reset_authentication_token!
         #([:email, :sex, :birthday, :msn, :qq, :mobile_phone, :City])
         profile_date = get_profile_date(mmbk_user: mmbk_user)
@@ -139,5 +145,13 @@ users.collect{|u| generate_reset_password_token(u);u.save}
 users.each do |u|
   email = MMBKUserMail.welcome_mmbkoo_user(u.id)
   email.deliver
+end
+##
+users = User.where("id >=1957 and id <= 2118")
+users.each do |user|
+  mmbk_user = MMBKUser.find_by_email user.email
+  if mmbk_user.present? and User.authorization(provider: "mmbkoo", uid: "#{mmbk_user.id}").empty?
+    user.create_oauth_user({provider: "bbmkoo", uid: mmbk_user.id})
+  end
 end
 =end
