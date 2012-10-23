@@ -28,17 +28,13 @@ class Note < ActiveRecord::Base
   end
 
   # 作者
-  #self.profile_id 实际上是 user_id
+  #self.created_by 实际上是 user_id
   def owner
-    Profile.find_by_user_id(self.profile_id)
-  end
-
-  def created_by
-    self.profile_id
+    Profile.find_by_user_id(self.created_by)
   end
 
   def created_by_id
-    self.profile_id
+    self.created_by
   end
 
   #def updated_user
@@ -50,11 +46,11 @@ class Note < ActiveRecord::Base
   end
 
   def note_next
-    note =Note.where(["id > ? and profile_id = ?" ,self.id.to_i,self.profile_id]).order("created_at").limit(1).first
+    note =Note.where(["id > ? and created_by = ?" ,self.id.to_i,self.created_by]).order("created_at").limit(1).first
   end
 
   def note_last
-    note = Note.where(["id < ? and profile_id = ?"  ,self.id.to_i,self.profile_id]).order("created_at desc").limit(1).first
+    note = Note.where(["id < ? and created_by = ?"  ,self.id.to_i,self.created_by]).order("created_at desc").limit(1).first
 
   end
 

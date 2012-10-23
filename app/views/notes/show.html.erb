@@ -36,6 +36,8 @@
   <%# s.attribute :content %>
   <%= s.attribute :body, :value => (raw @note.body) %>
   <%= s.attribute :tags %>
+  <%= s.attribute :created_user %>
+  <%= s.attribute :created_by %>
   <%= s.attribute :created_at %>
   <%= s.attribute :updated_at %>
 <% end %>

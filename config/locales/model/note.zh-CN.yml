@@ -10,7 +10,7 @@ zh-CN:
         body: "正文"
         tags: "标签"
         tag_list: "标签列表"
-        profile_id: "创建者ID"
+        created_by: "创建者ID"
         created_by_id: "创建者ID"
         created_user: "创建者"
         created_name: "作者"

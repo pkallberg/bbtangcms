@@ -9,7 +9,7 @@ class NotesController < ApplicationController
   # GET /notes.json
   def index
     if @user.present?
-      @notes = Note.where(profile_id: @user.id).paginate(:page => params[:page]).order('id DESC')
+      @notes = Note.where(created_by: @user.id).paginate(:page => params[:page]).order('id DESC')
       breadcrumbs.add "#{@user}'s "+I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), notes_path(user_id: @user.id)
     else
       @notes = Note.paginate(:page => params[:page]).order('id DESC')

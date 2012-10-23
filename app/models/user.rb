@@ -100,7 +100,7 @@ class User < ActiveRecord::Base
   end
 
   def notes
-    Note.where(profile_id: self.id)
+    Note.where(created_by: self.id)
   end
 
   def questions
