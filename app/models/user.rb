@@ -35,6 +35,16 @@ class User < ActiveRecord::Base
 
   #before_validation :update_user_permit
   before_save :if_confirmation_now
+  #destroy associate event_log
+  after_save :clear_event_log
+  after_destroy :clear_event_log
+  
+  def clear_event_log
+    #Eventlog.remove("item_id" => params[:id].to_i, "item_type"=>"Note")
+    if (self.respond_to? :deleted_by and self.send(:deleted_by)) or not(self.class.exists? self.id)
+      EventLog.where(item_type: self.class.to_s,item_id: id).collect{|event_log| event_log.destroy} if self.present?
+    end
+  end
 
   #生成邀请link
   def invitations_link

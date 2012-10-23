@@ -10,10 +10,15 @@ class Question < ActiveRecord::Base
 
   before_validation :repear_save
   before_save :update_tags_count
+  
+  #destroy associate event_log
+  after_save :clear_event_log
+  after_destroy :clear_event_log
+  
 
   attr_accessor :soft_deleted
 
-    attr_accessible :title, :body, :created_by, :created_at,
+  attr_accessible :title, :body, :created_by, :created_at,
                   :updated_at, :is_anonymous, :soft_deleted,
                   :score, :identity_list, :timeline_list,
                   :category_list, :tag_list, :knowledge_id
@@ -23,6 +28,7 @@ class Question < ActiveRecord::Base
   self_model_id    #引入self_model_id
 
   has_many :answers
+  
   #validates :title, :presence => true
   #validates :title, :length => {:maximum => Askjane::MetaCache.get_config_data("question_title_max").to_i}
   validates :created_by, :presence => true
@@ -39,6 +45,13 @@ class Question < ActiveRecord::Base
     :ext_fields => [:answers_count, :experts_count, :focus_by]
   )
 =end
+
+  def clear_event_log
+    #Eventlog.remove("item_id" => params[:id].to_i, "item_type"=>"Note")
+    if (self.respond_to? :deleted_by and self.send(:deleted_by)) or not(self.class.exists? self.id)
+      EventLog.where(item_type: self.class.to_s,item_id: id).collect{|event_log| event_log.destroy} if self.present?
+    end
+  end
 
   def created_user
     User.find(self.created_by) if (self.created_by.present?) and (User.exists? self.created_by)

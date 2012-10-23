@@ -10,6 +10,10 @@ class Knowledge< ActiveRecord::Base
   before_validation :repear_save
   before_save :update_tags_count
 
+  #destroy associate event_log
+  after_save :clear_event_log
+  after_destroy :clear_event_log
+  
   belongs_to :knowledgebase_category
   has_one :quiz
 
@@ -115,6 +119,13 @@ class Knowledge< ActiveRecord::Base
     find_user self.created_by if self.created_by.present?
   end
 
+
+  def clear_event_log
+    #Eventlog.remove("item_id" => params[:id].to_i, "item_type"=>"Note")
+    if (self.respond_to? :deleted_by and self.send(:deleted_by)) or not(self.class.exists? self.id)
+      EventLog.where(item_type: self.class.to_s,item_id: id).collect{|event_log| event_log.destroy} if self.present?
+    end
+  end
 
   # previous knowledeg of the current knowledeg
   def previous_item
