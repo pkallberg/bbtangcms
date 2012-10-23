@@ -25,7 +25,7 @@
           <td><%= quiz_center_quiz_collection.coll_name %></td>
           <td><%= quiz_center_quiz_collection.quiz_ids.join(",") if quiz_center_quiz_collection.quiz_ids.present? %></td>
           <td><%= truncate quiz_center_quiz_collection.keywords %></td>
-          <td><%= timeago_tag(quiz_center_quiz_collection.end_date) if quiz_center_quiz_collection.end_date? %></td>
+          <td><%= time_tag(quiz_center_quiz_collection.end_date) if quiz_center_quiz_collection.end_date? %></td>
           <td><%= link_to "#{quiz_center_quiz_collection.quizzes.count}",quiz_center_quizzes_path(quiz_collection_id: quiz_center_quiz_collection.id) %></td>
           <td><%= time_tag(quiz_center_quiz_collection.created_at, :format => :short) if quiz_center_quiz_collection.created_at?%></td>
           <td><%= timeago_tag(quiz_center_quiz_collection.updated_at, :format => :short) if quiz_center_quiz_collection.updated_at?%></td>
