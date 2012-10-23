@@ -176,7 +176,11 @@ class User < ActiveRecord::Base
   def last_sign_in_city
     change_ip_to_city(last_sign_in_ip) if last_sign_in_ip.present?
   end
-  
+
+  def is_new_one?
+    sign_in_count.to_i.eql? 0
+  end
+
   def create_oauth_user(param= {})
     if param[:provider].present? and param[:uid].present?
       ActiveRecord::Base.transaction do

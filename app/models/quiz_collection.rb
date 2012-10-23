@@ -7,6 +7,7 @@ class QuizCollection
   field :coll_name, type: String
   field :keywords, type: String
   field :quiz_ids, type: Array
+  field :end_date, type: Date
 
   validates :quiz_ids, :coll_name , :keywords, :presence => true
   validates_uniqueness_of :coll_name
