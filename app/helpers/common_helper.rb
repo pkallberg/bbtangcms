@@ -166,11 +166,11 @@ module CommonHelper
     obj_class = obj.classify.constantize
     if obj_class.column_names.include? col.to_s
       head = "<ul class='nav nav-pills'><li class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown' href='#menu1'>#{obj_class.human_attribute_name(col.gsub("_id",'').to_sym)}<b class='caret'></b></a><ul class='dropdown-menu'>"
-      list = obj_class.select(col.to_sym).uniq.delete_if{|item| item.send(col).nil?}.collect{|item| ["#{item.send((col.gsub("_id",'')))}",item.send(col)]}
+      list = obj_class.order("id desc").group(col.to_sym).uniq.delete_if{|item| item.send(col).nil?}.collect{|item| ["#{item.send((col.gsub("_id",'')))}",item.send(col)]}
       if col.end_with? "_by"
         #list = obj.find(:all, :order => "id desc").collect{|v| ["#{(v.send(col.gsub("_id",'').to_sym))}",v.send(col.to_sym)]}
         #list = obj.select([col.to_sym,:id]).collect{|item| ["#{item.reload.send(col.gsub("_id",''))}",item.send(col)]}.uniq
-        list = obj_class.select(col.to_sym).uniq.delete_if{|item| item.send(col).nil?}.collect{|item| ["#{item.send(col.gsub("_by",'_user'))}",item.send(col)]}.uniq
+        list = obj_class.order("id desc").group(col.to_sym).uniq.delete_if{|item| item.send(col).nil?}.collect{|item| ["#{item.send(col.gsub("_by",'_user'))}",item.send(col)]}.uniq
       end
       path ||= self.send("#{obj.pluralize.downcase}_path")
 

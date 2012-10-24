@@ -69,10 +69,20 @@
     <td><%= answer.is_expert %></td>
     <td>
           <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)),
-                      question_answer_path(@question,answer), :class => 'btn btn-mini' %>
+                      question_answer_path(@question,answer),
+                      :class => 'btn btn-mini',
+                      :title => "#{t("helpers.links.show", :model => model_class.model_name.human)} #{answer}",
+                      "data-content" => object_summary(obj = answer, column = "content"),
+                       :rel => "popover"
+                       %>
           <% if can? :update, answer %>
             <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)),
-                      edit_question_answer_path(@question,answer), :class => 'btn btn-mini' %>
+                      edit_question_answer_path(@question,answer),
+                      :class => 'btn btn-mini',
+                      :title => "#{t("helpers.links.edit", :model => model_class.model_name.human)} #{answer}",
+                      "data-content" => object_summary(obj = answer, column = "content"),
+                       :rel => "popover"
+                       %>
           <% end %>
           <% if can? :destroy, answer %>
             <%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)),
