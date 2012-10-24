@@ -1,3 +1,4 @@
+# encoding: utf-8
 #require 'acts-as-taggable-on'
 require 'askjane/meta_cache'  #缓存字典表使用方法函数
 require 'askjane/app_util'
@@ -19,6 +20,20 @@ ActiveRecord::Base.class_eval do
 end
 
 class String
+
+  def cut_partial(length)
+    if self.length > length
+      self.first(length) + "..."
+    else
+      self
+    end
+  end
+
+  def split_all(content = '')
+    content = self if content.empty?
+    content.split(/、|，|,|;|；|\ +|\||\r\n/) if content.class.eql? self.class
+  end
+  
 
   def class_exists?(class_name = nil)
     class_name = self if class_name.nil?

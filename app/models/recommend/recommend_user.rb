@@ -12,6 +12,7 @@ class Recommend::RecommendUser
   P1  = "front_page_experts"
   P2  = "right_panel_experts"
   P3  = "right_panel_moms"
+  P4  = "right_panel_vips"
   #P4  = "knowledge_1"
   #P5  = "knowledge_2"
 
@@ -19,8 +20,8 @@ class Recommend::RecommendUser
     P1        => "#{I18n.t('mongoid.attributes.recommend/recommend_user.p1')}",
     P2     => "#{I18n.t('mongoid.attributes.recommend/recommend_user.p2')}",
     P3     => "#{I18n.t('mongoid.attributes.recommend/recommend_user.p3')}",
-    #P4     => "#{I18n.t('mongoid.attributes.recommend/recommend_quiz.p4')}",
-    #P5     => "#{I18n.t('mongoid.attributes.recommend/recommend_quiz.p5')}",
+    P4     => "#{I18n.t('mongoid.attributes.recommend/recommend_user.p4')}",
+    #P5     => "#{I18n.t('mongoid.attributes.recommend/recommend_user.p5')}",
 
   }
 
