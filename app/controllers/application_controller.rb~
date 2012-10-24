@@ -99,7 +99,7 @@ class ApplicationController < ActionController::Base
   def set_page_number
 
     #if (['update','show','edit','create','destroy'].include? session[:old_action])# and !(session[:old_action].eql? params[:action])
-    debugger
+
     model_class = params[:controller].classify.constantize if params[:controller].classify.class_exists?
     model_class = params[:controller].gsub(/\w+([\/]+)/,"").classify.constantize if params[:controller].gsub(/\w+([\/]+)/,"").classify.class_exists?
 
@@ -139,7 +139,13 @@ class ApplicationController < ActionController::Base
         @page_title = g_obj.send col  if g_obj.respond_to? col
       end
 
-      @meta_keywords = g_obj.tag_list.join(",") if g_obj.respond_to? :tag_list
+      if g_obj.respond_to? :tag_list
+        if g_obj.tag_list.class.eql? Array
+          @meta_keywords = g_obj.tag_list.join(",")
+        else
+          @meta_keywords = g_obj.tag_list if g_obj.tag_list.class.eql? String
+        end
+      end
       @meta_description = g_obj.summary if g_obj.respond_to? :summary
       @meta_description = g_obj.description if g_obj.respond_to? :description
     end

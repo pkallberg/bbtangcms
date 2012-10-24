@@ -139,7 +139,13 @@ class ApplicationController < ActionController::Base
         @page_title = g_obj.send col  if g_obj.respond_to? col
       end
 
-      @meta_keywords = g_obj.tag_list.join(",") if g_obj.respond_to? :tag_list
+      if g_obj.respond_to? :tag_list
+        if g_obj.tag_list.class.eql? Array
+          @meta_keywords = g_obj.tag_list.join(",")
+        else
+          @meta_keywords = g_obj.tag_list if g_obj.tag_list.class.eql? String
+        end
+      end
       @meta_description = g_obj.summary if g_obj.respond_to? :summary
       @meta_description = g_obj.description if g_obj.respond_to? :description
     end

@@ -861,3 +861,27 @@ new file:   spec/views/site/team.html.erb_spec.rb
 * Author: Francis Jiang <864248765@qq.com>	2012-10-19
 
     fix crontab error
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-19
+
+    edit task inside 'deploy.rb'
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-22
+
+    set user from mmbkoo as authorization user
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-23
+
+    add end_date to quiz_collection
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-23
+
+    add end_date to quiz_collection
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-23
+
+    add callback to mod to destroy associate event_log
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-23
+
+    rename 'profile_id' as 'created_by' on 'Note'
