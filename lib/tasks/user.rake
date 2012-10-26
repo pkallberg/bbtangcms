@@ -15,6 +15,7 @@ def export_mmbk_user
     logger.info "found MMBKUser model , then try to pick user we need ... "
     #MMBKUser.where("email is not NULL")
     #MMBKUser.select([:email, :sex, :birthday, :msn, :qq, :mobile_phone, :City])
+    real_count = 0
     count = rand(2000..3000)
     last_mmbkuser = MMBKUser.find Authorization.last.uid.to_i if MMBKUser.exists? Authorization.last.uid.to_i
     logger.info "today plan to export #{count} user ..."
@@ -40,12 +41,13 @@ def export_mmbk_user
 
     today_mmbk_users.each do |mmbk_user|
       if mmbk_user.valid?
+        real_count += 1
         logger.info "pick mmbk_user user_id: #{mmbk_user.user_id} email #{mmbk_user.email}, then try to export to bbtang.com ..."
         export_user(mmbk_user: mmbk_user)
       end
     end
 
-    logger.info "today really export (#{today_mmbk_users.count}) user."
+    logger.info "today pick (#{today_mmbk_users.count}) users, really export (#{real_count})  users."
   else
     logger.error "MMBKUser model not defined ..."
   end
