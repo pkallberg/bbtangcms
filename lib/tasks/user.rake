@@ -1,6 +1,6 @@
 # encoding: utf-8
 #User.where("id > 1781").collect{|u| u.profile.destroy if u.profile.present?;u.destroy}
-#User.where("id > 1781").collect{|u| u.profile.delete if u.profile.present?;u.delete}
+#User.where("id > 1781").collect{|u| u.profile.delete if u.profile.present?;u.authorizations=nil;u.save;u.delete}
 require "logger"
 
 def logger
@@ -9,22 +9,41 @@ def logger
   logger
 end
 
-
-def export_mmbk_user
+def find_mmbk_user
   if "MMBKUser".class_exists?
     logger.info "found MMBKUser model , then try to pick user we need ... "
     #MMBKUser.where("email is not NULL")
     #MMBKUser.select([:email, :sex, :birthday, :msn, :qq, :mobile_phone, :City])
-    real_count = 0
-    count = rand(2000..3000)
-    last_mmbkuser = MMBKUser.find Authorization.last.uid.to_i if MMBKUser.exists? Authorization.last.uid.to_i
-    logger.info "today plan to export #{count} user ..."
-    if last_mmbkuser.present?
-      today_mmbk_users = MMBKUser.limit(count).where("email is not NULL and email != '' and user_id > #{last_mmbkuser.id}")
+    count = rand(200..300)
+    auth_mmbk = Authorization.provider("mmbkoo").last
+    
+    if auth_mmbk.present?
+      if MMBKUser.exists? auth_mmbk.uid.to_i
+        last_mmbkuser = MMBKUser.find auth_mmbk.uid.to_i
+        logger.info "last mmbk user on bbtang.com is found email: #{last_mmbkuser.email} user_id: #{last_mmbkuser.user_id} ... "
+      end
+      
+      if last_mmbkuser.present? and auth_mmbk.created_at.today?
+        #today_mmbk_users = MMBKUser.limit(count).where("email is not NULL and email != ''")
+        puts "already export today ...."
+        logger.error "#{Date.today} already export mmbk users, task will exit ...."
+        today_mmbk_users = []
+
+      else
+        logger.info "today plan to export #{count} user ..."
+        today_mmbk_users = MMBKUser.limit(count).where("email is not NULL and email != '' and user_id > #{last_mmbkuser.id}")
+      end
     else
+      logger.info "the first export ..."
       today_mmbk_users = MMBKUser.limit(count).where("email is not NULL and email != ''")
     end
+  else
+    logger.error "MMBKUser model not defined ..."
+  end
+end
 
+
+def export_mmbk_user
 =begin
     #can not work with limit option,also same as 'find_each'
     #MMBKUser.limit(count).where("email is not NULL and email != ''").find_in_batches(:batch_size => 1000) do |mmbk_users|
@@ -38,7 +57,10 @@ def export_mmbk_user
       end
     end
 =end
-
+  real_count = 0
+  today_mmbk_users = find_mmbk_user
+  
+  if today_mmbk_users.present?
     today_mmbk_users.each do |mmbk_user|
       if mmbk_user.valid?
         real_count += 1
@@ -48,8 +70,7 @@ def export_mmbk_user
     end
 
     logger.info "today pick (#{today_mmbk_users.count}) users, really export (#{real_count})  users."
-  else
-    logger.error "MMBKUser model not defined ..."
+    puts "today pick (#{today_mmbk_users.count}) users, really export (#{real_count})  users."
   end
 end
 
