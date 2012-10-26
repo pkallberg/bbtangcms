@@ -885,3 +885,15 @@ new file:   spec/views/site/team.html.erb_spec.rb
 * Author: Francis Jiang <864248765@qq.com>	2012-10-23
 
     rename 'profile_id' as 'created_by' on 'Note'
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-24
+
+    fix error on 'set_seo_meta'
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-24
+
+    add 'split_all','cut_partial' to lib_core,change 'position' on 'recommend_user'
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-24
+
+    add max_count to 'version_filter_drop_down_li'
