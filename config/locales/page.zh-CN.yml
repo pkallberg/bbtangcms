@@ -74,6 +74,7 @@ zh-CN:
       quiz_center: "考试中心"
       unauthorized_user: "未授权用户"
       work_dashboard: "事务中心"
+      work_analytics: "数据分析"
       work_versions: "工作日志"
       work_user_statistics: "用户统计"
       work_contacts: "联系我们"

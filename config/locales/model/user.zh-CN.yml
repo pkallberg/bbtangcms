@@ -26,6 +26,8 @@ zh-CN:
         current_sign_in_city: "当前登录城市"
         confirmation_token: "确认令牌"
         confirmed_at: "确认于"
+        unconfirmed_email: "未确认邮箱"
+        confirmation_sent_at: "确认邮件发送于"
         confirmation_now: "立即激活"
         failed_attempts: "失败的尝试"
         unlock_token: "解锁令牌"

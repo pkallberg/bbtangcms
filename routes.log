@@ -167,6 +167,13 @@ delete_report_reason_admin_base_settings        /admin/base_settings/delete_repo
                   recommend_other_column GET    /recommend/other_columns/:id(.:format)                                            recommend/other_columns#show
                                          PUT    /recommend/other_columns/:id(.:format)                                            recommend/other_columns#update
                                          DELETE /recommend/other_columns/:id(.:format)                                            recommend/other_columns#destroy
+                recommend_recommend_apps GET    /recommend/recommend_apps(.:format)                                               recommend/recommend_apps#index
+                                         POST   /recommend/recommend_apps(.:format)                                               recommend/recommend_apps#create
+             new_recommend_recommend_app GET    /recommend/recommend_apps/new(.:format)                                           recommend/recommend_apps#new
+            edit_recommend_recommend_app GET    /recommend/recommend_apps/:id/edit(.:format)                                      recommend/recommend_apps#edit
+                 recommend_recommend_app GET    /recommend/recommend_apps/:id(.:format)                                           recommend/recommend_apps#show
+                                         PUT    /recommend/recommend_apps/:id(.:format)                                           recommend/recommend_apps#update
+                                         DELETE /recommend/recommend_apps/:id(.:format)                                           recommend/recommend_apps#destroy
               recommend_recommend_events GET    /recommend/recommend_events(.:format)                                             recommend/recommend_events#index
                                          POST   /recommend/recommend_events(.:format)                                             recommend/recommend_events#create
            new_recommend_recommend_event GET    /recommend/recommend_events/new(.:format)                                         recommend/recommend_events#new
@@ -282,6 +289,9 @@ delete_report_reason_admin_base_settings        /admin/base_settings/delete_repo
                         new_tag_identity GET    /tag/identities/new(.:format)                                                     tag/identities#new
                             tag_identity GET    /tag/identities/:id(.:format)                                                     tag/identities#show
                            tag_dashboard        /tag(.:format)                                                                    tag/dashboard#show
+                   filter_work_analytics POST   /work/analytics/filter(.:format)                                                  work/analytics#filter
+                          work_analytics GET    /work/analytics(.:format)                                                         work/analytics#index
+                           work_analytic GET    /work/analytics/:id(.:format)                                                     work/analytics#show
                            work_versions GET    /work/versions(.:format)                                                          work/versions#index
                             work_version GET    /work/versions/:id(.:format)                                                      work/versions#show
              filter_work_user_statistics        /work/user_statistics/filter(.:format)                                            work/user_statistics#filter

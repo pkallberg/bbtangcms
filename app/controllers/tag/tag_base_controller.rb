@@ -16,6 +16,6 @@ class Tag::TagBaseController < ApplicationController
   def add_initial_breadcrumbs
     breadcrumbs.add :homepage, root_path
     #breadcrumbs.add :recommend, recommend_dashboard_path
-    breadcrumbs.add :tag, tag_dashboard_path
+    breadcrumbs.add ".namespace.tag", tag_dashboard_path
   end
 end

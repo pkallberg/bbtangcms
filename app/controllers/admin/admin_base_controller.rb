@@ -29,7 +29,7 @@ class Admin::AdminBaseController < ApplicationController
   def add_initial_breadcrumbs
     breadcrumbs.add :homepage, root_path
     #breadcrumbs.add :recommend, recommend_dashboard_path
-    breadcrumbs.add :admin, admin_base_settings_path
+    breadcrumbs.add ".namespace.admin", admin_base_settings_path
     add_setting_subject_breadcrumbs
   end
   def add_setting_subject_breadcrumbs

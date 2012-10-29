@@ -1,0 +1,10 @@
+<%= render 'top_nav_bar'%>
+<div class="raw_sql box">
+  <span class="label label-success">raw_sql:</span>
+  <%= @query_words%>
+</div>
+<div class="raw_sql box">
+  <span class="label label-success">result:</span>
+  <%= render :template => 'common/search_result.html.erb'%>
+</div>
+

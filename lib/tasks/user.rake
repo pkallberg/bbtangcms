@@ -62,7 +62,7 @@ def export_mmbk_user
   
   if today_mmbk_users.present?
     today_mmbk_users.each do |mmbk_user|
-      if mmbk_user.valid?
+      if mmbk_user.valid? and not User.exists?(email: mmbk_user.email.strip)
         real_count += 1
         logger.info "pick mmbk_user user_id: #{mmbk_user.user_id} email #{mmbk_user.email}, then try to export to bbtang.com ..."
         export_user(mmbk_user: mmbk_user)

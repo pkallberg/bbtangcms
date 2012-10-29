@@ -42,7 +42,8 @@ class CommonController < ApplicationController
           @results = q_model.where q_type => q_word
         end
         else
-          @results = @model_class.where("#{q_type} like '%#{q_word}%'")
+          #@results = @model_class.where("#{q_type} like '%#{q_word}%'")
+          @results =  @model_class.paginate(:page => params[:page], :conditions => ["#{q_type} like '%#{q_word}%'"]).order('id DESC')
         end
       end
     end

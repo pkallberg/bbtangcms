@@ -1,4 +1,5 @@
 class Work::WorkBaseController < ApplicationController
+  layout "layouts/work"
   after_filter :add_initial_breadcrumbs
 
 
@@ -14,8 +15,8 @@ class Work::WorkBaseController < ApplicationController
   end
   private
   def add_initial_breadcrumbs
-    breadcrumbs.add :homepage, root_path
+    breadcrumbs.add ".homepage", root_path
     #breadcrumbs.add :recommend, recommend_dashboard_path
-    breadcrumbs.add :work, work_dashboard_path
+    breadcrumbs.add ".namespace.work", work_dashboard_path
   end
 end

@@ -1,0 +1,11 @@
+<% content_for :content do %>
+  <div class="work_content">
+    <%= render "work/shared/top_nav_bar" %>
+    <div class = "content well">
+      <%= content_for?(:work_content) ? yield(:work_content) : yield %>
+    </div>
+  </div>
+
+<% end %>
+
+<%= render :template => 'layouts/application' %>

@@ -43,7 +43,7 @@ class String
     #defined? Knowledge  => "constant"
     #eval("#{class_name}.is_a?(Class)") if eval("defined?(#{class_name})") == "constant"
     begin
-      class_obj = class_name.constantize
+      class_obj = class_name.classify.constantize
     rescue
       # failure handling goes here
       return false

@@ -53,6 +53,7 @@
         <% end %>
       </tbody>
     </table>
-
+  <%= will_paginate @results %>
+  total: <%= "#{@results.join(',')}"%>
   </div>
 <% end %>

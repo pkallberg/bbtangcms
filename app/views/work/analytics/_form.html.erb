@@ -1,0 +1,44 @@
+<%= simple_form_for(model_class.new,url: filter_work_analytics_path) do |f| %>
+  <% col_types = model_col_type(model_class)%>
+  <%= hidden_field_tag "model_col_type", col_types %>
+  <%= hidden_field_tag "model", "#{@model.to_s.downcase}" %>
+  <div class="form-inputs">
+    <% col_types.each do |col_type|%>
+      <%= f.input col_type[0] do %>
+        <% if col_type[1].eql?  :string%>
+          <%= text_field_tag "#{model_class.to_s.downcase}_#{col_type[0]}" %>
+          <%= select_tag "#{model_class.to_s.downcase}_#{col_type[0]}_condition", options_for_select(col_select(col_type[1]))%>
+          </br><span class="help-inline">eg.示例，<%= model_class.uniq.pluck(col_type[0])[0..5].join(",")%>。</span>
+        <% end %>
+        
+        <% if col_type[1].eql?  :datetime%>
+          <%# text_field_tag "#{model_class.to_s.downcase}_#{col_type[0]}_begin",10.years.ago.to_date, class: "datepicker" %>
+          <%= select_tag "#{model_class.to_s.downcase}_#{col_type[0]}_begin_condition", options_for_select(col_select(col_type[1],position = "begin"))%>
+          <%= text_field_tag "#{model_class.to_s.downcase}_#{col_type[0]}_begin", nil, class: "datepicker" %>
+          <span>===></span>
+          <%= select_tag "#{model_class.to_s.downcase}_#{col_type[0]}_end_condition", options_for_select(col_select(col_type[1],position = "end"))%>
+          <%# text_field_tag "#{model_class.to_s.downcase}_#{col_type[0]}_end",Date.today, class: "datepicker" %>
+          <%= text_field_tag "#{model_class.to_s.downcase}_#{col_type[0]}_end", nil, class: "datepicker" %>
+          </br><span class="help-inline">eg.示例，<%= model_class.uniq.pluck(col_type[0])[0..5].compact.collect{|t| t.to_date}.join(",")%>。</span>
+        <% end %>
+        
+        <% if col_type[1].eql?  :integer%>
+          <%= select_tag "#{model_class.to_s.downcase}_#{col_type[0]}_begin_condition", options_for_select(col_select(col_type[1],position = "begin"))%>
+          <%= text_field_tag "#{model_class.to_s.downcase}_#{col_type[0]}_begin" %>
+
+          <span>===></span>
+          <%= select_tag "#{model_class.to_s.downcase}_#{col_type[0]}_end_condition", options_for_select(col_select(col_type[1],position = "end"))%>
+          <%= text_field_tag "#{model_class.to_s.downcase}_#{col_type[0]}_end" %>
+          </br><span class="help-inline">eg.示例，<%= model_class.uniq.pluck(col_type[0])[0..5].join(",")%>。</span>
+        <% end %>
+        <%= hidden_field_tag "#{model_class.to_s.downcase}_#{col_type[0]}_type", "#{col_type[1].to_s}" %>
+        <%= label_tag "#{model_class.to_s.downcase}_#{col_type[0]}_relation", "级联关系"%>
+        <%= select_tag "#{model_class.to_s.downcase}_#{col_type[0]}_relation", options_for_select([["或",'or'],["与",'and']])%>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, value: "search" %>
+  </div>
+<% end %>

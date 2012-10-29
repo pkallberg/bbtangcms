@@ -157,6 +157,11 @@ BBTangCMS::Application.routes.draw do
 
 
   namespace :work do
+    resources :analytics, only: [:index ] do
+      collection do
+        match :filter
+      end
+    end
     resources :versions, only: [:index, :show ]
     resources :user_statistics, only: [:index ] do
       collection do

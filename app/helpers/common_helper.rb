@@ -162,7 +162,7 @@ module CommonHelper
     hash.to_param
   end
 
-  def obj_filter_drop_down_li(obj = "Version", col = '',count = 20 ,path = nil)
+  def obj_filter_drop_down_li(obj = "Version", col = '' ,path = nil,count = 20)
     obj_class = obj.classify.constantize
     if obj_class.column_names.include? col.to_s
       head = "<ul class='nav nav-pills'><li class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown' href='#menu1'>#{obj_class.human_attribute_name(col.gsub("_id",'').to_sym)}<b class='caret'></b></a><ul class='dropdown-menu'>"
