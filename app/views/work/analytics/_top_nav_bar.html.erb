@@ -1,5 +1,5 @@
 <ul class="nav nav-tabs">
   <% @models.each do |m| %>
-    <li class="<%= 'active' if (params[:controller].eql? 'work/analytics' and params[:action].eql? 'index' and @model.to_s.eql? m.to_s) %>"><%= link_to m.model_name.human, work_analytics_path(:model => m) %></li>
+    <li class="<%= 'active' if (params[:controller].eql? 'work/analytics'  and @model.to_s.eql? m.to_s) %>"><%= link_to m.model_name.human, work_analytics_path(:model => m) %></li>
   <% end %>
 </ul>

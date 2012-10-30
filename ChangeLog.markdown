@@ -897,3 +897,23 @@ new file:   spec/views/site/team.html.erb_spec.rb
 * Author: Francis Jiang <864248765@qq.com>	2012-10-24
 
     add max_count to 'version_filter_drop_down_li'
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-26
+
+    add schedule to 'export_mmbk_user'
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-26
+
+    now can found real_count when export_mmbk_user
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-26
+
+    export_mmbk_user can export one time each day
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-29
+
+    add filter_analytics
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-30
+
+    add total count to filter_work_analytics, and remove old oauthcolumns on users table

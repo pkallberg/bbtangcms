@@ -24,9 +24,11 @@ class CommonController < ApplicationController
   private
   def find_item(q_model = nil,q_type = nil, q_word = nil)
     @results = []
+    q_word.strip!
     human_col = ['title','name','email','username','nickname']
     if q_model.present? and q_type.present? and q_word.present?
-      @results = q_model.where q_type => q_word
+      @results = q_model.where(q_type => q_word).paginate(:page => params[:page]).order('id DESC')
+
       if @results.empty?
         if q_type.singularize.gsub("_id","").classify.class_exists?
           ass_result = []
@@ -37,13 +39,13 @@ class CommonController < ApplicationController
               ass_result.append (ass_model.where col => q_word).first if (ass_model.where col => q_word).present?
             end
           end
-        if ass_result.present?
-          q_word = ass_result.first.id
-          @results = q_model.where q_type => q_word
-        end
+          if ass_result.present?
+            q_word = ass_result.first.id
+            @results = q_model.where(q_type => q_word).paginate(:page => params[:page]).order('id DESC')
+          end
         else
           #@results = @model_class.where("#{q_type} like '%#{q_word}%'")
-          @results =  @model_class.paginate(:page => params[:page], :conditions => ["#{q_type} like '%#{q_word}%'"]).order('id DESC')
+          @results = @model_class.where("#{q_type} like '%#{q_word}%'").paginate(:page => params[:page]).order('id DESC')
         end
       end
     end

@@ -1,7 +1,7 @@
 class Work::AnalyticsController < Work::WorkBaseController
   include Work::AnalyticsHelper
   
-  authorize_resource :class => false
+  #authorize_resource :class => false
   before_filter :prepare
   
   # GET /work/analytics
