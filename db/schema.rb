@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121016090235) do
+ActiveRecord::Schema.define(:version => 20121030025614) do
 
   create_table "admin_settings", :force => true do |t|
     t.string   "name"
@@ -494,7 +494,7 @@ ActiveRecord::Schema.define(:version => 20121016090235) do
     t.text     "tags",         :limit => 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "profile_id"
+    t.integer  "created_by"
     t.integer  "views_count",                      :default => 0
     t.integer  "thanks_count"
   end
@@ -929,9 +929,7 @@ ActiveRecord::Schema.define(:version => 20121016090235) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
-    t.string   "omniauth_type"
     t.string   "reuse_token"
-    t.string   "uid"
     t.string   "username"
     t.string   "authentication_token"
     t.string   "unconfirmed_email"
