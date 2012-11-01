@@ -1,0 +1,24 @@
+zh-CN:
+  activerecord:
+    models:
+      goods: "商品"
+    attributes:
+      goods:
+        name: "产品名称"
+        url: "产品链接"
+        tag_list: "相关标签列表"
+        category_list: "分类标签列表"
+        timeline_list: "适用年龄段列表"
+        identity_list: "对象列表"
+        category_major_list: "产品大类列表"
+        category_small_list: "产品小类列表"
+        brand_list: "品牌列表"
+        tags: "相关标签"
+        categories: "分类标签"
+        timelines: "适用年龄段"
+        identities: "对象"
+        category_majors: "产品大类"
+        category_smalls: "产品小类"
+        brands: "品牌"
+        updated_at: "更新时间"
+        created_at: "创建时间"

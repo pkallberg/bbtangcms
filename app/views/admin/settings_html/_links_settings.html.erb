@@ -16,7 +16,7 @@
         <tr id="link-<%= link.id %>">
           <td class="link-name"><%= value["name"] %></td>
           <td class="link-href"><%= link_to value["href"], value["href"] %></td>
-          <td class="link-logo"><%= image_tag(value["logo"], :size => "120x100") %></td>
+          <td class="link-logo"><%= image_tag(value["logo"], :size => "120x100")if value["logo"].present? %></td>
           <td class="link-sequence"><%= value["sequence"] %></td>
           <td class="link-action">
             <%= link_to "编辑", "/admin/links_settings/edit_link?link_id=#{link.id}&setting_type_id=#{@setting_type.id}&setting_subject_id=#{@setting_subject.id}", :class => 'btn btn-mini' %>

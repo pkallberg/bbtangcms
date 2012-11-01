@@ -1,9 +1,13 @@
 # coding: utf-8
 class Goods < ActiveRecord::Base
-  acts_as_taggable_on :tags, :category_majors, :category_smalls
+  #tags: '相关标签',categories: '分类标签', timelines: '适用年龄段', identities: '对象', category_majors: '产品大类', category_smalls: '产品小类',brands: '品牌'
+  acts_as_taggable_on :tags, :categories, :timelines, 
+                      :identities, :category_majors, :category_smalls, :brands
   before_validation :repear_save
-  attr_accessible :name, :category_major_list, :category_small_list, :created_at,
-                  :updated_at, :tag_list, :url, :avatar_url
+  attr_accessible :name, :url, :avatar_url,:created_at,
+                  :updated_at, :tag_list, :category_list, 
+                  :timeline_list, :identity_list, :category_major_list,
+                  :category_small_list, :brand_list
 
   validates :name, :presence => true
 
@@ -13,9 +17,13 @@ class Goods < ActiveRecord::Base
 
   def repear_save
     ##(/，|,|;|；|\ +|\||\r\n/)
-    self.tag_list = sort_tag_list(self.tag_list) if self.tag_list.present?
-    self.category_major_list = sort_tag_list(self.category_major_list) if self.category_major_list.present?
-    self.category_small_list = sort_tag_list(self.category_small_list) if self.category_small_list.present?
+    all_tags =[:tag_list, :category_list, :timeline_list,\
+     :identity_list, :category_major_list, :category_small_list, :brand_list]
+     
+    all_tags.each do |t|
+      self.send("#{t.to_s}=", self.send(t).split_all) if self.send(t).present? and self.send(t).class.eql? String
+    end
+    #self.tag_list = sort_tag_list(self.tag_list) if self.tag_list.present?
   end
 
   private
