@@ -51,6 +51,6 @@ class String
     end
     class_obj.is_a?(Class)
 =end
-    (class_name.capitalize.constantize or class_name.classify.constantize).is_a?(Class) ? true : false rescue false
+    (class_name.capitalize.constantize.is_a?(Class) ? true : false rescue false) or (class_name.classify.constantize.is_a?(Class) ? true : false rescue false)
   end
 end

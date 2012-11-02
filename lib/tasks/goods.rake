@@ -77,7 +77,7 @@ def update_goods_from_csv(file = nil)
     puts "In total: update #{total} goods."
   end
 end
-# rake bbtangcms:db:goods_import["tmp/goods/goods-20121024.csv"]
+#RAILS_ENV=production rake bbtangcms:db:goods_import["tmp/goods/goods-20121024.csv"]
 namespace 'bbtangcms' do
   namespace 'db' do
     desc "pick up goods from csv file and export to database ..."
