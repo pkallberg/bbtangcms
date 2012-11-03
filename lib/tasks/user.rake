@@ -114,10 +114,8 @@ def export_mmbk_user
     end
     if today_export_reporter.present?
       logger.info "all user selected already export to bbtang.com now update mmbk_user_export_reporter."
-      today_export_reporter.pick_count = today_mmbk_users.count
-      today_export_reporter.real_count = real_count
-      today_export_reporter.last_mmbk_user_id = today_mmbk_users.last.user_id
-      today_export_reporter.save
+      today_export_reporter.update_attributes(pick_count: today_mmbk_users.count, real_count: real_count
+, last_mmbk_user_id: today_mmbk_users.last.user_id)
       logger.info "today's reporter #{today_export_reporter.to_json}"
       puts "today's reporter #{today_export_reporter.to_json}"
     else
