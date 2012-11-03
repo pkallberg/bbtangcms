@@ -1,5 +1,4 @@
-##BBTangCMS Changelog
-
+##BBTangCMS Changelog\n
 * Author: Francis Jiang <864248765@qq.com>	2012-06-08
 
     first commit
@@ -917,3 +916,19 @@ new file:   spec/views/site/team.html.erb_spec.rb
 * Author: Francis Jiang <864248765@qq.com>	2012-10-30
 
     add total count to filter_work_analytics, and remove old oauthcolumns on users table
+
+* Author: Francis Jiang <864248765@qq.com>	2012-10-30
+
+    fix some bug on search action
+
+* Author: Francis Jiang <864248765@qq.com>	2012-11-01
+
+    import goods's tag from excel file
+
+* Author: Francis Jiang <864248765@qq.com>	2012-11-02
+
+    fix bug on 'lib_core'
+
+* Author: bbt_server <as181920@hotmail.com>	2012-11-03
+
+    add 'mmbk_user_export_reporter' to log mmbk_user report, when missing some day not export user, will set those day plan_count as 200 and add to current day's plan_count

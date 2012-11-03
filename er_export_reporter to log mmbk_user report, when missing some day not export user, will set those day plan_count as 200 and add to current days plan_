@@ -1,0 +1,1329 @@
+commit 12e6724957631abd8f8f4d840c74ae410d6ec22c
+Author: bbt_server <as181920@hotmail.com>
+Date:   Sat Nov 3 13:39:35 2012 +0800
+
+    add 'mmbk_user_export_reporter' to log mmbk_user report, when missing some day not export user, will set those day plan_count as 200 and add to current day's plan_count
+
+commit e67fd49d3a26fefbfe9fcd9a24eb451735e34acb
+Author: Francis Jiang <864248765@qq.com>
+Date:   Fri Nov 2 10:46:46 2012 +0800
+
+    fix bug on 'lib_core'
+
+commit 78e02192d569668efc87beaa90f3900ef76d78ef
+Author: Francis Jiang <864248765@qq.com>
+Date:   Thu Nov 1 16:30:24 2012 +0800
+
+    import goods's tag from excel file
+
+commit ca3bcf231b58c963a0f0f090137f4ea1f6398fec
+Author: Francis Jiang <864248765@qq.com>
+Date:   Tue Oct 30 12:34:44 2012 +0800
+
+    fix some bug on search action
+
+commit b98c11ca5b5dfe75cc4beb4a34e4a01fd28a11f8
+Author: Francis Jiang <864248765@qq.com>
+Date:   Tue Oct 30 11:01:42 2012 +0800
+
+    add total count to filter_work_analytics, and remove old oauthcolumns on users table
+
+commit f850b6084b552d3641c189ba618ddfd7c26ace11
+Author: Francis Jiang <864248765@qq.com>
+Date:   Mon Oct 29 20:16:16 2012 +0800
+
+    add filter_analytics
+
+commit 05114ba6735f1a6ab38304ec7125e25c4461d58f
+Author: Francis Jiang <864248765@qq.com>
+Date:   Fri Oct 26 20:25:41 2012 +0800
+
+    export_mmbk_user can export one time each day
+
+commit e5763ae592963863e42e98a229625154733c0e36
+Author: Francis Jiang <864248765@qq.com>
+Date:   Fri Oct 26 19:02:38 2012 +0800
+
+    now can found real_count when export_mmbk_user
+
+commit 7b40b910419fdbe5a8c58036e57fb4baaececddf
+Author: Francis Jiang <864248765@qq.com>
+Date:   Fri Oct 26 17:36:36 2012 +0800
+
+    add schedule to 'export_mmbk_user'
+
+commit 70c2e862873798e18b83605c455bedaa121f6abd
+Author: Francis Jiang <864248765@qq.com>
+Date:   Wed Oct 24 14:04:58 2012 +0800
+
+    add max_count to 'version_filter_drop_down_li'
+
+commit 782f336fc89143d34f1f1da8ce6211c878a61de1
+Author: Francis Jiang <864248765@qq.com>
+Date:   Wed Oct 24 12:38:49 2012 +0800
+
+    add 'split_all','cut_partial' to lib_core,change 'position' on 'recommend_user'
+
+commit c6ad38a30664fa2e3a7c7dc3935a71dd537e42e8
+Author: Francis Jiang <864248765@qq.com>
+Date:   Wed Oct 24 11:13:57 2012 +0800
+
+    fix error on 'set_seo_meta'
+
+commit a0a0f80d884ad39072ba97fcd55294ec678767ae
+Author: Francis Jiang <864248765@qq.com>
+Date:   Tue Oct 23 16:57:23 2012 +0800
+
+    rename 'profile_id' as 'created_by' on 'Note'
+
+commit 03ad45288b6d24fccce8c3655d441b51f2789cad
+Author: Francis Jiang <864248765@qq.com>
+Date:   Tue Oct 23 16:24:08 2012 +0800
+
+    add callback to mod to destroy associate event_log
+
+commit 6c9bed05bd923119c262d2c83ee80e2de1a4a08b
+Author: Francis Jiang <864248765@qq.com>
+Date:   Tue Oct 23 14:16:08 2012 +0800
+
+    add end_date to quiz_collection
+
+commit 824455b699cbaa7988ed01347381c3eb0f84ac97
+Author: Francis Jiang <864248765@qq.com>
+Date:   Tue Oct 23 14:13:54 2012 +0800
+
+    add end_date to quiz_collection
+
+commit f733432686991712e4c0e799c5800c1eece27495
+Author: Francis Jiang <864248765@qq.com>
+Date:   Mon Oct 22 15:16:09 2012 +0800
+
+    set user from mmbkoo as authorization user
+
+commit 9c61083b43bacbae557beb2fe21b44c06d796dbb
+Author: Francis Jiang <864248765@qq.com>
+Date:   Fri Oct 19 17:49:00 2012 +0800
+
+    edit task inside 'deploy.rb'
+
+commit c4cc1bc9a7f28b9449e7998fa050d9ac7fe3aa71
+Author: Francis Jiang <864248765@qq.com>
+Date:   Fri Oct 19 17:45:50 2012 +0800
+
+    fix crontab error
+
+commit 5ec186b56fd9888a7e1501f6f4e5d35beea1895e
+Author: Francis Jiang <864248765@qq.com>
+Date:   Fri Oct 19 17:21:40 2012 +0800
+
+    fix some bug, add template for 'welcome_mmbkoo_user'
+
+commit 3fc334bff1c5e035b57cc61e33c0b48840c79d78
+Author: Francis Jiang <864248765@qq.com>
+Date:   Thu Oct 18 16:33:20 2012 +0800
+
+    try to make recommend mail queues, export user in mmbkoo to bbtang, add recommend/recommend_app mod
+
+commit 7e9a94def8e5b75b5fa9ff524742e733eb21fec7
+Author: Francis Jiang <864248765@qq.com>
+Date:   Tue Oct 16 16:05:33 2012 +0800
+
+    fix resque not work on bbtangcms
+
+commit 79eb08792a3c5540889cf71110c2d9fd56498e5f
+Merge: ea484da 3c80abc
+Author: Francis Jiang <864248765@qq.com>
+Date:   Tue Oct 16 13:21:22 2012 +0800
+
+    Merge branch 'master' of bbtang.com:bbtang/bbtcms
+
+commit 3c80abcbcc982adf2bf8238eb4980f312dcd2c27
+Author: bbt_server <as181920@hotmail.com>
+Date:   Fri Oct 12 23:41:34 2012 +0800
+
+    fix popover not work on bootstarp v2.1.0
+
+commit ea484da0dd46269465098cbfbdbfcc08dafa52ae
+Author: Francis Jiang <864248765@qq.com>
+Date:   Fri Oct 12 19:33:51 2012 +0800
+
+    fix encode error,update changelog
+
+commit c942b22ae5cf1e02e848d7030de85dd16eb38b56
+Author: Francis Jiang <864248765@qq.com>
+Date:   Fri Oct 12 17:59:18 2012 +0800
+
+    Revert "Revert "add site controller,do something with 'authorizations' model, set some I18n show""
+    
+    This reverts commit df15dbecb422a5489435cd958fc4932d2d9f7174.
+    
+    	deleted:    ChangeLog
+    	new file:   ChangeLog.markdown
+    	modified:   Gemfile
+    	modified:   Gemfile.lock
+    	new file:   LICENSE
+    	new file:   Link to ChangeLog.markdown
+    	new file:   app/assets/javascripts/site.js.coffee
+    	new file:   app/assets/stylesheets/site.css.less
+    	modified:   app/controllers/questions_controller.rb
+    	new file:   app/controllers/site_controller.rb
+    	modified:   app/helpers/dashboard_helper.rb
+    	modified:   app/helpers/messages_helper.rb
+    	new file:   app/helpers/site_helper.rb
+    	modified:   app/helpers/work/dashboard_helper.rb
+    	new file:   app/models/authorization.rb
+    	modified:   app/models/quiz.rb
+    	modified:   app/models/user.rb
+    	modified:   app/views/auth/users/index.html.erb
+    	modified:   app/views/auth/users/show.html.erb
+    	modified:   app/views/common/_footer.html.erb
+    	modified:   app/views/dashboard/index.html.erb
+    	modified:   app/views/quiz_center/quizzes/_form.html.erb
+    	modified:   app/views/quiz_center/quizzes/index.html.erb
+    	modified:   app/views/quiz_center/quizzes/show.html.erb
+    	new file:   app/views/site/about.html.erb
+    	new file:   app/views/site/changelog.html.erb
+    	new file:   app/views/site/license.html.erb
+    	new file:   app/views/site/policies.html.erb
+    	new file:   app/views/site/support.html.erb
+    	new file:   app/views/site/team.html.erb
+    	modified:   app/views/work/dashboard/show.html.erb
+    	modified:   app/views/work/shared/_user_work_log_list.html.erb
+    	modified:   config/locales/breadcrumbs.zh-CN.yml
+    	modified:   config/locales/helper.zh-CN.yml
+    	new file:   config/locales/model/authorization.zh-CN.yml
+    	modified:   config/locales/model/quiz_center/quiz.zh-CN.yml
+    	modified:   config/locales/model/user.zh-CN.yml
+    	modified:   config/locales/page.zh-CN.yml
+    	modified:   config/routes.rb
+    	modified:   routes.log
+    	modified:   script/change_log_builder.sh
+    	new file:   spec/controllers/site_controller_spec.rb
+    	new file:   spec/helpers/site_helper_spec.rb
+    	new file:   spec/views/site/about.html.erb_spec.rb
+    	new file:   spec/views/site/changelog.html.erb_spec.rb
+    	new file:   spec/views/site/license.html.erb_spec.rb
+    	new file:   spec/views/site/policies.html.erb_spec.rb
+    	new file:   spec/views/site/support.html.erb_spec.rb
+    	new file:   spec/views/site/team.html.erb_spec.rb
+
+commit df15dbecb422a5489435cd958fc4932d2d9f7174
+Author: Francis Jiang <864248765@qq.com>
+Date:   Fri Oct 12 17:55:41 2012 +0800
+
+    Revert "add site controller,do something with 'authorizations' model, set some I18n show"
+    
+    This reverts commit ef9b35774ea20b9258f3007121f352ccae033f77.
+
+commit ef9b35774ea20b9258f3007121f352ccae033f77
+Author: Francis Jiang <864248765@qq.com>
+Date:   Fri Oct 12 17:54:44 2012 +0800
+
+    do something with 'authorizations' model, set some I18n show
+
+commit d14cccc8fadfd20ce6ed90efa1da96e23258362f
+Author: Francis Jiang <864248765@qq.com>
+Date:   Thu Oct 11 18:09:01 2012 +0800
+
+    fix bug on recommend_recommend_user
+
+commit 461edf6bde872e9e73b0f41d9aa094c10ffc62aa
+Author: Francis Jiang <864248765@qq.com>
+Date:   Thu Oct 11 17:45:48 2012 +0800
+
+    update bootstrap to v2.1.1 and bootswatch to v0.3.4
+
+commit beebd94c38444f2f580da69d366c91f4cf7022af
+Author: Francis Jiang <864248765@qq.com>
+Date:   Thu Oct 11 11:19:46 2012 +0800
+
+    fix undefined method 'model_name_from_record_or_class' incorrent conf inside 'sisyphus.yml'
+
+commit 7d67efed867cf1e76243d607b2390a98ce4e557a
+Author: Francis Jiang <864248765@qq.com>
+Date:   Thu Oct 11 10:54:45 2012 +0800
+
+    cancel the present validates on question model
+
+commit 52cd68618b28ada03f6f00814f3b25a4ed0d3f92
+Author: Francis Jiang <864248765@qq.com>
+Date:   Tue Oct 9 20:22:57 2012 +0800
+
+    'sisyphus-rails' to Include gmail like auto-save on your forms
+
+commit 1d367c1258cf1d40e2281fa738216751eb2d6e88
+Author: bbt_server <as181920@hotmail.com>
+Date:   Mon Oct 8 23:02:57 2012 +0800
+
+    fix 'Twitter Bootstrap Carousel plugin delay on page load' by set 'item active'
+
+commit 32ca308571aea504114df25018dee17672f637ec
+Author: Francis Jiang <864248765@qq.com>
+Date:   Mon Oct 8 15:41:49 2012 +0800
+
+    try to make 'focus_recommendation_slide' work fine
+
+commit 9f7350e0ab1cc94a5443577c4ae3e793bfceda72
+Author: Francis Jiang <864248765@qq.com>
+Date:   Sat Sep 29 18:33:29 2012 +0800
+
+    recommend_focuss slider
+
+commit 4217796bf9ad6d4daa15a4250cf4214f7811a49f
+Author: Francis Jiang <864248765@qq.com>
+Date:   Sat Sep 29 15:58:08 2012 +0800
+
+    try to unstand the task callback
+
+commit 5335a67cea8109d17766889ffb9448d413691d13
+Author: Francis Jiang <864248765@qq.com>
+Date:   Sat Sep 29 15:48:22 2012 +0800
+
+    try to unstand the task callback
+
+commit f7d3d6333653246090fc7c2ee716848add1081d2
+Author: Francis Jiang <864248765@qq.com>
+Date:   Sat Sep 29 15:33:27 2012 +0800
+
+    try to unstand the task callback
+
+commit 187c0e1bf7fb4898b846b99c67954854b69a823a
+Author: Francis Jiang <864248765@qq.com>
+Date:   Sat Sep 29 15:14:09 2012 +0800
+
+    try to unstand the task callback
+
+commit 3392ed90f395460752667f9fce39aa05bea9e99c
+Author: Francis Jiang <864248765@qq.com>
+Date:   Sat Sep 29 15:00:54 2012 +0800
+
+    try to unstand the task callback
+
+commit dca304f2baf9fb83a3ea993072a52c67965c75a4
+Author: Francis Jiang <864248765@qq.com>
+Date:   Sat Sep 29 14:49:40 2012 +0800
+
+    add deploy tasks restart Crontab
+
+commit 2a7359477f28fc73c4978e662076b43c737ea0f4
+Author: Francis Jiang <864248765@qq.com>
+Date:   Sat Sep 29 13:37:51 2012 +0800
+
+    fix some bug, add newest_users_summary, add user_level_summary
+
+commit 7b81f07a93c7fe15de6e4d31c192b833b8b724c6
+Author: Francis Jiang <864248765@qq.com>
+Date:   Sat Sep 29 13:34:37 2012 +0800
+
+    fix some bug, add newest_users_summary, add user_level_summary
+
+commit 6f289524eff595b484cddd0df8cccc0d3e9838be
+Author: bbt_server <as181920@hotmail.com>
+Date:   Sat Sep 29 01:14:28 2012 +0800
+
+    commit the test code
+
+commit 7f59594bb83c69fac635c23d434ccdb50157292d
+Author: bbt_server <as181920@hotmail.com>
+Date:   Sat Sep 29 01:02:24 2012 +0800
+
+    check out params picked follw queue order when method defined
+
+commit 583fe41fafa7b5c9b32a9da6e0abf87ad36c1ae2
+Author: Francis Jiang <864248765@qq.com>
+Date:   Fri Sep 28 18:50:03 2012 +0800
+
+    add description field to recommend_others
+
+commit 1a17d51964a566e6e0e85006983d1db66d37e867
+Author: jhjguxin <864248765@qq.com>
+Date:   Fri Sep 28 13:39:50 2012 +0800
+
+    is ? COUNT=5 PIDFILE=./resque.pid BACKGROUND=yes QUEUE=#{application} RAILS_ENV=production environment resque:work must be
+
+commit dff9be21dab8e14b27e88ba15463d0e95d34d82b
+Author: jhjguxin <864248765@qq.com>
+Date:   Fri Sep 28 11:14:17 2012 +0800
+
+    try to isolate the resque from askjane and bbtangcms
+
+commit 77037d1c9c0dc87385c4c1f8ce0fb50d7725f657
+Author: bbt_server <as181920@hotmail.com>
+Date:   Thu Sep 27 23:50:56 2012 +0800
+
+    use deliver! instead deliver to send message
+
+commit 0dae753d4f299e9b978ad550bfad34d18f847b6c
+Author: bbt_server <as181920@hotmail.com>
+Date:   Thu Sep 27 23:20:10 2012 +0800
+
+    fix error on user_mail by set default :from option
+
+commit eb4074091d8dc61791b8eb82f57d567675608053
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Sep 27 20:21:53 2012 +0800
+
+    try to fix undefined method 'perform' for UserMail:Class
+
+commit 8d36ab03a9aeccb5efb80361c775cf246717f50d
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Sep 27 18:52:31 2012 +0800
+
+    try to fix duplicate send new_question_notify
+
+commit 57340cef569362698982ea0b480f43cd32a0ef6d
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Sep 27 17:44:31 2012 +0800
+
+    whenever work now
+
+commit 91ae677d918ba3125102dfe5487871449765e27a
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Sep 27 16:21:28 2012 +0800
+
+    try to make whenever work
+
+commit 393975aa52e603bd8fef017fc119245fe44cbfd3
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Sep 27 15:45:23 2012 +0800
+
+    add new_question_notify mailer and relation resque
+
+commit 8320a444bcda2018a347cc8f298d0ee22335c054
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Sep 27 12:44:23 2012 +0800
+
+    fix some error on quiz_collection if quiz_ids is nil
+
+commit 95feb242ea7301f0b36d8a4e48503837bdaf0855
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Sep 27 12:20:29 2012 +0800
+
+    fix some error on quiz_collection if quiz_ids is nil
+
+commit 719034938bd5e1e9399dd7d8161169988a44da06
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Sep 27 11:41:26 2012 +0800
+
+    share the value from quiz_collection.quiz_ids to quiz_collection.ids
+
+commit 46e4a23fdbb8da5e5bcbde9583abd3a5eb6441aa
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Sep 27 11:36:11 2012 +0800
+
+    fix some error on quiz_collection if quiz_ids is nil
+
+commit e56e97c9ff3993daf38caed5971333619ffdef5b
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Sep 27 11:06:20 2012 +0800
+
+    some change on version_filter_drop_down_li
+
+commit 41dbf51cdbd7e6db34a070c593d9c7000f7a075a
+Merge: 45b6cd5 301cefc
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Sep 27 11:01:21 2012 +0800
+
+    Merge branch 'master' of bbtang.com:bbtang/bbtcms
+
+commit 301cefc6bdee728e2388c13a02a23ac327e0caaf
+Author: bbt_server <as181920@hotmail.com>
+Date:   Wed Sep 26 22:16:18 2012 +0800
+
+    fix the 'padding' attr on '.navbar .nav > li > a'
+
+commit cd5c420affef2ee01b334f8ad006dcaf500ef5d7
+Author: bbt_server <as181920@hotmail.com>
+Date:   Wed Sep 26 22:15:52 2012 +0800
+
+    fix the 'padding' attr on '.navbar .nav > li > a'
+
+commit 45b6cd52191f5a064b1e1ae4a2f5917d7442fa7b
+Author: jhjguxin <864248765@qq.com>
+Date:   Wed Sep 26 20:33:05 2012 +0800
+
+    rebuilder changelog
+
+commit 22378caecb7a835fdb323849080ed1ee7fde6060
+Author: jhjguxin <864248765@qq.com>
+Date:   Wed Sep 26 20:28:15 2012 +0800
+
+    rebuilder changelog
+
+commit e86158503da1e20a1f9d6037c2b0906b6a6d7b85
+Author: jhjguxin <864248765@qq.com>
+Date:   Wed Sep 26 20:27:28 2012 +0800
+
+    add quiz_center mod
+
+commit b5e6c367b80ad9df920d492425cb4fb695483460
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Sep 25 20:25:48 2012 +0800
+
+    set sort_index as uniq value
+
+commit a895d245502818d7c4cc53ba4b101db4efc0fe80
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Sep 25 20:23:44 2012 +0800
+
+    add vip_category recomment mod,and can set vip_categroy on profile
+
+commit 38a84f57a975948f2a63b2621d58fb234d8871f5
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Sep 25 15:34:58 2012 +0800
+
+    add note mod, 'will_paginate' update to 3.0.3, some case on paginate in Active Record
+
+commit e80c780bce583f74b39e975490e512c8e2d53e6a
+Author: jhjguxin <864248765@qq.com>
+Date:   Fri Sep 21 16:28:41 2012 +0800
+
+    user action info summray
+
+commit 2c043320557f69215813f9e3e3cf3dd00f40b596
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Sep 20 20:34:36 2012 +0800
+
+    do some small change
+
+commit 7ede0df690221af41c4af0dc6c7a86ce1e3ebcf8
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Sep 20 20:29:00 2012 +0800
+
+    add other_recommend
+
+commit b459f49d09f774b881cfc169fd8840ac3521573c
+Author: jhjguxin <864248765@qq.com>
+Date:   Wed Sep 19 14:16:06 2012 +0800
+
+    add deploy seed tasks
+
+commit ea9d65048526e972eb63b667c2c04146c9a6f82b
+Author: jhjguxin <864248765@qq.com>
+Date:   Wed Sep 19 13:35:35 2012 +0800
+
+    refactory the expert_categroy mod(which init on mongoid with some opt)
+
+commit bec06b2a394ea59c7c709f64d79fe13b5845190b
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Sep 18 10:38:29 2012 +0800
+
+    add nil ingore on app/views/profiles/show.html.erb
+
+commit 5061814e7f50478a65c737e601a9070a84c1467f
+Author: jhjguxin <864248765@qq.com>
+Date:   Sat Sep 15 12:01:36 2012 +0800
+
+    check the cap task launch  order
+
+commit a07c0f557b6c10c148448656baff3567dc34f36a
+Author: jhjguxin <864248765@qq.com>
+Date:   Fri Sep 14 18:36:00 2012 +0800
+
+    add resume and expert_categories  for expert
+
+commit 438f4824b25164ec1998a2ccb7cd67cd6d4fce64
+Author: jhjguxin <864248765@qq.com>
+Date:   Wed Sep 12 11:44:25 2012 +0800
+
+    fix get_face_url size cannot find
+
+commit 34831037c666f976ad3c869657d90f9b49786f8a
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Sep 11 20:17:08 2012 +0800
+
+    from model mv index conf to lib
+
+commit 44d161e329f1fd8a79c61d117bfb31aca7e22cfa
+Author: jhjguxin <864248765@qq.com>
+Date:   Fri Sep 7 15:01:59 2012 +0800
+
+    uncommit the knowledge_id on question _form.html.erb
+
+commit 43adb55ce88a4878df9767ecc6c0eb6ce4608495
+Author: jhjguxin <864248765@qq.com>
+Date:   Fri Sep 7 14:40:01 2012 +0800
+
+    uncommit the knowledge_id on question _form.html.erb
+
+commit 963fcf954865e7b5f2fba4666edf09bb964e3e3b
+Author: jhjguxin <864248765@qq.com>
+Date:   Fri Sep 7 13:50:34 2012 +0800
+
+    change seearch index
+
+commit cd4241f25e95deedc2227597d2018079fc0eb656
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Sep 4 11:18:45 2012 +0800
+
+    set whenever pathto #{current_path}
+
+commit 18496401d0c9ef5cd444210f8a9f1774e3a19bff
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Sep 4 11:11:13 2012 +0800
+
+    add schedule assets:precompile task
+
+commit 11ebb5aa749368aba561fdb26526a45140e01777
+Author: jhjguxin <864248765@qq.com>
+Date:   Mon Sep 3 10:43:54 2012 +0800
+
+    add shadow to '.navbar-fixed-top'
+
+commit bb592db90386114944af0ec778ec9d93c2a56803
+Author: Francis Jiang <864248765@qq.com>
+Date:   Sat Sep 1 19:55:08 2012 +0800
+
+    fix update_question create_question have no ability to [:update_timelines, :update_categories]
+
+commit beec063803b66de20e1661b590ce78d5e6dfbc80
+Author: jhjguxin <864248765@qq.com>
+Date:   Fri Aug 31 14:52:41 2012 +0800
+
+    fix menu bar and add mod-operate button group
+
+commit 0a672a47bee64c192c1fa332988908a11a118dae
+Author: jhjguxin <864248765@qq.com>
+Date:   Fri Aug 31 11:30:46 2012 +0800
+
+    use spin.js to instead img background
+
+commit 5610ead9b04fdda0a27733f65950ead76347b10c
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Aug 30 17:54:34 2012 +0800
+
+    use obj_tips help, add 'internal_user' lib
+
+commit b27c2ef7f08cf20b491d83380d179a32e3806777
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Aug 28 19:20:10 2012 +0800
+
+    fix error on news index page
+
+commit 58f91c650b6a8899d314b5b332fad1e28094dad7
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Aug 28 19:19:57 2012 +0800
+
+    fix error on news index page
+
+commit d86954ca57a0f350dc4c0f821f438215c879190c
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Aug 28 18:39:24 2012 +0800
+
+    add page loading function
+
+commit cd83f281cd99c770a3a4305a60ec93ae7c8ea9e8
+Merge: 808998f ae8fead
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Aug 28 14:43:56 2012 +0800
+
+    Merge branch 'master' of 192.168.1.100:bbtang/bbtcms
+
+commit 808998fb6fde1c64e7973a608236292f70709706
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Aug 28 14:43:40 2012 +0800
+
+    add contact mod
+
+commit ae8fead0709af3775040a02bc7542f50fbf064df
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Tue Aug 28 13:02:48 2012 +0800
+
+    问答搜索使用的软删除字段更新
+
+commit abad9372dacb15cb292eed586d2dabc0a704a0ec
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Mon Aug 27 19:42:17 2012 +0800
+
+    add deploy repos ,commented
+
+commit 63f762527c963ee730fbebdee0ffc7ab25258b9f
+Merge: f1705f5 d5d80c9
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Mon Aug 27 18:46:50 2012 +0800
+
+    Merge branch 'master' of 192.168.1.100:bbtang/bbtcms
+
+commit f1705f5515edd8c7898c699e866864c051a305de
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Mon Aug 27 18:46:42 2012 +0800
+
+    add generated sphinx conf file
+
+commit d5d80c9305f0e6f972745089d8fcc5f78e7be99b
+Merge: bf08a36 436ab5f
+Author: jhjguxin <864248765@qq.com>
+Date:   Mon Aug 27 15:29:01 2012 +0800
+
+    Merge branch 'master' of 192.168.1.100:bbtang/bbtcms
+
+commit bf08a36227bf15779638dca989d22e8c2242e21d
+Author: jhjguxin <864248765@qq.com>
+Date:   Mon Aug 27 15:28:49 2012 +0800
+
+    add tooltips andd popover to index page
+
+commit 436ab5fd39c74d1f40b0e94d694e7f47b551282e
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Mon Aug 27 12:01:58 2012 +0800
+
+    update sphinx config file
+
+commit eefaa973c02568a1aae297dceb13ce0d03819233
+Author: jhjguxin <864248765@qq.com>
+Date:   Fri Aug 17 17:51:24 2012 +0800
+
+    set limit count to page_requests
+
+commit e3df29231e20d81775743fada1f81c99cb10175c
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Aug 16 18:43:16 2012 +0800
+
+    show newest_users
+
+commit 380446c569eeb8547a0dea5e479ede830f20e2de
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Aug 16 15:05:44 2012 +0800
+
+    check_authorization only ensures that authorization is performed. If you have authorize_resource the authorization will still be performed no matter what is returned here.
+
+commit b0412601fa194ed9191288da118356bd13a656c5
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Aug 16 14:43:01 2012 +0800
+
+    move 'gritter' outside the assets group
+
+commit d37ad209bd4fa45f2e5790aeab8498854538c1f6
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Aug 16 13:31:21 2012 +0800
+
+    fix some errors css
+
+commit 75d228d0a1f16afc5dea138f3385f7d59ff70c1e
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Aug 16 13:11:48 2012 +0800
+
+    gritter conver scss to css
+
+commit 141de2a77ecf7e90c417f153a180f79bf1005cd2
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Aug 16 11:37:14 2012 +0800
+
+    can send message to cms_role users, add some tips to message create
+
+commit df6e801b7acddfefdb5e2529efc02a082bd5e02d
+Merge: 1c75de7 f71f7ac
+Author: jhjguxin <864248765@qq.com>
+Date:   Wed Aug 15 20:55:49 2012 +0800
+
+    Merge branch 'master' of 192.168.1.100:bbtang/bbtcms
+
+commit 1c75de76c1c633c755787750cc2012ff41ce703f
+Author: jhjguxin <864248765@qq.com>
+Date:   Wed Aug 15 20:55:33 2012 +0800
+
+    add message mod, add 'gritter'
+
+commit f71f7ace17c9335f64817ba6c5282af771b798e9
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Wed Aug 15 17:08:16 2012 +0800
+
+    add search columns
+
+commit 05b1f7cb9e03215ec13a5a9a7a2cf8eb422738cc
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Aug 14 19:56:46 2012 +0800
+
+    commit require 'whenever/capistrano'
+
+commit 3007f4cb47f78cfa13e3afa0cf103dd9ec9481da
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Aug 14 18:31:31 2012 +0800
+
+    add a simple filter to version
+
+commit 7e4194cfec624b6c0784c5039ec9f3091e67d609
+Author: jhjguxin <864248765@qq.com>
+Date:   Mon Aug 13 13:59:13 2012 +0800
+
+    fix 'today_work_summary' total count incorrect
+
+commit 0be72ca153cb755d3ad5bc7a9704274538ef4fcc
+Author: jhjguxin <864248765@qq.com>
+Date:   Mon Aug 13 13:26:55 2012 +0800
+
+    add exception catch(eg, 400, 403, 500), fix some bugs
+
+commit 83aa2acedc5af635f1a580c42b657d530f6ed943
+Author: jhjguxin <864248765@qq.com>
+Date:   Fri Aug 10 15:56:48 2012 +0800
+
+    fix some bugs
+
+commit 7260df871804c03d73e9f87dae4d60326c336ad4
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Aug 9 20:47:44 2012 +0800
+
+    gem less-rails-bootstrap update to 2.0.13
+
+commit 82dbaaa4011084f531b7eb4a2805230f51af763d
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Aug 9 17:49:17 2012 +0800
+
+    do something about work mod
+
+commit 110bc346a7d72850673a23d514c002bbd27ddd2a
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Thu Aug 9 10:06:04 2012 +0800
+
+    Merge branch 'master' of 192.168.1.100:bbtang/bbtcms; branch 'master' of bbtang.com:bbtang/bbtcms
+
+commit d29d6092e3fb46c305b3ec8689f7eb4d7d371ecd
+Author: bbt_server <as181920@hotmail.com>
+Date:   Wed Aug 8 16:46:31 2012 +0800
+
+    update gem
+
+commit b2a6b1841d8324944155f604d6da44c642b74902
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Aug 7 14:29:25 2012 +0800
+
+    working with work mod
+
+commit 69310c30c32ad101cb944788017a3e0bfa4e6a79
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Tue Aug 7 14:20:40 2012 +0800
+
+    different deploy env use different git server
+
+commit 69ea48bad5b55dc27d6679bbb0b0e9606f3aaa26
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Aug 7 14:17:32 2012 +0800
+
+    remove auth  ddatabase to askjane , add work mod
+
+commit 49c0d51ad9b1831ea107df13bd0b092f446cbe67
+Author: jhjguxin <864248765@qq.com>
+Date:   Fri Aug 3 17:47:59 2012 +0800
+
+    make tags show on news's display page
+
+commit 0204c43b659407bc7e909b232b371e5327077a70
+Author: jhjguxin <864248765@qq.com>
+Date:   Fri Aug 3 17:44:34 2012 +0800
+
+    add news mod, falmost finish admin mod
+
+commit 6fd4ecb4f82e0b04abc582df80f349b0d3ad6dd7
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Aug 2 18:14:40 2012 +0800
+
+    do something with error js
+
+commit fc7b19592bae1461a4840bac650dab09f4805924
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Aug 2 17:43:04 2012 +0800
+
+    do something with error js
+
+commit e64b857e06dabc6e835027301ad6d461977feb9e
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Aug 2 16:05:49 2012 +0800
+
+    fix bootstrap no work
+
+commit e11fa74fa2fe30e11993407a249f97fa07841e9f
+Author: jhjguxin <864248765@qq.com>
+Date:   Wed Aug 1 18:42:43 2012 +0800
+
+    do something oadmin mod on BBTangCMS
+
+commit a241e5fe155f090520f67ae7a7c03f7eaf1d7a17
+Author: jhjguxin <864248765@qq.com>
+Date:   Mon Jul 30 19:35:10 2012 +0800
+
+    add attachment mod
+
+commit 23c340789aeca055bb27bacf5788b9eeab0ff850
+Author: jhjguxin <864248765@qq.com>
+Date:   Fri Jul 27 10:09:44 2012 +0800
+
+    fix 'Moped::Errors::QueryFailure'
+
+commit 7f5b8e64486917095fd38ae686e67b99ce1e47de
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Jul 26 20:19:43 2012 +0800
+
+    add simple seo setting, add subject mod
+
+commit e67d612660e08edbb6a4117fbbb99108243afa2a
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Jul 26 13:12:31 2012 +0800
+
+    change subject migration
+
+commit c851f6f570d54c7a140e127fd320f172ad229418
+Merge: 817db99 a84d35d
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Jul 26 12:38:44 2012 +0800
+
+    Merge branch 'master' of 192.168.1.100:bbtang/bbtcms
+
+commit 817db9977b4c92576f7f43ede9b730343b1b7371
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Jul 26 12:38:20 2012 +0800
+
+    add subject migration
+
+commit a84d35d9e34151cdd43547624e01ecbf6e90fe1a
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Thu Jul 26 12:19:37 2012 +0800
+
+    comment unused migrate code
+
+commit 68a571e359887f355e83682c7d7a4162cfe1eb1b
+Merge: 31df3e8 b289e8c
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Jul 26 10:41:28 2012 +0800
+
+    Merge branch 'master' of 192.168.1.100:bbtang/bbtcms
+
+commit 31df3e85011a8e36f257ebca72ae30e5a6e76d7c
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Jul 26 10:41:04 2012 +0800
+
+    remove autoRefresh less
+
+commit b289e8c6badf4ac94eb48645b4d977b946443865
+Merge: 08dd815 b5b494a
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Thu Jul 26 09:53:09 2012 +0800
+
+    Merge branch 'master' of 192.168.1.100:bbtang/bbtcms
+
+commit 08dd815a79272d298fc912352aab77d73c680073
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Thu Jul 26 09:52:58 2012 +0800
+
+    mv thin to dev env
+
+commit b5b494a7c1517538fd049d91ac5cca3141d3c56a
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Jul 24 18:26:36 2012 +0800
+
+    fix older and not work 'Capistrano' config
+
+commit 3f263f9c797ce31cd59203e6831461c3080ed91d
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Jul 24 18:26:05 2012 +0800
+
+    fix older and not work 'Capistrano' config
+
+commit 7baa046c020533d82920fa4501c69bd44656c31a
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Jul 24 18:25:08 2012 +0800
+
+    fix older and not work 'Capistrano' config
+
+commit c38f5a1da68af04c1fb7f7f490ab5d36cf232475
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Jul 24 17:59:57 2012 +0800
+
+    add 'rvm-capistrano' gem
+
+commit c9e7be23bf93333ccbef928cefaeacc59c6e4e93
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Jul 24 17:42:39 2012 +0800
+
+    uncomment 'capistrano' gem
+
+commit d6b328bc9ca71917b793b26cd10fb5397077ab39
+Author: jhjguxin <864248765@qq.com>
+Date:   Tue Jul 24 17:19:09 2012 +0800
+
+    add 'ptag to recommend mod'
+
+commit f215f8dea39d61a135250407e4c5446c9b981d8c
+Author: jhjguxin <864248765@qq.com>
+Date:   Mon Jul 23 16:45:44 2012 +0800
+
+    remove the 'prototype' to reslove the conflict with 'jQuery'
+
+commit 6f9e3380c3426a779a24e4bb4de8061b28a33920
+Merge: 8249b75 53e6b30
+Author: jhjguxin <864248765@qq.com>
+Date:   Fri Jul 20 18:27:06 2012 +0800
+
+    Merge branch 'master' of 192.168.1.100:bbtang/bbtcms
+
+commit 8249b75e284d5f3c4ce5b6b6d6c98f0ddcbb0841
+Author: jhjguxin <864248765@qq.com>
+Date:   Fri Jul 20 18:26:50 2012 +0800
+
+    add tag edit to Question
+
+commit 53e6b303ce58848aa403a896ffee14c5c5c32df6
+Merge: e0e6c8b 88b42fb
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Fri Jul 20 14:22:19 2012 +0800
+
+    Merge branch 'master' of 192.168.1.100:bbtang/bbtcms
+
+commit e0e6c8b35e5bad7104db6f62193d956e89e8c303
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Fri Jul 20 13:44:42 2012 +0800
+
+    do not clean after deploy
+
+commit 88b42fbec538235cf3629384e3d1fce4bfafa734
+Merge: 96b428e 0415809
+Author: jhjguxin <864248765@qq.com>
+Date:   Fri Jul 20 11:14:06 2012 +0800
+
+    merge from master branch
+
+commit 96b428e431cbc41684ddfdd5c3cb4571f11ef951
+Author: jhjguxin <864248765@qq.com>
+Date:   Fri Jul 20 11:12:38 2012 +0800
+
+    do something ...
+
+commit 041580967ee22a747341bb6496ba524bde83386b
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Fri Jul 20 10:45:11 2012 +0800
+
+    ignore and rm ~tempfiles
+
+commit 38496d2d9dc18aedf6ce25a5de33d496cf2075bd
+Merge: 6e6bede 24e334d
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Fri Jul 20 10:43:05 2012 +0800
+
+    Merge branch 'master' of 192.168.1.100:bbtang/bbtcms
+
+commit 6e6bede6cd40e0aedb173a24a8abdd776dccf27e
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Fri Jul 20 10:41:58 2012 +0800
+
+    enable thin
+
+commit 75a82842a94baaedff7de2cc959d2367744b9adb
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Thu Jul 19 23:02:20 2012 +0800
+
+    modify deploy
+
+commit 24e334d1e883a3e07baffe19e3cbd9185bd28601
+Merge: e22f26c 63ad468
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Jul 19 18:35:36 2012 +0800
+
+    merge from master
+
+commit e22f26ce2ca2f0eb0a02f3f3388c71e58d825783
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Jul 19 18:34:03 2012 +0800
+
+    a glob area page number recorder on rails, so that user can back to recent vist page
+
+commit 906363621122e68d212c50691ba5f1cd2494066f
+Author: jhjguxin <864248765@qq.com>
+Date:   Thu Jul 19 18:31:23 2012 +0800
+
+    a glob area page number recorder on rails, so that user can back to recent vist page
+
+commit 63ad4681db35875b8a917b1ef49bc82a8e25a5c0
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Thu Jul 19 10:28:12 2012 +0800
+
+    change uploads lnk
+
+commit ef13fb6416bab68c3048cfbf8298de888eace83a
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Wed Jul 18 20:41:51 2012 +0800
+
+    modify db user,try capfile
+
+commit 4c5f5a53f1496cf82e7ed33db2353ba6f7b21c09
+Merge: b8228a9 b6fbff4
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Wed Jul 18 20:14:47 2012 +0800
+
+    Merge branch 'master' of 192.168.1.100:bbtang/bbtcms
+
+commit b6fbff40fc240d8d9f08758a7586b218bdf9afea
+Author: Francis Jiang <864248765@qq.com>
+Date:   Fri Jul 13 15:21:10 2012 +0800
+
+    fix nested resoueces bug
+
+commit b27730ded41ca9815f87db9eef165cb08c30f1b4
+Author: Francis Jiang <864248765@qq.com>
+Date:   Fri Jul 13 10:18:10 2012 +0800
+
+    fix timeline ability incorrent
+
+commit b8228a923f075cff4dee7dea2b53cf303be9fbfd
+Merge: 362c02d bec002b
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Fri Jul 13 10:01:24 2012 +0800
+
+    Merge branch 'master' of 192.168.1.100:bbtang/bbtcms
+
+commit bec002b98c8f7a81439834ed08591461d6488c78
+Author: Francis Jiang <864248765@qq.com>
+Date:   Fri Jul 13 02:56:58 2012 +0800
+
+    do some with cancan ability defining
+
+commit 362c02de80b51741310ff70a42add3a8d0df2318
+Merge: a85aab3 6310661
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Thu Jul 12 23:22:15 2012 +0800
+
+    Merge branch 'master' of 192.168.1.100:bbtang/bbtcms
+
+commit 6310661e13132243bb717fe840b9dbbc04f62f00
+Author: Francis Jiang <864248765@qq.com>
+Date:   Thu Jul 12 23:14:09 2012 +0800
+
+    add tag tree model
+
+commit a85aab33e7ab1a6427671d10ef5f9c9c1c7fe727
+Merge: 8cac91c 558c9f3
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Thu Jul 12 17:29:09 2012 +0800
+
+    Merge branch 'master' of 192.168.1.100:bbtang/bbtcms
+
+commit 558c9f3e0663752b9680ec5b5e6d35cc9894cc4b
+Merge: 1bd3ff1 3fad2e2
+Author: Francis Jiang <864248765@qq.com>
+Date:   Wed Jul 11 20:15:44 2012 +0800
+
+    Merge branch 'master' of 192.168.1.100:bbtang/bbtcms
+
+commit 1bd3ff1ae637bdb31adbeb48400f921fac2a51a1
+Author: Francis Jiang <864248765@qq.com>
+Date:   Wed Jul 11 20:15:20 2012 +0800
+
+    add face column to knowledge
+
+commit 8cac91c0360aa66d5a635b027fdd01fdafc840a3
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Wed Jul 11 16:46:02 2012 +0800
+
+    rm thin gem
+
+commit 5b0506b672081ede8fb9d10ff0e872ebea47fa90
+Author: Francis Jiang <864248765@qq.com>
+Date:   Wed Jul 11 15:33:22 2012 +0800
+
+    finish the archivve mod
+
+commit f7a781fd6ef6156ae958bcc6ea76263b5da5ee6d
+Merge: 3fad2e2 92d0f58
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Tue Jul 10 18:13:26 2012 +0800
+
+    Merge branch 'master' of bbtang.com:bbtang/bbtcms
+
+commit 3fad2e2e30d1742695f68d5c1db6641644e74b54
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Tue Jul 10 18:10:42 2012 +0800
+
+    add thin to gemfile
+
+commit 92d0f589ea6e13b7887bdf334151e2e89f74a86a
+Author: bbt <bbt@bbtangserver.(none)>
+Date:   Tue Jul 10 18:09:13 2012 +0800
+
+    update online problem,add kind to recommend hindices
+
+commit 518e6d6a81e15c82fca1d9f7ad609cba0dddecf8
+Author: Francis Jiang <864248765@qq.com>
+Date:   Mon Jul 9 20:56:44 2012 +0800
+
+    finished the question and answer mod
+
+commit 4ceb4e1b87020b979ddd4dde6c94b924c5e3860a
+Author: Francis Jiang <864248765@qq.com>
+Date:   Mon Jul 9 18:37:48 2012 +0800
+
+    fix error migration for question
+
+commit 16d139fb89989062e51ce1ca444a7a4387b56b3d
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Mon Jul 9 18:10:33 2012 +0800
+
+    enable sphinx search engine with askjane
+
+commit 8dc623e0c53f8953692b1cf46b1c6790000790e4
+Author: Francis Jiang <864248765@qq.com>
+Date:   Mon Jul 9 16:45:28 2012 +0800
+
+    fix yml SyntaxError error
+
+commit 1aa81bf9aeeb152300861e0d7112497bf1304185
+Merge: a63d59f 55ac080
+Author: Francis Jiang <864248765@qq.com>
+Date:   Mon Jul 9 15:46:03 2012 +0800
+
+    Merge branch 'master' of 192.168.1.100:bbtang/bbtcms
+
+commit a63d59fa7a27f181c6aefc31f42029f6f944bad3
+Author: Francis Jiang <864248765@qq.com>
+Date:   Mon Jul 9 15:45:44 2012 +0800
+
+    tmp backup
+
+commit 55ac0809f143f1083e59ef0f89ab02619e62a174
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Fri Jul 6 16:12:23 2012 +0800
+
+    mv debug to dev env
+
+commit b230dbcac7e25b0db0a9311a1cc067bd770ca5f8
+Author: Francis Jiang <864248765@qq.com>
+Date:   Fri Jul 6 11:18:29 2012 +0800
+
+    fix multi upload files with 'kindeditor', mv static file to common folder so that share with othor project
+
+commit 88d6e1620c34f0a1d507737f09c953e0cdccc33d
+Merge: 49961bb 4918df7
+Author: Francis Jiang <864248765@qq.com>
+Date:   Wed Jul 4 20:20:07 2012 +0800
+
+    Merge branch 'master' of 192.168.1.100:bbtang/bbtcms
+
+commit 49961bb050032daee78ae7a76c1c81fa204c43e3
+Author: Francis Jiang <864248765@qq.com>
+Date:   Wed Jul 4 20:19:20 2012 +0800
+
+    add form notice to knowledge mod
+
+commit 4918df75d2b27ef0106cc38fa04cddcaba9d0c60
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Wed Jul 4 18:20:24 2012 +0800
+
+    rm temp files
+
+commit 288184487981d588bf00edff39e09a5273ca7eda
+Author: Francis Jiang <864248765@qq.com>
+Date:   Wed Jul 4 18:12:37 2012 +0800
+
+    fix search bugs, skip cancan authorization check for 'rails_kindeditor'
+
+commit 0f3735b221a306a50cb559d90ccd881af10c21ca
+Author: Francis Jiang <864248765@qq.com>
+Date:   Wed Jul 4 18:11:33 2012 +0800
+
+    fix search bugs, skip cancan authorization check for 'rails_kindeditor'
+
+commit f69f0113f5c9e1b0ca4371ad7db22865bf0127b8
+Author: Francis Jiang <864248765@qq.com>
+Date:   Wed Jul 4 14:58:16 2012 +0800
+
+    add search demo
+
+commit a47fcaff135b8ef11b16963830c7435e963a468d
+Author: Francis Jiang <864248765@qq.com>
+Date:   Tue Jul 3 15:45:47 2012 +0800
+
+    add permits for hindex
+
+commit 8e76cd5cb0566e32cdd4f180a786bde7e94bcfdd
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Tue Jul 3 15:27:11 2012 +0800
+
+    debug fds
+
+commit bf36fdcc68ec64b49254dbd97aa8ac881cc74524
+Author: Francis Jiang <864248765@qq.com>
+Date:   Tue Jul 3 15:04:52 2012 +0800
+
+    add hindex recommend mod
+
+commit 6d17a3aba6b9e4edb4d6ac37202c9acfd6de0e78
+Author: Francis Jiang <864248765@qq.com>
+Date:   Tue Jul 3 10:39:50 2012 +0800
+
+    add auth mod
+
+commit cfd25fcb1cbd60acc65b965017996e6f75cf2c64
+Author: Francis Jiang <864248765@qq.com>
+Date:   Wed Jun 27 16:03:25 2012 +0800
+
+    edit meta_cahe work in model
+
+commit 20a90cb28a496ec5ddbf71b19980d31f38786c21
+Author: Francis Jiang <864248765@qq.com>
+Date:   Wed Jun 27 11:39:21 2012 +0800
+
+    fix Sign up and knowledge bug
+
+commit 980df362cc2c2ff64063ec84c4bec3f4c9b5d134
+Author: Francis Jiang <864248765@qq.com>
+Date:   Wed Jun 27 10:21:30 2012 +0800
+
+    finish almost CRUD for export user
+
+commit fef137a393bd3e20b6016512f5cb6a3322900be0
+Author: Francis Jiang <864248765@qq.com>
+Date:   Tue Jun 26 15:27:28 2012 +0800
+
+    beate version
+
+commit 572f5bcb0f734a3442c1bd12bd539f581910682f
+Author: Francis Jiang <864248765@qq.com>
+Date:   Thu Jun 21 19:09:40 2012 +0800
+
+    finish almost function of 'recommend'
+
+commit 56c6c333fc4b5c9b46be57ac5f651d4970129827
+Author: Francis Jiang <864248765@qq.com>
+Date:   Wed Jun 20 10:42:23 2012 +0800
+
+    and fix kindedit not work with ajax
+
+commit 163601045748c0006568dc73a276a6e322fc9a7f
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Mon Jun 18 20:37:07 2012 +0800
+
+    gem lock file
+
+commit 9d2596aa1658e500d1ccc7339257f2783444de82
+Author: Andersen Fan <as181920@hotmail.com>
+Date:   Mon Jun 18 20:32:15 2012 +0800
+
+    modi gem
+
+commit 80736282fedd4fe6f685c56294577587e090cc0a
+Author: Francis Jiang <864248765@qq.com>
+Date:   Mon Jun 18 19:45:32 2012 +0800
+
+    change some sheetstyle,and fix kindedit not work with ajax
+
+commit 508f04ad5e9968d1557f834ac836574e3ae50a15
+Author: dzl <dzl@eQQ.com>
+Date:   Mon Jun 18 18:09:02 2012 +0800
+
+    modify by andersen
+
+commit fbe42d3952521fd9bcaa056130ec12b7c24841e7
+Author: Francis Jiang <864248765@qq.com>
+Date:   Thu Jun 14 20:01:11 2012 +0800
+
+    fix some bug
+
+commit c6c6c67541fdce8a8016c1b27f1632b8f6b6195f
+Author: Francis Jiang <864248765@qq.com>
+Date:   Thu Jun 14 12:34:08 2012 +0800
+
+    finish CRUD funcion for knowledge mod
+
+commit 7c882b15b2b8a2f16ae346c1de6db7c6bc88b516
+Author: Francis Jiang <864248765@qq.com>
+Date:   Fri Jun 8 19:57:40 2012 +0800
+
+    first commit
