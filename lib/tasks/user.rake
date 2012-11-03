@@ -119,7 +119,7 @@ def export_mmbk_user
       today_export_reporter.last_mmbk_user_id = today_mmbk_users.last.user_id
       today_export_reporter.save
       logger.info "today's reporter #{today_export_reporter.to_json}"
-      puts ""today's reporter #{today_export_reporter.to_json}"
+      puts "today's reporter #{today_export_reporter.to_json}"
     else
       logger.info "today pick (#{today_mmbk_users.count}) users, really export (#{real_count})  users."
       puts "today pick (#{today_mmbk_users.count}) users, really export (#{real_count})  users."
