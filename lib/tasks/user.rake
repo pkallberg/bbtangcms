@@ -12,7 +12,7 @@ end
 def yesterday_export_reporter
   if "MmbkUserExportReporter".class_exists?
     mmbk_user_export_reporter = MmbkUserExportReporter.last
-    if mmbk_user_export_reporter.present? and mmbk_user_export_reporter.to_date.eql? 1.day.ago.to_date
+    if mmbk_user_export_reporter.present? and mmbk_user_export_reporter.created_at.to_date.eql? 1.day.ago.to_date
       mmbk_user_export_reporter
     end
   end
@@ -21,7 +21,7 @@ end
 def today_export_reporter
   if "MmbkUserExportReporter".class_exists?
     mmbk_user_export_reporter = MmbkUserExportReporter.last
-    if mmbk_user_export_reporter.present? and mmbk_user_export_reporter.to_date.eql? DateTime.now.to_date
+    if mmbk_user_export_reporter.present? and mmbk_user_export_reporter.created_at.to_date.eql? DateTime.now.to_date
       mmbk_user_export_reporter
     end
   end
@@ -53,9 +53,9 @@ def find_mmbk_user
     unless is_last_auth_mmbk_yesterday?
       now_time = DateTime.now
       #如果出现几天没有导入用户则，以天数乘以最小范围值
-      distance_day = (now_time.year - auth_mmbk.created_at.year) * now_time.yday + (now_time.month - auth_mmbk.created_at.month) * now_time.mday + (now_time.day - auth_mmbk.created_at.day)
-      logger.info "you last export at #{distance_day} ago, so add #{distance_day}*200 to plan_count"
-      count = count + (distance_day)*200
+       distance_day = (now_time.year - auth_mmbk.created_at.year) * now_time.yday + (now_time.month - auth_mmbk.created_at.month) * now_time.mday + (now_time.day - auth_mmbk.created_at.day)
+       logger.info "you last export at #{distance_day} ago, so add #{distance_day}*200 to plan_count"
+       count = count + (distance_day)*200
     end
 
     if auth_mmbk.present?
