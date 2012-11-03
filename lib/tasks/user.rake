@@ -74,7 +74,7 @@ def find_mmbk_user
         logger.info "today plan to export #{count} user ..."
         today_mmbk_users = MMBKUser.limit(count).where("email is not NULL and email != '' and user_id > #{last_mmbkuser.id}")
 	logger.info "create today's MmbkUserExportReporter record ..."
-	MmbkUserExportReporter.create(plan_count£ºcount)
+	MmbkUserExportReporter.create(plan_count:count)
 	today_mmbk_users 
       end
     else
