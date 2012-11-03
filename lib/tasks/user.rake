@@ -36,7 +36,7 @@ end
 
 def is_last_auth_mmbk_yesterday?
   auth_mmbk = Authorization.provider("mmbkoo").last
-  (auth_mmbk.created_at.to_date.eql? 1.day.ago.to_date) if auth_mmbk.present?
+  (auth_mmbk.created_at.to_date > 1.day.ago.to_date) if auth_mmbk.present?
 end
 
 def find_mmbk_user
@@ -44,7 +44,7 @@ def find_mmbk_user
     logger.info "found MMBKUser model , then try to pick user we need ... "
     #MMBKUser.where("email is not NULL")
     #MMBKUser.select([:email, :sex, :birthday, :msn, :qq, :mobile_phone, :City])
-    @count = rand(200..300)
+    count = rand(200..300)
     auth_mmbk = Authorization.provider("mmbkoo").last
 
     last_mmbkuser = yesterday_export_reporter.last_mmbk_user if yesterday_export_reporter.present?
