@@ -36,7 +36,7 @@ end
 
 def is_last_auth_mmbk_yesterday?
   auth_mmbk = Authorization.provider("mmbkoo").last
-  (auth_mmbk.created_at.to_date > 1.day.ago.to_date) if auth_mmbk.present?
+  (auth_mmbk.created_at.to_date >= 1.day.ago.to_date) if auth_mmbk.present?
 end
 
 def find_mmbk_user
@@ -52,10 +52,10 @@ def find_mmbk_user
     
     unless is_last_auth_mmbk_yesterday?
       now_time = DateTime.now
-      #如果出现几天没有导入用户则，以天数乘以最小范围值
+      #如果出现几天没有导入用户则，以(天数-1)乘以最小范围值
        distance_day = (now_time.year - auth_mmbk.created_at.year) * now_time.yday + (now_time.month - auth_mmbk.created_at.month) * now_time.mday + (now_time.day - auth_mmbk.created_at.day)
        logger.info "you last export at #{distance_day} ago, so add #{distance_day}*200 to plan_count"
-       count = count + (distance_day)*200
+       count = count + (distance_day - 1)*200 
     end
 
     if auth_mmbk.present?

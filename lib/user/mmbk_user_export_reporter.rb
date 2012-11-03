@@ -12,7 +12,7 @@ class MmbkUserExportReporter
 
   def last_mmbk_user
     if "MMBKUser".class_exists? and last_mmbk_user_id.present?
-      MMBKUser.find_by_id last_mmbk_user_id
+      MMBKUser.find_by_user_id last_mmbk_user_id
     end
   end
 
