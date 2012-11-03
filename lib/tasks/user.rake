@@ -9,14 +9,55 @@ def logger
   logger
 end
 
+def yesterday_export_reporter
+  if "MmbkUserExportReporter".class_exists?
+    mmbk_user_export_reporter = MmbkUserExportReporter.last
+    if mmbk_user_export_reporter.present? and mmbk_user_export_reporter.to_date.eql? 1.day.ago.to_date
+      mmbk_user_export_reporter
+    end
+  end
+end
+
+def today_export_reporter
+  if "MmbkUserExportReporter".class_exists?
+    mmbk_user_export_reporter = MmbkUserExportReporter.last
+    if mmbk_user_export_reporter.present? and mmbk_user_export_reporter.to_date.eql? DateTime.now.to_date
+      mmbk_user_export_reporter
+    end
+  end
+end
+
+def get_last_mmbk_user_by_auth
+  auth_mmbk = Authorization.provider("mmbkoo").last
+  if auth_mmbk.present?
+    last_mmbkuser = MMBKUser.find auth_mmbk.uid.to_i
+  end
+end
+
+def is_last_auth_mmbk_yesterday?
+  auth_mmbk = Authorization.provider("mmbkoo").last
+  (auth_mmbk.created_at.to_date.eql? 1.day.ago.to_date) if auth_mmbk.present?
+end
+
 def find_mmbk_user
   if "MMBKUser".class_exists?
     logger.info "found MMBKUser model , then try to pick user we need ... "
     #MMBKUser.where("email is not NULL")
     #MMBKUser.select([:email, :sex, :birthday, :msn, :qq, :mobile_phone, :City])
-    count = rand(200..300)
+    @count = rand(200..300)
     auth_mmbk = Authorization.provider("mmbkoo").last
+
+    last_mmbkuser = yesterday_export_reporter.last_mmbk_user if yesterday_export_reporter.present?
+    last_mmbkuser ||= get_last_mmbk_user_by_auth
     
+    unless is_last_auth_mmbk_yesterday?
+      now_time = DateTime.now
+      #如果出现几天没有导入用户则，以天数乘以最小范围值
+      distance_day = (now_time.year - auth_mmbk.created_at.year) * now_time.yday + (now_time.month - auth_mmbk.created_at.month) * now_time.mday + (now_time.day - auth_mmbk.created_at.day)
+      logger.info "you last export at #{distance_day} ago, so add #{distance_day}*200 to plan_count"
+      count = count + (distance_day)*200
+    end
+
     if auth_mmbk.present?
       if MMBKUser.exists? auth_mmbk.uid.to_i
         last_mmbkuser = MMBKUser.find auth_mmbk.uid.to_i
@@ -32,6 +73,9 @@ def find_mmbk_user
       else
         logger.info "today plan to export #{count} user ..."
         today_mmbk_users = MMBKUser.limit(count).where("email is not NULL and email != '' and user_id > #{last_mmbkuser.id}")
+	logger.info "create today's MmbkUserExportReporter record ..."
+	MmbkUserExportReporter.create(plan_count：count)
+	today_mmbk_users 
       end
     else
       logger.info "the first export ..."
@@ -68,9 +112,18 @@ def export_mmbk_user
         export_user(mmbk_user: mmbk_user)
       end
     end
-
-    logger.info "today pick (#{today_mmbk_users.count}) users, really export (#{real_count})  users."
-    puts "today pick (#{today_mmbk_users.count}) users, really export (#{real_count})  users."
+    if today_export_reporter.present?
+      logger.info "all user selected already export to bbtang.com now update mmbk_user_export_reporter."
+      today_export_reporter.pick_count = today_mmbk_users.count
+      today_export_reporter.real_count = real_count
+      today_export_reporter.last_mmbk_user_id = today_mmbk_users.last.user_id
+      today_export_reporter.save
+      logger.info "today's reporter #{today_export_reporter.to_json}"
+      puts ""today's reporter #{today_export_reporter.to_json}"
+    else
+      logger.info "today pick (#{today_mmbk_users.count}) users, really export (#{real_count})  users."
+      puts "today pick (#{today_mmbk_users.count}) users, really export (#{real_count})  users."
+    end
   end
 end
 

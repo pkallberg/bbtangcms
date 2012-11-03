@@ -73,11 +73,6 @@ every '0 0 27-31 * *' do
   command "echo 'you can use raw cron syntax too'"
 end
 
-every 1.day, :at => '2:00 am' do
-  runner "puts '#{DateTime.now} begin to send user_birthday_notify ...'"
-  rake "bbtangcms:notify:user_birthday_notify"
-end
-
 every '0 3 1 * *' do
   runner "puts '#{DateTime.now} begin to send monthly_notify ...'"
   #rake "bbtangcms:notify:monthly_notify"
