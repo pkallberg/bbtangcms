@@ -31,7 +31,7 @@
 								<p style="margin:0;text-indent:2em;line-height:20px;">
 								  <%= link_to edit_password_url(@user, :reset_password_token => @user.reset_password_token, :host => "www.bbtang.com"), edit_password_url(@user, :reset_password_token => @user.reset_password_token, :host => "www.bbtang.com"), :style =>"color:#0065b3;", :target =>"_blank" %>
 								</p>
-								<p style="margin:0;text-indent:2em;line-height:26px;font-size:14px;">以后，您可以用此邮箱地址和您设置的密码登陆棒棒糖。</p></td>
+								<p style="margin:0;text-indent:2em;line-height:26px;font-size:14px;">以后，您可以用此邮箱地址和您设置的密码登陆棒棒糖，如果链接失效（此链接仅一天之内有效）你可以随时通过该<%=link_to "链接",  new_user_password_url(:host => "www.bbtang.com")%>和你的邮箱来接收新的重置密码链接。</p></td>
 							<td width="30">&nbsp;</td>
 						</tr>
 						<tr height="20"></tr>
