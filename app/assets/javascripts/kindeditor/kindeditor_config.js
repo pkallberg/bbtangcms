@@ -1,6 +1,6 @@
-KindEditor.options.items=["emoticons", "|", "forecolor", "hilitecolor", "fontsize", "bold", "strikethrough", "justifyleft", "justifycenter", "justifyright", "|", "image", "multiimage", "table",  "link", "unlink"]
+//KindEditor.options.items=["emoticons", "|", "forecolor", "hilitecolor", "fontsize", "bold", "strikethrough", "justifyleft", "justifycenter", "justifyright", "|", "image", "multiimage", "table",  "link", "unlink"]
 
-KindEditor.options.pasteType=1
+KindEditor.options.pasteType = 1
 KindEditor.options.allowFileManager = false
 
 KindEditor.options.htmlTags = {
