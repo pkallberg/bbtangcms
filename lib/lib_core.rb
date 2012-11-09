@@ -11,7 +11,7 @@ require "sphinx/indexer"
 require "user/mmbk_user"
 require "user/mmbk_user_export_reporter"
 #require 'will_paginate/pagination_list_link_renderer' # 自定义分页，显示更多
-
+require "elasticsearch/indexer"
 #require 'sanitize'  # 去除字符串中的html标签
 #require 'rails_autolink'   # This is an extraction of the `auto_link` method from rails
 
@@ -34,7 +34,7 @@ class String
     content = self if content.empty?
     content.split(/、|，|,|;|；|\ +|\||\r\n/) if content.class.eql? self.class
   end
-  
+
 
   def class_exists?(class_name = nil)
     class_name = self if class_name.nil?

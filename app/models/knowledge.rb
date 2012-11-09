@@ -13,7 +13,7 @@ class Knowledge< ActiveRecord::Base
   #destroy associate event_log
   after_save :clear_event_log
   after_destroy :clear_event_log
-  
+
   belongs_to :knowledgebase_category
   has_one :quiz
 
@@ -74,6 +74,9 @@ class Knowledge< ActiveRecord::Base
   scope :id_equals, lambda { |input_id| where("knowledgebase.id = ?", input_id)}
 
   #include SphinxIndexable::Knowledge
+  #include Tire::Model::Search
+  #include Tire::Model::Callbacks
+  #include ElasticSearchable::Knowledge
 
   # find the knowledges whose tags include param
   def self.find_knowledges_with_tag(tag_id)

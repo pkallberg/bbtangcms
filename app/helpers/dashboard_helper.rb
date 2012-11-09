@@ -47,6 +47,6 @@ module DashboardHelper
   def newest_users( count = "1", unit = "day" )
     s_time = count.to_i.send(unit).send("ago") if count.to_i > 0
     s_time ||= 1.day.ago
-    users= User.includes(:profile).where(:created_at => s_time .. Date.tomorrow)
+    users= User.includes(:profile).where(:created_at => s_time .. Date.tomorrow).order("id desc")
   end
 end 

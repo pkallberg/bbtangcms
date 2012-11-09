@@ -89,12 +89,12 @@
 <div class="item box">
   <%= render :template => 'recommend/dashboard/show'%>
 </div>
-<% if newest_users[0..100].present? %>
+<% if newest_users.present? %>
   <div class = "newest_users box">
     <span class="label label-important"><%= t(".newest_user") %></span>
     <h1><%= t(".newest_user") %></h1>
     <ul class="thumbnails">
-      <% newest_users.each do |u|%>
+      <% newest_users[0..100].each do |u|%>
         <li class='span2'>
           <div class='thumbnail'>
             <%= image_tag(get_face_url(u.profile,:size => :original ), :height => '120', :width => '160', :title => "#{u}", :class => "img-rounded")%>

@@ -154,6 +154,9 @@ gem 'paper_trail', '~> 2'
 
 # sphinx搜索
 #gem 'thinking-sphinx','~> 2.0.7'
+# ElasticSearch
+gem 'tire'
+
 
 gem "resque", "~> 1.20.0"
 gem "resque_mailer", "~> 2.1.0"

@@ -7,14 +7,17 @@ class Question < ActiveRecord::Base
   acts_as_followable
   #include Redis::Search
   #include Recommendation::Search
+  #include Tire::Model::Search
+  #include Tire::Model::Callbacks
+  #include ElasticSearchable::Knowledge
 
   before_validation :repear_save
   before_save :update_tags_count
-  
+
   #destroy associate event_log
   after_save :clear_event_log
   after_destroy :clear_event_log
-  
+
 
   attr_accessor :soft_deleted
 
@@ -28,7 +31,7 @@ class Question < ActiveRecord::Base
   self_model_id    #引入self_model_id
 
   has_many :answers
-  
+
   #validates :title, :presence => true
   #validates :title, :length => {:maximum => Askjane::MetaCache.get_config_data("question_title_max").to_i}
   validates :created_by, :presence => true
@@ -49,7 +52,9 @@ class Question < ActiveRecord::Base
   def clear_event_log
     #Eventlog.remove("item_id" => params[:id].to_i, "item_type"=>"Note")
     if (self.respond_to? :deleted_by and self.send(:deleted_by)) or not(self.class.exists? self.id)
-      EventLog.where(item_type: self.class.to_s,item_id: id).collect{|event_log| event_log.destroy} if self.present?
+      #EventLog.where(item_type: self.class.to_s,item_id: id).collect{|event_log| event_log.destroy} if self.present?
+      Eventlog.remove("item_id" => self.id , "item_type"=>"Answer")
+      Eventlog.remove("item_id" => self.id , "item_type"=>"Question")
     end
   end
 

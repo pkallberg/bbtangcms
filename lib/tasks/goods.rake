@@ -16,14 +16,14 @@ def load_data(param={})
 end
 
 def date_formater(real_format, goods_data)
-  except_format = { :name => "产品名称", 
+  except_format = { :name => "产品名称",
                     :url => "产品链接",
-                    :tag_list=>"相关标签", 
-                    :category_list=>"分类标签", 
-                    :timeline_list=>"适用年龄段", 
-                    :identity_list=>"对象", 
-                    :category_major_list=>"产品大类", 
-                    :category_small_list=>"产品小类", 
+                    :tag_list=>"相关标签",
+                    :category_list=>"分类标签",
+                    :timeline_list=>"适用年龄段",
+                    :identity_list=>"对象",
+                    :category_major_list=>"产品大类",
+                    :category_small_list=>"产品小类",
                     :brand_list=>"品牌"}
   #real_format =  ["产品名称", "产品链接", "品牌", "产品大类", "产品小类", "对象", "适用年龄段", "分类标签", "相关标签"]
   if real_format.present?
@@ -56,8 +56,8 @@ def update_goods_from_csv(file = nil)
                           url: d[1],
                           brand_list: d[2],
                           category_major_list: d[3],
-                          category_small_list: d[4], 
-                          identity_list: d[5], 
+                          category_small_list: d[4],
+                          identity_list: d[5],
                           timeline_list: d[6],
                           category_list: d[7],
                           tag_list: d[8]}
@@ -77,7 +77,9 @@ def update_goods_from_csv(file = nil)
     puts "In total: update #{total} goods."
   end
 end
-#RAILS_ENV=production rake bbtangcms:db:goods_import["tmp/goods/goods-20121024.csv"]
+#scp tmp/goods/goods-20121024-summary.csv bbt@bbtang.com:~/bbtang/bbtcms/current/tmp/goods/goods-20121024-summary.csv
+#scp -r tmp/goods/ bbt@bbtang.com:~/bbtang/bbtcms/current/tmp/goods/
+#RAILS_ENV=production rake bbtangcms:db:goods_import["tmp/goods/goods-2012-11-8.csv"]
 namespace 'bbtangcms' do
   namespace 'db' do
     desc "pick up goods from csv file and export to database ..."
