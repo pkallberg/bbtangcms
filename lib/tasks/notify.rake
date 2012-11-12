@@ -44,7 +44,8 @@ namespace 'bbtangcms' do
       #questions = newest_obj(mod = "Question", t_count = "10", unit = "minutes").compact.uniq#params picked follw queue order when method defined
       questions = newest_obj(mod = "Question",conditions = [], t_count = "10", unit = "minutes").compact.uniq
       questions.each do |question|
-        UserMail.send_new_question_notify(email = "305912847@qq.com", question_id = question.id ).deliver if question.present?
+        email_list = %w(305912847@qq.com 1132804655@qq.com)
+        email_list.collect{|email| UserMail.send_new_question_notify(email = email, question_id = question.id ).deliver if email.present? and question.present?}
       end
       #UserMail.send_new_question_notify(email = "864248765@qq.com", question_id = Question.last.id ).deliver
     end

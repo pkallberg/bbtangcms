@@ -5,7 +5,7 @@ module ElasticSearchable
       base.class_eval <<-"end_eval"
         tire do
           mapping do
-            indexes :id,              type: 'integer'
+            indexes :id,              type: 'integer', :index => 'not_analyzed', :include_in_all => false
             #indexes :title,           type: 'string'
             indexes :content,         type: 'string'
             indexes :created_at,      type: 'date'
@@ -15,10 +15,10 @@ module ElasticSearchable
             indexes :identity_list,   as:   'identity_list.join(" ")'
 
 
-            indexes :tags, :type => 'string', :index => :not_analyzed, as:   'tag_list', :analyzer => 'keyword'
-            indexes :timelines, :type => 'string', :index => :not_analyzed,   as:   'timeline_list', :analyzer => 'keyword'
-            indexes :categories, :type => 'string', :index => :not_analyzed,        as:   'category_list', :analyzer => 'keyword'
-            indexes :identities, :type => 'string', :index => :not_analyzed,   as:   'identity_list, :analyzer => 'keyword'
+            indexes :tags, :type => 'string', :index => :not_analyzed, as:   'tag_list'
+            indexes :timelines, :type => 'string', :index => :not_analyzed,   as:   'timeline_list'
+            indexes :categories, :type => 'string', :index => :not_analyzed,        as:   'category_list'
+            indexes :identities, :type => 'string', :index => :not_analyzed,   as:   'identity_list'
 
 
             #indexes :tags do
@@ -36,7 +36,7 @@ module ElasticSearchable
       base.class_eval <<-"end_eval"
         tire do
           mapping do
-            indexes :id,              type: 'integer'
+            indexes :id,              type: 'integer', :index => 'not_analyzed', :include_in_all => false
             indexes :title,           type: 'string'
             indexes :summary,         type: 'string'
             indexes :content,         type: 'string'
@@ -47,10 +47,10 @@ module ElasticSearchable
             indexes :identity_list,   as:   'identity_list.join(" ")'
 
 
-            indexes :tags, :type => 'string', :index => :not_analyzed, as:   'tag_list', :analyzer => 'keyword'
-            indexes :timelines, :type => 'string', :index => :not_analyzed,   as:   'timeline_list', :analyzer => 'keyword'
-            indexes :categories, :type => 'string', :index => :not_analyzed,        as:   'category_list', :analyzer => 'keyword'
-            indexes :identities, :type => 'string', :index => :not_analyzed,   as:   'identity_list', :analyzer => 'keyword'
+            indexes :tags, :type => 'string', :index => :not_analyzed, as:   'tag_list'
+            indexes :timelines, :type => 'string', :index => :not_analyzed,   as:   'timeline_list'
+            indexes :categories, :type => 'string', :index => :not_analyzed,        as:   'category_list'
+            indexes :identities, :type => 'string', :index => :not_analyzed,   as:   'identity_list'
 
             indexes :valid,           type: 'boolean', as: 'deleted_at.nil?'
           end
