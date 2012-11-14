@@ -1,3 +1,9 @@
+def logger(task_name = "logger")
+  logger ||=  Logger.new("log/#{task_name}_notify_#{Date.today.to_s}.log")
+  logger.level = Logger::INFO
+  logger
+end
+
 def newest_obj(mod = "",conditions = [], t_count = "1", unit = "hours")
   #User.where("id != ?", exclude_ids)
   if mod.present?
@@ -23,15 +29,20 @@ def pre_baby_birthday_users(pre_days = 0)
   Baby.joins(:profile).select(["babies.birthday","babies.id", :user_id, :notify_via_email]).compact.collect{|item| item.id if item.birthday_arrive_in?(pre_days.to_i)}.compact
 end
 
-def pick_user_and_send_mail(type = "",festival = nil)
+#pick_user_and_send_mail(type = "",options = {festival: "",template_name: ""})
+def pick_user_and_send_mail(type = "",options = {})
   # Profile.where("age > 21").find_in_batches
   User.joins(:profile).find_in_batches(:batch_size => 500) do |items|
-    sleep(50) # Make sure it doesn't get too crowded in there!
+    sleep(25) # Make sure it doesn't get too crowded in there!
     #items.collect{|item| [item.email,item.profile.notify_via_email]}
     items.each do |item|
       #UserMail.send("#{type}_notify",item.email,festival).deliver if item.profile.notify_via_email.present?
-      puts "send mail to #{item}"
-      UserMail.send("#{type}_notify",item.email,festival).deliver
+      if Rails.env.production?
+        puts "send mail to #{item}"
+        UserMail.send("#{type}_notify",item.email,options = options).deliver
+      else
+        puts "pick user #{item}"
+      end
       #UserMail.send("#{type}_notify",item.email,festival)
     end
   end
@@ -49,6 +60,7 @@ namespace 'bbtangcms' do
       end
       #UserMail.send_new_question_notify(email = "864248765@qq.com", question_id = Question.last.id ).deliver
     end
+    
     desc "pick up user and send a mail about user_birthday_notify"
     task :user_birthday_notify => :environment do
       #for test
@@ -56,6 +68,7 @@ namespace 'bbtangcms' do
       #pre_birthday_users.collect{|p| puts "send mail to profile #{p}";UserMail.send("user_birthday_notify",p) if Profile.exists? p}
       pre_birthday_users.collect{|p| puts "send mail to profile #{p}";UserMail.send("user_birthday_notify",p).deliver if Profile.exists? p}
     end
+    
     desc "pick up baby and send a mail about baby_birthday_notify"
     task :baby_birthday_notify => :environment do
       #for test
@@ -63,20 +76,48 @@ namespace 'bbtangcms' do
       #pre_baby_birthday_users.collect{|b| puts "send mail to baby #{b}";UserMail.send("baby_birthday_notify",b) if Baby.exists? b}
       pre_baby_birthday_users.collect{|b| puts "send mail to profile #{p}";UserMail.send("baby_birthday_notify",b).deliver if Baby.exists? b}
     end
-    desc "pick up baby and send a mail about baby_birthday_notify"
-    task :weekly_notify => :environment do
-      puts "bein to pick up user and send a mail about weekly_notify ..."
-      pick_user_and_send_mail(type="weekly")
+    
+    #RAILS_ENV=production rake bbtangcms:notify:weekly_notify["1"]
+    desc "pick up baby and send a mail about weekly_notify"
+    task :weekly_notify, [:week_count] => [:environment] do |t, args|
+      #args.with_defaults(:file => "tmp/goods/test.csv")
+      template_path = "tmp/newsletter/"
+      template_name = "week#{args.week_count}.html"
+      template_full_path = "#{Rails.root}/#{template_path}#{template_name}"
+
+      puts "send a mail about #{args.week_count} weekly_notify to #{args.email} ..."
+      if File.exists? (template_full_path) and args.week_count.present?
+        puts "get file #{template_full_path}"
+        pick_user_and_send_mail(type="weekly",options =  {"template_name" => template_name, "template_path" => template_path} )
+      end
     end
+    
+    #RAILS_ENV=development rake bbtangcms:notify:weekly_notify_test["1","864248765@qq.com"]
+    desc "test task for send weekly_notify"
+    task :weekly_notify_test, [:week_count,:email] => [:environment] do |t, args|
+      #args.with_defaults(:file => "tmp/goods/test.csv")
+      args.with_defaults(:email => "snail_zhu@bbtang.com")
+      template_path = "tmp/newsletter/"
+      template_name = "week#{args.week_count}.html"
+      template_full_path = "#{Rails.root}/#{template_path}#{template_name}"
+
+      puts "send a mail about #{args.week_count} weekly_notify to #{args.email} ..."
+      if template_path.present? and (File.exists? (template_full_path)) and args.email.present?
+        puts "get file #{template_full_path}"
+        UserMail.send("weekly_notify",args.email,options = {"template_name" => template_name, "template_path" => template_path}).deliver
+      end
+    end
+    
     desc "pick up user and send a mail about monthly_notify"
     task :monthly_notify => :environment do
       puts "bein to pick up user and send a mail about monthly_notify ..."
       pick_user_and_send_mail(type="monthly")
     end
+    
     desc "pick up user and send a mail about festival_notify"
     task :festival_notify => :environment do
       puts "bein to pick up user and send a mail about festival_notify ..."
-      pick_user_and_send_mail(type="festival",festival = "abc")
+      pick_user_and_send_mail(type="festival",{festival: "abc"})
     end
   end
 end

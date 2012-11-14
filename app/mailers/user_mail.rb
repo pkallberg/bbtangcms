@@ -66,25 +66,36 @@ class UserMail < AsyncMailer
          :template_name => 'new_question_notify')
   end
 
-  # 每周精选
-  def weekly_notify(user = User.last)
-    @user = User.find user if User.exists? user
+  # 节日 festival_notify(user = User.last,options = {festival: ""})
+  def weekly_notify(user_email = User.last.email,options = {template_name: nil, template_path: nil})
+    template_name = options.delete("template_name")
+    template_path = options.delete("template_path")
+    @email = user_email
+    
+    template_full_path = "#{Rails.root}/#{template_path}/#{template_name}"
 
-    if @user.present?
-      @email = @user.email
+    if @email.present? and File.exists? template_full_path 
+      #@email = @user.email
 
-      mail(:to => @email,
-           :subject => "你好 #{@user}, 每周精选！",
-           :template_path => 'mailer',
-           :template_name => 'weekly_notify')
+      #mail(:to => @email,
+      #     :subject => "棒棒糖亲子问答社区*育儿周刊！",
+      #     :template_path => template_path,
+      #     :template_name => template_name)
+
+      mail(:to => @email, :subject => "棒棒糖亲子问答社区*育儿周刊！") do |format|
+        format.html { render :text => (File.read template_full_path) }
+      end
     end
   end
 
   # 每月精选
-  def monthly_notify(user = User.last)
-    @user = User.find user if User.exists? user
+  def monthly_notify(user_mail = User.last.email)
+    #@user = User.find user if User.exists? user
+    @email = user_email
+    
 
-    if @user.present?
+    #if @user.present?
+    if true
       @email = @user.email
 
       mail(:to => @email,
@@ -94,12 +105,16 @@ class UserMail < AsyncMailer
     end
   end
 
-  # 节日
-  def festival_notify(user = User.last,festival = nil)
-    @user = User.find user if User.exists? user
+  # 节日 festival_notify(user = User.last,options = {festival: ""})
+  def festival_notify(user_email = User.last.email,options = {})
+    #@user = User.find user if User.exists? user
+    @email = user_email
+    
+    @festival = options.delete(:festival)
     @festival ||= "节日快乐"
 
-    if @user.present?
+    #if @user.present?
+    if true
       @email = @user.email
 
       mail(:to => @email,
