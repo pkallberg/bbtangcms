@@ -32,7 +32,7 @@ class String
 
   def split_all(content = '')
     content = self if content.empty?
-    content.split(/、|，|,|;|；|\ +|\||\r\n/) if content.class.eql? self.class
+    content.split(/、|，|,|;|；|\ +|\||\r\n/).collect{|t| t.strip} if content.class.eql? self.class
   end
 
 

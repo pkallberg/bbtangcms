@@ -13,6 +13,9 @@ gem 'markdown-rails'
 
 group :production, :development, :test do
   gem 'mysql2'
+  gem 'bson'
+  gem 'bson_ext'
+  gem 'mongo'
   gem "mongoid", "~> 3.0.2"
 end
 

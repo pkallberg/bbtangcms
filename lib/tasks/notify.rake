@@ -4,9 +4,9 @@ def newest_obj(mod = "",conditions = [], t_count = "1", unit = "hours")
     mod = mod.classify.constantize if mod.class == String
     s_time = t_count.to_i.send(unit).send("ago") if t_count.to_i > 0
     s_time ||= 1.hours.ago
-    mod_list = mod.where(conditions)
     if mod_list.present?
-      mod_list.where(:created_at => s_time .. DateTime.now)
+     mod_list = mod_list.where(:created_at => s_time .. DateTime.now)
+     conditions.present? ? mod_list.where(conditions) : mod_list
     else
       []
     end

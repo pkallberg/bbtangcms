@@ -4,7 +4,7 @@ class QuizCenter::QuizCollectionsController < QuizCenter::QuizCenterBaseControll
   # GET /quiz_center/quiz_collections
   # GET /quiz_center/quiz_collections.json
   def index
-    @quiz_center_quiz_collections = QuizCollection.all
+    @quiz_center_quiz_collections = QuizCollection.all.desc(:end_date).entries
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), quiz_center_quiz_collections_path
 
     respond_to do |format|
