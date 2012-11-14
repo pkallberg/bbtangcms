@@ -82,7 +82,7 @@ class UserMail < AsyncMailer
       #     :template_path => template_path,
       #     :template_name => template_name)
 
-      mail(:to => @email, :subject => "棒棒糖亲子问答社区*育儿周刊！") do |format|
+      mail(:from => "noreply@bbtang.com", :to => @email, :subject => "棒棒糖亲子问答社区*育儿周刊！") do |format|
         format.html { render :text => (File.read template_full_path) }
       end
     end

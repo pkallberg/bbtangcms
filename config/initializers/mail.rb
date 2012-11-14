@@ -6,3 +6,13 @@ ActionMailer::Base.smtp_settings = {
     :password             => '52bbtang',
     :authentication       => 'login'
   }
+=begin  
+ActionMailer::Base.smtp_settings = {
+    :address              => "smtp.exmail.qq.com",
+    :port                 => 25,
+    :domain               => 'exmail.qq.com',
+    :user_name            => 'noreply@bbtang.com',
+    :password             => '52bbtang',
+    :authentication       => 'login'
+  }
+=end
