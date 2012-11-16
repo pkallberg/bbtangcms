@@ -23,7 +23,8 @@ class QuizCollection
   end
 
   def quiz_ids
-    if self.respond_to? :ids and self.ids.present? and self.quiz_ids.empty?
+    if self.respond_to? :ids and self.ids.present?
+      self.update_attributes(quiz_ids: self.ids, ids: nil)
       return self.ids
     else
       super
