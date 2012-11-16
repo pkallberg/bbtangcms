@@ -144,7 +144,7 @@ namespace 'bbtangcms' do
     
     #scp -r tmp/newsletter/ bbt@bbtang.com:~/bbtang/bbtcms/current/tmp/newsletter/
     #RAILS_ENV=development rake bbtangcms:notify:weekly_notify_special_user_no_mmbk["1","864248765@qq.com"]
-    #RAILS_ENV=production rake bbtangcms:notifyweekly_notify_special_user_no_mmbk["1","gushanrong@yahoo.com.cn"]
+    #RAILS_ENV=production rake bbtangcms:notify:weekly_notify_special_user_no_mmbk["1","gushanrong@yahoo.com.cn"]
     desc "weekly_notify to special users,which begin from one user_id and not from mmbkoo ..."
     task :weekly_notify_special_user_no_mmbk, [:week_count,:email] => [:environment] do |t, args|
       #args.with_defaults(:file => "tmp/goods/test.csv")
@@ -160,7 +160,12 @@ namespace 'bbtangcms' do
         
         if s_user.present?
           #users = User.where(id: s_user.id ..(s_user.id + 250))
+	  #这个查找出来的只有有authorizations关联的用户
           users = User.joins(:authorizations).where("authorizations.provider='mmbkoo' and users.id >= #{s_user.id}").limit(250)
+
+          #这里查找的就是所有非mmbk用户并且id大于s_user的id的5个用户
+          users = User.where("id >= #{s_user.id} and id NOT IN (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo'))").limit(250)
+          
           options = {"template_name" => template_name, "template_path" => template_path}
           
           if Rails.env.production?
