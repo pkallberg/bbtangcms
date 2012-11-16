@@ -92,7 +92,9 @@ namespace 'bbtangcms' do
       end
     end
     
+    #scp -r tmp/newsletter/ bbt@bbtang.com:~/bbtang/bbtcms/current/tmp/newsletter/
     #RAILS_ENV=development rake bbtangcms:notify:weekly_notify_test["1","864248765@qq.com"]
+    #RAILS_ENV=production rake bbtangcms:notify:weekly_notify_test["1"]
     desc "test task for send weekly_notify"
     task :weekly_notify_test, [:week_count,:email] => [:environment] do |t, args|
       #args.with_defaults(:file => "tmp/goods/test.csv")
@@ -105,6 +107,38 @@ namespace 'bbtangcms' do
       if template_path.present? and (File.exists? (template_full_path)) and args.email.present?
         puts "get file #{template_full_path}"
         UserMail.send("weekly_notify",args.email,options = {"template_name" => template_name, "template_path" => template_path}).deliver
+      end
+    end
+
+    #scp -r tmp/newsletter/ bbt@bbtang.com:~/bbtang/bbtcms/current/tmp/newsletter/
+    #RAILS_ENV=development rake bbtangcms:notify:weekly_notify_special_user["1","864248765@qq.com"]
+    #RAILS_ENV=production rake bbtangcms:notify:weekly_notify_special_user["1","864248765@qq.com"]
+    desc "weekly_notify to special users,which begin from one user_id ..."
+    task :weekly_notify_special_user, [:week_count,:email] => [:environment] do |t, args|
+      #args.with_defaults(:file => "tmp/goods/test.csv")
+      args.with_defaults(:email => "")
+      template_path = "tmp/newsletter/"
+      template_name = "week#{args.week_count}.html"
+      template_full_path = "#{Rails.root}/#{template_path}#{template_name}"
+      
+      puts "send a mail about #{args.week_count} weekly_notify to users,which begin from one user_id ..."
+      if (File.exists? (template_full_path)) and args.email.present?
+        puts "get file #{template_full_path}"
+        s_user = User.find_by_email args.email.strip
+        
+        if s_user.present?
+          #users = User.where(id: s_user.id ..(s_user.id + 500))
+          users = User.where("id >= #{s_user.id}").limit(500)
+          options = {"template_name" => template_name, "template_path" => template_path}
+          
+          if Rails.env.production?
+            puts "send mail to ..."
+            users.collect{|u| UserMail.send("weekly_notify",u.email,options = options).deliver}
+          else
+            puts "pick user: \n#{users.join(",")}\nTotal: #{users.count}"
+          end
+
+        end
       end
     end
     

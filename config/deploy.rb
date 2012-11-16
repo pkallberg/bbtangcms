@@ -87,6 +87,7 @@ namespace :deploy do
     #stop whenever schedule
     run "cd #{current_path}/ && whenever -c #{application}"
     #update_crontab
+    #whenever -i /config/schedule.rb --set environment=production --update-crontab bbtcms
     run "cd #{current_path}/ && whenever -i #{current_path}/config/schedule.rb --set environment=#{rails_env} --update-crontab #{application}"
   end
 

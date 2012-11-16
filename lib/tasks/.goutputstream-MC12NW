@@ -1,0 +1,55 @@
+# encoding: utf-8
+#User.where("id > 1781").collect{|u| u.profile.destroy if u.profile.present?;u.destroy}
+#User.where("id > 1781").collect{|u| u.profile.delete if u.profile.present?;u.authorizations=nil;u.save;u.delete}
+require "logger"
+
+def logger
+  logger ||=  Logger.new("log/export_mmbk_user_#{Date.today.to_s}.log")
+  logger.level = Logger::INFO
+  logger
+end
+
+def yesterday_export_reporter
+  if "MmbkUserExportReporter".class_exists?
+    mmbk_user_export_reporter = MmbkUserExportReporter.last
+    if mmbk_user_export_reporter.present? and mmbk_user_export_reporter.created_at.to_date.eql? 1.day.ago.to_date
+      mmbk_user_export_reporter
+    end
+  end
+end
+
+def today_export_reporter
+  if "MmbkUserExportReporter".class_exists?
+    mmbk_user_export_reporter = MmbkUserExportReporter.last
+    if mmbk_user_export_reporter.present? and mmbk_user_export_reporter.created_at.to_date.eql? DateTime.now.to_date
+      mmbk_user_export_reporter
+    end
+  end
+end
+
+def get_last_mmbk_user_by_auth
+  auth_mmbk = Authorization.provider("mmbkoo").last
+  if auth_mmbk.present?
+    last_mmbkuser = MMBKUser.find auth_mmbk.uid.to_i
+  end
+end
+
+def is_last_auth_mmbk_yesterday?
+  auth_mmbk = Authorization.provider("mmbkoo").last
+  (auth_mmbk.created_at.to_date >= 1.day.ago.to_date) if auth_mmbk.present?
+end
+
+def find_mmbk_user
+  if "MMBKUser".class_exists?
+    logger.info "found MMBKUser model , then try to pick user we need ... "
+    #MMBKUser.where("email is not NULL")
+    #MMBKUser.select([:email, :sex, :birthday, :msn, :qq, :mobile_phone, :City])
+    count = rand(200..300)
+    auth_mmbk = Authorization.provider("mmbkoo").last
+
+    last_mmbkuser = yesterday_export_reporter.last_mmbk_user if yesterday_export_reporter.present?
+    last_mmbkuser ||= get_last_mmbk_user_by_auth
+    
+    unless is_last_auth_mmbk_yesterday?
+      now_time = DateTime.now
+      #
