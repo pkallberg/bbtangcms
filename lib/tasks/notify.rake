@@ -112,7 +112,7 @@ namespace 'bbtangcms' do
 
     #scp -r tmp/newsletter/ bbt@bbtang.com:~/bbtang/bbtcms/current/tmp/newsletter/
     #RAILS_ENV=development rake bbtangcms:notify:weekly_notify_special_user["1","864248765@qq.com"]
-    #RAILS_ENV=production rake bbtangcms:notify:weekly_notify_special_user["1","864248765@qq.com"]
+    #RAILS_ENV=production rake bbtangcms:notify:weekly_notify_special_user["1","gushanrong@yahoo.com.cn"]
     desc "weekly_notify to special users,which begin from one user_id ..."
     task :weekly_notify_special_user, [:week_count,:email] => [:environment] do |t, args|
       #args.with_defaults(:file => "tmp/goods/test.csv")

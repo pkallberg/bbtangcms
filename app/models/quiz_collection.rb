@@ -23,7 +23,7 @@ class QuizCollection
   end
 
   def quiz_ids
-    if self.respond_to? :ids and self.ids.present?
+    if self.respond_to? :ids and self.ids.present? and self.quiz_ids.empty?
       return self.ids
     else
       super
