@@ -60,7 +60,7 @@ namespace 'bbtangcms' do
       end
       #UserMail.send_new_question_notify(email = "864248765@qq.com", question_id = Question.last.id ).deliver
     end
-    
+
     desc "pick up user and send a mail about user_birthday_notify"
     task :user_birthday_notify => :environment do
       #for test
@@ -68,7 +68,7 @@ namespace 'bbtangcms' do
       #pre_birthday_users.collect{|p| puts "send mail to profile #{p}";UserMail.send("user_birthday_notify",p) if Profile.exists? p}
       pre_birthday_users.collect{|p| puts "send mail to profile #{p}";UserMail.send("user_birthday_notify",p).deliver if Profile.exists? p}
     end
-    
+
     desc "pick up baby and send a mail about baby_birthday_notify"
     task :baby_birthday_notify => :environment do
       #for test
@@ -76,7 +76,7 @@ namespace 'bbtangcms' do
       #pre_baby_birthday_users.collect{|b| puts "send mail to baby #{b}";UserMail.send("baby_birthday_notify",b) if Baby.exists? b}
       pre_baby_birthday_users.collect{|b| puts "send mail to profile #{p}";UserMail.send("baby_birthday_notify",b).deliver if Baby.exists? b}
     end
-    
+
     #RAILS_ENV=production rake bbtangcms:notify:weekly_notify["1"]
     desc "pick up baby and send a mail about weekly_notify"
     task :weekly_notify, [:week_count] => [:environment] do |t, args|
@@ -91,7 +91,7 @@ namespace 'bbtangcms' do
         pick_user_and_send_mail(type="weekly",options =  {"template_name" => template_name, "template_path" => template_path} )
       end
     end
-    
+
     #scp -r tmp/newsletter/ bbt@bbtang.com:~/bbtang/bbtcms/current/tmp/newsletter/
     #RAILS_ENV=development rake bbtangcms:notify:weekly_notify_test["1","864248765@qq.com"]
     #RAILS_ENV=production rake bbtangcms:notify:weekly_notify_test["1"]
@@ -120,17 +120,17 @@ namespace 'bbtangcms' do
       template_path = "tmp/newsletter/"
       template_name = "week#{args.week_count}.html"
       template_full_path = "#{Rails.root}/#{template_path}#{template_name}"
-      
+
       puts "send a mail about #{args.week_count} weekly_notify to users,which begin from one user_id ..."
       if (File.exists? (template_full_path)) and args.email.present?
         puts "get file #{template_full_path}"
         s_user = User.find_by_email args.email.strip
-        
+
         if s_user.present?
           #users = User.where(id: s_user.id ..(s_user.id + 500))
           users = User.where("id >= #{s_user.id}").limit(250)
           options = {"template_name" => template_name, "template_path" => template_path}
-          
+
           if Rails.env.production?
             puts "send mail to ..."
             users.collect{|u| UserMail.send("weekly_notify",u.email,options = options).deliver}
@@ -141,7 +141,7 @@ namespace 'bbtangcms' do
         end
       end
     end
-    
+
     #scp -r tmp/newsletter/ bbt@bbtang.com:~/bbtang/bbtcms/current/tmp/newsletter/
     #RAILS_ENV=development rake bbtangcms:notify:weekly_notify_special_user_no_mmbk["1","864248765@qq.com"]
     #RAILS_ENV=production rake bbtangcms:notify:weekly_notify_special_user_no_mmbk["1","gushanrong@yahoo.com.cn"]
@@ -152,12 +152,12 @@ namespace 'bbtangcms' do
       template_path = "tmp/newsletter/"
       template_name = "week#{args.week_count}.html"
       template_full_path = "#{Rails.root}/#{template_path}#{template_name}"
-      
+
       puts "send a mail about #{args.week_count} weekly_notify to users,which begin from one user_id ..."
       if (File.exists? (template_full_path)) and args.email.present?
         puts "get file #{template_full_path}"
         s_user = User.find_by_email args.email.strip
-        
+
         if s_user.present?
           #users = User.where(id: s_user.id ..(s_user.id + 250))
 	  #这个查找出来的只有有authorizations关联的用户
@@ -165,9 +165,9 @@ namespace 'bbtangcms' do
 
           #这里查找的就是所有非mmbk用户并且id大于s_user的id的5个用户
           users = User.where("id >= #{s_user.id} and id NOT IN (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo'))").limit(250)
-          
+
           options = {"template_name" => template_name, "template_path" => template_path}
-          
+
           if Rails.env.production?
             puts "send mail to ..."
             users.collect{|u| UserMail.send("weekly_notify",u.email,options = options).deliver}
@@ -184,7 +184,7 @@ namespace 'bbtangcms' do
       puts "bein to pick up user and send a mail about monthly_notify ..."
       pick_user_and_send_mail(type="monthly")
     end
-    
+
     desc "pick up user and send a mail about festival_notify"
     task :festival_notify => :environment do
       puts "bein to pick up user and send a mail about festival_notify ..."
