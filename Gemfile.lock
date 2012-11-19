@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/jhjguxin/less-rails-bootswatch.git
+  revision: 583d52902e0ca58e664f1d5406b55c023ad95827
+  specs:
+    less-rails-bootswatch (0.3.4)
+      less-rails-bootstrap (~> 2.1.0)
+
+GIT
   remote: git://github.com/plataformatec/simple_form.git
   revision: 82c0a52f2ea04a7c24ece0def56bc32545aee695
   specs:
@@ -56,7 +63,7 @@ GEM
     bson (1.6.4)
     bson_ext (1.6.4)
       bson (~> 1.6.4)
-    builder (3.0.3)
+    builder (3.0.4)
     cancan (1.6.8)
     capistrano (2.12.0)
       highline
@@ -118,13 +125,11 @@ GEM
       railties (>= 3.0.0)
     less (2.2.2)
       commonjs (~> 0.2.6)
-    less-rails (2.2.3)
+    less-rails (2.2.6)
       actionpack (>= 3.1)
       less (~> 2.2.0)
     less-rails-bootstrap (2.1.1)
       less-rails (~> 2.2.0)
-    less-rails-bootswatch (0.3.4)
-      less-rails-bootstrap (~> 2.1.0)
     libv8 (3.3.10.4)
     linecache19 (0.5.13)
       ruby_core_source (>= 0.1.4)
@@ -384,7 +389,7 @@ DEPENDENCIES
   kaminari
   less-rails (~> 2.2.3)
   less-rails-bootstrap (~> 2.1.1)
-  less-rails-bootswatch (~> 0.3.4)
+  less-rails-bootswatch!
   linecache19 (= 0.5.13)
   markdown-rails
   mime-types (~> 1.19)

@@ -10,8 +10,9 @@ def newest_obj(mod = "",conditions = [], t_count = "1", unit = "hours")
     mod = mod.classify.constantize if mod.class == String
     s_time = t_count.to_i.send(unit).send("ago") if t_count.to_i > 0
     s_time ||= 1.hours.ago
+
+    mod_list = mod_list.where(:created_at => s_time .. DateTime.now)
     if mod_list.present?
-     mod_list = mod_list.where(:created_at => s_time .. DateTime.now)
      conditions.present? ? mod_list.where(conditions) : mod_list
     else
       []
@@ -164,7 +165,8 @@ namespace 'bbtangcms' do
           users = User.joins(:authorizations).where("authorizations.provider='mmbkoo' and users.id >= #{s_user.id}").limit(250)
 
           #这里查找的就是所有非mmbk用户并且id大于s_user的id的5个用户
-          users = User.where("id >= #{s_user.id} and id NOT IN (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo'))").limit(250)
+          #users = User.where("id >= #{s_user.id} and id NOT IN (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo'))").limit(250)
+          users = User.where("id >= #{s_user.id} and id not exists (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo'))").limit(250)
 
           options = {"template_name" => template_name, "template_path" => template_path}
 

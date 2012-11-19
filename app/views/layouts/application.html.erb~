@@ -17,7 +17,7 @@
 
   <%= stylesheet_link_tag "application", :media => "all", :id => "application_css"%>
   <%= javascript_include_tag "application" %>
-    <%= timeago_script_tag %>
+  <%= timeago_script_tag %>
   <%= csrf_meta_tag %>
   <%= csrf_meta_tags %>
 
@@ -42,6 +42,7 @@
               <div class="span10" id="container">
                 <div id ="flashes">
                   <%= render :partial => 'common/flashes' %>
+                  <%= render("common/mod_newest_summary", model_class: model_class) if model_class.present?%>
                 </div>
                 <%= content_for?(:content) ? yield(:content) : yield %>
               </div>

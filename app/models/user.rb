@@ -6,7 +6,11 @@ class User < ActiveRecord::Base
   #param = {provider: "sina", uid: "1572620462"}
   #User.authorization(provider: "sina", uid: "1572620462")
   scope :authorization, ->(param) {joins(:authorizations).readonly(false).where(['authorizations.provider = ? and authorizations.uid = ?', param[:provider],param[:uid]])}
-
+  #所有非妈妈宝库用户ids
+  scope :no_mmbkoo_ids, find_by_sql("select id from users where not exists (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo' and users.id = authorizations.user_id)) order by id")
+  scope :no_mmbkoo, find_by_sql("select * from users where not exists (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo' and users.id = authorizations.user_id)) order by id")
+  #以id顺序的方式指定个数的非妈妈宝库用户记录
+  scope :no_mmbkoo_with_limit, ->(limit_count) {find_by_sql("select * from users where not exists (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo' and users.id = authorizations.user_id)) #{limit_count} order by id")}
 
   has_many :authorizations, :dependent => :destroy
   has_many :messages

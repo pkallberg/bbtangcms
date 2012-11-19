@@ -3,6 +3,7 @@
 <%- model_class = QuizCollection.new.class -%>
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 
+  <%= render("common/mod_newest_summary", model_class: model_class) if model_class.present?%>
 
 <div class = "quiz_collections box">
   <table class="table table-striped">

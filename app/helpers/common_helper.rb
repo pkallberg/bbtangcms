@@ -56,7 +56,14 @@ module CommonHelper
   def obj_range_count(mod="",s_time = nil,e_time = nil)
     obj_range(mod,s_time,e_time).count
   end
-
+  
+  def mod_newest_count(mod="")
+    if mod.present?
+      mod = mod.classify.constantize if mod.class == String
+      [1.days.ago, 2.days.ago, 3.days.ago, 1.weeks.ago, 1.month.ago,3.month.ago].collect{|s_t| [s_t, mod.where(:created_at => s_t .. DateTime.now).count]}
+    end
+  end
+  
   #mod = "user" , unit inside %w(day month year week)
   def obj_group_by_time(mod = "",unit= nil)
     unit ||= "day"

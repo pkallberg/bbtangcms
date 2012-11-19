@@ -1,8 +1,11 @@
 //@import "twitter/bootstrap/bootstrap";
 @import "twitter/bootstrap";
 
+
 <%= "@import 'bootswatch/#{Setting.today_theme}/bootswatch';" unless Setting.today_theme.eql? "default" %>
 <%= "@import 'bootswatch/#{Setting.today_theme}/variables';"%>
+
+//@import 'fontawesome';
 
 #topcontrol {
   .icons { position:absolute; top:3px; right:0; }

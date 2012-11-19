@@ -76,9 +76,12 @@ group :assets do
   #gem 'sass-rails',   '~> 3.2.5'
   gem 'therubyracer'
   gem "less-rails", "~> 2.2.3"
-  gem "less-rails-bootstrap", "~> 2.1.1"
   gem 'coffee-rails', '~> 3.2.1'
-  gem "less-rails-bootswatch", "~> 0.3.4"
+  gem "less-rails-bootstrap", "~> 2.1.1"
+  #gem "less-rails-fontawesome", "~> 0.3.0"
+  #gem "less-rails-bootswatch", "~> 0.3.4"
+  gem "less-rails-bootswatch", :git => 'git://github.com/jhjguxin/less-rails-bootswatch.git'
+  #gem "less-rails-bootswatch", "~> 0.3.4", :path => '~/BBTang/less-rails-bootswatch'
   gem 'uglifier', '>= 1.0.3'
 end
 #麵包屑
