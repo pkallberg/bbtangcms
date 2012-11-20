@@ -64,6 +64,11 @@ module CommonHelper
     end
   end
   
+  def user_newest_count
+    regist_sources = ["sina", "tqq", "qq_connect", "mmbkoo"] << "straight"
+    [1.days.ago, 2.days.ago, 3.days.ago, 1.weeks.ago, 1.month.ago,3.month.ago].collect{|s_t| [s_t, User.where(:created_at => s_t .. DateTime.now).count, regist_sources.collect{|source| {source => User.where(:created_at => s_t .. DateTime.now).send("#{source}_users").count}}]}
+  end
+  
   #mod = "user" , unit inside %w(day month year week)
   def obj_group_by_time(mod = "",unit= nil)
     unit ||= "day"

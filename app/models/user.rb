@@ -214,11 +214,12 @@ class User < ActiveRecord::Base
 
   class << self
     def straight_users
-      find_by_sql("select * from users where not exists (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id)) order by id")
+      #find_by_sql("select * from users where not exists (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id)) order by id")
+      where("id not in (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id))")
     end
   
     ["sina", "tqq", "qq_connect", "mmbkoo"].each do |provider|
-      define_method("from_#{provider}"){
+      define_method("#{provider}_users"){
         users_source(provider)
     }
     end

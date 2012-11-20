@@ -13,3 +13,10 @@ zh-CN:
         access_token_secret: "访问令牌密钥"
         updated_at: "更新时间"
         created_at: "创建时间"
+  authorization:
+    source:
+      sina: "新浪"
+      tqq: "腾讯微博"
+      qq_connect: "QQ空间"
+      mmbkoo: "妈妈宝库"
+      straight: "直接注册"
