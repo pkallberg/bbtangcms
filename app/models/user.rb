@@ -213,6 +213,7 @@ class User < ActiveRecord::Base
   end
 
   class << self
+=begin
     def straight_users
       #find_by_sql("select * from users where not exists (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id)) order by id")
       where("id not in (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id))")
