@@ -1,3 +1,3 @@
 <% if model_class.present? and mod_newest_count(model_class)%>
-  <i><%= raw mod_newest_count(model_class).collect{|item| distance_of_time_in_words_to_now(item.first) << "之内新增#{model_class.model_name.human}" << "#{item.last}" if item.present?}.compact.join(", ") %></i>
+  <i><%= "目前共有#{model_class.model_name.human}： #{model_class.count}。其中"%><%= raw mod_newest_count(model_class).collect{|item| distance_of_time_in_words_to_now(item.first) << "之内新增#{model_class.model_name.human}" << "#{item.last}" if item.present?}.compact.join(", ") << "。" %></i>
 <% end %>

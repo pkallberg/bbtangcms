@@ -15,6 +15,19 @@ def load_data(param={})
   end
 end
 
+def format_col_value(col_name = "",col_value = "")
+  if col_name.present? and col_value.present?
+      col_need_split = [:url,
+      :tag_list, 
+      :category_list, 
+      :timeline_list, 
+      :identity_list, 
+      :category_major_list,
+      :category_small_list ]
+      (col_need_split.include? col_name.to_sym) ? col_value.to_s.split_all  : col_value.to_s
+  end
+end
+
 def date_formater(real_format, goods_data)
   except_format = { :name => "产品名称",
                     :url => "产品链接",
@@ -27,7 +40,9 @@ def date_formater(real_format, goods_data)
                     :brand_list=>"品牌"}
   #real_format =  ["产品名称", "产品链接", "品牌", "产品大类", "产品小类", "对象", "适用年龄段", "分类标签", "相关标签"]
   if real_format.present?
-    Hash[except_format.collect{|k,v| [k, goods_data[real_format.index(v.to_s)].to_s.split_all] if real_format.include? v.to_s}.compact.uniq]
+    tmp_data = Hash[except_format.collect{|k,v| [k, format_col_value(k, goods_data[real_format.index(v.to_s)] )] if (real_format.include? v.to_s) and format_col_value(k, goods_data[real_format.index(v.to_s)] ).present? }.compact.uniq]
+    
+    tmp_data.merge!(url: tmp_data[:url].first)
   else
     {}
   end

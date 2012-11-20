@@ -11,9 +11,9 @@ def newest_obj(mod = "",conditions = [], t_count = "1", unit = "hours")
     s_time = t_count.to_i.send(unit).send("ago") if t_count.to_i > 0
     s_time ||= 1.hours.ago
 
-    mod_list = mod_list.where(:created_at => s_time .. DateTime.now)
-    if mod_list.present?
-     conditions.present? ? mod_list.where(conditions) : mod_list
+    first_query = mod.where(:created_at => s_time .. DateTime.now)
+    if first_query.present?
+     conditions.present? ? first_query.where(conditions) : first_query
     else
       []
     end
