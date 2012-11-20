@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   #param = {provider: "sina", uid: "1572620462"}
   #User.authorization(provider: "sina", uid: "1572620462")
   scope :authorization, ->(param) {joins(:authorizations).readonly(false).where(['authorizations.provider = ? and authorizations.uid = ?', param[:provider],param[:uid]])}
+  #get user by give special authorizations.provider
+  scope :users_source, ->(provider) {joins(:authorizations).where("authorizations.provider =?",provider)}
 
   has_many :authorizations, :dependent => :destroy
   has_many :messages
@@ -211,6 +213,20 @@ class User < ActiveRecord::Base
   end
 
   class << self
+    def straight_users
+      find_by_sql("select * from users where not exists (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id)) order by id")
+    end
+  
+    ["sina", "tqq", "qq_connect", "mmbkoo"].each do |provider|
+      define_method("from_#{provider}"){
+        users_source(provider)
+    }
+    end
+    
+    def authorizations_all
+      find_by_sql("select * from users where exists (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id)) order by id")
+    end
+    
 
     def no_mmbkoo_user_ids
       find_by_sql("select id from users where not exists (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo' and users.id = authorizations.user_id)) order by id")

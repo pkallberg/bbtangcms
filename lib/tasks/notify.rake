@@ -162,7 +162,7 @@ namespace 'bbtangcms' do
         if s_user.present?
           #users = User.where(id: s_user.id ..(s_user.id + 250))
 	  #这个查找出来的只有有authorizations关联的用户
-          users = User.joins(:authorizations).where("authorizations.provider='mmbkoo' and users.id >= #{s_user.id}").limit(250)
+          #users = User.joins(:authorizations).where("authorizations.provider='mmbkoo' and users.id >= #{s_user.id}").limit(250)
 
           #这里查找的就是所有非mmbk用户并且id大于s_user的id的5个用户
           #users = User.where("id >= #{s_user.id} and id NOT IN (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo'))").limit(250)
