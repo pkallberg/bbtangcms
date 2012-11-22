@@ -247,7 +247,10 @@ class User < ActiveRecord::Base
 =end
     #以id顺序的方式指定个数的非妈妈宝库用户记录
     def no_mmbkoo_with_limit(limit_count = 1000)
-      find_by_sql("select id from users where not exists (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo' and users.id = authorizations.user_id)) order by id limit #{limit_count}")
+      #find_by_sql("select id from users where not exists (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo' and users.id = authorizations.user_id)) order by id limit #{limit_count}")
+      self.instance_variable_set "@no_mmbkoo_with_limit_#{limit_count}",  Rails.cache.fetch("no_mmbkoo_with_limit_#{limit_count}", :expires_in => 24.hours) { user_ids_source(provider) } if !(self.instance_variable_get("@no_mmbkoo_with_limit_#{limit_count}").present?)
+      instance_variable_get("@no_mmbkoo_with_limit_#{limit_count}")
+
     end
   
     def internal_users
