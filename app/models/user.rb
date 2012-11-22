@@ -223,8 +223,9 @@ class User < ActiveRecord::Base
   
     ["sina", "tqq", "qq_connect", "mmbkoo"].each do |provider|
       define_method("#{provider}_user_ids"){
-        user_ids_source(provider)
+        #user_ids_source(provider)
         self.instance_variable_set "@#{provider}_user_ids_source",  Rails.cache.fetch("#{provider}_user_ids_source", :expires_in => 24.hours) { user_ids_source(provider) } if !(self.instance_variable_get("@#{provider}_user_ids_source").present?)
+        instance_variable_get("@#{provider}_user_ids_source")
     }
     end
     
