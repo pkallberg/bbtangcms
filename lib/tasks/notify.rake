@@ -78,50 +78,53 @@ namespace 'bbtangcms' do
       pre_baby_birthday_users.collect{|b| puts "send mail to profile #{p}";UserMail.send("baby_birthday_notify",b).deliver if Baby.exists? b}
     end
 
-    #RAILS_ENV=production rake bbtangcms:notify:weekly_notify["1"]
+    #RAILS_ENV=production rake bbtangcms:notify:weekly_notify["1",'孕产：荷尔蒙控制女人一生　棒棒糖孕产专刊']
     desc "pick up baby and send a mail about weekly_notify"
-    task :weekly_notify, [:week_count] => [:environment] do |t, args|
+    task :weekly_notify, [:week_count, :subject] => [:environment] do |t, args|
       #args.with_defaults(:file => "tmp/goods/test.csv")
       template_path = "tmp/newsletter/"
       template_name = "week#{args.week_count}.html"
       template_full_path = "#{Rails.root}/#{template_path}#{template_name}"
+      subject = args.subject
 
       puts "send a mail about #{args.week_count} weekly_notify to #{args.email} ..."
       if File.exists? (template_full_path) and args.week_count.present?
         puts "get file #{template_full_path}"
-        pick_user_and_send_mail(type="weekly",options =  {"template_name" => template_name, "template_path" => template_path} )
+        pick_user_and_send_mail(type="weekly",options =  {"template_name" => template_name, "template_path" => template_path, "subject" => subject} )
       end
     end
 
     #scp -r tmp/newsletter/ bbt@bbtang.com:~/bbtang/bbtcms/current/tmp/newsletter/
-    #RAILS_ENV=development rake bbtangcms:notify:weekly_notify_test["1","864248765@qq.com"]
+    #RAILS_ENV=development rake bbtangcms:notify:weekly_notify_test["1","864248765@qq.com",'孕产：荷尔蒙控制女人一生　棒棒糖孕产专刊']
     #RAILS_ENV=production rake bbtangcms:notify:weekly_notify_test["1"]
     desc "test task for send weekly_notify"
-    task :weekly_notify_test, [:week_count,:email] => [:environment] do |t, args|
+    task :weekly_notify_test, [:week_count, :email, :subject] => [:environment] do |t, args|
       #args.with_defaults(:file => "tmp/goods/test.csv")
       args.with_defaults(:email => "snail_zhu@bbtang.com")
       template_path = "tmp/newsletter/"
       template_name = "week#{args.week_count}.html"
       template_full_path = "#{Rails.root}/#{template_path}#{template_name}"
+      subject = args.subject
 
       puts "send a mail about #{args.week_count} weekly_notify to #{args.email} ..."
       if template_path.present? and (File.exists? (template_full_path)) and args.email.present?
         puts "get file #{template_full_path}"
-        UserMail.send("weekly_notify",args.email,options = {"template_name" => template_name, "template_path" => template_path}).deliver
+        UserMail.send("weekly_notify",args.email,options = {"template_name" => template_name, "template_path" => template_path, "subject" => subject}).deliver
       end
     end
 
     #scp -r tmp/newsletter/ bbt@bbtang.com:~/bbtang/bbtcms/current/tmp/newsletter/
-    #RAILS_ENV=development rake bbtangcms:notify:weekly_notify_special_user["1","864248765@qq.com"]
-    #RAILS_ENV=production rake bbtangcms:notify:weekly_notify_special_user["1","gushanrong@yahoo.com.cn"]
+    #RAILS_ENV=development rake bbtangcms:notify:weekly_notify_special_user["1","864248765@qq.com",'孕产：荷尔蒙控制女人一生　棒棒糖孕产专刊']
+    #RAILS_ENV=production rake bbtangcms:notify:weekly_notify_special_user["1","864248765@qq.com",'孕产：荷尔蒙控制女人一生　棒棒糖孕产专刊']
     desc "weekly_notify to special users,which begin from one user_id ..."
-    task :weekly_notify_special_user, [:week_count,:email] => [:environment] do |t, args|
+    task :weekly_notify_special_user, [:week_count, :email, :subject] => [:environment] do |t, args|
       #args.with_defaults(:file => "tmp/goods/test.csv")
       args.with_defaults(:email => "")
       template_path = "tmp/newsletter/"
       template_name = "week#{args.week_count}.html"
       template_full_path = "#{Rails.root}/#{template_path}#{template_name}"
-
+      subject = args.subject
+      
       puts "send a mail about #{args.week_count} weekly_notify to users,which begin from one user_id ..."
       if (File.exists? (template_full_path)) and args.email.present?
         puts "get file #{template_full_path}"
@@ -130,7 +133,7 @@ namespace 'bbtangcms' do
         if s_user.present?
           #users = User.where(id: s_user.id ..(s_user.id + 500))
           users = User.where("id >= #{s_user.id}").limit(250)
-          options = {"template_name" => template_name, "template_path" => template_path}
+          options = {"template_name" => template_name, "template_path" => template_path, "subject" => subject}
 
           if Rails.env.production?
             puts "send mail to ..."
@@ -144,16 +147,17 @@ namespace 'bbtangcms' do
     end
 
     #scp -r tmp/newsletter/ bbt@bbtang.com:~/bbtang/bbtcms/current/tmp/newsletter/
-    #RAILS_ENV=development rake bbtangcms:notify:weekly_notify_special_user_no_mmbk["1","864248765@qq.com"]
-    #RAILS_ENV=production rake bbtangcms:notify:weekly_notify_special_user_no_mmbk["1","gushanrong@yahoo.com.cn"]
+    #RAILS_ENV=development rake bbtangcms:notify:weekly_notify_special_user_no_mmbk["1","864248765@qq.com",'孕产：荷尔蒙控制女人一生　棒棒糖孕产专刊']
+    #RAILS_ENV=production rake bbtangcms:notify:weekly_notify_special_user_no_mmbk["1","864248765@qq.com",'孕产：荷尔蒙控制女人一生　棒棒糖孕产专刊']
     desc "weekly_notify to special users,which begin from one user_id and not from mmbkoo ..."
-    task :weekly_notify_special_user_no_mmbk, [:week_count,:email] => [:environment] do |t, args|
+    task :weekly_notify_special_user_no_mmbk, [:week_count, :email, :subject] => [:environment] do |t, args|
       #args.with_defaults(:file => "tmp/goods/test.csv")
       args.with_defaults(:email => "")
       template_path = "tmp/newsletter/"
       template_name = "week#{args.week_count}.html"
       template_full_path = "#{Rails.root}/#{template_path}#{template_name}"
-
+      subject = args.subject
+      
       puts "send a mail about #{args.week_count} weekly_notify to users,which begin from one user_id ..."
       if (File.exists? (template_full_path)) and args.email.present?
         puts "get file #{template_full_path}"
@@ -168,7 +172,7 @@ namespace 'bbtangcms' do
           #users = User.where("id >= #{s_user.id} and id NOT IN (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo'))").limit(250)
           users = User.where("id >= #{s_user.id} and id not exists (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo'))").limit(250)
 
-          options = {"template_name" => template_name, "template_path" => template_path}
+          options = {"template_name" => template_name, "template_path" => template_path, "subject" => subject}
 
           if Rails.env.production?
             puts "send mail to ..."

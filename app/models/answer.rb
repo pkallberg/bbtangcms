@@ -12,8 +12,8 @@ class Answer < ActiveRecord::Base
   after_save :update_question
 
   #destroy associate event_log
-  after_save :clear_event_log
-  after_destroy :clear_event_log
+  after_save :clear_event_log_and_notify
+  after_destroy :clear_event_log_and_notify
 
 
   attr_accessor :soft_deleted
@@ -43,11 +43,12 @@ class Answer < ActiveRecord::Base
     Comment.where(["model_object_id=? and object_target_id=? and deleted_at is null", 2,self.id])
   end
 
-  def clear_event_log
+  def clear_event_log_and_notify
     #Eventlog.remove("item_id" => params[:id].to_i, "item_type"=>"Note")
     if (self.respond_to? :deleted_by and self.send(:deleted_by)) or not(self.class.exists? self.id)
       #EventLog.where(item_type: self.class.to_s,item_id: id).collect{|event_log| event_log.destroy} if self.present?
       Eventlog.remove("answer_id" => self.id , "item_type"=>"Answer")
+      Notify.remove("item_id" => self.id , "item_type"=>self.class.name)
     end
   end
 

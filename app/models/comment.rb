@@ -5,7 +5,9 @@ class Comment < ActiveRecord::Base
   before_validation :set_content  #填充content
   before_validation :check_spam_words #敏感次验证
   #acts_as_paranoid  #标记删除（deleted_at）
-
+  after_save :clear_event_log_and_notify
+  after_destroy :clear_event_log_and_notify
+  
   validates :object_target_id, :model_object_id,:created_by, :presence => true
   validates :body, :presence => true #remove content by ivan, 此处不许要验证content为空，因为可以单独插入表情或者图片作为comment，这个时候content是没有内容的
   validates :body, :length => {:maximum => BBTangCMS::MetaCache.get_config_data("comment_content_limit").to_i}#, :unless => :is_kindeditor?
@@ -40,7 +42,7 @@ class Comment < ActiveRecord::Base
     if Comment.find_by_id(self.id).like_by.blank?
       user_id.to_s
     else
-      Comment.find_by_id(self.id).like_by << ","<<user_id.to_s
+      Comment.find_by_id(self.id).like_by << "," << user_id.to_s
     end
   end
   #返回删除了会员id的like字段
@@ -56,6 +58,16 @@ class Comment < ActiveRecord::Base
 
   def owner
     Profile.find_by_user_id(self.created_by)
+  end
+
+  def clear_event_log_and_notify
+    #Eventlog.remove("item_id" => params[:id].to_i, "item_type"=>"Note")
+    if (self.respond_to? :deleted_by and self.send(:deleted_by)) or not(self.class.exists? self.id)
+      #EventLog.where(item_type: self.class.to_s,item_id: id).collect{|event_log| event_log.destroy} if self.present?
+      #Eventlog.remove("item_id" => self.id , "item_type"=>"Answer")
+      #Eventlog.remove("item_id" => self.id , "item_type"=>"Question")
+      Notify.remove("item_id" => self.id , "item_type"=>self.model_object.name) if self.model_object.present?
+    end
   end
 
   private

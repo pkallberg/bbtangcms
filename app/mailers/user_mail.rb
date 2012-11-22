@@ -67,9 +67,10 @@ class UserMail < AsyncMailer
   end
 
   # 节日 festival_notify(user = User.last,options = {festival: ""})
-  def weekly_notify(user_email = User.last.email,options = {template_name: nil, template_path: nil})
+  def weekly_notify(user_email = User.last.email,options = {template_name: nil, template_path: nil, subject: "孕产：荷尔蒙控制女人一生　棒棒糖孕产专刊"})
     template_name = options.delete("template_name")
     template_path = options.delete("template_path")
+    subject = options.delete("subject")
     @email = user_email
     
     template_full_path = "#{Rails.root}/#{template_path}/#{template_name}"
@@ -82,7 +83,7 @@ class UserMail < AsyncMailer
       #     :template_path => template_path,
       #     :template_name => template_name)
 
-      mail(:from => "noreply@bbtang.com", :to => @email, :subject => "棒棒糖亲子问答社区*育儿周刊！") do |format|
+      mail(:from => "noreply@bbtang.com", :to => @email, :subject => subject) do |format|
         format.html { render :text => (File.read template_full_path) }
       end
     end

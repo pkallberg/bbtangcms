@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
   #param = {provider: "sina", uid: "1572620462"}
   #User.authorization(provider: "sina", uid: "1572620462")
   scope :authorization, ->(param) {joins(:authorizations).readonly(false).where(['authorizations.provider = ? and authorizations.uid = ?', param[:provider],param[:uid]])}
-  #get user by give special authorizations.provider
-  scope :users_source, ->(provider) {joins(:authorizations).where("authorizations.provider =?",provider)}
+  #get user ids by give special authorizations.provider
+  scope :user_ids_source, ->(provider) {select(:id).joins(:authorizations).where("authorizations.provider =?",provider)}
 
   has_many :authorizations, :dependent => :destroy
   has_many :messages
@@ -213,20 +213,20 @@ class User < ActiveRecord::Base
   end
 
   class << self
-=begin
-    def straight_users
+
+    def straight_user_ids
       #find_by_sql("select * from users where not exists (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id)) order by id")
-      where("id not in (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id))")
+      select(:id).where("id not in (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id))")
     end
   
     ["sina", "tqq", "qq_connect", "mmbkoo"].each do |provider|
-      define_method("#{provider}_users"){
-        users_source(provider)
+      define_method("#{provider}_user_ids"){
+        user_ids_source(provider)
     }
     end
     
     def authorizations_all
-      find_by_sql("select * from users where exists (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id)) order by id")
+      find_by_sql("select id from users where exists (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id)) order by id")
     end
     
 
@@ -234,14 +234,14 @@ class User < ActiveRecord::Base
       find_by_sql("select id from users where not exists (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo' and users.id = authorizations.user_id)) order by id")
     end
 =begin    
-    def no_mmbkoo_users
-      find_by_sql("select * from users where not exists (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo' and users.id = authorizations.user_id)) order by id")
+    def no_mmbkoo_user_ids
+      find_by_sql("select id from users where not exists (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo' and users.id = authorizations.user_id)) order by id")
     end
 
 =end
     #以id顺序的方式指定个数的非妈妈宝库用户记录
     def no_mmbkoo_with_limit(limit_count = 1000)
-      find_by_sql("select * from users where not exists (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo' and users.id = authorizations.user_id)) order by id limit #{limit_count}")
+      find_by_sql("select id from users where not exists (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo' and users.id = authorizations.user_id)) order by id limit #{limit_count}")
     end
   
     def internal_users
