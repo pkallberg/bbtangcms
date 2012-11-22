@@ -217,21 +217,26 @@ class User < ActiveRecord::Base
     def straight_user_ids
       #find_by_sql("select * from users where not exists (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id)) order by id")
       select(:id).where("id not in (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id))")
+      #@categories = Rails.cache.fetch('categories', :expires_in => 24.hours) { Category.joins(:posts).select('distinct categories.*').order('label') }
+      @straight_user_ids ||= Rails.cache.fetch('straight_user_ids', :expires_in => 24.hours) { select(:id).where("id not in (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id))") }
     end
   
     ["sina", "tqq", "qq_connect", "mmbkoo"].each do |provider|
       define_method("#{provider}_user_ids"){
         user_ids_source(provider)
+        self.instance_variable_set "@#{provider}_user_ids_source",  Rails.cache.fetch("#{provider}_user_ids_source", :expires_in => 24.hours) { user_ids_source(provider) } if !(self.instance_variable_get("@#{provider}_user_ids_source").present?)
     }
     end
     
     def authorizations_all
-      find_by_sql("select id from users where exists (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id)) order by id")
+      #find_by_sql("select id from users where exists (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id)) order by id")
+      @authorizations_all ||= Rails.cache.fetch('authorizations_all', :expires_in => 24.hours) { select(:id).where("id not in (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id))") }
     end
     
 
     def no_mmbkoo_user_ids
-      find_by_sql("select id from users where not exists (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo' and users.id = authorizations.user_id)) order by id")
+      #find_by_sql("select id from users where not exists (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo' and users.id = authorizations.user_id)) order by id")
+      @no_mmbkoo_user_ids ||= Rails.cache.fetch('no_mmbkoo_user_ids', :expires_in => 24.hours) { find_by_sql("select id from users where not exists (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo' and users.id = authorizations.user_id)) order by id") }
     end
 =begin    
     def no_mmbkoo_user_ids
