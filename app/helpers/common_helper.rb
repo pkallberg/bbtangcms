@@ -65,8 +65,38 @@ module CommonHelper
   end
   
   def user_newest_count
-    regist_sources = ["sina", "tqq", "qq_connect", "mmbkoo"] << "straight"
-    [1.days.ago, 2.days.ago, 3.days.ago, 1.weeks.ago, 1.month.ago,3.month.ago].collect{|s_t| [s_t, User.where(:created_at => s_t .. DateTime.now).count, regist_sources.collect{|source| {source => User.where(:created_at => s_t .. DateTime.now).send("#{source}_user_ids").count}}]}
+    #regist_sources = ["sina", "tqq", "qq_connect", "mmbkoo"] << "straight"
+    regist_sources = ["sina", "tqq", "qq_connect", "mmbkoo"]
+    time_range = [1.days.ago, 2.days.ago, 3.days.ago, 1.weeks.ago, 1.month.ago,3.month.ago]
+    #FIXME 直接注册 不能链式调用
+
+    time_range.collect{|s_t| [s_t, pick_the_users_special(s_t).count, regist_sources.collect{|source| {source => pick_the_users_special(s_t,source).count}}]}
+
+  end
+  
+  def pick_the_users_special(time,source = nil)
+    if time.class.name.eql? "Time"
+      set_cache_name = ''
+      cache = ActiveSupport::Cache::MemoryStore.new
+      if source.present?
+        set_cache_name = "#{source}_#{time.to_date.to_s.gsub('-',"_")}"
+        if cache.read("#{set_cache_name}").nil?
+          # undefined class/module Authorization
+          #self.instance_variable_set "@#{set_cache_name}",  Rails.cache.fetch("#{set_cache_name}", :expires_in => 24.hours) { User.where(:created_at => time .. DateTime.now).send("#{source}_user_ids") }
+          result = User.where(:created_at => time .. DateTime.now).send("#{source}_user_ids")
+          cache.write("#{set_cache_name}" ,result , :expires_in => 24.hours)
+        end
+      else
+        set_cache_name = "users_#{time.to_date.to_s.gsub('-',"_")}"
+        
+        #if !(self.instance_variable_get("@#{set_cache_name}").present?)
+        if cache.read("#{set_cache_name}").nil?
+          result = User.where(:created_at => time .. DateTime.now)
+          cache.write("#{set_cache_name}" ,result , :expires_in => 24.hours)
+        end
+      end
+      return cache.read("#{set_cache_name}")
+    end
   end
   
   #mod = "user" , unit inside %w(day month year week)

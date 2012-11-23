@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   #User.authorization(provider: "sina", uid: "1572620462")
   scope :authorization, ->(param) {joins(:authorizations).readonly(false).where(['authorizations.provider = ? and authorizations.uid = ?', param[:provider],param[:uid]])}
   #get user ids by give special authorizations.provider
-  scope :user_ids_source, ->(provider) {select(:id).joins(:authorizations).where("authorizations.provider =?",provider)}
+  scope :user_ids_source, ->(provider) {joins(:authorizations).where("authorizations.provider =?",provider)}
 
   has_many :authorizations, :dependent => :destroy
   has_many :messages
@@ -213,19 +213,21 @@ class User < ActiveRecord::Base
   end
 
   class << self
+    # FIXME Rails.cache 会存在缓存链式调用的查询，而不是缓存的 sql 本身结果
 
     def straight_user_ids
-      #find_by_sql("select * from users where not exists (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id)) order by id")
-      select(:id).where("id not in (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id))")
+      find_by_sql("select * from users where not exists (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id)) order by id")
+      #select(:id).where("id not in (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id))")
       #@categories = Rails.cache.fetch('categories', :expires_in => 24.hours) { Category.joins(:posts).select('distinct categories.*').order('label') }
-      @straight_user_ids ||= Rails.cache.fetch('straight_user_ids', :expires_in => 24.hours) { select(:id).where("id not in (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id))") }
+      #@straight_user_ids ||= Rails.cache.fetch('straight_user_ids', :expires_in => 24.hours) { select(:id).where("id not in (SELECT authorizations.user_id FROM authorizations where (users.id = authorizations.user_id))") }
     end
   
     ["sina", "tqq", "qq_connect", "mmbkoo"].each do |provider|
       define_method("#{provider}_user_ids"){
-        #user_ids_source(provider)
-        self.instance_variable_set "@#{provider}_user_ids_source",  Rails.cache.fetch("#{provider}_user_ids_source", :expires_in => 24.hours) { user_ids_source(provider) } if !(self.instance_variable_get("@#{provider}_user_ids_source").present?)
-        instance_variable_get("@#{provider}_user_ids_source")
+        user_ids_source(provider)
+        #self.instance_variable_set "@#{provider}_user_ids_source",  Rails.cache.fetch("#{provider}_user_ids_source", :expires_in => 24.hours) { user_ids_source(provider) } if !(self.instance_variable_get("@#{provider}_user_ids_source").present?)
+        #instance_variable_get("@#{provider}_user_ids_source")
+        #Authorization.provider(provider)
     }
     end
     
