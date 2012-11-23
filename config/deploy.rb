@@ -115,6 +115,6 @@ task :uname do
   run "uname -a"
 end
 
-after 'deploy:update_code', 'deploy:migrate', "deploy:create_symlink", "deploy:restart_workers", "deploy:restart_crontab", "rvm:trust_rvmrc"
+after 'deploy:update_code', 'deploy:migrate', "deploy:create_symlink", "deploy:restart_workers", "deploy:restart_crontab", "rvm:trust_rvmrc", "deploy:cleanup"
 #after 'deploy:update_code', 'deploy:migrate', "deploy:restart_workers", "deploy:restart_crontab"
 #after "deploy:create_symlink", "rvm:trust_rvmrc"
