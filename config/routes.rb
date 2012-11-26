@@ -138,6 +138,8 @@ BBTangCMS::Application.routes.draw do
   end
 
   resources :subjects
+  
+  resources :source_trackers
 
   get "site/about"
   get "site/changelog"

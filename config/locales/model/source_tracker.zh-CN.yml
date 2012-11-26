@@ -1,0 +1,18 @@
+# coding: utf-8
+zh-CN:
+  mongoid:
+    models:
+      source_tracker: "来源追踪"
+    attributes:
+      source_tracker:
+        _id: "ID"
+        _type: "字段类型"
+        key: "参数"
+        platform: "平台类别"
+        from: "来源"
+        version_number: "版本序列"
+        token: "令牌"
+        ip: "来源ip"
+        url: "来源url"
+        created_at: "创建时间"
+        updated_at: "更新时间"

@@ -72,7 +72,7 @@ class UserMail < AsyncMailer
     template_path = options.delete("template_path")
     subject = options.delete("subject")
     @email = user_email
-    
+
     template_full_path = "#{Rails.root}/#{template_path}/#{template_name}"
 
     if @email.present? and File.exists? template_full_path 
