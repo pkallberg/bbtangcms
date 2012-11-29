@@ -95,7 +95,7 @@ end
 
 every 1.day, :at => '6:30 am' do
   runner "puts '#{DateTime.now} begin to export_mmbk_user ...'"
-  rake "bbtangcms:user:export_mmbk_user"
+  #rake "bbtangcms:user:export_mmbk_user"
 end
 
 every 1.day, :at => '0:30 am' do

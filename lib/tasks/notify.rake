@@ -96,7 +96,7 @@ namespace 'bbtangcms' do
 
     #scp -r tmp/newsletter/ bbt@bbtang.com:~/bbtang/bbtcms/current/tmp/newsletter/
     #RAILS_ENV=development rake bbtangcms:notify:weekly_notify_test["1","864248765@qq.com",'孕产：荷尔蒙控制女人一生　棒棒糖孕产专刊']
-    #RAILS_ENV=production rake bbtangcms:notify:weekly_notify_test["1"]
+    #RAILS_ENV=production rake bbtangcms:notify:weekly_notify_test["2","864248765@qq.com",'孕产：荷尔蒙控制女人一生　棒棒糖孕产专刊']
     desc "test task for send weekly_notify"
     task :weekly_notify_test, [:week_count, :email, :subject] => [:environment] do |t, args|
       #args.with_defaults(:file => "tmp/goods/test.csv")
@@ -170,7 +170,7 @@ namespace 'bbtangcms' do
 
           #这里查找的就是所有非mmbk用户并且id大于s_user的id的5个用户
           #users = User.where("id >= #{s_user.id} and id NOT IN (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo'))").limit(250)
-          users = User.where("id >= #{s_user.id} and id not exists (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo'))").limit(250)
+          users = User.where("id >= #{s_user.id} and id NOT IN (SELECT authorizations.user_id FROM authorizations WHERE (provider = 'mmbkoo'))").limit(250)
 
           options = {"template_name" => template_name, "template_path" => template_path, "subject" => subject}
 
