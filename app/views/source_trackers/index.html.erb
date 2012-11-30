@@ -49,7 +49,7 @@
   </tbody>
 </table>
 
-
+<%= will_paginate @source_trackers %>
 <br />
 
 <%= link_to '测试', new_source_tracker_path(source_tracker: {platform: "email", from: "bbtang", version_number: "week1"}) %>

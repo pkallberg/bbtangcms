@@ -4,7 +4,7 @@ class Recommend::RecommendOthersController < Recommend::RecommendBaseController
   # GET /recommend/recommend_others
   # GET /recommend/recommend_others.json
   def index
-    @recommend_recommend_others = Recommend::RecommendOther.all.desc(:recommend_other_type).desc(:_id).entries
+    @recommend_recommend_others = Recommend::RecommendOther.all.desc(:recommend_other_type).desc(:_id).paginate(:page => params[:page])
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_others_path
 

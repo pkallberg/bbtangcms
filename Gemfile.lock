@@ -356,6 +356,9 @@ GEM
       activesupport (>= 2.3.4)
       chronic (~> 0.6.3)
     will_paginate (3.0.3)
+    will_paginate_mongoid (1.1.0)
+      mongoid (>= 2.4)
+      will_paginate (~> 3.0)
     will_paginate_twitter_bootstrap (1.0.0)
       will_paginate (> 3.0)
 
@@ -428,4 +431,5 @@ DEPENDENCIES
   webrat
   whenever (~> 0.7.3)
   will_paginate (= 3.0.3)
+  will_paginate_mongoid (~> 1.1.0)
   will_paginate_twitter_bootstrap (~> 1.0.0)

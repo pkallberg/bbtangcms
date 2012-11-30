@@ -5,7 +5,7 @@ class SourceTrackersController < ApplicationController
   # GET /source_trackers
   # GET /source_trackers.json
   def index
-    @source_trackers = SourceTracker.all.entries
+    @source_trackers = SourceTracker.desc(:_id).paginate(:page => params[:page])
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), source_trackers_path
     
     respond_to do |format|
