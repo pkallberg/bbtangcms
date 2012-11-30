@@ -1,4 +1,5 @@
-##BBTangCMS Changelog\n
+##BBTangCMS Changelog
+
 * Author: Francis Jiang <864248765@qq.com>	2012-06-08
 
     first commit
@@ -932,3 +933,157 @@ new file:   spec/views/site/team.html.erb_spec.rb
 * Author: bbt_server <as181920@hotmail.com>	2012-11-03
 
     add 'mmbk_user_export_reporter' to log mmbk_user report, when missing some day not export user, will set those day plan_count as 200 and add to current day's plan_count
+
+* Author: bbt_server <as181920@hotmail.com>	2012-11-03
+
+    fix a syntax error on user.rake
+
+* Author: bbt_server <as181920@hotmail.com>	2012-11-03
+
+    fix a syntax error on user.rake
+
+* Author: bbt_server <as181920@hotmail.com>	2012-11-03
+
+    fix a syntax error on user.rake
+
+* Author: bbt_server <as181920@hotmail.com>	2012-11-03
+
+    fix a syntax error on user.rake
+
+* Author: bbt_server <as181920@hotmail.com>	2012-11-03
+
+    fix a error on user.rake
+
+* Author: bbt_server <as181920@hotmail.com>	2012-11-03
+
+    fix some error
+
+* Author: bbt_server <as181920@hotmail.com>	2012-11-03
+
+    fix some error
+
+* Author: bbt_server <as181920@hotmail.com>	2012-11-04
+
+    rm some file not need
+
+* Author: bbt_server <as181920@hotmail.com>	2012-11-04
+
+    now the taks 'mmbk_user_export' should work fine
+
+* Author: Francis Jiang <864248765@qq.com>	2012-11-05
+
+    create_profile will create profile with user's email name
+
+* Author: bbt_server <as181920@hotmail.com>	2012-11-05
+
+    change reset_password_within as 1.days and update welcome_mmbkoo_user.html.erb
+
+> Merge: 924af01 371e2fa
+
+* Author: Francis Jiang <864248765@qq.com>	2012-11-06
+
+    Merge branch 'master' of bbtang.com:bbtang/bbtcms
+
+* Author: Francis Jiang <864248765@qq.com>	2012-11-07
+
+    disable the custom setting of 'KindEditor.options.items'
+
+* Author: Francis Jiang <864248765@qq.com>	2012-11-09
+
+    do something small
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-12
+
+    to something with 'tire tags search', add an email to 'new_question_notify'
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-14
+
+    add mongo gem, add bbtang_keywords to recommend_recommend_tag
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-14
+
+    try to send weekly_noify
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-14
+
+    change the from account of weekly_notify
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-16
+
+    add task 'weekly_notify_special_user', change default args of the 'newest_users'
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-16
+
+    fix one bug on 'quiz_ids'
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-16
+
+    try to fix the bug on quiz_center
+
+* Author: bbt_server <as181920@hotmail.com>	2012-11-17
+
+    add task 'notifyweekly_notify_special_user_no_mmbk'
+
+* Author: bbt_server <as181920@hotmail.com>	2012-11-17
+
+    fix error on 'notifyweekly_notify_special_user_no_mmbk'
+
+* Author: Francis Jiang <864248765@qq.com>	2012-11-17
+
+    try to use corrent encode for sources code
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-19
+
+    remove the google fonts, add mod_newest_summary,add no_mmbk scopes to user, and others ...
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-20
+
+    some chage on user model, disable 'focus_recommendation_carousel', fix error on 'newest_obj'
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-20
+
+    remove the 'focus_recommendation_carousel' add some class method to user
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-20
+
+    add 'user_newest_count'
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-20
+
+    remove the bad query
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-22
+
+    weekly_nitify can set subject by send args to task call
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-22
+
+    try to cache 'big_query'
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-22
+
+    try to cache 'big_query'
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-22
+
+    try to cache 'big_query'
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-23
+
+    mybe fix the 'the higth cpu useage on 'user_newest_count''
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-23
+
+    export all knowledge to *.txt file on tmp/knowledge
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-26
+
+    add 'source_trackers', add model file 'notify.rb'
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-29
+
+    fix error on 'weekly_notify_special_user_no_mmbk'
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-30
+
+    add 'will_paginate_mongoid'
