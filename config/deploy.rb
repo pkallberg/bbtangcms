@@ -20,7 +20,7 @@ set :rvm_ruby_string ,  'ruby-1.9.3-p194@askjane' #这个值是你要用rvm的ge
 set :rvm_type ,  :user   # Don't use system-wide RVM
 require 'rvm/capistrano'
 
-set :stages, %w(online vv)
+set :stages, %w(online vv younoter)
 set :default_stage, "vv"
 require 'capistrano/ext/multistage'
 
