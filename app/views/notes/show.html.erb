@@ -33,6 +33,9 @@
 
 <%= show_for @note do |s| %>
   <%= s.attribute :title %>
+  <%= s.attribute :face  do %>
+    <%= image_tag @note.face(:s120) if @note.face.present? %>
+  <% end %>
   <%# s.attribute :content %>
   <%= s.attribute :body, :value => (raw @note.body) %>
   <%= s.attribute :tags %>

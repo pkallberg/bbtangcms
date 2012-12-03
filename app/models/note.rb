@@ -12,6 +12,27 @@ class Note < ActiveRecord::Base
     :minimum => 2,
     }
 
+  face_url = "/uploads/paperclip/:class/:face/:id/:style/:filename"
+  face_path =":rails_root/public/uploads/paperclip/:class/:face/:id/:style/:filename"
+
+  has_attached_file :face,:default_url => "/assets/face/:style/missing.png",
+    :default_style => :s120,
+    :styles => {
+      :normal => "180x180#",
+      :s120 => "120x120#",
+      :s48 => "48x48#",
+      :s32 => "32x32#",
+      :s16 => "16x16#"
+      },
+    :url => face_url,
+    :path => face_path
+    
+  validates_attachment :face,
+                       :content_type => {:content_type => ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png', 'image/bmp']}, :allow_nil=>true
+
+  validates_attachment_size :face, :less_than => 2.megabytes,
+                          :unless => Proc.new {|m| m[:face].nil?}
+
   def clear_event_log
     #Eventlog.remove("item_id" => params[:id].to_i, "item_type"=>"Note")
     if (self.respond_to? :deleted_by and self.send(:deleted_by)) or not(self.class.exists? self.id)

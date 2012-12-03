@@ -82,7 +82,7 @@
 		<%= k.attribute :title %>
 		<%= k.attribute :summary %>
     <%= k.attribute :face  do %>
-      <% image_tag @knowledge.face(:s120) if @knowledge.face.present? %>
+      <%= image_tag @knowledge.face(:s120) if @knowledge.face.present? %>
     <% end %>
 		<%= k.attribute :body, :value => (raw @knowledge.body)%>
 		<%= k.attribute :thanks_count %>

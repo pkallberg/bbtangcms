@@ -24,6 +24,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:face) %></th>
       <th><%= model_class.human_attribute_name(:content) %></th>
       <th><%= model_class.human_attribute_name(:tags) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
@@ -38,6 +39,7 @@
       <tr class=<%= (indicates =!indicates) ? "success" : "info"%>>
         <td><%= link_to note.id, note_path(note), :title => object_summary(obj = note), :rel => "tooltip" %></td>
         <td><%= note.title %></td>
+        <td><%= image_tag note.face(:s32) if note.face.present? %></td>
         <td><%= object_summary(obj = note,colum="content")%></td>
         <td><%= note.tag_list.join(",") %></td>
           <td><%= time_tag(note.created_at, :format => :short) if note.created_at?%></td>

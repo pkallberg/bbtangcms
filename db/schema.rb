@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121030025614) do
+ActiveRecord::Schema.define(:version => 20121203030140) do
 
   create_table "admin_settings", :force => true do |t|
     t.string   "name"
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(:version => 20121030025614) do
     t.string   "access_token_secret"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "sync_setting"
   end
 
   create_table "babies", :force => true do |t|
@@ -118,6 +119,25 @@ ActiveRecord::Schema.define(:version => 20121030025614) do
     t.integer  "profile_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "bbt_comments", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.text     "body"
+    t.integer  "model_object_id"
+    t.integer  "object_target_id"
+    t.text     "excerpt"
+    t.integer  "created_by"
+    t.boolean  "state"
+    t.integer  "confirmed_by"
+    t.datetime "confirmed_at"
+    t.string   "feedback_ip"
+    t.boolean  "is_anonymous"
+    t.datetime "deleted_at"
+    t.text     "like_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "category_bases", :force => true do |t|
@@ -182,23 +202,21 @@ ActiveRecord::Schema.define(:version => 20121030025614) do
   end
 
   create_table "comments", :force => true do |t|
-    t.string   "title"
-    t.text     "content"
+    t.integer  "commentable_id",   :default => 0
+    t.string   "commentable_type", :default => ""
+    t.string   "title",            :default => ""
     t.text     "body"
-    t.integer  "model_object_id"
-    t.integer  "object_target_id"
-    t.text     "excerpt"
-    t.integer  "created_by"
-    t.boolean  "state"
-    t.integer  "confirmed_by"
-    t.datetime "confirmed_at"
-    t.string   "feedback_ip"
-    t.boolean  "is_anonymous"
-    t.datetime "deleted_at"
-    t.text     "like_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "subject",          :default => ""
+    t.integer  "user_id",          :default => 0,  :null => false
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
+
+  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "configurations", :force => true do |t|
     t.string   "name"
@@ -297,6 +315,14 @@ ActiveRecord::Schema.define(:version => 20121030025614) do
     t.datetime "updated_at"
   end
 
+  create_table "group_user_roles", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "groups", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -317,6 +343,14 @@ ActiveRecord::Schema.define(:version => 20121030025614) do
     t.boolean  "delta",             :default => true, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "groups_users_roles", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "kindeditor_assets", :force => true do |t|
@@ -491,12 +525,17 @@ ActiveRecord::Schema.define(:version => 20121030025614) do
     t.text     "body"
     t.integer  "draft"
     t.integer  "private"
-    t.text     "tags",         :limit => 16777215
+    t.text     "tags",              :limit => 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by"
-    t.integer  "views_count",                      :default => 0
+    t.integer  "views_count",                           :default => 0
     t.integer  "thanks_count"
+    t.integer  "top"
+    t.string   "face_file_name"
+    t.string   "face_content_type"
+    t.integer  "face_file_size"
+    t.datetime "face_updated_at"
   end
 
   create_table "permits", :force => true do |t|
@@ -670,17 +709,8 @@ ActiveRecord::Schema.define(:version => 20121030025614) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "group_id"
   end
-
-  create_table "roles_users", :force => true do |t|
-    t.integer  "role_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "roles_users", ["role_id"], :name => "index_roles_users_on_role_id"
-  add_index "roles_users", ["user_id"], :name => "index_roles_users_on_user_id"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
