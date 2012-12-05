@@ -13,6 +13,7 @@ zh-CN:
         version_number: "版本序列"
         token: "令牌"
         ip: "来源ip"
+        city: "来源城市"
         url: "来源url"
         created_at: "创建时间"
         updated_at: "更新时间"

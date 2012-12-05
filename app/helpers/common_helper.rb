@@ -193,8 +193,8 @@ module CommonHelper
     is.country.split("省").last.gsub("市","")
   end
   def obj_conditions_params(obj = "Version", hash={}, hash_name = "conditions")
-    obj = obj.classify.constantize
-    hash.delete_if {|key, value| !(obj.column_names.include? key.to_s) }
+   # obj = obj.classify.constantize
+    #hash.delete_if {|key, value| !(obj.column_names.include? key.to_s) }
     {hash_name => hash}.to_param
   end
 
@@ -204,20 +204,64 @@ module CommonHelper
     hash.to_param
   end
 
-  def obj_filter_drop_down_li(obj = "Version", col = '' ,path = nil,count = 20)
+  def obj_filter_drop_down_li(obj = "Version", col = '' ,path = nil,count = 20, max_count = 1000)
     obj_class = obj.classify.constantize
     if obj_class.column_names.include? col.to_s
-      head = "<ul class='nav nav-pills'><li class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown' href='#menu1'>#{obj_class.human_attribute_name(col.gsub("_id",'').to_sym)}<b class='caret'></b></a><ul class='dropdown-menu'>"
-      list = obj_class.order("id desc").group(col.to_sym).uniq.delete_if{|item| item.send(col).nil?}.collect{|item| ["#{item.send((col.gsub("_id",'')))}",item.send(col)]}
+      head = "<ul class='nav nav-pills'>
+                <li class='dropdown'>
+                  <a class='dropdown-toggle' data-toggle='dropdown' href='#menu1'>#{obj_class.human_attribute_name(col.gsub("_id",'').to_sym)}
+                    <b class='caret'></b>
+                  </a>
+                  <ul class='dropdown-menu'>"
+      list = obj_class.order("id desc").group(col.to_sym).limit(max_count).uniq.delete_if{|item| item.send(col).nil?}.collect{|item| ["#{item.send((col.gsub("_id",'')))}",item.send(col)]}
       if col.end_with? "_by"
         #list = obj.find(:all, :order => "id desc").collect{|v| ["#{(v.send(col.gsub("_id",'').to_sym))}",v.send(col.to_sym)]}
         #list = obj.select([col.to_sym,:id]).collect{|item| ["#{item.reload.send(col.gsub("_id",''))}",item.send(col)]}.uniq
-        list = obj_class.order("id desc").group(col.to_sym).uniq.delete_if{|item| item.send(col).nil?}.collect{|item| ["#{item.send(col.gsub("_by",'_user'))}",item.send(col)]}.uniq
+        list = obj_class.order("id desc").group(col.to_sym).limit(max_count).uniq.delete_if{|item| item.send(col).nil?}.collect{|item| ["#{item.send(col.gsub("_by",'_user'))}",item.send(col)]}.uniq
       end
       path ||= self.send("#{obj.pluralize.downcase}_path")
 
       content = list[ 0 .. (count.to_i - 1)].collect{|l| raw "<li>#{link_to l[0],(path +"/?" + obj_conditions_params(obj = obj,{col.to_sym =>l[1]})) }</li>"}.join
-      foot = "</ul></li>"
+      foot = "</li></ul>"
+      return raw "#{head + content + foot}"
+    end
+  end
+  
+  def mongoid_feild_pluck(obj = "SourceTracker", field = '')
+    obj_class = obj.classify.constantize
+    fields = obj_class.fields.collect{|_,v| v.name}.uniq.compact
+    if fields.include? field.to_s
+      set_cache_name = "#{obj_class.name.underscore}_pluck_#{field}"
+      cache = ActiveSupport::Cache::MemoryStore.new
+      if cache.read("#{set_cache_name}").nil?
+        result = obj_class.only([field]).map(&field.to_sym)
+        cache.write("#{set_cache_name}" ,result , :expires_in => 24.hours)
+      end
+      return cache.read("#{set_cache_name}")
+    end
+  end
+  
+  def mongoid_obj_filter_drop_down_li(obj = "SourceTracker", field = '' ,path = nil,count = 20)
+    obj_class = obj.classify.constantize
+    fields = obj_class.fields.collect{|_,v| v.name}.uniq.compact
+    
+    if fields.include? field.to_s
+      head = "<div class='btn-group'>
+                <button class='btn'>#{obj_class.human_attribute_name(field.to_sym)}</button>
+                <button class='btn dropdown-toggle' data-toggle='dropdown'>
+                  <span class='caret'></span>
+                </button>
+                
+                  <ul class='dropdown-menu'>"
+      #list = [[human1,real1],[human2,real2]]          
+      list = mongoid_feild_pluck(obj = obj_class.name, field = field ).uniq.compact.collect{|item| [item,item]}
+      if field.to_s.eql? "ip"
+        list = obj_class.only([field]).uniq.compact.delete_if{|item| item.send(field).nil?}.collect{|item| [item.send("city"),item.send(field)]}
+      end
+      path ||= self.send("#{obj.pluralize.downcase}_path")
+
+      content = list[ 0 .. (count.to_i - 1)].collect{|l| raw "<li>#{link_to l[0],(path +"/?" + obj_conditions_params(obj = obj,{field.to_sym =>l[1]})) }</li>"}.join
+      foot = "</ul></div>"
       return raw "#{head + content + foot}"
     end
   end

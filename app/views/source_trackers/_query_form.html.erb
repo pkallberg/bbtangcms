@@ -1,0 +1,10 @@
+<%= simple_form_for(model_class.new,url: query_source_trackers_path) do |f| %>
+  <% [:platform, :from, :version_number].each do |field|%>
+    <%= f.input field do %>
+      <%= select_tag("#{model_class.name.underscore}[#{field}]", mongoid_feild_pluck(obj = model_class.name, field = field ).uniq.compact.collect{|val| "<option value='#{val}'>#{val}</option>"}.join("").html_safe,include_blank: false, multiple: true ) %>
+    <% end %>
+  <% end %>
+  <div class="form-actions">
+    <%= f.button :submit, value: "search" %>
+  </div>
+<% end %>

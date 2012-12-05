@@ -3,7 +3,7 @@ module Work::VersionsHelper
     hash.delete_if {|key, value| !(Version.column_names.include? key.to_s) }
     Hash[:version, hash]
   end
-  def version_filter_drop_down_li(obj = "Version", col = '',count = 20, max_count = 5000)
+  def version_filter_drop_down_li(obj = "Version", col = '',count = 20, max_count = 1000)
     obj = obj.classify.constantize
     #Version.all.collect{|v| ["#{v.item}",v.item_id]}.uniq
     if obj.column_names.include? col.to_s
@@ -29,7 +29,7 @@ module Work::VersionsHelper
         list = obj.order("id desc").group(col.to_sym).uniq.limit(max_count).collect{|item| ["#{item.send(col).classify.constantize.model_name.human.pluralize}",item.send(col)]}.uniq
       end
       content = list[0..count].collect{|l| raw "<li>#{link_to l[0],work_versions_path(version_params({col.to_sym =>l[1]})) }</li>"}.join
-      foot = "</ul></li>"
+      foot = "</li></ul>"
       return raw "#{head + content + foot}"
     end
   end

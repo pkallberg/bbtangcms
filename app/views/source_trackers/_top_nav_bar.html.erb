@@ -1,0 +1,8 @@
+<ul class="nav nav-tabs">
+  <li class="<%= 'active' if (params[:controller].eql? 'source_trackers'  and params[:action].eql? 'index') %>">
+    <%= link_to model_class.model_name.human, source_trackers_path %>
+  </li>
+  <li class="<%= 'active' if (params[:controller].eql? 'source_trackers'  and params[:action].eql? 'query') %>">
+    <%= link_to t("helpers.links.query", :model => model_class.model_name.human), query_source_trackers_path %>
+  </li>
+</ul>

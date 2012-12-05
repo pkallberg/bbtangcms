@@ -90,7 +90,7 @@ class Work::AnalyticsController < Work::WorkBaseController
   
   private
   def prepare
-    @model_list = %w(answer authorization note knowlege profile question user)
+    @model_list = %w(answer authorization note knowledge profile question user)
     @models = @model_list.collect{|m| m.classify.constantize if m.classify.class_exists?}.compact.uniq
     @col_types = [:string, :integer, :datetime]
   end

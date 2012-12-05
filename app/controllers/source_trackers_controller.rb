@@ -5,7 +5,13 @@ class SourceTrackersController < ApplicationController
   # GET /source_trackers
   # GET /source_trackers.json
   def index
-    @source_trackers = SourceTracker.desc(:_id).paginate(:page => params[:page])
+    if params[:conditions].present?
+      conditions = params[:conditions]
+      conditions = Hash[conditions.collect{|k,v| [k.to_sym.in,v] if v.class.eql? Array}]
+      @source_trackers  = SourceTracker.where(conditions).desc(:_id).paginate(:page => params[:page])
+    else
+      @source_trackers  = SourceTracker.desc(:_id).paginate(:page => params[:page])
+    end
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), source_trackers_path
     
     respond_to do |format|
@@ -43,6 +49,15 @@ class SourceTrackersController < ApplicationController
   # GET /source_trackers/1/edit
   def edit
     @source_tracker = SourceTracker.find(params[:id])
+  end
+  
+  #get or post
+  def query
+    has_key = SourceTracker.name.underscore
+
+    if params.has_key? has_key and params[has_key].present?
+      redirect_to source_trackers_path(conditions: params[has_key])
+    end
   end
 
   # POST /source_trackers

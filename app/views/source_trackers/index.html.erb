@@ -1,4 +1,4 @@
-
+<%= render 'top_nav_bar', model_class: SourceTracker.new.class%>
 <%- model_class = SourceTracker.new.class -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
@@ -11,10 +11,11 @@
 <table  class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:platform) %></th>
-      <th><%= model_class.human_attribute_name(:from) %></th>
-      <th><%= model_class.human_attribute_name(:version_number) %></th>
+      <th><%= mongoid_obj_filter_drop_down_li(obj = "SourceTracker", field="platform",path= source_trackers_path) %></th>
+      <th><%= mongoid_obj_filter_drop_down_li(obj = "SourceTracker", field="from",path= source_trackers_path) %></th>
+      <th><%= mongoid_obj_filter_drop_down_li(obj = "SourceTracker", field="version_number",path= source_trackers_path) %></th>
       <th><%= model_class.human_attribute_name(:ip) %></th>
+      <th><%= mongoid_obj_filter_drop_down_li(obj = "SourceTracker", field="ip",path= source_trackers_path)%></th>
       <th><%= model_class.human_attribute_name(:url) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -30,6 +31,7 @@
         <td><%= source_tracker.from %></td>
         <td><%= source_tracker.version_number %></td>
         <td><%= source_tracker.ip %></td>
+        <td><%= source_tracker.city %></td>
         <td><%= source_tracker.url %></td>
         <td><%= timeago_tag(source_tracker.created_at, :format => :short) if source_tracker.created_at? %></td>
         <td>
@@ -48,9 +50,10 @@
     <% end %>
   </tbody>
 </table>
-
+<i><%= "本次检索： #{@source_trackers.count}"%></i>
 <%= will_paginate @source_trackers %>
 <br />
+<%# form_tag(query_source_tracker_path, :method => :put) do |f| %>
 
 <%= link_to '测试', new_source_tracker_path(source_tracker: {platform: "email", from: "bbtang", version_number: "week1"}) %>
 
