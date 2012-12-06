@@ -7,7 +7,7 @@ class SourceTrackersController < ApplicationController
   def index
     if params[:conditions].present?
       conditions = params[:conditions]
-      conditions = Hash[conditions.collect{|k,v| [k.to_sym.in,v] if v.class.eql? Array}]
+      conditions = Hash[conditions.collect{|k,v| (v.class.eql? Array) ? [k.to_sym.in,v] : [k,v]}]
       @source_trackers  = SourceTracker.where(conditions).desc(:_id).paginate(:page => params[:page])
     else
       @source_trackers  = SourceTracker.desc(:_id).paginate(:page => params[:page])

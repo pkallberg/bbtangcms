@@ -50,8 +50,8 @@
     <% end %>
   </tbody>
 </table>
-<i><%= "本次检索： #{@source_trackers.count}"%></i>
 <%= will_paginate @source_trackers %>
+<i><%= "本次检索： #{@source_trackers.total_entries}"%></i>
 <br />
 <%# form_tag(query_source_tracker_path, :method => :put) do |f| %>
 

@@ -30,5 +30,13 @@ module ApplicationHelper
       raw "<meta name=\"keywords\"  content=\"#{page_keywords}\" />\n"
     end
   end
-
+  
+  def change_ip_to_city(ip=nil)
+    is = IpSearch.new
+    ip ||= "116.228.214.170"
+    is.find_ip_location(ip)
+    #breakpoint
+    #return is.country.gsub("市","")
+    is.country.split("省").last.gsub("市","")
+  end
 end

@@ -227,7 +227,7 @@ module CommonHelper
     end
   end
   
-  def mongoid_feild_pluck(obj = "SourceTracker", field = '')
+  def mongoid_feild_pluck(obj = "SourceTracker", field = '',opt = {uniq: false})
     obj_class = obj.classify.constantize
     fields = obj_class.fields.collect{|_,v| v.name}.uniq.compact
     if fields.include? field.to_s
@@ -235,6 +235,9 @@ module CommonHelper
       cache = ActiveSupport::Cache::MemoryStore.new
       if cache.read("#{set_cache_name}").nil?
         result = obj_class.only([field]).map(&field.to_sym)
+        if (uniq = opt.delete(:uniq)).present?
+          result.uniq!
+        end
         cache.write("#{set_cache_name}" ,result , :expires_in => 24.hours)
       end
       return cache.read("#{set_cache_name}")
@@ -254,9 +257,9 @@ module CommonHelper
                 
                   <ul class='dropdown-menu'>"
       #list = [[human1,real1],[human2,real2]]          
-      list = mongoid_feild_pluck(obj = obj_class.name, field = field ).uniq.compact.collect{|item| [item,item]}
+      list = mongoid_feild_pluck(obj = obj_class.name, field = field, {uniq: true} ).compact.collect{|item| [item,item]}
       if field.to_s.eql? "ip"
-        list = obj_class.only([field]).uniq.compact.delete_if{|item| item.send(field).nil?}.collect{|item| [item.send("city"),item.send(field)]}
+        list = mongoid_feild_pluck(obj = obj_class.name, field = "ip", {uniq: true} ).compact.collect{|item| [change_ip_to_city(ip=item),item]}
       end
       path ||= self.send("#{obj.pluralize.downcase}_path")
 
