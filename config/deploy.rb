@@ -104,6 +104,10 @@ namespace :deploy do
   task :export_mmbk_user do
     run "cd #{current_path}; bundle exec rake bbtangcms:user:export_mmbk_user RAILS_ENV=#{rails_env}"
   end
+  desc "run extra_query's run_simply ..."
+  task :extra_query_run_simply do
+    run "cd #{current_path}; bundle exec rake bbtangcms:extra_query:run_simply RAILS_ENV=#{rails_env}"
+  end
 end
 namespace :rvm do
   task :trust_rvmrc do

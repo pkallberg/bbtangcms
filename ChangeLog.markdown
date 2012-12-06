@@ -1087,3 +1087,23 @@ new file:   spec/views/site/team.html.erb_spec.rb
 * Author: jhjguxin <864248765@qq.com>	2012-11-30
 
     add 'will_paginate_mongoid'
+
+* Author: jhjguxin <864248765@qq.com>	2012-11-30
+
+    update ChangeLog
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-03
+
+    add face to note
+
+* Author: Andersen Fan <as181920@hotmail.com>	2012-12-03
+
+    add test deploy server
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-05
+
+    add query to source_trackers, improve the Performance of obj_filter_drop_down_li
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-06
+
+    fix bugs on source_trackers about will_paginate_mongoid's 'total_entries', helper 'mongoid_obj_filter_drop_down_li' can use 'opt' params, add 'extra_query.rake'

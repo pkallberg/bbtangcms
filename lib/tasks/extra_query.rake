@@ -51,7 +51,7 @@ namespace 'bbtangcms' do
       count_collection = time_range.collect{|time| [time_ago_in_words(time),User.where(last_sign_in_at: [time..DateTime.now]).count]}
       puts "until now we has:\n" << count_collection.collect{|item| (item.first << " ago:").ljust(30)  << item.last.to_s}.join("\n")
     end
-    desc "users sign_in activity ... "
+    desc "rum some task together ... "
     task :run_simply => [:environment] do |t, args|
       puts "begin some task inside extra_query.rake ... "
       task_list = [ 
