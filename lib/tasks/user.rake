@@ -202,7 +202,7 @@ def oauth_users_no_sign_in(email, count = 200, provider = 'mmbkoo')
   end
 end
 
-#rake bbtangcms:notify:export_mmbk_user
+#rake bbtangcms:user:export_mmbk_user
 namespace 'bbtangcms' do
   namespace 'user' do
     desc "export user in mmbkoo to bbtang"
@@ -211,6 +211,8 @@ namespace 'bbtangcms' do
       export_mmbk_user
     end
     
+    #rake bbtangcms:user:mmbk_ad_for_mmbk_users_no_sign_in["864248765@qq.com","200"]
+    desc "pick mmbk user which later than specific user and send an email"
     task :mmbk_ad_for_mmbk_users_no_sign_in, [:email, :count] => :environment do |t, args|
       args.with_defaults(:count => "200")
       if args.email.present?
