@@ -211,14 +211,15 @@ namespace 'bbtangcms' do
       export_mmbk_user
     end
     
-    #rake bbtangcms:user:mmbk_ad_for_mmbk_users_no_sign_in["864248765@qq.com","200"]
+    #rake bbtangcms:user:mmbk_ad_for_mmbk_users_no_sign_in["njzhaoguobin@126.com","200"]
+    #NOTICE args 有个坑 count 应该是 内置的 所以下面的 args.count 是两个参数 而不是 '200',要么不用 'count' or args[:count]
     desc "pick mmbk user which later than specific user and send an email"
-    task :mmbk_ad_for_mmbk_users_no_sign_in, [:email, :count] => :environment do |t, args|
-      args.with_defaults(:count => "200")
+    task :mmbk_ad_for_mmbk_users_no_sign_in, [:email, :users_count] => :environment do |t, args|
+      args.with_defaults(:users_count => "200")
       if args.email.present?
         #logger.info "begin to pick mmbk user which later than #{args.email} and send email ..."
         puts "begin to pick mmbk user which later than #{args.email} and send email ..."
-        users = oauth_users_no_sign_in(email = args.email, count = args.count)
+        users = oauth_users_no_sign_in(email = args.email, count = args[:users_count].to_i)
         users.each do |user|
           puts "pick user #{user} ... "
           if Rails.env.production?
