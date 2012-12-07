@@ -194,6 +194,14 @@ def export_user(params = {})
   end
 end
 
+#pick oauth user begin one user.id and with limit count
+def oauth_users_no_sign_in(email, count = 200, provider = 'mmbkoo')
+  if email.present? and User.exists? email: email
+    user = User.find_by_email email
+    User.joins(:authorizations).where("authorizations.provider = '#{provider}' and users.sign_in_count > 0 and users.id > #{user.id}").limit(count.to_i)
+  end
+end
+
 #rake bbtangcms:notify:export_mmbk_user
 namespace 'bbtangcms' do
   namespace 'user' do
@@ -202,6 +210,25 @@ namespace 'bbtangcms' do
       logger.info "begin to export user in mmbkoo to bbtang ..."
       export_mmbk_user
     end
+    
+    task :mmbk_ad_for_mmbk_users_no_sign_in, [:email, :count] => :environment do |t, args|
+      args.with_defaults(:count => "200")
+      if args.email.present?
+        #logger.info "begin to pick mmbk user which later than #{args.email} and send email ..."
+        puts "begin to pick mmbk user which later than #{args.email} and send email ..."
+        users = oauth_users_no_sign_in(email = args.email, count = args.count)
+        users.each do |user|
+          puts "pick user #{user} ... "
+          if Rails.env.production?
+            puts "send mail to #{user} ... "
+            MMBKUserMail.ad_mmbkoo_user(user.id).deliver
+          end
+        end
+      else
+        puts "No email supplied"
+      end
+    end
+    
   end
 end
 =begin
