@@ -198,7 +198,7 @@ end
 def oauth_users_no_sign_in(email, count = 200, provider = 'mmbkoo')
   if email.present? and User.exists? email: email
     user = User.find_by_email email
-    User.joins(:authorizations).where("authorizations.provider = '#{provider}' and users.sign_in_count > 0 and users.id > #{user.id}").limit(count.to_i)
+    User.joins(:authorizations).where("authorizations.provider = '#{provider}' and not(users.sign_in_count > 0) and users.id > #{user.id}").limit(count.to_i)
   end
 end
 
