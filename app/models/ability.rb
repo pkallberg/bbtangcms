@@ -25,8 +25,10 @@ class Ability
         # rules for non-admin controllers here
     end
 
+    # Checking Abilities from cms_roles
     @user.cms_roles.each { |role| send(role.name.downcase) if (role.present? and  self.respond_to? role.name.downcase) }
-
+    
+=begin
     @user.cms_roles.each do |cr|
       cr.cms_role_permits.each do |crp|
         send(crp.permit.name.downcase) if (crp.permit.present? and self.respond_to? crp.permit.name.downcase)
@@ -34,14 +36,82 @@ class Ability
     end
 
     @user.permits.each { |permit| send(permit.name.downcase) if (permit.present? and self.respond_to? permit.name.downcase) }
+=end
 
-
+    #@user.cms_permits_all.each { |permit| send(permit.name.downcase) if (permit.present? and self.respond_to? permit.name.downcase) }
+    
     #if @user.cms_roles.size == 0
     if @user.cms_roles.empty?
       #can :read, :all #for guest without roles
       cannot :manage, :all
+    else
+
+
+      #FIXME Nested Resources canot soveld because many special date must been supplied
+      # eg: http://localhost:3000/tag/identities/838/timelines/839/categories/840
+      if controller_namespace.present?
+        if controller_namespace.eql? "tag"
+          check_ability_from_all_permit(user)
+        elsif controller_namespace.eql? "auth"
+          #do nothing
+        end
+      else
+        can do |action, subject_class, subject|
+          #因为匿名 subject_class 的一些授权是没有存放在数据库的
+          unless subject_class.name.eql? "Symbol"
+            can_accessible = false
+            #aliases_for_action(action) =>[:index, :read]
+
+            aliase_action = aliases_for_action(action).last
+            class_name = subject_class.name.underscore.gsub("/","_")
+            
+            #eg index_tag_identity
+            permit_name = [aliase_action, class_name].collect{|item| item if item.present?}.compact.join("_")
+            
+            #eg index_identity
+            permit_name_nonamespace = [aliase_action, class_name].collect{|item| item if item.present?}.join("_")
+            
+            #eg read_tag_identity
+            permit_name_aliase_action = [action, controller_namespace, class_name].collect{|item| item if item.present?}.compact.join("_")
+            
+            #eg read_identity
+            permit_name_aliase_action_nonamespace = [action, class_name].collect{|item| item if item.present?}.join("_")
+
+            # check_abilit 
+            if (can_accessible = user.has_permit?(permit_name))
+              #check_ability_by_permit_name(@user, permit_name)
+            elsif (can_accessible = user.has_permit?(permit_name_nonamespace))
+              #check_ability_by_permit_name(@user, permit_name_nonamespace)
+            elsif (can_accessible = user.has_permit?(permit_name_aliase_action))
+              #check_ability_by_permit_name(@user, permit_name_aliase_action)
+            elsif (can_accessible = user.has_permit?(permit_name_aliase_action_nonamespace))
+              #check_ability_by_permit_name(@user, permit_name_aliase_action_nonamespace)
+            end
+
+            can_accessible
+          end
+        end
+      end
+    end
+    
+  end
+  
+  def check_ability_by_permit_name(user,permit_name)
+    user ||= User.new
+    if permit_name.present?
+      permit = user.find_cms_permit_by_name(permit_name)
+      #send(permit.name.downcase) if (permit.present? and self.respond_to? permit.name.downcase) 
+      true if permit.present?
+    else
+      false
     end
   end
+  
+  def check_ability_from_all_permit(user)
+    user ||= User.new
+    user.cms_permits_all.each { |permit| send(permit.name.downcase) if (permit.present? and self.respond_to? permit.name.downcase) }
+  end
+
 ##################create ##########################
   def create_profile
     can :create, Profile

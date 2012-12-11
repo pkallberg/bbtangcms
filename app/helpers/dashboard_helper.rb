@@ -32,7 +32,11 @@ module DashboardHelper
   end
 
   def users_summary
-    "社区会员: #{User.count} 人, #{user_level_summary}"
+    if Rails.cache.read("users_summary_cache").nil?
+      users_summary_cache = "社区会员: #{User.count} 人, #{user_level_summary}"
+      Rails.cache.write("users_summary_cache" ,users_summary_cache , :expires_in => 30.minutes)
+    end
+    Rails.cache.read("users_summary_cache")
   end
 
   def newest_users_summary
@@ -48,6 +52,12 @@ module DashboardHelper
     s_time = count.to_i.send(unit).send("ago") if count.to_i > 0
     #s_time ||= 1.day.ago
     s_time ||= DateTime.now.midnight
-    users= User.includes(:profile).where(:created_at => s_time .. DateTime.now).order("id desc")
+    users = User.includes(:profile).where(:created_at => s_time .. DateTime.now).order("id desc")
+    
+    if Rails.cache.read("newest_users_cache").nil?
+      newest_users_cache = users
+      Rails.cache.write("newest_users_cache" ,newest_users_cache , :expires_in => 30.minutes)
+    end
+    Rails.cache.read("newest_users_cache")
   end
 end 

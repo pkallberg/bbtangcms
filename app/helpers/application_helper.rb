@@ -1,6 +1,29 @@
 # encoding: utf-8
 module ApplicationHelper
-
+=begin
+def cache_helper(method_name, cache_params = {:expires_in => 30.minutes},*method_params);end
+ => nil 
+def cache_helper(method_name,*method_params,cache_params);end
+=> nil 
+=end
+  # a common helper method to cache the return value of specil helper
+  def cache_helper(method_name, cache_params = {:expires_in => 30.minutes},*method_params)
+    cache_params = {:expires_in => 30.minutes} if cache_params.empty?
+    
+    if method_name.present? and self.respond_to? method_name
+      cache_keys = "#{method_name}_" << method_params.collect{|v| "#{v}"}.join("&") << cache_params.collect{|k,v| "#{k.to_s}_#{v}"}.join("&")
+      if Rails.cache.read("#{cache_keys}").nil?
+        #send(:foo, *args)
+        # same as: send(:foo, "abc")
+        method_cache = self.send method_name, *method_params
+        Rails.cache.write("#{cache_keys}" ,method_cache , cache_params)
+      end
+      Rails.cache.read("#{cache_keys}")
+    else
+      puts "no method defined #{method_name}, or something wrong unknow"
+    end
+  end
+  
   def render_page_title()
     default_title = "#{breadcrumbs.items.collect{|item| item.first}.join('>>')} | #{Setting.app_name}"
     if @page_title.present?

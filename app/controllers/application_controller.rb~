@@ -55,13 +55,6 @@ class ApplicationController < ActionController::Base
         @profile = Profile.create( user_id :current_user.id, nickname: nickname )
         #redirect_to new_profile_path(is_recommend: true)
       end
-
-      #if is_create_profile?(params)
-          #Profile.create(:user_id=>current_user.id)
-          #breakpoint
-          #Profile.find_or_create_by_user_id(current_user.id)
-          #redirect_to "/profiles/new" and return
-      #end
     end
   end
 

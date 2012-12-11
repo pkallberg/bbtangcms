@@ -28,11 +28,11 @@ module BBTangCMS
 	# 最后 不管 Rails.configuration.self_settings 有没有 都去读取一下数据库以数据库为准
     def self.get_data_by_id(table_name, id)
       model_class = table_name.classify.constantize if table_name.class_exists?
-	  puts "get config data #{name} !!!!!!!!!#############################################################"  if Rails.env.development?
+	    #puts "get config data #{name} !!!!!!!!!#############################################################"  if Rails.env.development?
       data = nil
-	  puts "is Rails.configuratio.self_settings present? #{Rails.configuration.respond_to?("self_settings")}"  if Rails.env.development?
+	    #puts "is Rails.configuratio.self_settings present? #{Rails.configuration.respond_to?("self_settings")}"  if Rails.env.development?
 
-	  if Rails.configuration.respond_to?("self_settings")
+	    if Rails.configuration.respond_to?("self_settings")
         cache_value = Rails.configuration.self_settings[table_name + "_by_id"][id.to_s]
         if cache_value.present?
           data = cache_value
@@ -48,42 +48,42 @@ module BBTangCMS
 		  #Rails.configuration.self_settings["#{table_name}_by_id"][id.to_s] = data
         end
       end
-	  puts "#{name} is #{data}"  if Rails.env.development?
-	  return data
+	    #puts "#{name} is #{data}"  if Rails.env.development?
+	    return data
     end
 
 
     def self.get_data_by_name(table_name, name)
       model_class = table_name.classify.constantize if table_name.class_exists?
-	  puts "get config data #{name} !!!!!!!!!#############################################################"  if Rails.env.development?
+	    #puts "get config data #{name} !!!!!!!!!#############################################################"  if Rails.env.development?
       data = nil
-	  puts "is Rails.configuratio.self_settings present? #{Rails.configuration.respond_to?("self_settings")}"  if Rails.env.development?
+	    #puts "is Rails.configuratio.self_settings present? #{Rails.configuration.respond_to?("self_settings")}"  if Rails.env.development?
 
-	  if Rails.configuration.respond_to?("self_settings")
+	    if Rails.configuration.respond_to?("self_settings")
         cache_value = Rails.configuration.self_settings[table_name + "_by_name"][name.to_s]
 
         if cache_value.present?
-		  data = cache_value
+		      data = cache_value
+          else
+            if model_class.exists? :name => name
+              data = model_class.find_by_name name
+              Rails.configuration.self_settings["#{table_name}_by_name"][name.to_s] = data
+            end
+          end
         else
           if model_class.exists? :name => name
             data = model_class.find_by_name name
-            Rails.configuration.self_settings["#{table_name}_by_name"][name.to_s] = data
+            #Rails.configuration.self_settings["#{table_name}_by_name"][name.to_s] = data
           end
         end
-      else
-        if model_class.exists? :name => name
-          data = model_class.find_by_name name
-          #Rails.configuration.self_settings["#{table_name}_by_name"][name.to_s] = data
-        end
-      end
-	  puts "#{name} is #{data}"  if Rails.env.development?
-	  return data
+	    #puts "#{name} is #{data}"  if Rails.env.development?
+	    return data
     end
 
     def self.get_config_data(name)
-	  puts "get config data #{name} !!!!!!!!!#############################################################" if Rails.env.development?
+  	  #puts "get config data #{name} !!!!!!!!!#############################################################" if Rails.env.development?
       data = nil
-	  puts "is Rails.configuratio.self_settings present? #{Rails.configuration.respond_to?("self_settings")}"  if Rails.env.development?
+	    #puts "is Rails.configuratio.self_settings present? #{Rails.configuration.respond_to?("self_settings")}"  if Rails.env.development?
       if Rails.configuration.respond_to?("self_settings")
         cache_value = Rails.configuration.self_settings[name]
         if cache_value.nil?
@@ -100,8 +100,8 @@ module BBTangCMS
 		  #Rails.configuration.self_settings[name] = data
         end
       end
-	  puts "#{name} is #{data}"  if Rails.env.development?
-	  return data
+	    #puts "#{name} is #{data}"  if Rails.env.development?
+	    return data
     end
 
     # 单个配置写入Rails设置（用于admin后台管理）

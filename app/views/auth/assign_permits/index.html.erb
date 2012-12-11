@@ -9,7 +9,7 @@
         <th><%= admin_model_class.human_attribute_name(:id) %></th>
         <th><%= admin_model_class.model_name.human %></th>
         <th><%= admin_model_class.human_attribute_name(:cms_roles) %></th>
-        <th><%= admin_model_class.human_attribute_name(:permits) %></th>
+        <!--th><%# admin_model_class.human_attribute_name(:permits) %></th-->
         <th><%=t '.actions', :default => t("helpers.actions") %></th>
       </tr>
       <%- indicates = true %>
@@ -18,7 +18,7 @@
         <td><%= link_to owner_user.id, auth_assign_permit_path(owner_user) %></td>
           <td><%= owner_user %></td>
           <td><%= owner_user.cms_roles.map(&:name) %></td>
-          <td><%= owner_user.permits.map(&:name)%></td>
+          <!--td><%# owner_user.permits.map(&:name)%></td-->
           <td><%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)), auth_assign_permit_path(owner_user), :class => 'btn' %>
               <%= link_to t('.edit', :default => t("helpers.links.edit", :model => model_class.model_name.human)), edit_auth_assign_permit_path(owner_user), :class => 'btn' %>
 <!--%= link_to t('.destroy', :default => t("helpers.links.destroy", :model => model_class.model_name.human)), auth_assign_permit_path(owner_user,:admin_group => admin.name ),

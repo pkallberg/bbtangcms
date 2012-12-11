@@ -109,6 +109,7 @@ class User < ActiveRecord::Base
   end
 
   def owner_users(name = nil)
+=begin
     owner_user = []
     if self.admin_group? and name.present?
       User.all.each do |u|
@@ -119,6 +120,12 @@ class User < ActiveRecord::Base
       end
     end
     owner_user.uniq
+=end
+    if self.admin_group? and name.present?
+      User.joins(:cms_roles).where('cms_roles.name =?',name)
+    else
+      []
+    end
   end
 
   def supper_admin?
@@ -210,6 +217,34 @@ class User < ActiveRecord::Base
     #breakpoint
     #return is.country.gsub("市","")
     is.country.split("省").last.gsub("市","")
+  end
+  
+  def cms_permits_all
+    (permits.to_a.clone << cms_roles.collect{|cr| cr.cms_role_permits.collect{|crp| crp.permit}}).uniq.flatten
+  end
+  
+  def find_cms_permit_by_name(name="")
+    if self.present? and name.present?
+      #find permit by name from user's permit cu_permits association
+      permit = Permit.joins(:cu_permits).where("cu_permits.user_id= ? and permits.name = ?",self.id,name).limit(1).first
+      #find permit by name from user's cms_role's cms_role_permits permit association
+      if permit.nil?
+        # this will find permit by name from user's all(cu_permits, cms_role's cms_role_permits, assign_permits) permit association
+        #permit = Permit.joins(:users).where("users.id = 36 and permits.name = ?",self.id,name).limit(1)
+        #因为 cms_role_permits 对应于 cms_role 是 一对多关系所以 cms_role 是单数，而反之却是多对一关系 CmsRole.joins(:cms_role_permit)，同理 CmsRolePermit.joins(:cms_role)
+        permit = Permit.joins(:cms_role_permits => {:cms_role=> :assignments}).where("assignments.user_id = ? and permits.name = ?",self.id,name).limit(1).first
+      end
+
+      permit
+    end
+  end
+  
+  def has_permit?(name = "")
+    if name.present?
+      find_cms_permit_by_name(name).present? ? true : false
+    else
+      false
+    end
   end
 
   class << self
