@@ -4,8 +4,7 @@ class Recommend::OtherColumnsController < Recommend::RecommendBaseController
   # GET /recommend/other_columns
   # GET /recommend/other_columns.json
   def index
-    @recommend_other_columns = Recommend::OtherColumn.all
-
+    @recommend_other_columns = Recommend::OtherColumn.paginate(:page => params[:page])
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_other_columns_path
 
     respond_to do |format|

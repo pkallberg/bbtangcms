@@ -35,7 +35,7 @@
 <% end %>
     <tbody>
 </table>
-
+  <%= will_paginate  @recommend_recommend_quizzes %>
 <br />
 <% if can? :create, "Recomment::RecommendQuiz" %>
   <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)), new_recommend_recommend_quiz_path %>

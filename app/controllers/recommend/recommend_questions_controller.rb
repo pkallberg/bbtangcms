@@ -4,7 +4,7 @@ class Recommend::RecommendQuestionsController < Recommend::RecommendBaseControll
   # GET /recommend/recommend_questions
   # GET /recommend/recommend_questions.json
   def index
-    @recommend_recommend_questions = Recommend::RecommendQuestion.all.entries
+    @recommend_recommend_questions = Recommend::RecommendQuestion.paginate(:page => params[:page])
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_questions_path
 

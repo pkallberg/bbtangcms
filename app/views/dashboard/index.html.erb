@@ -10,7 +10,7 @@
 
 <div class="hero-unit">
   <h1>Yeah, It's BBTangCMS !</h1>
-  <p><%= user_welcome user: current_user%> , <%= today_work_summary(item_type_list = Setting.version_mod.split(' '))%></p>
+  <p><%= user_welcome user: current_user%> , <%= cache_helper :today_work_summary,{:expires_in => 10.minutes},item_type_list = Setting.version_mod.split(' ')%></p>
   <% if new_messages(user = current_user)%>
     <p><%= new_messages_notice(user = current_user)%>,<%= link_to "#{I18n.t('common.enter_inbox')}", messages_path(:inbox)%></p>
   <% end %>
@@ -18,7 +18,7 @@
     <%= link_to t("common.menu.work_dashboard"), work_dashboard_path, class: "btn btn-primary btn-large", :rel => "popover" %>
   </p>
   <br />
-  <i><%= raw "用户近期来源统计：<br />" << (raw user_newest_count.collect{|item| distance_of_time_in_words_to_now(item.first) << "之内新增#{User.model_name.human}" << "#{item[1]}：" << "其中" << item[2].collect{|source| source.collect{|k,v| I18n.t("authorization.source.#{k}")<< " #{v}"}.join(" ")}.join(",") }.compact.join(";<br />") << "。") if user_newest_count.present? %></i>
+  <i><%= raw "用户近期来源统计：<br />" << (raw (cache_helper :user_newest_count).collect{|item| distance_of_time_in_words_to_now(item.first) << "之内新增#{User.model_name.human}" << "#{item[1]}：" << "其中" << item[2].collect{|source| source.collect{|k,v| I18n.t("authorization.source.#{k}")<< " #{v}"}.join(" ")}.join(",") }.compact.join(";<br />") << "。") if user_newest_count.present? %></i>
   <br />
   <i class="pull-right"><%= "#{users_summary}, #{newest_users_summary}" %></i>
 

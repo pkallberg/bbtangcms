@@ -33,7 +33,7 @@
       <% end %>
     </tbody>
   </table>
-
+  <%= will_paginate  @recommend_recommend_categories %>
   <br />
   <% if can? :create, Recommend::ExpertCategory %>
     <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)), new_recommend_expert_category_path %>

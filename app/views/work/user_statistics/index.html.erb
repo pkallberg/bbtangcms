@@ -15,26 +15,26 @@
 <%# raw obj_group_by_time_summary(mod="User",unit = @unit, format= "default").join("<br>")%>
 <% unit1 = (@unit.eql? 'week') ? "cweek" : @unit%>
 
-<%= image_tag  Gchart.sparkline( :data => obj_group_by_time_count(mod="User",unit = @unit).collect{|u| u.last.to_i},
+<%= image_tag  Gchart.sparkline( :data => (cache_helper :obj_group_by_time_count,{:expires_in => 1.hours},mod="User",unit = @unit).collect{|u| u.last.to_i},
             :title => "#{t('.title')} group_by #{@unit}",
             :axis_with_labels =>  ['x','r'],
             #:axis_labels => [obj_group_by_time_count(mod="User",unit = @unit).collect{|u| u.first.to_date.send(unit1)},obj_group_by_time_count(mod="User",unit = @unit).collect{|u| u.last}],
-            :axis_labels => [obj_group_by_time_count(mod="User",unit = @unit).collect{|u| u.first.to_date.send(unit1)},obj_group_by_time_count(mod="User",unit = @unit).collect{|u| u.last.to_i}.compact.uniq.sort],
+            :axis_labels => [(cache_helper :obj_group_by_time_count,{:expires_in => 1.hours},mod="User",unit = @unit).collect{|u| u.first.to_date.send(unit1)}, (cache_helper :obj_group_by_time_count,{:expires_in => 1.hours},mod="User",unit = @unit).collect{|u| u.last.to_i}.compact.uniq.sort],
             :bg => {:color => '76A4FB', :type => 'User'},
             :size => '440x220'),:size => '600x400'
             %>
 <%= image_tag  Gchart.pie( :title => "#{t('.title')} group_by #{@unit}",
-            :data => obj_group_by_time_count(mod="User",unit = @unit).collect{|u| u.last.to_i},
+            :data => (cache_helper :obj_group_by_time_count,{:expires_in => 1.hours},mod="User",unit = @unit).collect{|u| u.last.to_i},
             #:axis_labels => [obj_group_by_time_count(mod="User",unit = @unit).collect{|u| u.first.to_date.send(unit1)},obj_group_by_time_count(mod="User",unit = @unit).collect{|u| u.last}],
             :bar_colors => ["0000FF","F00000"],
-            :labels => obj_group_by_time_count(mod="User",unit = @unit).collect{|u| u.first.to_date.send(unit1).to_s},
+            :labels => (cache_helper :obj_group_by_time_count,{:expires_in => 1.hours},mod="User",unit = @unit).collect{|u| u.first.to_date.send(unit1).to_s},
             :size => '440x220'),:size => '600x400'
             %>
 <%= image_tag  Gchart.pie_3d( :title => "#{t('.title')} group_by #{@unit}",
-            :data => obj_group_by_time_count(mod="User",unit = @unit).collect{|u| u.last.to_i},
+            :data => (cache_helper :obj_group_by_time_count,{:expires_in => 1.hours},mod="User",unit = @unit).collect{|u| u.last.to_i},
             :bar_colors => ["000FFF","EEE000"],
             #:axis_labels => [obj_group_by_time_count(mod="User",unit = @unit).collect{|u| u.first.to_date.send(unit1)},obj_group_by_time_count(mod="User",unit = @unit).collect{|u| u.last}],
-            :labels => obj_group_by_time_count(mod="User",unit = @unit).collect{|u| u.first.to_date.send(unit1).to_s},
+            :labels => (cache_helper :obj_group_by_time_count,{:expires_in => 1.hours},mod="User",unit = @unit).collect{|u| u.first.to_date.send(unit1).to_s},
             :size => '440x220'),:size => '600x400'
             %>
 </div>

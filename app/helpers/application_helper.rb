@@ -15,6 +15,7 @@ def cache_helper(method_name,*method_params,cache_params);end
       if Rails.cache.read("#{cache_keys}").nil?
         #send(:foo, *args)
         # same as: send(:foo, "abc")
+        puts "date not been found \n\n\n\n\n\n\n"
         method_cache = self.send method_name, *method_params
         Rails.cache.write("#{cache_keys}" ,method_cache , cache_params)
       end

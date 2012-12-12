@@ -34,7 +34,7 @@
       <% end %>
     </tbody>
   </table>
-
+  <%= will_paginate  @recommend_recommend_tags %>
 <br />
 
 <% if can? :create, "Recommend::RecommendTag" %>

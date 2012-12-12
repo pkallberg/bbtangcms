@@ -4,7 +4,7 @@ class Recommend::VipCategoriesController < Recommend::RecommendBaseController
   # GET /recommend/vip_categories
   # GET /recommend/vip_categories.json
   def index
-    @recommend_vip_categories = Recommend::VipCategory.all
+    @recommend_vip_categories = Recommend::VipCategory.paginate(:page => params[:page])
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_vip_categories_path
 
     respond_to do |format|

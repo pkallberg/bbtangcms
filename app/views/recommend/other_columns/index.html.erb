@@ -35,7 +35,7 @@
       <% end %>
     </tbody>
   </table>
-
+  <%= will_paginate  @recommend_recommend_columns %>
   <br />
   <% if can? :create, Recommend::OtherColumn %>
     <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)), new_recommend_other_column_path %>

@@ -4,8 +4,7 @@ class Recommend::RecommendAppsController < Recommend::RecommendBaseController
   # GET /recommend/recommend_apps
   # GET /recommend/recommend_apps.json
   def index
-    @recommend_recommend_apps = Recommend::RecommendApp.all.entries
-
+    @recommend_recommend_apps = Recommend::RecommendApp.paginate(:page => params[:page])
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_apps_path
 
     respond_to do |format|

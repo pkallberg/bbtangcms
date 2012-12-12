@@ -10,7 +10,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= version_filter_drop_down_li(obj = "Version", col="item_id")%></th>
+      <th><%= cache_helper :version_filter_drop_down_li,{},obj = "Version", col="item_id"%></th>
       <!--th><%= model_class.human_attribute_name(:item_id) %></th-->
       <th><%# version_filter_drop_down_li(obj = "Version", col="item_type")%><%# version_filter_drop_down_li(obj = "Version", col="item_type")%><%= cache_helper :version_filter_drop_down_li,{},obj = "Version", col="item_type"%></th>
       <th><%= cache_helper :version_filter_drop_down_li,{},obj = "Version", col="event"%></th>

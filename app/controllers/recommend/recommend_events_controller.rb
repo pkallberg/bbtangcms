@@ -4,8 +4,7 @@ class Recommend::RecommendEventsController < Recommend::RecommendBaseController
   # GET /recommend/recommend_events
   # GET /recommend/recommend_events.json
   def index
-    @recommend_recommend_events = Recommend::RecommendEvent.all.entries
-
+    @recommend_recommend_events = Recommend::RecommendEvent.paginate(:page => params[:page])
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_events_path
 
     respond_to do |format|

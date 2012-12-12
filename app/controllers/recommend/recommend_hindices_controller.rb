@@ -4,8 +4,7 @@ class Recommend::RecommendHindicesController < Recommend::RecommendBaseControlle
   # GET /recommend/recommend_hindices
   # GET /recommend/recommend_hindices.json
   def index
-    @recommend_recommend_hindices = Recommend::RecommendHindex.all.entries
-
+    @recommend_recommend_hindices = Recommend::RecommendHindex.paginate(:page => params[:page])
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_hindices_path
 
     respond_to do |format|

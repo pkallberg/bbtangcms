@@ -41,6 +41,7 @@
       <% end %>
     </tbody>
   </table>
+  <%= will_paginate  @recommend_recommend_users %>
 <br />
 
 <% if can? :create, "Recommend::RecommendUser" %>

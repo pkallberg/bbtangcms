@@ -4,7 +4,7 @@ class Recommend::RecommendPtagsController < Recommend::RecommendBaseController
   # GET /recommend/recommend_ptags
   # GET /recommend/recommend_ptags.json
   def index
-    @recommend_recommend_ptags = Recommend::RecommendPtag.all.entries
+    @recommend_recommend_ptags = Recommend::RecommendPtag.paginate(:page => params[:page])
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_recommend_ptags_path
 

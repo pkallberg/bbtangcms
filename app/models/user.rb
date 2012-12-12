@@ -109,20 +109,9 @@ class User < ActiveRecord::Base
   end
 
   def owner_users(name = nil)
-=begin
-    owner_user = []
     if self.admin_group? and name.present?
-      User.all.each do |u|
-        if (u.cms_roles.map(&:name).include? name.gsub("admin",'')) and not u.admin_group?
-
-          owner_user.append u
-        end
-      end
-    end
-    owner_user.uniq
-=end
-    if self.admin_group? and name.present?
-      User.joins(:cms_roles).where('cms_roles.name =?',name)
+      owner_name = name.gsub("admin",'')
+      User.joins(:cms_roles).where('cms_roles.name =?',owner_name)
     else
       []
     end

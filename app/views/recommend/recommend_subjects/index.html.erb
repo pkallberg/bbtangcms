@@ -36,7 +36,7 @@
 <% end %>
   </tbody>
 </table>
-
+  <%= will_paginate  @recommend_recommend_subjects %>
 <br />
   <% if can? :create, "Recommend::RecommendSubject" %>
     <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)), new_recommend_recommend_subject_path %>

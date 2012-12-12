@@ -32,7 +32,7 @@
       <% end %>
     </tbody>
   </table>
-
+  <%= will_paginate  @recommend_recommend_ptags %>
 <br />
 
 <% if can? :create, "Recommend::RecommendPtag" %>

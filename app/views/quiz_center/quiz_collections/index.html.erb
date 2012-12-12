@@ -43,7 +43,7 @@
       <% end %>
     </tbody>
   </table>
-
+  <%= will_paginate @quiz_center_quiz_collections %>
   <br />
   <% if can? :create, QuizCollection %>
     <%= link_to t('.new', :default => t("helpers.links.new", :model => model_class.model_name.human)), new_quiz_center_quiz_collection_path %>

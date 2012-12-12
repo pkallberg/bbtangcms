@@ -4,9 +4,7 @@ class Recommend::ExpertCategoriesController < Recommend::RecommendBaseController
   # GET /recommend/expert_categories
   # GET /recommend/expert_categories.json
   def index
-    #@recommend_expert_categories = Recommend::ExpertCategory.all
-    #@recommend_expert_categories = Recommend::ExpertCategory.all.asc(:sort_index).entries
-    @recommend_expert_categories = Recommend::ExpertCategory.all.desc(:sort_index).entries
+    @recommend_expert_categories = Recommend::ExpertCategory.desc(:sort_index).paginate(:page => params[:page])
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), recommend_expert_categories_path
 
     respond_to do |format|

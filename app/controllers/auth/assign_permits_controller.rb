@@ -4,7 +4,6 @@ class Auth::AssignPermitsController < Auth::AuthBaseController
   # GET /auth/assign_permits
   # GET /auth/assign_permits.json
   def index
-    #@auth_assign_permits = Auth::AssignPermit.all
     if current_user.admin_group?
       @admin_user = current_user
 
