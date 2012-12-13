@@ -18,7 +18,7 @@ class ResourceSweeper < ActionController::Caching::Sweeper
 =begin
   def after_save(resource)
     item = resource.is_a?(List) ? resource : resource.class
-    resource_name = resource.class.underscore.pluralize
+    resource_name = resource.class.name.underscore.pluralize
     expire_page(:controller => resource_name, :action => %w( show public feed ), :id => item.id)
     expire_action(:controller => resource_name, :action => "all")
     item.shares.each { |share| expire_page(:controller => resource_name, :action => "show", :id => share.url_key) }
@@ -28,7 +28,7 @@ class ResourceSweeper < ActionController::Caching::Sweeper
   def expire_cache_for(resource)
     #item = resource.is_a?(List) ? resource : resource.class
     item = resource.class
-    resource_name = resource.class.underscore.pluralize
+    resource_name = resource.class.name.underscore.pluralize
 
     controller_name = is_namespace_resources(resource.class) ? "/#{resource_name}" : resource_name
     # Expire the index page now that we added a new resource
