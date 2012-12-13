@@ -7,8 +7,17 @@ class ResourceSweeper < ActionController::Caching::Sweeper
   end
  
   # If our sweeper detects that a Knowledge was updated call this
+  # http://stackoverflow.com/questions/6367396/filtering-sweeper-calls-in-rails
+=begin
+The current_sign_in_at and last_sign_in_at are the two fields that are updated by devise during sign_in and sign_out. This code makes the obvious assumption that you have no application logic of your own to update these fields and only devise updates them.
+=end
+  # but not work for me so skip User model
   def after_update(resource)
     expire_cache_for(resource)
+    #unless resource.current_sign_in_at_changed? or resource.last_sign_in_at_changed?
+    #unless resource.is_a User
+    #  expire_cache_for(resource)
+    #end
   end
  
   # If our sweeper detects that a Knowledge was deleted call this
