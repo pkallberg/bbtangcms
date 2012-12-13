@@ -1,5 +1,7 @@
 class SubjectsController < ApplicationController
   load_and_authorize_resource
+  caches_action :index, :show, :public, :feed
+  cache_sweeper :resource_sweeper
   Model_class = Subject.new.class
 
   # GET /subjects

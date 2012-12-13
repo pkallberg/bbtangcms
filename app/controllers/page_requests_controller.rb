@@ -1,3 +1,4 @@
+# coding: utf-8
 class PageRequestsController < ApplicationController
   Model_class = PageRequest.new.class
   
