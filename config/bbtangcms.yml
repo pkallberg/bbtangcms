@@ -11,7 +11,7 @@ defaults: &defaults
   today_theme: ''
   theme1: 'united'
   awesome_setting: <%= "Did you know 5 + 5 = #{5 + 5}?" %>
-  observe_models: Knowledge Note News Profile Question Quiz  QuizCollection Subject Attachment CmsRole
+  observe_models: Knowledge Note News Profile Question Quiz  QuizCollection Subject User Attachment CmsRole
 development:
   <<: *defaults
   neat_setting: 800
