@@ -1,6 +1,8 @@
 class Work::VersionsController < Work::WorkBaseController
   authorize_resource
-
+  caches_action :index, :show, :public, :feed
+  cache_sweeper :resource_sweeper
+  
   Model_class = Version.new.class
   # GET /work/versions
   # GET /work/versions.json

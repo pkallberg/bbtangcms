@@ -50,7 +50,7 @@ class Ability
       #FIXME Nested Resources canot soveld because many special date must been supplied
       # eg: http://localhost:3000/tag/identities/838/timelines/839/categories/840
       if controller_namespace.present?
-        if controller_namespace.eql? "tag"
+        if %w(tag quiz_center).include? controller_namespace
           check_ability_from_all_permit(user)
         elsif controller_namespace.eql? "auth"
           #do nothing

@@ -10,15 +10,18 @@ class User < ActiveRecord::Base
   scope :user_ids_source, ->(provider) {joins(:authorizations).where("authorizations.provider =?",provider)}
 
   has_many :authorizations, :dependent => :destroy
+
   has_many :messages
   include HasMessages
-  # Include default devise modules. Others available are:
+
   has_many :assignments, :dependent => :destroy, :uniq => true
   has_many :cms_roles, :through => :assignments
 
   has_many :cu_permits, :dependent => :destroy, :uniq => true
   has_many :permits, :through => :cu_permits # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :confirmable, :lockable, :recoverable,
+
+  # Include default devise modules. Others available are:
+   devise :database_authenticatable, :confirmable, :lockable, :recoverable,
          :rememberable, :registerable, :trackable, :timeoutable, :validatable,
          :token_authenticatable
   has_one :profile, :class_name => "Profile"
@@ -65,41 +68,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def has_cms_role?(cms_role_sym)
-    cms_roles.any? { |r| r.name.underscore.to_sym == cms_role_sym }
-  end
-  def admin_group
-    self.cms_roles.collect {|cms_role| cms_role if cms_role.admin? }.compact
-  end
-
-  def admin_group?
-    tmp = false
-    if self.cms_roles.present?
-      self.cms_roles.each do |cms_role|
-        if cms_role.name.to_s.include? "admin"
-          tmp = true
-        end
-      end
-    end
-    tmp
-  end
-
-  def limit_admin_group
-    self.cms_roles.collect {|cms_role| cms_role if cms_role.admin? and !cms_role.supper_admin? }.compact
-  end
-
-  def limit_admin_group?
-    tmp = false
-    if self.cms_roles.present?
-      self.cms_roles.each do |cms_role|
-        if cms_role.name.to_s.include? "admin" and not cms_role.supper_admin?
-          tmp = true
-        end
-      end
-    end
-    tmp
-  end
-
   def notes
     Note.where(created_by: self.id)
   end
@@ -108,63 +76,12 @@ class User < ActiveRecord::Base
     Question.where(created_by: self.id)
   end
 
-  def owner_users(name = nil)
-    if self.admin_group? and name.present?
-      owner_name = name.gsub("admin",'')
-      User.joins(:cms_roles).where('cms_roles.name =?',owner_name)
-    else
-      []
-    end
-  end
-
-  def supper_admin?
-    tmp = false
-    self.cms_roles.each do |cms_role|
-      tmp = true if cms_role.to_s.eql? "admin"
-    end
-    tmp
-  end
-
-  def admin_assign_permits(cms_role = nil)
-    admin_assign_permits = []
-    if cms_role.present? and self.cms_roles.include? cms_role and cms_role.admin?
-      cms_role.assign_permits.each do |assign_permit|
-        admin_assign_permits.append assign_permit.permit if assign_permit.permit.present?
-      end
-      admin_assign_permits
-    else
-      admin_assign_permits
-    end
-  end
-
-  def update_user_permit(new_cms_role_ids = [])
-
-    new_cms_role_ids.collect!{|new_cms_role_id| new_cms_role_id.to_i if new_cms_role_id.present?}.compact!
-
-    if self.cms_role_ids.sort != new_cms_role_ids.sort
-      self.permits = []
-    end
-  end
-
   def if_confirmation_now
     if self.confirmation_now.present?
       self.skip_confirmation! if ["true","1",1,true].include? self.confirmation_now
     else
       self.confirmation_now = nil
     end
-  end
-
-
-  def is_cms_user?
-    tmp = false
-    if self.cms_roles.present?
-      self.cms_roles.each do |cms_role|
-        if cms_role.name.to_s.include? "guest" or CmsRole.all.include? cms_role
-          tmp = true
-        end
-      end
-    end
-    return tmp
   end
 
   def current_user
@@ -207,7 +124,94 @@ class User < ActiveRecord::Base
     #return is.country.gsub("市","")
     is.country.split("省").last.gsub("市","")
   end
+
+###########method for cancan authorization################
+  def has_cms_role?(cms_role_sym)
+    cms_roles.any? { |r| r.name.underscore.to_sym == cms_role_sym }
+  end
   
+  def admin_group
+    self.cms_roles.collect {|cms_role| cms_role if cms_role.admin? }.compact
+  end
+
+  def admin_group?
+    tmp = false
+    if self.cms_roles.present?
+      self.cms_roles.each do |cms_role|
+        if cms_role.name.to_s.include? "admin"
+          tmp = true
+        end
+      end
+    end
+    tmp
+  end
+
+  def limit_admin_group
+    self.cms_roles.collect {|cms_role| cms_role if cms_role.admin? and !cms_role.supper_admin? }.compact
+  end
+
+  def limit_admin_group?
+    tmp = false
+    if self.cms_roles.present?
+      self.cms_roles.each do |cms_role|
+        if cms_role.name.to_s.include? "admin" and not cms_role.supper_admin?
+          tmp = true
+        end
+      end
+    end
+    tmp
+  end
+
+  def owner_users(name = nil)
+    if self.admin_group? and name.present?
+      owner_name = name.gsub("admin",'')
+      User.joins(:cms_roles).where('cms_roles.name =?',owner_name)
+    else
+      []
+    end
+  end
+
+  def supper_admin?
+    tmp = false
+    self.cms_roles.each do |cms_role|
+      tmp = true if cms_role.to_s.eql? "admin"
+    end
+    tmp
+  end
+
+  def admin_assign_permits(cms_role = nil)
+    admin_assign_permits = []
+    if cms_role.present? and self.cms_roles.include? cms_role and cms_role.admin?
+      cms_role.assign_permits.each do |assign_permit|
+        admin_assign_permits.append assign_permit.permit if assign_permit.permit.present?
+      end
+      admin_assign_permits
+    else
+      admin_assign_permits
+    end
+  end
+
+  def update_user_permit(new_cms_role_ids = [])
+
+    new_cms_role_ids.collect!{|new_cms_role_id| new_cms_role_id.to_i if new_cms_role_id.present?}.compact!
+
+    if self.cms_role_ids.sort != new_cms_role_ids.sort
+      self.permits = []
+    end
+  end
+
+  def is_cms_user?
+    tmp = false
+    if self.cms_roles.present?
+      self.cms_roles.each do |cms_role|
+        if cms_role.name.to_s.include? "guest" or CmsRole.all.include? cms_role
+          tmp = true
+        end
+      end
+    end
+    return tmp
+  end
+
   def cms_permits_all
     (permits.to_a.clone << cms_roles.collect{|cr| cr.cms_role_permits.collect{|crp| crp.permit}}).uniq.flatten
   end
@@ -235,6 +239,9 @@ class User < ActiveRecord::Base
       false
     end
   end
+#########################################################
+
+
 
   class << self
     # FIXME Rails.cache 会存在缓存链式调用的查询，而不是缓存的 sql 本身结果

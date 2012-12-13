@@ -200,16 +200,35 @@ module CommonHelper
     #return is.country.gsub("市","")
     is.country.split("省").last.gsub("市","")
   end
-  def obj_conditions_params(obj = "Version", hash={}, hash_name = "conditions")
+  def obj_conditions_params(obj = "Version", hash={}, hash_name = "conditions", need_hash = false)
    # obj = obj.classify.constantize
     #hash.delete_if {|key, value| !(obj.column_names.include? key.to_s) }
-    {hash_name => hash}.to_param
+    if need_hash
+      {hash_name => hash}
+    else
+      {hash_name => hash}.to_param
+    end
   end
 
-  def obj_params(obj = "Version", hash={})
+  def obj_params(obj = "Version", hash={}, need_hash = false)
     obj = obj.classify.constantize
     hash.delete_if {|key, value| !(obj.column_names.include? key.to_s) }
-    hash.to_param
+    if need_hash
+      hash
+    else
+      hash.to_param
+    end
+  end
+  
+ 
+  def add_params_to_url(url,params)
+    if url.present? and params.present?
+      uri = URI(url)             
+      query_hash = Rack::Utils.parse_query(uri.query)
+      query_hash.merge!(params)             
+      uri.query = Rack::Utils.build_query(query_hash)          
+      uri.to_s   
+    end
   end
 
   def obj_filter_drop_down_li(obj = "Version", col = '' ,path = nil,count = 20, max_count = 1000)
@@ -229,7 +248,7 @@ module CommonHelper
       end
       path ||= self.send("#{obj.pluralize.downcase}_path")
 
-      content = list[ 0 .. (count.to_i - 1)].collect{|l| raw "<li>#{link_to l[0],(path +"/?" + obj_conditions_params(obj = obj,{col.to_sym =>l[1]})) }</li>"}.join
+      content = list[ 0 .. (count.to_i - 1)].collect{|l| raw "<li>#{link_to l[0], add_params_to_url(path,obj_conditions_params(obj = obj,{col.to_sym =>l[1]}, hash_name = 'conditions', need_hash = true)) }</li>"}.join
       foot = "</li></ul>"
       return raw "#{head + content + foot}"
     end
@@ -238,24 +257,18 @@ module CommonHelper
   def mongoid_feild_pluck(obj = "SourceTracker", field = '',opt = {uniq: false})
     obj_class = obj.classify.constantize
     fields = obj_class.fields.collect{|_,v| v.name}.uniq.compact
-    if fields.include? field.to_s
-      set_cache_name = "#{obj_class.name.underscore}_pluck_#{field}"
-      #cache = ActiveSupport::Cache::MemoryStore.new
-      if Rails.cache.read("#{set_cache_name}").nil?
-        result = obj_class.only([field]).map(&field.to_sym)
-        if (uniq = opt.delete(:uniq)).present?
-          result.uniq!
-        end
-        Rails.cache.write("#{set_cache_name}" ,result , :expires_in => 24.hours)
-      end
-      return Rails.cache.read("#{set_cache_name}")
+    result = obj_class.only([field]).map(&field.to_sym)
+    if (uniq = opt.delete(:uniq)).present?
+      result.uniq!
+    else
+      result
     end
   end
   
   def mongoid_obj_filter_drop_down_li(obj = "SourceTracker", field = '' ,path = nil,count = 20)
     obj_class = obj.classify.constantize
     fields = obj_class.fields.collect{|_,v| v.name}.uniq.compact
-    
+
     if fields.include? field.to_s
       head = "<div class='btn-group'>
                 <button class='btn'>#{obj_class.human_attribute_name(field.to_sym)}</button>
@@ -271,7 +284,7 @@ module CommonHelper
       end
       path ||= self.send("#{obj.pluralize.downcase}_path")
 
-      content = list[ 0 .. (count.to_i - 1)].collect{|l| raw "<li>#{link_to l[0],(path +"/?" + obj_conditions_params(obj = obj,{field.to_sym =>l[1]})) }</li>"}.join
+      content = list[ 0 .. (count.to_i - 1)].collect{|l| raw "<li>#{link_to l[0], add_params_to_url(path,obj_conditions_params(obj = obj,{field.to_sym =>l[1]}, hash_name = 'conditions', need_hash = true)) }</li>"}.join
       foot = "</ul></div>"
       return raw "#{head + content + foot}"
     end

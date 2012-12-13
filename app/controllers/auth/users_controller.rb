@@ -1,5 +1,8 @@
 class Auth::UsersController < Auth::AuthBaseController
   load_and_authorize_resource
+  caches_action :index, :show, :public, :feed
+  cache_sweeper :resource_sweeper
+  
   Model_class = User.new.class
   # GET /auth/users
   # GET /auth/users.json

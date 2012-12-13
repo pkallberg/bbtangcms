@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Path</th>
+      <th><%= mongoid_obj_filter_drop_down_li obj = "PageRequest", field="router",path= page_requests_path %><%# cache_helper :mongoid_obj_filter_drop_down_li,{:expires_in => 5.minutes},obj = "PageRequest", field="router",path= page_requests_path %></th>
       <th>Page Duration</th>
       <th>View Duration</th>
       <th>Db Duration</th>
@@ -13,6 +14,7 @@
     <% for page_request in @page_requests %>
       <tr>
         <td><%= page_request.path %></td>
+        <td><%= page_request.router %></td>
         <td><%= page_request.page_duration %></td>
         <td><%= page_request.view_duration %></td>
         <td><%= page_request.db_duration %></td>

@@ -1,5 +1,8 @@
 class Auth::CmsRolesController < Auth::AuthBaseController
   load_and_authorize_resource
+  caches_action :index, :show, :public, :feed
+  cache_sweeper :resource_sweeper
+  
   Model_class = CmsRole.new.class
   # GET /auth/cms_roles
   # GET /auth/cms_roles.json

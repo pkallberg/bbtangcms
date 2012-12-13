@@ -1,4 +1,4 @@
-<p>Hi, <%= current_user%> , <%= today_work_summary(item_type_list = @worked_list)%>
+<p>Hi, <%= current_user%> , <%= cache_helper :today_work_summary,{:expires_in => 10.minutes},item_type_list = @worked_list %>
 </p>
 <div class = "cms_user_info box">
 <span class="label label-info">CMS User info</span>
