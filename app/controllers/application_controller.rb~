@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :create_profile
   before_filter :set_page_number
   before_filter :set_seo_meta
-
+  before_filter :miniprofiler
 
   attr_reader :current_action
 
@@ -84,6 +84,7 @@ class ApplicationController < ActionController::Base
   #def condition_two?
   # ...
   #end
+
 
 
 
@@ -183,8 +184,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  private
-
   def current_ability
     # I am sure there is a slicker way to capture the controller namespace
     controller_name_segments = params[:controller].split('/')
@@ -193,5 +192,7 @@ class ApplicationController < ActionController::Base
     Ability.new(current_user, controller_namespace)
   end
 
-
+  def miniprofiler
+    Rack::MiniProfiler.authorize_request if current_user and current_user.profile and current_user.profile.level_id==4 and Rails.env.production?
+  end
 end

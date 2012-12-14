@@ -1,6 +1,6 @@
 class QuizCenter::QuizzesController < QuizCenter::QuizCenterBaseController
   load_and_authorize_resource
-  caches_action :index, :show, :public, :feed
+  caches_action :index, :show, :public, :feed, :cache_path => Proc.new { |controller| controller.params }
   cache_sweeper :resource_sweeper
   Model_class = Quiz.new.class
   before_filter :load_parent

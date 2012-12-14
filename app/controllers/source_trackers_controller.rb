@@ -1,6 +1,6 @@
 class SourceTrackersController < ApplicationController
   skip_before_filter :authenticate_user!
-  caches_action :index, :show, :public, :feed
+  caches_action :index, :show, :public, :feed, :cache_path => Proc.new { |controller| controller.params }
   cache_sweeper :resource_sweeper
   Model_class = SourceTracker.new.class
     

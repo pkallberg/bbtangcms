@@ -170,6 +170,8 @@ gem "resque_mailer", "~> 2.1.0"
 #Clean ruby syntax for writing and deploying cron jobs.
 gem "whenever", "~> 0.7.3"
 
+gem 'rack-mini-profiler'
+
 group :development, :test do
   #gem 'cucumber-rails'
   # database_cleaner is not required, but highly recommended

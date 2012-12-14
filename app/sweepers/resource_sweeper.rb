@@ -1,3 +1,6 @@
+# encoding: utf-8
+#http://rails-everyday.group.iteye.com/group/wiki/1160
+#http://cobaltedge.com/rails-action-caching-with-query-parameters
 class ResourceSweeper < ActionController::Caching::Sweeper
   #observe Knowledge  # This sweeper is going to keep an eye on the Knowledge model
   observe Setting.observe_models.split(" ").collect{|object| object.constantize if object.class_exists?}.compact.uniq

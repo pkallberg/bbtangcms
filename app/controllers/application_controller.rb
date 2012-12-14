@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :create_profile
   before_filter :set_page_number
   before_filter :set_seo_meta
-
+  before_filter :miniprofiler
 
   attr_reader :current_action
 
@@ -84,6 +84,7 @@ class ApplicationController < ActionController::Base
   #def condition_two?
   # ...
   #end
+
 
 
 
@@ -191,5 +192,7 @@ class ApplicationController < ActionController::Base
     Ability.new(current_user, controller_namespace)
   end
 
-
+  def miniprofiler
+    Rack::MiniProfiler.authorize_request if current_user and current_user.supper_admin? and Rails.env.production?
+  end
 end
