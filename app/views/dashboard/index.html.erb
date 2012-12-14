@@ -20,7 +20,7 @@
   <br />
   <i><%= raw "用户近期来源统计：<br />" << (raw (cache_helper :user_newest_count).collect{|item| distance_of_time_in_words_to_now(item.first) << "之内新增#{User.model_name.human}" << "#{item[1]}：" << "其中" << item[2].collect{|source| source.collect{|k,v| I18n.t("authorization.source.#{k}")<< " #{v}"}.join(" ")}.join(",") }.compact.join(";<br />") << "。") if user_newest_count.present? %></i>
   <br />
-  <i class="pull-right"><%= "#{users_summary}, #{newest_users_summary}" %></i>
+  <i class="pull-right"><%= "#{cache_helper :users_summary,{expires_in: 10.minutes}}, #{cache_helper :newest_users_summary}" %></i>
 
 </div>
 
