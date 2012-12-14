@@ -1,4 +1,7 @@
 # encoding: utf-8
+##CacheableCSRFToken allows you to easily cache Ruby on Rails pages or partials containing a CSRF protection token. The user-specific token will inserted in the HTML before the response is sent to the user.
+# gem "cacheable-csrf-token-rails", "~> 0.1.0" # but it only work on rails (>= 3.2.5)
+
 #http://rails-everyday.group.iteye.com/group/wiki/1160
 #http://cobaltedge.com/rails-action-caching-with-query-parameters
 class ResourceSweeper < ActionController::Caching::Sweeper

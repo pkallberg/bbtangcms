@@ -1,6 +1,7 @@
 # encoding: utf-8
 class ApplicationController < ActionController::Base
-
+  #include CacheableCSRFTokenRails
+  
   protect_from_forgery
   before_filter :authenticate_user!
   before_filter :add_initial_breadcrumbs
@@ -193,6 +194,6 @@ class ApplicationController < ActionController::Base
   end
 
   def miniprofiler
-    Rack::MiniProfiler.authorize_request if current_user and current_user.profile and current_user.profile.level_id==4 and Rails.env.production?
+    Rack::MiniProfiler.authorize_request if current_user and current_user.supper_admin? and Rails.env.production?
   end
 end

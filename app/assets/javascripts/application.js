@@ -31,7 +31,6 @@ $(window).load(function() {
     show();
 });
 
-
 function show() {
     $('#loading').remove();
     $('#container').fadeIn();

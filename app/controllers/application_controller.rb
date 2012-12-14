@@ -1,6 +1,7 @@
 # encoding: utf-8
 class ApplicationController < ActionController::Base
-
+  include CacheableCSRFTokenRails
+  
   protect_from_forgery
   before_filter :authenticate_user!
   before_filter :add_initial_breadcrumbs

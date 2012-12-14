@@ -1,7 +1,7 @@
 #source 'https://rubygems.org'
 source 'http://ruby.taobao.org/'
 
-gem 'rails', '3.2.2'
+gem 'rails', '3.2.5'
 gem "rails-i18n", "~> 0.6.5"
 gem "rails-timeago", "~> 1.4.2"
 
@@ -169,6 +169,10 @@ gem "resque", "~> 1.20.0"
 gem "resque_mailer", "~> 2.1.0"
 #Clean ruby syntax for writing and deploying cron jobs.
 gem "whenever", "~> 0.7.3"
+
+#CacheableCSRFToken allows you to easily cache Ruby on Rails pages or partials containing a CSRF protection token. The user-specific token will inserted in the HTML before the response is sent to the user.
+# gem "cacheable-csrf-token-rails", "~> 0.1.0" # but it only work on rails (>= 3.2.5)
+gem "cacheable-csrf-token-rails", "~> 0.1.0"
 
 gem 'rack-mini-profiler'
 
