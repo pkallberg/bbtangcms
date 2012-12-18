@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options(options = {})
-    options.merge! :host => "cms.bbtang.com" if Rails.env.production?
+    #options.merge! :host => "cms.bbtang.com" if Rails.env.production?
     options.merge! :page => session[:old_page]# if session[:old_page].present?# and !(params[:page].eql? session[:old_page])
     options
 
@@ -196,7 +196,9 @@ class ApplicationController < ActionController::Base
   def miniprofiler
     Rack::MiniProfiler.authorize_request if current_user and current_user.supper_admin? and Rails.env.production?
   end
-  
+
+=begin
+  # 会导致 fresh? 失效
   def fresh_when(opts = {})
     opts[:etag] ||= []
     # 保证 etag 参数是 Array 类型
@@ -210,4 +212,22 @@ class ApplicationController < ActionController::Base
     opts[:etag] << Date.current
     super(opts)
   end
+
+=end
+  def fresh_when(record_or_options, additional_options = {})
+    default_etag = [current_user, @meta_keywords, @meta_description, Date.current,flash].compact
+    if record_or_options.is_a? Hash
+      if record_or_options.has_key? :etag and record_or_options[:etag].is_a?(Array)
+        record_or_options[:etag] = record_or_options[:etag].concat default_etag
+      else
+        record_or_options[:etag] = default_etag
+      end
+    else
+      record  = record_or_options.concat default_etag
+      additional_options = { :etag => record , :last_modified => record.try(:updated_at) }.merge(additional_options)
+    end
+    puts "#{ActiveSupport::Cache.expand_cache_key record_or_options[:etag]}"
+    super record_or_options,additional_options
+  end
+
 end

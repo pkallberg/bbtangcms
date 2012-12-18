@@ -9,6 +9,7 @@ class SiteController < ApplicationController
   end
 
   def license
+  
   end
 
   def policies
@@ -23,5 +24,6 @@ class SiteController < ApplicationController
   private
   def set_breadcrumb
     breadcrumbs.add I18n.t("breadcrumbs.site.#{current_action}"), self.send("site_#{current_action}_path") if self.respond_to? "site_#{current_action}_path"
+    expires_in 3.hours, 'max-stale' => 5.hours
   end
 end

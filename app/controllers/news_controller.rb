@@ -9,7 +9,11 @@ class NewsController < ApplicationController
     @news = News.paginate(:page => params[:page]).order('id DESC')
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), news_index_path
-
+    
+    
+    #fresh_when :etag => [@news]
+    fresh_when :etag => [Model_class.last]
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @news }
@@ -22,6 +26,8 @@ class NewsController < ApplicationController
     @news = News.find(params[:id])
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), news_path(@news)
+
+    fresh_when :etag => [@news]
 
     respond_to do |format|
       format.html # show.html.erb
