@@ -16,6 +16,8 @@ class KnowledgesController < ApplicationController
       @knowledges = Knowledge.paginate(:page => params[:page]).order('id DESC')
     end
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), knowledges_path
+    fresh_when :etag => [@knowledges] 
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @knowledges }
@@ -28,7 +30,9 @@ class KnowledgesController < ApplicationController
     @knowledge = Knowledge.find(params[:id])
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), knowledge_path(@knowledge)
-
+    
+    fresh_when :etag => [@knowledge] 
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @knowledge }

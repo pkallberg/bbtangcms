@@ -24,6 +24,33 @@ def cache_helper(method_name,*method_params,cache_params);end
     end
   end
   
+  #https://github.com/miketierney/artii/blob/master/spec/artii/base_spec.rb
+  def asciify(content, args = {})
+    if content.present?
+      args = {:font => 'slant'} if args.empty?
+      a = Artii::Base.new args
+      a.asciify(content)
+    end
+  end
+  
+  def app_env
+    <<-STRING
+App Environments:
+#{"-"*80}
+#{"上海山缘网络科技有限公司".rjust(80)}
+Ruby:  #{RUBY_VERSION}
+Rails: #{Rails.version}
+STRING
+  end
+  
+  def ascii_logo
+    <<-STRING
+#{asciify(Setting.app_name)}
+#{"="*80}
+#{app_env}
+STRING
+  end
+  
   def render_page_title()
     default_title = "#{breadcrumbs.items.collect{|item| item.first}.join('>>')} | #{Setting.app_name}"
     if @page_title.present?

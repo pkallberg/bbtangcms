@@ -1,6 +1,6 @@
 # encoding: utf-8
 class ApplicationController < ActionController::Base
-  #include CacheableCSRFTokenRails
+  include CacheableCSRFTokenRails
   
   protect_from_forgery
   before_filter :authenticate_user!
@@ -195,5 +195,19 @@ class ApplicationController < ActionController::Base
 
   def miniprofiler
     Rack::MiniProfiler.authorize_request if current_user and current_user.supper_admin? and Rails.env.production?
+  end
+  
+  def fresh_when(opts = {})
+    opts[:etag] ||= []
+    # 保证 etag 参数是 Array 类型
+    opts[:etag] = [opts[:etag]] if !opts[:etag].is_a?(Array)
+    # 加入页面上直接调用的信息用于组合 etag
+    opts[:etag] << current_user
+    # Config 的某些信息
+    opts[:etag] << @meta_keywords
+    opts[:etag] << @meta_description
+    # 所有 etag 保持一天
+    opts[:etag] << Date.current
+    super(opts)
   end
 end

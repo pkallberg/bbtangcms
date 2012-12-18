@@ -1,3 +1,7 @@
+<!--
+<%= asciify(Setting.app_name)%>
+<%= app_env%>
+-->
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -42,7 +46,6 @@
               <div class="span10" id="container">
                 <div id ="flashes">
                   <%= render :partial => 'common/flashes' %>
-                  <%= render("common/mod_newest_summary", model_class: model_class) if model_class.present?%>
                 </div>
                 <%= content_for?(:content) ? yield(:content) : yield %>
               </div>

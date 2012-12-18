@@ -68,6 +68,8 @@ gem "ancestry"
 
 #http://github.com/mattetti/googlecharts/
 gem "googlecharts", "~> 1.6.8"
+# ASCII Arty is a little ASCII art generator that uses the Figlet library. Just feed it a string and it’ll create a fancy ASCII art image.
+gem "artii", "~> 2.0.3"
 #gem "twitter-bootstrap-rails", "~> 2.1.0"
 #gem "sass-twitter-bootstrap-rails", "~> 1.0.2"
 #This gem is meant to be used with bootstrap-sass.

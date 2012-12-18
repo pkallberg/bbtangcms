@@ -14,7 +14,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require bootstrap-datepicker
+// require bootstrap-datepicker
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-TW
 //= require rails-timeago
 //= require gritter
 //= require kindeditor
