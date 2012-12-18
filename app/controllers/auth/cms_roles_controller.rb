@@ -1,6 +1,6 @@
 class Auth::CmsRolesController < Auth::AuthBaseController
   load_and_authorize_resource
-  caches_action :index, :show, :public, :feed, :cache_path => Proc.new { |controller| controller.params }
+  caches_action :index, :show, :public, :feed, :cache_path => Proc.new { |controller| current_user.present? ? controller.params.merge(user_id: current_user.id) : controller.params }
   cache_sweeper :resource_sweeper
   
   Model_class = CmsRole.new.class
@@ -10,9 +10,12 @@ class Auth::CmsRolesController < Auth::AuthBaseController
     @auth_cms_roles = CmsRole.paginate(:page => params[:page]).order('id DESC')
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), auth_cms_roles_path
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @auth_cms_roles }
+    
+    if stale?  :etag => @auth_cms_roles
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @auth_cms_roles }
+      end
     end
   end
 
@@ -22,9 +25,12 @@ class Auth::CmsRolesController < Auth::AuthBaseController
     @auth_cms_role = CmsRole.find(params[:id])
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), auth_cms_role_path(@auth_cms_role)
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @auth_cms_role }
+    
+    if stale?  :etag => @auth_cms_role
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @auth_cms_role }
+      end
     end
   end
 

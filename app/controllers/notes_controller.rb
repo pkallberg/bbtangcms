@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   load_and_authorize_resource
-  caches_action :index, :show, :public, :feed, :cache_path => Proc.new { |controller| controller.params }
+  caches_action :index, :show, :public, :feed, :cache_path => Proc.new { |controller| current_user.present? ? controller.params.merge(user_id: current_user.id) : controller.params }
   cache_sweeper :resource_sweeper
 
   Model_class = Note.new.class
@@ -18,11 +18,11 @@ class NotesController < ApplicationController
       breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), notes_path
     end
     
-    fresh_when :etag => [Model_class.last]
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @notes }
+    if stale? :etag => [Model_class.last]
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @notes }
+      end
     end
   end
 
@@ -32,11 +32,11 @@ class NotesController < ApplicationController
     @note = Note.find(params[:id])
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), note_path(@note)
     
-    fresh_when :etag => [@note]
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @note }
+    if stale? :etag => [@note]
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @note }
+      end
     end
   end
 

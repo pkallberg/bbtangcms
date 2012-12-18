@@ -1,6 +1,6 @@
 class Auth::UsersController < Auth::AuthBaseController
   load_and_authorize_resource
-  caches_action :index, :show, :public, :feed, :cache_path => Proc.new { |controller| controller.params }
+  caches_action :index, :show, :public, :feed, :cache_path => Proc.new { |controller| current_user.present? ? controller.params.merge(user_id: current_user.id) : controller.params }
   cache_sweeper :resource_sweeper
   
   Model_class = User.new.class
@@ -11,16 +11,16 @@ class Auth::UsersController < Auth::AuthBaseController
     if params[:conditions].present?
       @auth_users = User.where(params[:conditions]).paginate(:page => params[:page]).order('id DESC')
     else
-      @auth_users= User.paginate(:page => params[:page]).order('id DESC')
+      @auth_users = User.paginate(:page => params[:page]).order('id DESC')
     end
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), auth_users_path
     
-    fresh_when :etag => [Model_class.last]
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @auth_users }
+    if stale? :etag => @auth_users
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @auth_users }
+      end
     end
   end
 
@@ -33,11 +33,6 @@ class Auth::UsersController < Auth::AuthBaseController
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), auth_user_path(@auth_user)
     
     fresh_when :etag => [@auth_user]
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @auth_user }
-    end
   end
 
   # GET /auth/users/new

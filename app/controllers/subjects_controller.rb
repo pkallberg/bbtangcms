@@ -1,6 +1,6 @@
 class SubjectsController < ApplicationController
   load_and_authorize_resource
-  caches_action :index, :show, :public, :feed, :cache_path => Proc.new { |controller| controller.params }
+  caches_action :index, :show, :public, :feed, :cache_path => Proc.new { |controller| current_user.present? ? controller.params.merge(user_id: current_user.id) : controller.params }
   cache_sweeper :resource_sweeper
   Model_class = Subject.new.class
 
@@ -11,9 +11,11 @@ class SubjectsController < ApplicationController
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), subjects_path
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @subjects }
+    if stale?  :etag => @subjects
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @subjects }
+      end
     end
   end
 
@@ -24,9 +26,11 @@ class SubjectsController < ApplicationController
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), subject_path(@subject)
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @subject }
+    if stale?  :etag => @subject
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @subject }
+      end
     end
   end
 

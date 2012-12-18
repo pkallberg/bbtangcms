@@ -1,6 +1,6 @@
 class NewsController < ApplicationController
   load_and_authorize_resource
-  caches_action :index, :show, :public, :feed, :cache_path => Proc.new { |controller| controller.params }
+  caches_action :index, :show, :public, :feed, :cache_path => Proc.new { |controller| current_user.present? ? controller.params.merge(user_id: current_user.id) : controller.params }
   cache_sweeper :resource_sweeper
   Model_class = News.new.class
   # GET /news
@@ -9,10 +9,14 @@ class NewsController < ApplicationController
     @news = News.paginate(:page => params[:page]).order('id DESC')
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), news_index_path
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @news }
+    
+    
+    #fresh_when :etag => [@news]
+    if stale? :etag => @news
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @news }
+      end
     end
   end
 
@@ -23,9 +27,11 @@ class NewsController < ApplicationController
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), news_path(@news)
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @news }
+    if stale? :etag => [@news]
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @news }
+      end
     end
   end
 
