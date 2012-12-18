@@ -14,7 +14,9 @@ class QuizCenter::QuizzesController < QuizCenter::QuizCenterBaseController
       @quiz_center_quizzes = Quiz.paginate(:page => params[:page]).order('id DESC')
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), quiz_center_quizzes_path
     end
-
+    
+    fresh_when :etag => [Model_class.last]
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @quiz_center_quizzes }
@@ -26,7 +28,9 @@ class QuizCenter::QuizzesController < QuizCenter::QuizCenterBaseController
   def show
     @quiz_center_quiz = Quiz.find(params[:id])
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), quiz_center_quiz_path(@quiz_center_quiz)
-
+    
+    fresh_when :etag => [@quiz_center_quiz]
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @quiz_center_quiz }

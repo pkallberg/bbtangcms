@@ -17,7 +17,9 @@ class NotesController < ApplicationController
       @notes = Note.paginate(:page => params[:page]).order('id DESC')
       breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), notes_path
     end
-
+    
+    fresh_when :etag => [Model_class.last]
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @notes }
@@ -29,7 +31,9 @@ class NotesController < ApplicationController
   def show
     @note = Note.find(params[:id])
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), note_path(@note)
-
+    
+    fresh_when :etag => [@note]
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @note }

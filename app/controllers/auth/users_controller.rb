@@ -15,6 +15,9 @@ class Auth::UsersController < Auth::AuthBaseController
     end
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), auth_users_path
+    
+    fresh_when :etag => [Model_class.last]
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @auth_users }
@@ -28,7 +31,9 @@ class Auth::UsersController < Auth::AuthBaseController
     @auth_user = User.find(params[:id])
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), auth_user_path(@auth_user)
-
+    
+    fresh_when :etag => [@auth_user]
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @auth_user }

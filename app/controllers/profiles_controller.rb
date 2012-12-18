@@ -15,6 +15,9 @@ class ProfilesController < ApplicationController
     end
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), profiles_path
+    
+    fresh_when :etag => [Model_class.last]
+        
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @profiles }
@@ -25,8 +28,11 @@ class ProfilesController < ApplicationController
   # GET /profiles/1.json
   def show
     @profile = Profile.find(params[:id])
-
+    
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), profile_path(@profile)
+
+    fresh_when :etag => [@profile]
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @profile }

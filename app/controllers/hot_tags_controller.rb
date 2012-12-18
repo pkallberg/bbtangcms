@@ -18,6 +18,8 @@ class HotTagsController < ApplicationController
         end
       end
       breadcrumbs.add I18n.t("breadcrumbs.hot_tags", :model => @model_class.model_name.human), hot_tags_path(:model => @model_class)
+      
+      fresh_when :etag => [@tags_hash]
     end
   end
 

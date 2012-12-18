@@ -16,7 +16,9 @@ class QuestionsController < ApplicationController
       @questions = Question.paginate(:page => params[:page]).order('created_at desc')
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), questions_path
     end
-
+    
+    fresh_when :etag => [Model_class.last]
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @questions }
@@ -29,7 +31,9 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), question_path(@question)
-
+    
+    fresh_when :etag => [@question]
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @question }

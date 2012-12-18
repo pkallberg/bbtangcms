@@ -9,6 +9,9 @@ class QuizCenter::QuizCollectionsController < QuizCenter::QuizCenterBaseControll
     @quiz_center_quiz_collections = QuizCollection.desc(:end_date).paginate(:page => params[:page])
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), quiz_center_quiz_collections_path
 
+
+    fresh_when :etag => [Model_class.last]
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @quiz_center_quiz_collections }
@@ -21,6 +24,8 @@ class QuizCenter::QuizCollectionsController < QuizCenter::QuizCenterBaseControll
     @quiz_center_quiz_collection = QuizCollection.find(params[:id])
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), quiz_center_quiz_collection_path(@quiz_center_quiz_collection)
 
+    fresh_when :etag => [@quiz_center_quiz_collection]
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @quiz_center_quiz_collection }

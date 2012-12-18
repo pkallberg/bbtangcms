@@ -16,6 +16,9 @@ class KnowledgesController < ApplicationController
       @knowledges = Knowledge.paginate(:page => params[:page]).order('id DESC')
     end
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), knowledges_path
+
+#    fresh_when :etag => [@knowledges] 
+    #fresh_when model's last recoder is newer
     fresh_when :etag => [@knowledges] 
     
     respond_to do |format|

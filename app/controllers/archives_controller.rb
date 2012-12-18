@@ -3,8 +3,11 @@ class ArchivesController < ApplicationController
   authorize_resource :class => false
   def index
     @model_class = params[:model].constantize
+
+    #fresh_when model's last recoder is newer
+    fresh_when :etag => [@model_class.last] 
+    
     breadcrumbs.add I18n.t("helpers.titles.archives", :model => @model_class.model_name.human), archives_path(:model => @model_class)
-    @knowledges = Knowledge.paginate(:page => params[:page], :per_page => 15)
   end
 
   def savesort
