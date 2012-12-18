@@ -1,6 +1,6 @@
 class KnowledgesController < ApplicationController
   load_and_authorize_resource
-  caches_action :index, :show, :public, :feed, :cache_path => Proc.new { |controller| controller.params }
+  caches_action :index, :show, :public, :feed, :cache_path => Proc.new { |controller| current_user.present? ? controller.params.merge(user_id: current_user.id) : controller.params }
   cache_sweeper :resource_sweeper
 
 
@@ -17,13 +17,12 @@ class KnowledgesController < ApplicationController
     end
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), knowledges_path
 
-#    fresh_when :etag => [@knowledges] 
     #fresh_when model's last recoder is newer
-    fresh_when :etag => [@knowledges] 
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @knowledges }
+    if stale?(:etag => Knowledge.last)
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @knowledge }
+      end
     end
   end
 
@@ -34,11 +33,12 @@ class KnowledgesController < ApplicationController
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), knowledge_path(@knowledge)
     
-    fresh_when :etag => [@knowledge] 
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @knowledge }
+    #fresh_when :etag => [@knowledge] 
+    if stale?(:etag => @knowledge, :last_modified => @knowledge.created_at)
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @knowledge }
+      end
     end
   end
 

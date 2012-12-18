@@ -1,6 +1,6 @@
 class QuizCenter::QuizzesController < QuizCenter::QuizCenterBaseController
   load_and_authorize_resource
-  caches_action :index, :show, :public, :feed, :cache_path => Proc.new { |controller| controller.params }
+  caches_action :index, :show, :public, :feed, :cache_path => Proc.new { |controller| current_user.present? ? controller.params.merge(user_id: current_user.id) : controller.params }
   cache_sweeper :resource_sweeper
   Model_class = Quiz.new.class
   before_filter :load_parent
@@ -15,11 +15,11 @@ class QuizCenter::QuizzesController < QuizCenter::QuizCenterBaseController
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), quiz_center_quizzes_path
     end
     
-    fresh_when :etag => [Model_class.last]
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @quiz_center_quizzes }
+    if stale?  :etag => @quiz_center_quizzes
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @quiz_center_quizzes }
+      end
     end
   end
 
@@ -29,11 +29,11 @@ class QuizCenter::QuizzesController < QuizCenter::QuizCenterBaseController
     @quiz_center_quiz = Quiz.find(params[:id])
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), quiz_center_quiz_path(@quiz_center_quiz)
     
-    fresh_when :etag => [@quiz_center_quiz]
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @quiz_center_quiz }
+    if stale?  :etag => @quiz_center_quiz
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @quiz_center_quiz }
+      end
     end
   end
 

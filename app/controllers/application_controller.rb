@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options(options = {})
-    options.merge! :host => "cms.bbtang.com" if Rails.env.production?
+    #options.merge! :host => "cms.bbtang.com" if Rails.env.production?
     options.merge! :page => session[:old_page]# if session[:old_page].present?# and !(params[:page].eql? session[:old_page])
     options
 
@@ -61,11 +61,6 @@ class ApplicationController < ActionController::Base
 
   def bbtangcms_config
     @@bbtangcms_config = BBTangCMS::Config.default
-  end
-
-  private
-  def add_initial_breadcrumbs
-    breadcrumbs.add :homepage, root_path
   end
 
   def do_not_check_authorization?
@@ -196,7 +191,9 @@ class ApplicationController < ActionController::Base
   def miniprofiler
     Rack::MiniProfiler.authorize_request if current_user and current_user.supper_admin? and Rails.env.production?
   end
-  
+
+=begin
+  # 会导致 stale? 失效
   def fresh_when(opts = {})
     opts[:etag] ||= []
     # 保证 etag 参数是 Array 类型
@@ -210,4 +207,34 @@ class ApplicationController < ActionController::Base
     opts[:etag] << Date.current
     super(opts)
   end
+
+=end
+  def fresh_when(record_or_options, additional_options = {})
+
+    if record_or_options.is_a? Hash
+      record_or_options[:etag] = record_or_options_etag(record_or_options[:etag])
+    else
+      record  = record_or_options_etag record_or_options
+      additional_options = { :etag => record , :last_modified => record.try(:updated_at) }.merge(additional_options)
+    end
+    puts "#{ActiveSupport::Cache.expand_cache_key record_or_options[:etag]}" if Rails.env.development?
+    super record_or_options,additional_options
+  end
+  
+  private
+  def record_or_options_etag(etag,default_etag=[])
+    default_etag ||= [current_user, @meta_keywords, @meta_description, Date.current,flash.to_hash].compact
+    if etag.is_a?(Array) or etag.respond_to? :to_a
+      record  = etag.try(:to_a).concat default_etag
+    else
+      record  = default_etag << etag
+    end
+  end
+
+  def add_initial_breadcrumbs
+    breadcrumbs.add :homepage, root_path
+  end
+  
+
+
 end
