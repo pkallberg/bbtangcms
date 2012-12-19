@@ -27,6 +27,7 @@ class NewsController < ApplicationController
 
     breadcrumbs.add I18n.t("helpers.titles.#{current_action}", :model => Model_class.model_name.human), news_path(@news)
 
+
     if stale? :etag => [@news]
       respond_to do |format|
         format.html # show.html.erb
