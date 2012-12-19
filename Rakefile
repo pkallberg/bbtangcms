@@ -14,6 +14,7 @@ task "resque:setup" => :environment do
   Resque.before_fork = Proc.new { ActiveRecord::Base.establish_connection }
 end
 
+#https://gist.github.com/797301
 namespace :resque do
   desc "let resque workers always load the rails environment"
   task :setup => :environment do
@@ -30,8 +31,12 @@ namespace :resque do
       end
     end
 
-    if pids.size > 0
-      system("kill -QUIT #{pids.join(' ')}")
+    if pids.empty?
+      puts "No workers to kill"
+    else
+      syscmd = "kill -s QUIT #{pids.join(' ')}"
+      puts "Running syscmd: #{syscmd}"
+      system(syscmd)
     end
 
     # god should handle the restart
