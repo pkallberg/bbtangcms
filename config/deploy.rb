@@ -121,6 +121,6 @@ end
 
 # 在current 目录更新后 停止队列 会找不到 原来的队列，因此还是拆分为stop 和 start 两个任务放在 deploy:create_symlink 之前和 之后
 #after 'deploy:update_code', 'deploy:migrate', "deploy:create_symlink", "deploy:restart_workers", "deploy:restart_crontab", "rvm:trust_rvmrc", "deploy:cleanup"
-after 'deploy:update_code', 'deploy:migrate', "deploy:stop_workers", "deploy:create_symlink", "deploy:start_workers", "deploy:restart_crontab", "rvm:trust_rvmrc", "deploy:cleanup"
+after 'deploy:update_code', 'deploy:migrate', "deploy:stop_workers",  "deploy:create_symlink", "deploy:restart_workers", "deploy:restart_crontab", "rvm:trust_rvmrc", "deploy:cleanup"
 #after 'deploy:update_code', 'deploy:migrate', "deploy:restart_workers", "deploy:restart_crontab"
 #after "deploy:create_symlink", "rvm:trust_rvmrc"
