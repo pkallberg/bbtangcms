@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
       @profile = (Profile.where user_id: current_user.id).first
       unless @profile.present?
         nickname = current_user.email[/^([^@\s]+)/]
-        @profile = Profile.create( user_id :current_user.id, nickname: nickname )
+        @profile = Profile.create( user_id: current_user.id, nickname: nickname )
         #redirect_to new_profile_path(is_recommend: true)
       end
     end

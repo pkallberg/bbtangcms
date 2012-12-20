@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
       @profile = (Profile.where user_id: current_user.id).first
       unless @profile.present?
         nickname = current_user.email[/^([^@\s]+)/]
-        @profile = Profile.create( user_id :current_user.id, nickname: nickname )
+        @profile = Profile.create( user_id: current_user.id, nickname: nickname )
         #redirect_to new_profile_path(is_recommend: true)
       end
     end
@@ -214,7 +214,6 @@ class ApplicationController < ActionController::Base
 
 =end
   def fresh_when(record_or_options, additional_options = {})
-<<<<<<< HEAD
 
     if record_or_options.is_a? Hash
       record_or_options[:etag] = record_or_options_etag(record_or_options[:etag])
@@ -241,21 +240,5 @@ class ApplicationController < ActionController::Base
   end
   
 
-=======
-    default_etag = [current_user, @meta_keywords, @meta_description, Date.current,flash].compact
-    if record_or_options.is_a? Hash
-      if record_or_options.has_key? :etag and record_or_options[:etag].is_a?(Array)
-        record_or_options[:etag] = record_or_options[:etag].concat default_etag
-      else
-        record_or_options[:etag] = default_etag
-      end
-    else
-      record  = record_or_options.concat default_etag
-      additional_options = { :etag => record , :last_modified => record.try(:updated_at) }.merge(additional_options)
-    end
-    puts "#{ActiveSupport::Cache.expand_cache_key record_or_options[:etag]}"
-    super record_or_options,additional_options
-  end
->>>>>>> 367512372b26e0a41eb105779706f04d6d58ba93
 
 end

@@ -56,8 +56,10 @@ The current_sign_in_at and last_sign_in_at are the two fields that are updated b
     #"localhost:3000/knowledges"
     # bellow will expire action no matter controller.params
     actions.each do |action|
-      action_cache_path = ActionController::Caching::Actions::ActionCachePath.new(self, {:controller => controller_name, :action => action}, false).path
-      expire_action(%r{#{action_cache_path}} )
+      if route_checker?(controller_name,action)
+        action_cache_path = ActionController::Caching::Actions::ActionCachePath.new(self, {:controller => controller_name, :action => action}, false).path
+        expire_action(%r{#{action_cache_path}} )
+      end 
     end
 
 
