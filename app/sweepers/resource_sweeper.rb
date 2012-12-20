@@ -50,9 +50,19 @@ The current_sign_in_at and last_sign_in_at are the two fields that are updated b
     expire_page(:controller => controller_name, :action => actions, :id => resource.id)
     
     expire_action(:controller => controller_name, :action => actions)
+    #%r{pages/\d*/notes} 
+
+    #ActionController::Caching::Actions::ActionCachePath.new(self, {:controller => controller_name, :action => "index"}, false).path
+    #"localhost:3000/knowledges"
+    # bellow will expire action no matter controller.params
+    actions.each do |action|
+      action_cache_path = ActionController::Caching::Actions::ActionCachePath.new(self, {:controller => controller_name, :action => action}, false).path
+      expire_action(%r{#{action_cache_path}} )
+    end
+
 
     # Expire a fragment
-    expire_fragment('all_available_'<< resource_name)
+    #expire_fragment('all_available_'<< resource_name)
   end
   def namespace_resources
     [ "User","Version","Quiz",
