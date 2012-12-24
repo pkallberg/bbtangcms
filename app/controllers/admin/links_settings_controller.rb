@@ -5,12 +5,12 @@ class Admin::LinksSettingsController < Admin::AdminBaseController
   respond_to :html, :js
 
   def index
-    @setting_subject = SettingSubject.find_by_name("友情链接")
-    @setting_type = @setting_subject.setting_type
+    @setting_subject = SettingSubject[controller_name]
+    @setting_type = controller_name
   end
 
   def new_link
-    @setting_subject = SettingSubject.find_by_name("友情链接")
+    @setting_subject = SettingSubject[controller_name]
     @setting_type = @setting_subject.setting_type
     @value = {}
   end
@@ -53,8 +53,8 @@ class Admin::LinksSettingsController < Admin::AdminBaseController
   def edit_link
     @link = AdminSetting.find(params[:link_id])
     @value = JSON.parse(@link.value)
-    @setting_type = SettingType.find(params[:setting_type_id])
-    @setting_subject = SettingSubject.find(params[:setting_subject_id])
+    @setting_type = SubjectType[params[:setting_type]]
+    @setting_subject = SettingSubject[params[:setting_subject]]
   end
 
   def update_link

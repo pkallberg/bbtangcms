@@ -1,7 +1,7 @@
 <div class="well sidebar-nav">
-  <% SettingType.all.each do |type| %>
+  <% all_setting_subjects.each do |controller_name,name| %>
     <ul class="nav nav-list">
-      <%= render "admin/shared/setting_subject_list", :type => type %>
+      <%= render "admin/shared/setting_subject_list", name: name, controller_name: "controller_name" %>
     </ul>
   <% end %>
   <ul class="nav nav-list">

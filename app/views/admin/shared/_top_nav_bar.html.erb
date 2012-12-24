@@ -1,9 +1,9 @@
 <!--div class="tabbable"--> <!-- Only required for left/right tabs -->
   <ul class="nav nav-tabs">
-    <% setting_type.setting_subjects.each do |subject| %>
-      <% if subject.controller_name.present? %>
-        <!--li class=""><%= link_to subject.name, "javascript:;", "data-toggle" =>  "tab"%></li-->
-        <li class="<%= 'active' if params[:controller].gsub(/\w+([\/]+)/,'').eql? subject.controller_name%>"><%= link_to subject.name, "/admin/#{subject.controller_name}/" %></li>
+    <% all_setting_subjects.each do |controller_name,name| %>
+      <% if controller_name.present? %>
+        <!--li class=""><%= link_to name, "javascript:;", "data-toggle" =>  "tab"%></li-->
+        <li class="<%= 'active' if params[:controller].gsub(/\w+([\/]+)/,'').eql? controller_name%>"><%= link_to name, "/admin/#{controller_name}/" %></li>
       <% end %>
     <% end %>
   </ul>

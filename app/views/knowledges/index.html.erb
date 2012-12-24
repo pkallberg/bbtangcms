@@ -25,23 +25,13 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:summary) %></th>
-      <!--th><%= model_class.human_attribute_name(:content) %></th-->
-      <!--th><%= model_class.human_attribute_name(:body) %></th-->
-      <!--th><%= model_class.human_attribute_name(:tags) %></th-->
-      <!--th><%= model_class.human_attribute_name(:timeline_ids) %></th-->
-      <!--th><%= model_class.human_attribute_name(:knowledgebase_category_id) %></th-->
       <th><%= obj_filter_drop_down_li(obj = "Knowledge", col="created_by",path=knowledges_path)%></th>
-      <!--th><%= model_class.human_attribute_name(:created_name) %></th-->
       <th><%= model_class.human_attribute_name(:updated_user) %></th>
-      <!--th><%= model_class.human_attribute_name(:deleted_at) %></th-->
-      <!--th><%= model_class.human_attribute_name(:deleted_by) %></th-->
-      <!--th><%= model_class.human_attribute_name(:delta) %></th-->
       <th><%= model_class.human_attribute_name(:thanks_count) %></th>
       <th><%= model_class.human_attribute_name(:forwarding_count) %></th>
       <th><%= model_class.human_attribute_name(:comments_count) %></th>
       <th><%= model_class.human_attribute_name(:views_count) %></th>
       <th><%= cache_helper :obj_filter_drop_down_li,{}, obj = "Knowledge", col="source_info", path=knowledges_path%></th>
-      <!--th><%= model_class.human_attribute_name(:auto_tags) %></th-->
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -53,23 +43,13 @@
         <td><%= link_to knowledge.id, knowledge_path(knowledge), :title => object_summary(obj = knowledge), :rel => "tooltip" %></td>
         <td><%= link_to knowledge.title, "http://bbtang.com/knowledges/#{knowledge.to_param}",  :title => "#{object_summary(obj = knowledge)} on bbtang.com", :rel => "tooltip" %></td>
         <td><%= knowledge.summary %></td>
-        <!--td><%= knowledge.content %></td-->
-        <!--td><%= knowledge.body %></td-->
-        <!--td><%= knowledge.tags %></td-->
-        <!--td><%= knowledge.timeline_ids %></td-->
-        <!--td><%= knowledge.knowledgebase_category_id %></td-->
         <td><%= knowledge.created_user %></td>
-        <!--td><%= knowledge.created_name %></td-->
         <td><%= knowledge.updated_user %></td>
-        <!--td><%= knowledge.deleted_at %></td-->
-        <!--td><%= knowledge.deleted_by %></td-->
-        <!--td><%= knowledge.delta %></td-->
         <td><%= knowledge.thanks_count %></td>
         <td><%= knowledge.forwarding_count %></td>
         <td><%= knowledge.comments_count %></td>
         <td><%= knowledge.views_count %></td>
         <td><%= knowledge.source_info %></td>
-        <!--td><%= knowledge.auto_tags %></td-->
         <td><%#l knowledge.created_at %><%= timeago_tag(knowledge.created_at, :format => :short) if knowledge.created_at?%></td>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)),

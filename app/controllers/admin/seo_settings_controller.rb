@@ -5,8 +5,8 @@ class Admin::SeoSettingsController < Admin::AdminBaseController
   respond_to :html, :js
 
   def index
-    @setting_subject = SettingSubject.find_by_name("SEO设置")
-    @setting_type = @setting_subject.setting_type
+    @setting_subject = SettingSubject[controller_name]
+    @setting_type = controller_name
   end
 
   def show
@@ -14,8 +14,8 @@ class Admin::SeoSettingsController < Admin::AdminBaseController
   end
 
   def new
-    @setting_subject = SettingSubject.find_by_name("SEO设置")
-    @setting_type = @setting_subject.setting_type
+    @setting_subject = SettingSubject[controller_name]
+    @setting_type = controller_name
   end
 
   def create

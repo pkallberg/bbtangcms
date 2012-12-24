@@ -20,7 +20,7 @@
           <td class="link-logo"><%= value["keywords"] %></td>
           <td class="link-logo"><%= value["description"] %></td>
           <td class="link-action">
-            <%= link_to "编辑", edit_admin_seo_setting_path(:id => seo.id, :setting_type_id => @setting_type.id, :setting_subject_id => @setting_subject.id), :class => 'btn btn-mini' %>
+            <%= link_to "编辑", edit_admin_seo_setting_path(:id => seo.id, :setting_type => @setting_type, :setting_subject => @setting_subject), :class => 'btn btn-mini' %>
             <%= link_to "删除", admin_seo_setting_path(seo), :method => :delete, :confirm => "你确定要删除该SEO？",:class => 'btn btn-mini btn-danger', :remote => true %>
           </td>
         </tr>

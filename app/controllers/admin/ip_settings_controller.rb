@@ -5,8 +5,8 @@ class Admin::IpSettingsController < Admin::AdminBaseController
   respond_to :html, :js
 
   def index
-    @setting_subject = SettingSubject.find_by_name("访问IP设置")
-    @setting_type = @setting_subject.setting_type
+    @setting_subject = SettingSubject[controller_name]
+    @setting_type = controller_name
   end
 
   def show
@@ -22,8 +22,8 @@ class Admin::IpSettingsController < Admin::AdminBaseController
 
     if ip_black_list.save and ip_white_list.save
       # 写入到Rails设置
-      Askjane::MetaCache.set_config_data("ip_black_list", ip_black_list.value)
-      Askjane::MetaCache.set_config_data("ip_white_list", ip_white_list.value)
+      BBTangCMS::MetaCache.set_config_data("ip_black_list", ip_black_list.value)
+      BBTangCMS::MetaCache.set_config_data("ip_white_list", ip_white_list.value)
       respond_with
     end
   end

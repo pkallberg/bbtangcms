@@ -27,25 +27,17 @@
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:answers_count) %></th>
       <th><%= model_class.human_attribute_name(:score) %></th>
-      <!--th><%= model_class.human_attribute_name(:title) %></th-->
-      <!--th><%= model_class.human_attribute_name(:title) %></th-->
-      <!--th><%= model_class.human_attribute_name(:focus_by) %></th-->
       <th><%= model_class.human_attribute_name(:created_user) %></th>
       <th><%= model_class.human_attribute_name(:views_count) %></th>
-      <!--th><%= model_class.human_attribute_name(:title) %>Delta</th-->
       <th><%= model_class.human_attribute_name(:last_answer_time) %></th>
       <th><%= model_class.human_attribute_name(:best_answer_id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%= model_class.human_attribute_name(:updated_at) %></th>
-      <!--th><!--%= model_class.human_attribute_name(:answers_count) %></th-->
       <th><%= model_class.human_attribute_name(:experts_count) %></th>
       <th><%= model_class.human_attribute_name(:designated_answerer) %></th>
-      <!--th><%= model_class.human_attribute_name(:knowledge_id) %>Auto tags</th-->
       <th><%= model_class.human_attribute_name(:knowledge_id) %></th>
       <th><%= model_class.human_attribute_name(:is_anonymous) %></th>
-      <!--th><%= model_class.human_attribute_name(:knowledge_id) %>Auto tags</th-->
       <th><%= model_class.human_attribute_name(:deleted_user) %></th>
-      <!--th><%= model_class.human_attribute_name(:deleted_at) %></th-->
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -58,25 +50,17 @@
         <td><%= "#{question}" %></td>
         <td><%= link_to question.answers_count, question_answers_path(question), :title => "#{object_summary(obj = question)}的相关回答", :rel => "tooltip"   %></td>
         <td><%= question.score %></td>
-        <!--td><%= question.content %></td-->
-        <!--td><%= question.body %></td-->
-        <!--td><%= question.focus_by %></td-->
         <td><%= question.created_user %></td>
         <td><%= question.views_count %></td>
-        <!--td--><!--%= question.delta %--><!--/td-->
         <td><%= time_tag question.last_answer_time, :format => :short if question.last_answer_time? %></td>
         <td><%= question.best_answer_id %></td>
         <td><%=time_tag question.created_at, :format => :short if question.created_at?  %></td>
         <td><%=time_tag question.updated_at, :format => :short if question.updated_at?   %></td>
-        <!--td><!--%= question.answers_count %></td-->
         <td><%= question.experts_count %></td>
         <td><%= question.designated_answerer %></td>
-        <!--td--><!--%= question.auto_tags %--><!--/td-->
         <td><%= link_to question.knowledge_id, knowledge_path(question.knowledge_id) if question.knowledge_id.present? %></td>
         <td><%= question.is_anonymous %></td>
-        <!--td><!--%= question.deleted %--><!--/td-->
         <td><%= question.deleted_user %></td>
-        <!--td><%=time_tag question.deleted_at, :format => :short if question.deleted_at? %></td-->
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)),
                       question_path(question),
@@ -114,9 +98,6 @@
   </tbody>
 </table>
 <%= will_paginate @questions %>
-<!--%= @questions.map(&:id)%-->
-<!--%= @questions.length%-->
-<!--%= @questions.count%-->
 <br />
 
 <% if can? :create, Question %>

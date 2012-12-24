@@ -41,7 +41,6 @@ class Profile < ActiveRecord::Base
     #:minimum => BBTangCMS::MetaCache.get_config_data("profile_name_min").to_i,
     :minimum => BBTangCMS::MetaCache.get_config_data("profile_name_min").to_i,
     :maximum => BBTangCMS::MetaCache.get_config_data("profile_name_max").to_i}, :allow_nil=>true
-  validates :label, :profession, :length => {:maximum => BBTangCMS::MetaCache.get_config_data("profile_label_max").to_i}
 
   #fixed bug, 当使用delegate_attributes的时候， 会需要loaded_[model]的方法
   def loaded_level?
@@ -59,8 +58,8 @@ class Profile < ActiveRecord::Base
                   :user_id, :notify_via_email, :notify_on_new_articles,
                   :notify_on_comments,:oauth_face_image_url,
                   :baby_gender,:real_name, :level_id, :birthday, :degree,
-                  :phone, :profession, :expert_field, :hobby, :focus_tags_on,
-                  :label, :weibo, :updated_by, :created_at, :babies_attributes,
+                  :phone, :expert_field, :hobby, :label,
+                  :weibo, :updated_by, :created_at, :babies_attributes,
                   :resume, :expert_category_list, :vip_category_list
 
 

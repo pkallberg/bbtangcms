@@ -61,10 +61,8 @@
   <% if @profile.is_vip?%>
     <%= s.attribute :vip_category_list %>
   <% end %>
-  <%= s.attribute :profession %>
   <%= s.attribute :expert_field %>
   <%= s.attribute :hobby %>
-  <%= s.attribute :focus_tags_on %>
   <%= s.attribute :pregnancy_status, :value => @profile.pregnancystatus %>
   <%= s.attribute :agerange, :value => @profile.age_range %>
   <%= s.attribute :pregnancy_timeline, :value => @profile.pregnancytimeline %>

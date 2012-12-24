@@ -15,7 +15,7 @@
     </div>
     <div class="field-content">
       <p>
-        <%= text_field_tag :setting_type_id, @setting_type.id.to_s %>
+        <%= text_field_tag :setting_type_id, all_setting_types.key(@setting_type) %>
       </p>
       <p>
       </p>
@@ -29,7 +29,7 @@
     </div>
     <div class="field-content">
       <p>
-        <%= text_field_tag :setting_subject_id, @setting_subject.id.to_s %>
+        <%= text_field_tag :setting_subject_id, all_subject_types.key(@setting_subject) %>
       </p>
       <p>
       </p>
