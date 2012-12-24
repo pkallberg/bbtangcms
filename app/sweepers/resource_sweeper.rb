@@ -82,14 +82,10 @@ The current_sign_in_at and last_sign_in_at are the two fields that are updated b
     observe_models ||= ["Knowledge", "Note", "News", "Profile", "Question", "Quiz", "QuizCollection", "Subject", "User", "Answer", "Attachment", "CmsRole"]
     observe_models.collect{|object| object.constantize if object.class_exists?}.compact.uniq
   end
+  def route_checker(controller,action,opt={})
+    url_for({:controller => controller, :action => action}.merge opt).present?  ? url_for({:controller => controller, :action => action}.merge opt) :  false rescue false
+  end
   def route_checker?(controller,action,opt={})
-    route_exist = true
-    begin
-      url_for({:controller => controller, :action => action}.merge opt)
-    rescue
-      # route not exist
-      route_exist = false
-    end
-    route_exist
+    route_checker(controller,action,opt) ? true :  false rescue false
   end
 end
