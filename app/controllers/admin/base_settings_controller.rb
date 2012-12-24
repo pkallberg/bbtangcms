@@ -5,8 +5,8 @@ class Admin::BaseSettingsController < Admin::AdminBaseController
   respond_to :html, :js
 
   def index
-    @setting_subject = SettingSubject.find_by_name("基本设置")
-    @setting_type = @setting_subject.setting_type
+    @setting_subject = SettingSubject[controller_name]
+    @setting_type = controller_name
   end
 
   # 基本设置 保存

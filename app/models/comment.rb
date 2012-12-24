@@ -1,9 +1,7 @@
 # coding: utf-8
 class Comment < ActiveRecord::Base
   has_paper_trail   # you can pass various options here
-  include BaseModel  #for 敏感词验证
   before_validation :set_content  #填充content
-  before_validation :check_spam_words #敏感次验证
   #acts_as_paranoid  #标记删除（deleted_at）
   after_save :clear_event_log_and_notify
   after_destroy :clear_event_log_and_notify
@@ -92,11 +90,6 @@ class Comment < ActiveRecord::Base
       return false
     end
 
-    # 敏感词验证
-    def check_spam_words
-      self.spam?("body")
-      self.spam?("content") unless self.content.blank?
-    end
 
       #清除body里面的html标签
     def set_content

@@ -5,8 +5,6 @@ class Question < ActiveRecord::Base
 
   acts_as_taggable_on :tags, :timelines, :categories, :identities
   acts_as_followable
-  #include Redis::Search
-  #include Recommendation::Search
   #include Tire::Model::Search
   #include Tire::Model::Callbacks
   #include ElasticSearchable::Knowledge
@@ -40,19 +38,11 @@ class Question < ActiveRecord::Base
   #after_initialize :init
 
 
-=begin
-  redis_search_index(
-    :title_field => :title,
-    :prefix_index_enable => true,
-    :score_field => :last_answer_time,
-    :ext_fields => [:answers_count, :experts_count, :focus_by]
-  )
-=end
+
 
   def clear_event_log_and_notify
-    #Eventlog.remove("item_id" => params[:id].to_i, "item_type"=>"Note")
+
     if (self.respond_to? :deleted_by and self.send(:deleted_by)) or not(self.class.exists? self.id)
-      #EventLog.where(item_type: self.class.to_s,item_id: id).collect{|event_log| event_log.destroy} if self.present?
       Eventlog.remove("item_id" => self.id , "item_type"=>"Answer")
       Eventlog.remove("item_id" => self.id , "item_type"=>"Question")
       Notify.remove("item_id" => self.id , "item_type"=>self.class.name)
@@ -62,8 +52,6 @@ class Question < ActiveRecord::Base
   def created_user
     User.find(self.created_by) if (self.created_by.present?) and (User.exists? self.created_by)
   end
-
-  #include SphinxIndexable::Question
 
   def if_soft_deleted(soft_deleted =nil, user = nil)
     if soft_deleted.present? and user.present?
@@ -127,17 +115,6 @@ class Question < ActiveRecord::Base
     return false
   end
 
-  # 返回相似问题
-  #def similar_questions
-  #  redis = Askjane::DefineRedis.define_recommendation_redis(Recommendation::Search.config.namespace,"similar_questions")
-  #  s = redis.zrange self.id,0,-1
-  #  ids = []
-  #  s.each do |t|
-  #    ids << t.to_i
-  #  end
-  #  return ids
-  #end
-
 
   # the questions which belong to talents
   scope :questions_of_talents, {
@@ -184,10 +161,6 @@ class Question < ActiveRecord::Base
     self.focus_by.to_s.split(",").count
   end
 
-  # TODO:推送逻辑，考虑标签，浏览量，更新时间，其它？进行加权计算推荐优先度
-  def recommend_knowledge
-    recommend_knowledges.first
-  end
 
   def recommend_knowledges
     #log=Logger.new("1.log")

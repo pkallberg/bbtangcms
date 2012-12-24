@@ -3,10 +3,8 @@ class Knowledge< ActiveRecord::Base
     DEFAULT_LIMIT = 15
   has_paper_trail   # you can pass various options here
 
-  include BaseModel  #for 敏感词验证
   acts_as_followable
   acts_as_taggable_on :tags, :timelines, :categories, :identities
-  #before_validation :check_spam_words
   before_validation :repear_save
   before_save :update_tags_count
 
@@ -14,7 +12,7 @@ class Knowledge< ActiveRecord::Base
   after_save :clear_event_log
   after_destroy :clear_event_log
 
-  belongs_to :knowledgebase_category
+
   has_one :quiz
 
   has_many :r_user_knowledges
@@ -130,21 +128,6 @@ class Knowledge< ActiveRecord::Base
     end
   end
 
-  # previous knowledeg of the current knowledeg
-  def previous_item
-    self.class.first(:conditions => ["knowledgebase_category_id = ? and id < ? and deleted_at is null", self.knowledgebase_category_id, self.id], :order => "id DESC")
-  end
-
-  # next knowledeg of the current knowledeg
-  def next_item
-    self.class.first(:conditions => ["knowledgebase_category_id = ? and id > ? and deleted_at is null", self.knowledgebase_category_id, self.id], :order => "id ASC")
-  end
-
-    # 敏感词验证
-  def check_spam_words
-    self.spam?("title")
-    self.spam?("content")
-  end
 
   def repear_save
     self.content = Sanitize.clean(self.body).strip

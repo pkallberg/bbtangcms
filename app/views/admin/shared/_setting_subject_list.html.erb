@@ -1,12 +1,15 @@
-<h3><%= type.name %></h3>
+<h3><%= name %></h3>
 <ul class="nav nav-list">
-  <% type.setting_subjects.each do |subject| %>
-    <li class="<%= 'active' if params[:controller].gsub(/\w+([\/]+)/,'').eql? subject.controller_name%>">
-      <% if subject.controller_name.blank? %>
-        <!--%= link_to subject.name, "javascript:;" %-->
-      <% else %>
-        <%= link_to subject.name, "/admin/#{subject.controller_name}" %>
-      <% end %>
-    </li>
+  <% if (subjects = find_setting_by_type(all_subject_types[self.controller_name])).present?%>
+
+    <% subjects.each do |subject| %>
+      <li class="<%= 'active' if params[:controller].gsub(/\w+([\/]+)/,'').eql? subject[0]%>">
+        <% if subject[0] %>
+          <!--%= link_to subject.name, "javascript:;" %-->
+        <% else %>
+          <%= link_to subject[0], "/admin/#{subject[1]}" %>
+        <% end %>
+      </li>
+    <% end %>
   <% end %>
 </ul>

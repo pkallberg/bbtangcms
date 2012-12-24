@@ -1,9 +1,7 @@
 permit:
   create_profile: create_profile
   create_knowledge: create_knowledge
-  create_news: create_news
   #create_category_base: create_category_base
-  create_subject: create_subject
   create_attachment: create_attachment
   create_question: create_question
   create_question_answer: create_question_answer
@@ -30,9 +28,7 @@ permit:
   create_quiz_center_quiz_collection: create_quiz_center_quiz_collection
   update_profile: update_profile
   update_knowledge: update_knowledge
-  update_news: update_news
   #update_category_base: update_category_base
-  update_subject: update_subject
   update_attachment: update_attachment
   update_question: update_question
   update_note: update_note
@@ -58,9 +54,7 @@ permit:
   update_work_contact: update_work_contact
   read_profile: read_profile
   read_knowledge: read_knowledge
-  read_news: read_news
   #read_category_base: read_category_base
-  read_subject: read_subject
   read_attachment: read_attachment
   read_question: read_question
   read_note: read_note
@@ -86,9 +80,7 @@ permit:
   read_work_contact: read_work_contact
   destroy_profile: destroy_profile
   destroy_knowledge: destroy_knowledge
-  destroy_news: destroy_news
   #destroy_category_base: destroy_category_base
-  destroy_subject: destroy_subject
   destroy_attachment: destroy_attachment
   destroy_question: destroy_question
   destroy_note: destroy_note

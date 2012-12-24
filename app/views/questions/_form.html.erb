@@ -4,15 +4,8 @@
 
   <div class="form-inputs">
     <%= f.input :title %>
-    <!--%= f.input :content %-->
     <%= f.input :body, :as => :kindeditor %>
-    <!--%= f.input :focus_by %-->
     <%= f.input :score, :as =>:integer %>
-    <!--%= f.input :created_by %-->
-    <!--%= f.input :views_count %-->
-    <!--%= f.input :delta %-->
-    <!--%= f.input :last_answer_time %-->
-    <!--%= f.input :best_answer_id %-->
 
     <span class="label label-info">tags</span>
     <%= f.input :identity_list, :collection => @identities,  :prompt   => "Select an timeline",   :selected => (@question_identities.map(&:id) if @question_identities.present?),
@@ -41,14 +34,9 @@
     <% else %>
       <%= f.input :updated_at, :as => :hidden, :input_html => { :value => Time.now} %>
     <% end %>
-    <!--%= f.input :answers_count %-->
-    <!--%= f.input :experts_count %-->
-    <!--%= f.input :designated_answerer %-->
-    <!--%= f.input :auto_tags %-->
     <%= f.input :knowledge_id %>
     <%= f.input :is_anonymous %>
     <%= f.input :soft_deleted, :as => :boolean, :input_html => {:checked =>  @question.deleted_at? ? "checked" : ""} %>
-    <!--%= f.input :deleted %-->
   </div>
 
   <div class="form-actions">

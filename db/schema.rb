@@ -11,27 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121203030140) do
+ActiveRecord::Schema.define(:version => 20121224053610) do
 
   create_table "admin_settings", :force => true do |t|
     t.string   "name"
     t.text     "value"
     t.string   "type_name"
     t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "ads", :force => true do |t|
-    t.string   "title"
-    t.text     "content"
-    t.text     "body"
-    t.integer  "position"
-    t.integer  "created_by"
-    t.integer  "updated_by"
-    t.datetime "deleted_at"
-    t.string   "width"
-    t.string   "height"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -53,19 +39,12 @@ ActiveRecord::Schema.define(:version => 20121203030140) do
     t.text     "body"
     t.integer  "created_by"
     t.integer  "question_id"
-    t.integer  "opposition_count"
-    t.text     "opposition_ids"
-    t.integer  "approval_count"
-    t.text     "approval_ids"
     t.integer  "expert_count"
     t.text     "expert_ids"
     t.datetime "deleted_at"
     t.boolean  "is_anonymous"
-    t.integer  "no_help_count"
-    t.text     "no_help_ids"
     t.integer  "thanks_count"
     t.text     "thanks_ids"
-    t.boolean  "delta",            :default => true, :null => false
     t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -81,11 +60,6 @@ ActiveRecord::Schema.define(:version => 20121203030140) do
   end
 
   add_index "assignments", ["user_id", "cms_role_id"], :name => "index_assignments_on_user_id_and_cms_role_id"
-
-  create_table "astests", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "attachments", :force => true do |t|
     t.string   "attachment_file_name"
@@ -152,41 +126,6 @@ ActiveRecord::Schema.define(:version => 20121203030140) do
     t.integer  "depth"
   end
 
-  create_table "cms_module_configs", :force => true do |t|
-    t.integer  "cms_module_id"
-    t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "cms_module_types", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "cms_modules", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.integer  "cms_module_type_id"
-    t.string   "file"
-    t.text     "config"
-    t.string   "admin_form"
-    t.string   "face_file_name"
-    t.string   "face_content_type"
-    t.string   "face_file_size"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "cms_pages", :force => true do |t|
-    t.string   "description"
-    t.integer  "cms_template_id"
-    t.text     "module_list"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "cms_roles", :force => true do |t|
     t.string   "name",       :null => false
     t.datetime "created_at", :null => false
@@ -218,13 +157,6 @@ ActiveRecord::Schema.define(:version => 20121203030140) do
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
-  create_table "configurations", :force => true do |t|
-    t.string   "name"
-    t.string   "type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "cr_permits", :force => true do |t|
     t.integer  "cms_role_id"
     t.integer  "permit_id"
@@ -238,47 +170,6 @@ ActiveRecord::Schema.define(:version => 20121203030140) do
     t.integer  "permit_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "expert_fields", :force => true do |t|
-    t.string   "name"
-    t.integer  "parent_id"
-    t.integer  "lft"
-    t.integer  "rgt"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "ezines", :force => true do |t|
-    t.string   "title"
-    t.text     "content"
-    t.text     "body"
-    t.integer  "created_by"
-    t.integer  "updated_by"
-    t.datetime "periodical"
-    t.boolean  "is_draft"
-    t.string   "thumbnail_file_name"
-    t.string   "thumbnail_file_size"
-    t.string   "thumbnail_content_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "favorites", :force => true do |t|
-    t.integer  "model_object_id"
-    t.integer  "object_target_id"
-    t.string   "object_uri"
-    t.integer  "created_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "focus_on_groups", :force => true do |t|
-    t.string   "name"
-    t.integer  "created_by"
-    t.text     "members",    :limit => 16777215
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "follows", :force => true do |t|
@@ -302,82 +193,10 @@ ActiveRecord::Schema.define(:version => 20121203030140) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "group_categories", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.text     "body"
-    t.integer  "users_count"
-    t.integer  "create_by"
-    t.integer  "updated_by"
-    t.integer  "position"
-    t.string   "thumbnail_path"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "group_user_roles", :force => true do |t|
-    t.integer  "group_id"
-    t.integer  "user_id"
-    t.integer  "role_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "groups", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.text     "body"
-    t.integer  "position"
-    t.string   "thumbnail_path"
-    t.boolean  "state"
-    t.boolean  "is_basic"
-    t.integer  "users_count"
-    t.integer  "topics_count"
-    t.text     "tags"
-    t.text     "focus_user_by"
-    t.datetime "deleted_at"
-    t.integer  "created_by"
-    t.integer  "updated_by"
-    t.integer  "deleted_by"
-    t.integer  "group_category_id"
-    t.boolean  "delta",             :default => true, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "groups_users_roles", :force => true do |t|
-    t.integer  "group_id"
-    t.integer  "user_id"
-    t.integer  "role_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "kindeditor_assets", :force => true do |t|
     t.string   "asset"
     t.integer  "file_size"
     t.string   "file_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "knowledgebase_categories", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.text     "body"
-    t.string   "thumbnail_path"
-    t.integer  "created_by"
-    t.integer  "updated_by"
-    t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "knowledgebase_nodes", :force => true do |t|
-    t.string   "name"
-    t.integer  "level"
-    t.text     "description"
-    t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -388,37 +207,29 @@ ActiveRecord::Schema.define(:version => 20121203030140) do
     t.text     "content"
     t.text     "body"
     t.text     "timeline_ids"
-    t.integer  "knowledgebase_category_id"
     t.integer  "created_by"
-    t.string   "created_name",              :limit => 100,                   :null => false
+    t.string   "created_name",      :limit => 100,                :null => false
     t.integer  "updated_by"
     t.datetime "deleted_at"
     t.integer  "deleted_by"
-    t.boolean  "delta",                                    :default => true, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "thanks_count",                             :default => 0,    :null => false
-    t.integer  "forwarding_count",                         :default => 0,    :null => false
-    t.integer  "comments_count",                           :default => 0,    :null => false
-    t.integer  "views_count",                              :default => 0,    :null => false
-    t.string   "source_info",               :limit => 100
+    t.integer  "thanks_count",                     :default => 0, :null => false
+    t.integer  "forwarding_count",                 :default => 0, :null => false
+    t.integer  "comments_count",                   :default => 0, :null => false
+    t.integer  "views_count",                      :default => 0, :null => false
+    t.string   "source_info",       :limit => 100
     t.text     "auto_tags"
     t.string   "face_file_name"
     t.string   "face_content_type"
     t.string   "face_file_size"
+    t.text     "terms"
   end
 
   create_table "levels", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "need_points"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "login_logs", :force => true do |t|
-    t.datetime "login_time"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -486,39 +297,6 @@ ActiveRecord::Schema.define(:version => 20121203030140) do
     t.datetime "updated_at"
   end
 
-  create_table "mom_shows", :force => true do |t|
-    t.string   "title"
-    t.text     "body",             :limit => 16777215
-    t.text     "content",          :limit => 16777215
-    t.string   "images"
-    t.text     "like_by",          :limit => 16777215
-    t.integer  "like_by_count",                        :default => 0
-    t.integer  "excerpt_count",                        :default => 0
-    t.text     "excerpt_to",       :limit => 16777215
-    t.text     "excerpt_from",     :limit => 16777215
-    t.text     "tags",             :limit => 16777215
-    t.integer  "show_category_id"
-    t.datetime "deleted_at"
-    t.integer  "created_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "news", :force => true do |t|
-    t.string   "title"
-    t.text     "content"
-    t.text     "body"
-    t.integer  "thanks_count"
-    t.integer  "views_count"
-    t.string   "source_info"
-    t.integer  "created_by_id"
-    t.integer  "updated_by_id"
-    t.integer  "deleted_by_id"
-    t.datetime "deleted_at"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
   create_table "notes", :force => true do |t|
     t.text     "title"
     t.text     "content"
@@ -536,6 +314,7 @@ ActiveRecord::Schema.define(:version => 20121203030140) do
     t.string   "face_content_type"
     t.integer  "face_file_size"
     t.datetime "face_updated_at"
+    t.text     "terms"
   end
 
   create_table "permits", :force => true do |t|
@@ -557,25 +336,6 @@ ActiveRecord::Schema.define(:version => 20121203030140) do
     t.integer  "thanks_count"
   end
 
-  create_table "pictures", :force => true do |t|
-    t.string   "image"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "album_id"
-    t.string   "description"
-  end
-
-  create_table "preferences", :force => true do |t|
-    t.string   "name"
-    t.integer  "owner_id",                 :null => false
-    t.string   "owner_type", :limit => 50, :null => false
-    t.integer  "group_id"
-    t.string   "group_type", :limit => 50
-    t.string   "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "profiles", :force => true do |t|
     t.integer  "user_id"
     t.text     "label"
@@ -583,40 +343,22 @@ ActiveRecord::Schema.define(:version => 20121203030140) do
     t.string   "real_name"
     t.boolean  "gender"
     t.date     "birthday"
-    t.string   "province"
     t.string   "city"
-    t.string   "town"
     t.date     "expected_date"
-    t.date     "child_birthday"
-    t.integer  "child_gender"
-    t.string   "profession"
     t.string   "weibo"
     t.string   "hobby"
-    t.text     "modules"
-    t.integer  "posts_count"
     t.string   "face_file_name"
     t.string   "face_content_type"
     t.string   "face_file_size"
-    t.boolean  "notify_via_email"
-    t.boolean  "notify_on_new_articles"
-    t.boolean  "notify_on_comments"
     t.integer  "invite_user_id"
-    t.text     "blacklist"
-    t.text     "recently_visits"
-    t.text     "like_by_count"
     t.integer  "level_id"
     t.integer  "user_points"
     t.text     "expert_field"
-    t.string   "subject"
-    t.text     "focus_tags_on"
-    t.integer  "user_data_statistic_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "delta",                  :default => true, :null => false
     t.integer  "agerange"
     t.integer  "pregnancy_status"
     t.integer  "pregnancy_timeline"
-    t.boolean  "baby_gender"
     t.string   "oauth_face_image_url"
     t.datetime "face_updated_at"
     t.string   "degree"
@@ -626,7 +368,10 @@ ActiveRecord::Schema.define(:version => 20121203030140) do
     t.string   "telephone"
     t.string   "job"
     t.text     "resume"
+    t.text     "terms"
   end
+
+  add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
 
   create_table "questions", :force => true do |t|
     t.string   "title"
@@ -635,7 +380,6 @@ ActiveRecord::Schema.define(:version => 20121203030140) do
     t.text     "focus_by"
     t.integer  "created_by"
     t.integer  "views_count"
-    t.boolean  "delta",               :default => true, :null => false
     t.datetime "last_answer_time"
     t.integer  "best_answer_id"
     t.datetime "created_at"
@@ -651,6 +395,7 @@ ActiveRecord::Schema.define(:version => 20121203030140) do
     t.datetime "deleted_at"
     t.integer  "score"
     t.integer  "thanks_count"
+    t.text     "terms"
   end
 
   create_table "quizzes", :force => true do |t|
@@ -705,13 +450,6 @@ ActiveRecord::Schema.define(:version => 20121203030140) do
     t.datetime "updated_at"
   end
 
-  create_table "roles", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "group_id"
-  end
-
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
@@ -721,20 +459,6 @@ ActiveRecord::Schema.define(:version => 20121203030140) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
-
-  create_table "setting_subjects", :force => true do |t|
-    t.string   "name"
-    t.integer  "setting_type_id"
-    t.string   "controller_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "setting_types", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "settings", :force => true do |t|
     t.string   "var",                            :null => false
@@ -746,36 +470,6 @@ ActiveRecord::Schema.define(:version => 20121203030140) do
   end
 
   add_index "settings", ["thing_type", "thing_id", "var"], :name => "index_settings_on_thing_type_and_thing_id_and_var", :unique => true
-
-  create_table "show_categories", :force => true do |t|
-    t.string   "name"
-    t.integer  "display_order"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "show_comments", :force => true do |t|
-    t.string   "title"
-    t.text     "content",      :limit => 16777215
-    t.text     "body",         :limit => 16777215
-    t.integer  "created_by"
-    t.boolean  "state"
-    t.integer  "confirmed_by"
-    t.datetime "confirmed_at"
-    t.integer  "mom_show_id"
-    t.datetime "deleted_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "show_images", :force => true do |t|
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.string   "image_file_size"
-    t.integer  "created_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "show_tags", :force => true do |t|
     t.string   "name"
@@ -800,26 +494,6 @@ ActiveRecord::Schema.define(:version => 20121203030140) do
 
   add_index "simple_captcha_data", ["key"], :name => "idx_key"
 
-  create_table "subjects", :force => true do |t|
-    t.string   "title"
-    t.string   "title2"
-    t.text     "content"
-    t.text     "body"
-    t.text     "summary"
-    t.integer  "category"
-    t.integer  "sort_index"
-    t.text     "releated_ids"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-    t.integer  "deleted_by_id"
-    t.datetime "deleted_at"
-    t.integer  "created_by"
-    t.integer  "updated_by"
-    t.string   "face_file_name"
-    t.string   "face_content_type"
-    t.string   "face_file_size"
-  end
-
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -838,36 +512,6 @@ ActiveRecord::Schema.define(:version => 20121203030140) do
     t.integer "knowledges_count"
     t.integer "questions_count"
     t.integer "profiles_count"
-  end
-
-  create_table "tags_bak", :force => true do |t|
-    t.string   "name"
-    t.text     "follower_ids"
-    t.text     "knowledge_ids"
-    t.text     "summary"
-    t.text     "group_ids"
-    t.text     "blog_ids"
-    t.text     "resource_ids"
-    t.text     "question_ids"
-    t.text     "answer_ids"
-    t.integer  "created_by"
-    t.integer  "updated_by"
-    t.datetime "confirmed_at"
-    t.integer  "confirmed_by"
-    t.boolean  "delta",         :default => true, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "category"
-  end
-
-  add_index "tags_bak", ["name"], :name => "name", :unique => true
-
-  create_table "tasks", :force => true do |t|
-    t.string   "name"
-    t.boolean  "done"
-    t.integer  "profile_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "template_types", :force => true do |t|
@@ -895,48 +539,6 @@ ActiveRecord::Schema.define(:version => 20121203030140) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "depth"
-  end
-
-  create_table "topics", :force => true do |t|
-    t.integer  "group_id"
-    t.string   "title"
-    t.text     "content"
-    t.text     "body"
-    t.integer  "views_count"
-    t.integer  "comments_count"
-    t.integer  "hit_count"
-    t.integer  "sticky_count"
-    t.text     "like_by"
-    t.integer  "created_by"
-    t.text     "tags"
-    t.boolean  "delta",           :default => true,  :null => false
-    t.integer  "highlight",       :default => 0
-    t.boolean  "is_announcement", :default => false
-    t.boolean  "is_top",          :default => false
-    t.datetime "deleted_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "user_data_statistics", :force => true do |t|
-    t.text     "focus_user_on"
-    t.integer  "focus_on_count",       :default => 0
-    t.text     "focus_user_by"
-    t.integer  "focus_by_count",       :default => 0
-    t.text     "focus_group_on"
-    t.integer  "focus_group_count",    :default => 0
-    t.text     "focus_topic_on"
-    t.integer  "focus_topic_count",    :default => 0
-    t.text     "focus_question_on"
-    t.integer  "focus_question_count", :default => 0
-    t.text     "like_user_by"
-    t.integer  "like_by_count",        :default => 0
-    t.text     "like_user_on"
-    t.integer  "like_on_count",        :default => 0
-    t.text     "invite_user_on"
-    t.integer  "invite_user_count",    :default => 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
@@ -980,15 +582,5 @@ ActiveRecord::Schema.define(:version => 20121203030140) do
   end
 
   add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
-
-  create_table "videos", :force => true do |t|
-    t.string   "title"
-    t.string   "flash_link"
-    t.integer  "created_by"
-    t.datetime "deleted_at"
-    t.integer  "views_count"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end

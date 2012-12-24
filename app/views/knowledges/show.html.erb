@@ -38,46 +38,6 @@
 </div>
 
 <div class="content box">
-	<!--dl class="dl-horizontal">
-		<dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-		<dd><%= @knowledge.title %></dd>
-		<dt><strong><%= model_class.human_attribute_name(:summary) %>:</strong></dt>
-		<dd><%= @knowledge.summary %></dd>
-		<dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>
-		<dd><%= @knowledge.content %></dd>
-		<dt><strong><%= model_class.human_attribute_name(:body) %>:</strong></dt>
-		<dd><%=raw @knowledge.body %></dd>
-		<dt><strong><%= model_class.human_attribute_name(:tags) %>:</strong></dt>
-		<dd><%= @knowledge.tags %></dd>
-		<dt><strong><%= model_class.human_attribute_name(:timeline_ids) %>:</strong></dt>
-		<dd><%= @knowledge.timeline_ids %></dd>
-		<dt><strong><%= model_class.human_attribute_name(:knowledgebase_category_id) %>:</strong></dt>
-		<dd><%= @knowledge.knowledgebase_category_id %></dd>
-		<dt><strong><%= model_class.human_attribute_name(:created_by) %>:</strong></dt>
-		<dd><%= @knowledge.created_by %></dd>
-		<dt><strong><%= model_class.human_attribute_name(:created_name) %>:</strong></dt>
-		<dd><%= @knowledge.created_name %></dd>
-		<dt><strong><%= model_class.human_attribute_name(:updated_by) %>:</strong></dt>
-		<dd><%= @knowledge.updated_by %></dd>
-		<dt><strong><%= model_class.human_attribute_name(:deleted_at) %>:</strong></dt>
-		<dd><%= @knowledge.deleted_at %></dd>
-		<dt><strong><%= model_class.human_attribute_name(:deleted_by) %>:</strong></dt>
-		<dd><%= @knowledge.deleted_by %></dd>
-		<dt><strong><%= model_class.human_attribute_name(:delta) %>:</strong></dt>
-		<dd><%= @knowledge.delta %></dd>
-		<dt><strong><%= model_class.human_attribute_name(:thanks_count) %>:</strong></dt>
-		<dd><%= @knowledge.thanks_count %></dd>
-		<dt><strong><%= model_class.human_attribute_name(:forwarding_count) %>:</strong></dt>
-		<dd><%= @knowledge.forwarding_count %></dd>
-		<dt><strong><%= model_class.human_attribute_name(:comments_count) %>:</strong></dt>
-		<dd><%= @knowledge.comments_count %></dd>
-		<dt><strong><%= model_class.human_attribute_name(:views_count) %>:</strong></dt>
-		<dd><%= @knowledge.views_count %></dd>
-		<dt><strong><%= model_class.human_attribute_name(:source_info) %>:</strong></dt>
-		<dd><%= @knowledge.source_info %></dd>
-		<dt><strong><%= model_class.human_attribute_name(:auto_tags) %>:</strong></dt>
-		<dd><%= @knowledge.auto_tags %></dd>
-	</dl-->
 	<%= show_for @knowledge do |k| %>
 		<%= k.attribute :title %>
 		<%= k.attribute :summary %>
@@ -101,9 +61,6 @@
 		<%= k.attribute :deleted_by %>
 		<%= k.attribute :deleted_user %>
 		<%= k.attribute :deleted_at, :format => :short %>
-		<!--%= k.association :tags, :to_sentence => true %-->
-		<!--%= k.association :timeline_ids, :to_sentence => true %-->
-		<!--%= k.association :knowledgebase_category_id, :to_sentence => true %-->
 	<% end %>
 </div>
 <div class="actions">

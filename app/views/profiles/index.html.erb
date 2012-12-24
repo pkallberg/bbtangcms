@@ -17,23 +17,8 @@
       <th><%= cache_helper :obj_filter_drop_down_li,{}, obj = "Profile", col="level_id",path=profiles_path%></th>
       <th><%= model_class.human_attribute_name(:gender) %></th>
       <th><%= model_class.human_attribute_name(:notes) %></th>
-      <!--th><%= model_class.human_attribute_name(:face) %></th-->
-      <!--th><%= model_class.human_attribute_name(:birthday) %></th-->
-      <!--th><%= model_class.human_attribute_name(:degree) %></th-->
-      <!--th><%= model_class.human_attribute_name(:city) %></th-->
-      <!--th><%= model_class.human_attribute_name(:phone) %></th-->
-      <!--th><%= model_class.human_attribute_name(:child_birthday) %></th-->
-      <!--th><%= model_class.human_attribute_name(:baby_gender) %></th-->
-      <!--th><%= model_class.human_attribute_name(:profession) %></th-->
-      <!--th><%= model_class.human_attribute_name(:expert_field) %></th-->
-      <!--th><%= model_class.human_attribute_name(:hobby) %></th-->
-      <!--th><%= model_class.human_attribute_name(:focus_tags_on) %></th-->
-      <!--th><%= model_class.human_attribute_name(:pregnancy_status) %></th-->
       <th><%= model_class.human_attribute_name(:agerange) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <!--th><%= model_class.human_attribute_name(:pregnancy_timeline) %></th-->
-      <!--th><%= model_class.human_attribute_name(:label) %></th-->
-      <!--th><%= model_class.human_attribute_name(:weibo) %></th-->
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -48,23 +33,8 @@
         <td><%= profile.level %></td>
         <td><%= t("activerecord.attributes.profile.gender_#{profile.gender? ? 1 : 0}") %></td>
         <td><%= link_to "#{profile.user.notes.count if profile.user.present?}", notes_path(user_id: profile.user_id) %></td>
-        <!--td><%= image_tag get_face_url profile %></td-->
-        <!--td><%= profile.birthday %></td-->
-        <!--td><%= profile.degree %></td-->
-        <!--td><%= profile.city %></td-->
-        <!--td><%= profile.phone %></td-->
-        <!--td><%= profile.child_birthday %></td-->
-        <!--td><%= profile.baby_gender %></td-->
-        <!--td><%= profile.profession %></td-->
-        <!--td><%= profile.expert_field %></td-->
-        <!--td><%= profile.hobby %></td-->
-        <!--td><%= profile.focus_tags_on %></td-->
-        <!--td><%= profile.pregnancystatus %></td-->
         <td><%= profile.age_range %></td>
         <td><%= timeago_tag(profile.created_at, :format => :short) if profile.created_at?%></td>
-        <!--td><%= profile.pregnancytimeline %></td-->
-        <!--td><%= profile.label %></td-->
-        <!--td><%= profile.weibo %></td-->
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show", :model => model_class.model_name.human)),
                       profile_path(profile),

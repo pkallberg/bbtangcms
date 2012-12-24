@@ -3,6 +3,25 @@ class Admin::AdminBaseController < ApplicationController
   layout "layouts/admin"
   before_filter :add_initial_breadcrumbs
 
+  SettingSubject =  {
+                      "base_settings"=> "基本设置",
+                      "links_settings"=> "友情链接",
+                      #"ads" => "广告设置", 
+                      "email_settings"=> "邮件设置",
+                      "seo_settings"=> "SEO设置",
+                      "code_settings"=> "代码参数设置",
+                      "ip_settings"=> "访问IP设置"}
+  SubjectType =  {
+                      "base_settings" => 1,
+                      "links_settings" => 1,
+                      #"ads" => 3, 
+                      "email_settings" => 1,
+                      "seo_settings" => 1,
+                      "code_settings" => 1,
+                      "ip_settings" => 3}
+                    
+  SettingType = {1=>"站点设置", 2=>"版面设置", 3=>"其它设置"}
+
   # 过滤文件名
   def sanitize_filename(filename)
     filename.strip.tap do |name|
@@ -38,9 +57,7 @@ class Admin::AdminBaseController < ApplicationController
     route_name = "#{controller}_path"
 
     subject_type = params[:controller].gsub(/\w+([\/]+)/,"")
-    subject = SettingSubject.find_by_controller_name("#{subject_type}")
-    subject_name = subject.present? ? subject.name : subject_type
-    breadcrumbs.add subject_name, self.send(route_name) if self.respond_to? route_name
+    breadcrumbs.add "admin.base_settings", self.send(route_name) if self.respond_to? route_name
 
     request_path = request.fullpath
     edit_action = "#{params[:action]}" if params[:action].present? and (params[:action].include? "edit")

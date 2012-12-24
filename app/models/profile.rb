@@ -16,7 +16,7 @@ class Profile < ActiveRecord::Base
   #has_many :tasks
   has_many :babies
   accepts_nested_attributes_for :babies, :allow_destroy => true, :reject_if => :all_blank
-  belongs_to :user_data_statistic
+
   acts_as_taggable_on :tags
   acts_as_taggable_on :expert_categories, :vip_categories
   #has_many :r_user_knowledges
@@ -41,7 +41,6 @@ class Profile < ActiveRecord::Base
     #:minimum => BBTangCMS::MetaCache.get_config_data("profile_name_min").to_i,
     :minimum => BBTangCMS::MetaCache.get_config_data("profile_name_min").to_i,
     :maximum => BBTangCMS::MetaCache.get_config_data("profile_name_max").to_i}, :allow_nil=>true
-  validates :label, :profession, :length => {:maximum => BBTangCMS::MetaCache.get_config_data("profile_label_max").to_i}
 
   #fixed bug, 当使用delegate_attributes的时候， 会需要loaded_[model]的方法
   def loaded_level?
@@ -55,12 +54,10 @@ class Profile < ActiveRecord::Base
 
   attr_accessible :face, :nickname, :gender, :agerange,
                   :pregnancy_status, :pregnancy_timeline,
-                  :city, :child_birthday, :child_gender,
-                  :user_id, :notify_via_email, :notify_on_new_articles,
-                  :notify_on_comments,:oauth_face_image_url,
-                  :baby_gender,:real_name, :level_id, :birthday, :degree,
-                  :phone, :profession, :expert_field, :hobby, :focus_tags_on,
-                  :label, :weibo, :updated_by, :created_at, :babies_attributes,
+                  :city,
+                  :user_id,:oauth_face_image_url, :real_name, :level_id, :birthday, :degree,
+                  :phone, :expert_field, :hobby, :label,
+                  :weibo, :updated_by, :created_at, :babies_attributes,
                   :resume, :expert_category_list, :vip_category_list
 
 
@@ -184,82 +181,7 @@ class Profile < ActiveRecord::Base
     end
   end
 
-  # add like tag for this user
-  def add_like
-    if self.like_by_count.blank?
-      self.like_by_count = 1
-    else
-      self.like_by_count = self.like_by_count + 1
-    end
-  end
 
-  # remove like tag from this user
-  def remove_like
-    if self.like_by_count.blank?
-      self.like_by_count = 1
-    else
-      self.like_by_count = self.like_by_count - 1
-    end
-  end
-
-  #判断该user是否被关注
-  def has_focus_user_on?(user_id)
-    if !self.focus_user_on.blank? && !user_id.blank?
-       self.focus_user_on_to_array.include?(user_id)
-    else
-      false
-    end
-  end
-
-  #判断该user是关注了某人
-  def has_focus_user_by?(user_id)
-    if !self.focus_user_by.blank? && !user_id.blank?
-      self.focus_user_by_to_array.include?(user_id)
-    else
-      false
-    end
-  end
-
-  #判断是否互相关注
-  def has_concern_each?(user_id)
-    on = self.focus_user_on_to_array
-    by = self.focus_user_by_to_array
-    focus_users =  on & by
-    if not focus_users.empty? and not user_id.blank?
-      focus_users.include?(user_id)
-    else
-      false
-    end
-  end
-
-  #返回添加了会员id的focus_user_on字段
-  def focus_user_on_after_added(user_id)
-    current_profile = Profile.find_by_id(self.id)
-    result = ''
-    if current_profile.focus_user_on.blank?
-      result = user_id.to_s
-    else
-      result << current_profile.focus_user_on.to_s << "," << user_id.to_s
-    end
-  end
-
-  #返回添加了会员id的focus_user_by字段
-  def focus_user_by_after_added(user_id)
-    current_profile = Profile.find_by_id(self.id)
-    result = ''
-    if current_profile.focus_user_by.blank?
-      result = user_id.to_s
-    else
-      result << current_profile.focus_user_by.to_s << "," << user_id.to_s
-    end
-  end
-
-  #返回删除了会员id的focus_user_by字段
-  def focus_user_by_after_removed(user_id)
-    @focus_user_by = Profile.find_by_id(self.id).focus_user_by_to_array
-    @focus_user_by.delete(user_id)
-    @focus_user_by.join(',')
-  end
 
   def expert_categories_collection
     if self.expert_categories.present?
@@ -275,70 +197,6 @@ class Profile < ActiveRecord::Base
     else
       Recommend::VipCategory.all.map(&:name).uniq
     end
-  end
-
-  #返回删除了会员id的focus_user_on字段
-  def focus_user_on_after_removed(user_id)
-    @focus_user_on = Profile.find_by_id(self.id).focus_user_on_to_array
-    @focus_user_on.delete(user_id)
-    @focus_user_on.join(',')
-  end
-
-  #把字符串转化成数组
-  def focus_user_by_to_array
-    if self.focus_user_by.blank?
-      return []
-    else
-      self.focus_user_by.split(",").map {|a| a.to_i}
-    end
-  end
-
-  #把字符串转化成数组
-  def focus_user_on_to_array
-    if self.focus_user_on.blank?
-      return []
-    else
-      self.focus_user_on.split(",").map {|a| a.to_i}
-    end
-  end
-
-  # 返回推荐认识的人的集合(尚未剔除已经关注的，尚未加入管理员定义的)
-  def deserve_to_focus
-    redis = BBTangCMS::DefineRedis.define_recommendation_redis(Recommendation::Search.config.namespace,"deserve_to_focus")
-    s = redis.zrange self.id,0,-1
-    ids = []
-    s.each do |t|
-      ids << t.to_i
-    end
-    return ids
-  end
-
-  # 该用户的所有完成的tasks
-  def done_tasks
-     self.tasks.where(:done => true).order("updated_at DESC")
-  end
-
-  # 该用户的未完成的tasks
-  def pending_tasks
-     self.tasks.where(:done => false).order("updated_at DESC")
-  end
-
-  # 该用户的所有的tasks
-  def all_tasks
-     self.tasks.order("updated_at DESC")
-  end
-
-
-  # 该用户最近更新的相册
-  def latest_album
-    Album.where(:created_by => self.user_id, :private=>false, :deleted_at => nil).order("updated_at DESC").first
-  end
-
-
-  # 推送groups
-  def user_recommendation_for_groups(category, limit=nil)
-    # TODO: need to use recommendation
-    GroupCategory.find_by_id(category).groups.limit(limit||=BBTangCMS::MetaCache.get_config_data("user_home_list_pre_block"))
   end
 
   # 当前用登录后个人页面，  您关注的专家帮手正在说 相关数据
@@ -407,70 +265,6 @@ class Profile < ActiveRecord::Base
                           WHERE q.last_answer_time >= #{Date.today-BBTangCMS::MetaCache.get_config_data("user_home_list_more_than_day").to_i} \
                           ORDER BY q.last_answer_time DESC                         \
                           LIMIT #{limit}")
-  end
-
-  # 当月电子杂志
-  def user_ezine_current
-    Ezine.ezine_first
-  end
-
-  #往期电子杂志
-  def user_ezines_before
-    Ezine.ezines_before
-  end
-
-  # 顶得最多
-  def user_most_supports
-    #TODO: not define this column
-    Question.limit(4)
-  end
-  # 与该用户相关的任务
-  def user_tasks
-    Task.where(:created_by => self.user_id).order("updated_at DESC")
-  end
-
-  #全部关注的数目
-  def attentions_count
-    (attentions.empty?)?0:attentions.count
-  end
-
-  # 互相关注的数目
-  def att_friend_count
-    (att_friend.empty?)?0:att_friend.count
-  end
-
-  # 粉丝数目
-  def fans_count
-    (fans.empty?)?0:fans.count
-  end
-
-  # 全部关注的人
-  def attentions
-    result = []
-    focus_users = self.focus_user_on_to_array
-    result = Profile.all(:conditions => ["user_id in (?)", focus_users]) unless focus_users.empty?
-    result
-  end
-
-  # 互相关注的人
-  def att_friend
-    result = []
-    on = self.focus_user_on_to_array
-    by = self.focus_user_by_to_array
-    focus_users =  on & by
-    result = Profile.all(:conditions => ["user_id in (?)", focus_users]) unless focus_users.empty?
-    result
-  end
-
-  # 关注我的人
-  def fans
-    result = []
-    #on = self.focus_user_on_to_array
-    #by = self.focus_user_by_to_array
-    #att_friends =  on & by
-    focus_users = self.focus_user_by_to_array #- att_friends
-    result = Profile.all(:conditions => ["user_id in (?)", focus_users]) unless focus_users.empty?
-    result
   end
 
 

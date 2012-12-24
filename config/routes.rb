@@ -79,7 +79,6 @@ BBTangCMS::Application.routes.draw do
     end
   end
 
-  resources :news
   resources :notes, :except => [:new, :create]
 
   namespace :kindeditor do
@@ -136,8 +135,6 @@ BBTangCMS::Application.routes.draw do
     resources :vip_categories
     root :to => 'dashboard#show', :as => :dashboard
   end
-
-  resources :subjects
   
   resources :source_trackers do
     collection do

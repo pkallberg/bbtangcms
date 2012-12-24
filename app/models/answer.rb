@@ -19,22 +19,10 @@ class Answer < ActiveRecord::Base
   attr_accessor :soft_deleted
     attr_accessible :body, :created_by, :created_at, :state,
                   :updated_at, :is_anonymous, :soft_deleted, :is_expert
-=begin
-  define_index do
-    indexes content
-    # 删除的和草稿不索引
-    where "deleted_at is null"
-    #声明使用实时索引
-    set_property :delta => true
-  end
-=end
 
   # 设置初始值
   def init
-    self.opposition_count ||= 0
-    self.approval_count ||= 0
     self.expert_count ||= 0
-    self.no_help_count ||= 0
     self.thanks_count ||= 0
     self.is_anonymous ||= 0
   end
