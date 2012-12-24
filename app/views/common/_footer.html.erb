@@ -1,4 +1,4 @@
-<p>现在时间 <%=time_tag Time.now, :format => :short %>,今日主题: <%= Setting.today_theme%>.</p>
+<p>页面生成于: <%=time_tag Time.now, :format => :short %>,今日主题: <%= Setting.today_theme%>.</p>
 <p>
   <span>
     <%= link_to t('layout.about'), site_about_path, title: t('layout.about'), rel: "tooltip" %> |

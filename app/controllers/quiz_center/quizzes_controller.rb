@@ -1,6 +1,7 @@
 class QuizCenter::QuizzesController < QuizCenter::QuizCenterBaseController
   load_and_authorize_resource
-  caches_action :index, :show, :public, :feed, :cache_path => Proc.new { |controller| current_user.present? ? controller.params.merge(user_id: current_user.id) : controller.params }
+  caches_action :index, :feed, expires_in: 10.minutes, cache_path: Proc.new { |controller| current_user.present? ? controller.params.merge(user_id: current_user.id) : controller.params }
+  caches_action :show, :public, expires_in: 1.hours, cache_path: Proc.new { |controller| current_user.present? ? controller.params.merge(user_id: current_user.id) : controller.params }
   cache_sweeper :resource_sweeper
   Model_class = Quiz.new.class
   before_filter :load_parent
