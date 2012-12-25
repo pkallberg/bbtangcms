@@ -121,17 +121,11 @@ class Ability
     can :create, Knowledge
   end
 
-  def create_news
-    can :create, News
-  end
 
   def create_category_base
     can :create, CategoryBase
   end
 
-  def create_subject
-    can :create, Subject
-  end
 
   def create_attachment
     can :create, Attachment
@@ -240,17 +234,11 @@ class Ability
     can :update, Knowledge
   end
 
-  def update_news
-    can :update, News
-  end
 
   def update_category_base
     can :update, CategoryBase
   end
 
-  def update_subject
-    can :update, Subject
-  end
 
   def update_attachment
     can :update, Attachment
@@ -361,17 +349,11 @@ class Ability
     can :read, Knowledge
   end
 
-  def read_news
-    can :read, News
-  end
 
   def read_category_base
     can :read, CategoryBase
   end
 
-  def read_subject
-    can :read, Subject
-  end
 
   def read_attachment
     can :read, Attachment
@@ -476,17 +458,10 @@ class Ability
     can :destroy, Knowledge
   end
 
-  def destroy_news
-    can :destroy, News
-  end
-
   def destroy_category_base
     can :destroy, CategoryBase
   end
 
-  def destroy_subject
-    can :destroy, Subject
-  end
 
   def destroy_attachment
     can :destroy, Attachment

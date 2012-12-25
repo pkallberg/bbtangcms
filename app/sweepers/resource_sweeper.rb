@@ -58,7 +58,7 @@ The current_sign_in_at and last_sign_in_at are the two fields that are updated b
     actions.each do |action|
       if route_checker?(controller_name,action)
         action_cache_path = ActionController::Caching::Actions::ActionCachePath.new(self, {:controller => controller_name, :action => action}, false).path
-        expire_action(%r{#{action_cache_path}} )
+        expire_fragment(%r{#{action_cache_path}})
       end 
     end
 
