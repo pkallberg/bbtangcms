@@ -54,15 +54,8 @@ class Profile < ActiveRecord::Base
 
   attr_accessible :face, :nickname, :gender, :agerange,
                   :pregnancy_status, :pregnancy_timeline,
-<<<<<<< HEAD
                   :city,
                   :user_id,:oauth_face_image_url, :real_name, :level_id, :birthday, :degree,
-=======
-                  :city, :child_birthday, :child_gender,
-                  :user_id, :notify_via_email, :notify_on_new_articles,
-                  :notify_on_comments,:oauth_face_image_url,
-                  :baby_gender,:real_name, :level_id, :birthday, :degree,
->>>>>>> 6860246334bb50b8ed669e17eaaff3a97835f414
                   :phone, :expert_field, :hobby, :label,
                   :weibo, :updated_by, :created_at, :babies_attributes,
                   :resume, :expert_category_list, :vip_category_list
