@@ -30,14 +30,10 @@
 //= require sisyphus
 
 //= require_tree .
-$(window).load(function() {
-    show();
-});
 
-function show() {
-    $('#loading').remove();
-    $('#container').fadeIn();
-};
+
+//http://stackoverflow.com/questions/5182016/what-is-the-difference-between-window-load-and-document-ready
+
 
 function load_spin() {
   var opts = {
@@ -61,11 +57,22 @@ function load_spin() {
   var spinner = new Spinner(opts).spin(target);
 }
 
-jQuery(document).ready(function($){
+function container_show() {
+  $('#loading').remove();
+  $('#container').fadeIn();
+};
+
+$(document).ready(function(){
   load_spin()
 });
 
+$(window).load(function(){
+  console.log("windows load finished.");
+  container_show();
+});
 
+
+/*
 $(document).ready(function(){
 console.log("refreshing styles...");
 less.sheets.push(document.getElementById('application_css'));
@@ -97,4 +104,6 @@ less.autoRefresh = function(time)
         fnImport(path, imports);
     }
 };
+
 });
+*/

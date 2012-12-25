@@ -11,19 +11,3 @@
 </p>
 <p>&copy;BBTangCMS 棒棒糖社区   2008-<%= Time.now.year %> 上海山缘网络科技有限公司 bbtang版权所有，并保留所有权利</p>
 <p> ICP备案证书号 沪ICP备07013538号-3</p>
-<% if ([12,1,2].include? Time.now.month)%>
-  <%= javascript_tag do %>
-  snowStorm.autoStart = true;
-  snowStorm.snowColor = '#99ccff'; // blue-ish snow!?
-  //snowStorm.snowCharacter = '*';
-  snowStorm.snowCharacter = '✻';
-  snowStorm.flakeWidth = 15;
-  snowStorm.flakeHeight = 15;
-  snowStorm.vMaxX = 30;
-  snowStorm.vMaxY = 30;
-  snowStorm.flakesMax = 300;
-  snowStorm.flakesMaxActive = 150;  // show more snow on screen at once
-  snowStorm.useTwinkleEffect = true; // let the snow flicker in and out of view
-  snowStorm.excludeMobile = false;
-  <% end %>
-<% end %>

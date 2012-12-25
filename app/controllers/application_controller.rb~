@@ -193,11 +193,8 @@ class ApplicationController < ActionController::Base
   end
 
 =begin
-<<<<<<< HEAD
   # 会导致 stale? 失效
-=======
   # 会导致 fresh? 失效
->>>>>>> 367512372b26e0a41eb105779706f04d6d58ba93
   def fresh_when(opts = {})
     opts[:etag] ||= []
     # 保证 etag 参数是 Array 类型

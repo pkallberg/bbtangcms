@@ -1,5 +1,30 @@
+function start_snow_storm() {
+  var current_date = new Date();
+  var current_month = current_date.getMonth();
+    
+  if ([11,12,1,2,3].indexOf(current_month) >= 0)
+  {
+    snowStorm.autoStart = true;
+    snowStorm.snowColor = '#99ccff'; // blue-ish snow!?
+    //snowStorm.snowCharacter = '*';
+    snowStorm.snowCharacter = '✻';
+    snowStorm.flakeWidth = 15;
+    snowStorm.flakeHeight = 15;
+    snowStorm.vMaxX = 30;
+    snowStorm.vMaxY = 30;
+    snowStorm.flakesMax = 300;
+    snowStorm.flakesMaxActive = 150;  // show more snow on screen at once
+    snowStorm.useTwinkleEffect = true; // let the snow flicker in and out of view
+    snowStorm.excludeMobile = false;
+  }
+}
+
 jQuery(document).ready(function($){
-    jQuery('#flashes').find(jQuery('.close')).click(function(){
+
+  // start start_snow_storm
+  start_snow_storm();
+  
+  jQuery('#flashes').find(jQuery('.close')).click(function(){
     /*$("#flashes").hide()*/
     jQuery("#flashes").remove();
   });
