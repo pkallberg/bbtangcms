@@ -1107,3 +1107,165 @@ new file:   spec/views/site/team.html.erb_spec.rb
 * Author: jhjguxin <864248765@qq.com>	2012-12-06
 
     fix bugs on source_trackers about will_paginate_mongoid's 'total_entries', helper 'mongoid_obj_filter_drop_down_li' can use 'opt' params, add 'extra_query.rake'
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-06
+
+    update changelog,and add 'extra_query_run_simply' to deploy
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-06
+
+    some change on extra_query
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-07
+
+    add task 'mmbk_ad_for_mmbk_users_no_sign_in'
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-07
+
+    some comment on 'mmbk_ad_for_mmbk_users_no_sign_in'
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-07
+
+    fix some error
+
+* Author: bbt_server <as181920@hotmail.com>	2012-12-07
+
+    args in rake, some words should not named for arg eg. count
+
+* Author: bbt_server <as181920@hotmail.com>	2012-12-09
+
+    fix on production env cannot read data from 'Rails.configuration.self_settings'
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-11
+
+    improve the cancan authorization
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-12
+
+    cache the value from helper methods with cache_helper bv francis
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-13
+
+    add resource_sweeper
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-13
+
+    fix one error on 'add_params_to_url'
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-13
+
+    fix one bug on 'ResourceSweeper#expire_cache_for'
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-13
+
+    not observe the user model
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-13
+
+    fix user conflict with observe and add 'route_checker?'
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-13
+
+    add filter to model's controller class in 'observe_models' list
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-14
+
+    can cache_action action with param, add 'rack-mini-profiler' to monitor the performance
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-14
+
+    cache some helper
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-14
+
+    fix one error
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-14
+
+    use Rails CSRF protection on cached actions by 'cacheable-csrf-token-rails'
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-14
+
+    fix one error
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-18
+
+    asciify_logo and etag to improve the page load performance
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-18
+
+    main page can import the load speed by etag, set session expire_after 86400*90
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-18
+
+    something wrong
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-18
+
+    add user to cache_action's cache_path
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-18
+
+    add user to cache_action's cache_path
+
+> Merge: 46efd20 e38ba74
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-19
+
+    Merge branch 'master' of bbtang.com:bbtang/bbtcms
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-19
+
+    try to fix queues worker missing after deploy, make cpu usage 100
+
+> Merge: 0d233c9 3675123
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-19
+
+    merge from office branch
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-19
+
+    try to fix queues worker missing after deploy, make cpu usage 100
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-19
+
+    try to fix queues worker missing after deploy, make cpu usage 100
+
+> Merge: 9db270a 1af8c0d
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-19
+
+    merge conflict
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-20
+
+    some revert on deploy.rb
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-20
+
+    expire_cache_for will expire action do not care controller params
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-20
+
+    fix some bugs
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-24
+
+    add 'expires_in' option to cache_action to expires fragment
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-24
+
+    fix bug on 'route_checker' on 'resource_swepper'
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-24
+
+    add snow_storm
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-24
+
+    try to make bbtcms work, after bbtang.com refactory
+
+* Author: jhjguxin <864248765@qq.com>	2012-12-25
+
+    try to make bbtcms work, after bbtang.com refactory, almost finished
