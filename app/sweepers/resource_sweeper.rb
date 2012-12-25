@@ -79,7 +79,7 @@ The current_sign_in_at and last_sign_in_at are the two fields that are updated b
   end
   def get_observe_models
     observe_models = Setting.observe_models.split(" ")
-    observe_models ||= ["Knowledge", "Note", "News", "Profile", "Question", "Quiz", "QuizCollection", "Subject", "User", "Answer", "Attachment", "CmsRole"]
+    observe_models ||= ["Knowledge", "Note", "Profile", "Question", "Quiz", "QuizCollection", "User", "Answer", "Attachment", "CmsRole"]
     observe_models.collect{|object| object.constantize if object.class_exists?}.compact.uniq
   end
   def route_checker(controller,action,opt={})
