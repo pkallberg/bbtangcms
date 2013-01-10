@@ -1,7 +1,7 @@
 #source 'https://rubygems.org'
 source 'http://ruby.taobao.org/'
 
-gem 'rails', '3.2.5'
+gem "rails", "~> 3.2.11"
 gem "rails-i18n", "~> 0.6.5"
 gem "rails-timeago", "~> 1.4.2"
 

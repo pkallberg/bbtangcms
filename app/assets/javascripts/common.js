@@ -1,8 +1,13 @@
 function start_snow_storm() {
   var current_date = new Date();
+  //获得当前月份0-11  
+  //var current_month= current_date.getMonth(); 
+  //获得当前年份4位年  
+  //var current_year =currentDate.getFullYear(); 
+  //求出本月第一天  
   var current_month = current_date.getMonth();
     
-  if ([11,12,1,2,3].indexOf(current_month) >= 0)
+  if ([11,0,1,2,3].indexOf(current_month) >= 0)
   {
     snowStorm.autoStart = true;
     snowStorm.snowColor = '#99ccff'; // blue-ish snow!?
@@ -12,11 +17,14 @@ function start_snow_storm() {
     snowStorm.flakeHeight = 15;
     snowStorm.vMaxX = 30;
     snowStorm.vMaxY = 30;
-    snowStorm.flakesMax = 300;
-    snowStorm.flakesMaxActive = 150;  // show more snow on screen at once
+    snowStorm.flakesMax = 400;
+    snowStorm.flakesMaxActive = 500;  // show more snow on screen at once
     snowStorm.useTwinkleEffect = true; // let the snow flicker in and out of view
     snowStorm.excludeMobile = false;
+  } else {
+    snowStorm.stop()
   }
+  
 }
 
 jQuery(document).ready(function($){
