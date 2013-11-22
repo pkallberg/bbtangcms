@@ -115,10 +115,6 @@ gem "rails-settings-cached", "~> 0.2.1"
 # To use debugger
 group :development do
   gem 'thin'
-  gem 'linecache19', '0.5.13'
-  gem 'ruby-debug-base19', '0.11.26'
-  gem 'ruby-debug19', :require => 'ruby-debug'
-
   #curl -OL http://rubyforge.org/frs/download.php/75414/linecache19-0.5.13.gem
   #curl -OL http://rubyforge.org/frs/download.php/75414/linecache19-0.5.13.gem
   #curl -OL http://rubyforge.org/frs/download.php/75415/ruby-debug-base19-0.11.26.gem
