@@ -1,0 +1,12 @@
+production:
+    rails:
+        configuration:
+            do_initialdb_schema_load: true
+development:
+    rails:
+        configuration:
+            do_initialdb_schema_load: true
+staging:
+    rails:
+        configuration:
+            do_initialdb_schema_load: true
