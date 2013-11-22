@@ -1,12 +1,12 @@
 production:
     rails:
         configuration:
-            do_initialdb_schema_load: true
+            do_initial_db_schema_load: true
 development:
     rails:
         configuration:
-            do_initialdb_schema_load: true
+            do_initial_db_schema_load: true
 staging:
     rails:
         configuration:
-            do_initialdb_schema_load: true
+            do_initial_db_schema_load: true
