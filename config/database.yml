@@ -12,35 +12,19 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: askjane_development
-  host: 127.0.0.1
-  username: bbtang
-  password: bbtang
-  socket: /var/lib/mysql/mysql.sock
   pool: 55
 
 production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: askjane_production
   pool: 55
-  host: 127.0.0.1
-  username: bbtang
-  password: bbtang
-  socket: /var/lib/mysql/mysql.sock
 
 test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: askjane_test
   pool: 55
-  host: 127.0.0.1
-  username: bbtang
-  password: bbtang
-  socket: /var/lib/mysql/mysql.sock
-
 
 group_development:
   adapter: mysql2
